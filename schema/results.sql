@@ -1,0 +1,9 @@
+CREATE TABLE results(
+    game_id INT AUTO_INCREMENT PRIMARY KEY,
+    round VARCHAR(20) NOT NULL,
+    team1 VARCHAR(50) NOT NULL,
+    team2 VARCHAR(50) NOT NULL,
+    score1 INT NOT NULL,
+    score2 INT NOT NULL,
+    winner VACHAR(50) NOT NULL
+);
