@@ -3,7 +3,7 @@ import React from "react";
 export default function West() {
     return(
         <>
-            <div className="west region">
+            <div className="west region bg-red-600">
                 <div className="rounds">
                     <div className="round first-round">
                         <div className="matchup bg-pink-500">
