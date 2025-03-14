@@ -4,6 +4,7 @@ import East from "../Components/east";
 import South from "../Components/south";
 import Midwest from "../Components/midwest";
 import NavBar from "../Components/NavBar";
+import FirstFour from "../Components/firstfour";
 import Championship from "../Components/championship";
 
 export default function Profile() {
@@ -12,18 +13,21 @@ export default function Profile() {
         <nav>
             <NavBar />
         </nav>
-        
-        <div className="bracket">
-            <div>
-            {/* <West />
-            <East /> */}
+        <div className="bg-slate-800">
+            <div className="w-full">
+                <FirstFour />
             </div>
+            <div>
+                <div className="flex">
+                    <West />
+                    <Midwest />
+                </div>
             <Championship />
-            <div>
-            {/* <South />
-            <Midwest /> */}
+                <div className="flex">
+                    <East />
+                    <South />
+                </div>
             </div>
-            
         </div>
         </>
     )
