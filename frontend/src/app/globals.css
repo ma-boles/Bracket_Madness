@@ -1,9 +1,18 @@
+/* @import "tailwindcss/preflight";
+@tailwind utilities; */
 @import "tailwindcss";
+@layer base, components, utilities;
 
-:root {
-  /* --background: #ffffff; */
-  /* --foreground: #171717; */
-}
+/* @layer utilities {
+  .custom-padding {
+    padding: 1rem;
+  }
+} */
+
+/* :root {
+  --background: #ffffff; 
+  --foreground: #171717;
+} */
 
 @theme inline {
   --color-background: var(--background);
@@ -15,7 +24,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000000; 
-     --foreground: #ededed; 
+    --foreground: #ededed; 
   }
 }
 
@@ -25,15 +34,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.bracket {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-rows: 1fr auto 1fr;
+/* .bracket {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
   width: 100vw;
-  height: 100vh;
-  gap: 20px;
   padding: 20px;
-}
+  padding-bottom: 50px; /* Gives extra spacing *//*
+}*/
 
 .region {
   display: flex;
@@ -58,55 +67,123 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  border-right: 2px solid white;
+  margin-bottom: 1rem;
+  border-right: 0.125rem solid white;
 }
 
 .matchup2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:10rem;
-  margin-top: 1rem;
+  height:9rem;
+  margin-top: 1.25rem;
   justify-content: space-between;
-  border-right: 2px solid white;
+  border-right: 0.125rem solid white;
 
 }
 .matchup2-last {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:10rem;
-  margin-top: 1rem;
+  height:9rem;
+  margin-top: 0.75rem;
   justify-content: space-between;
-  border-right: 2px solid white;
+  border-right: 0.125rem solid white;
 
 }
 .matchup3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:17rem;
-  margin-top: 5rem;
-  margin-bottom:6rem;
+  height:16rem;
+  margin-top: 3.75rem;
+  margin-bottom: 4.5rem;
   justify-content: space-between;
-  border-right: 2px solid white;
+  border-right: 0.125rem solid white;
+}
+.matchup3-last {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:16rem;
+  margin-top: 5rem;
+  margin-bottom: 4.5rem;
+  justify-content: space-between;
+  border-right: 0.125rem solid white;
 }
 .matchup4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:32rem;
-  margin-top: 12rem;
+  height:29rem;
+  margin-top: 10rem;
   justify-content: space-between;
-  border-right: 2px solid white;
+  border-right: 0.125rem solid white;
+}
+
+.matchup--r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-left: 0.125rem solid white;
+}
+
+.matchup2--r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:9rem;
+  margin-top: 1.25rem;
+  justify-content: space-between;
+  border-left: 0.125rem solid white;
+
+}
+.matchup2-last--r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:9rem;
+  margin-top: 0.75rem;
+  justify-content: space-between;
+  border-left: 0.125rem solid white;
+
+}
+.matchup3--r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:16rem;
+  margin-top: 3.75rem;
+  margin-bottom: 4.5rem;
+  justify-content: space-between;
+  border-left: 0.125rem solid white;
+}
+.matchup3-last--r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:16rem;
+  margin-top: 5rem;
+  margin-bottom: 4.5rem;
+  justify-content: space-between;
+  border-left: 0.125rem solid white;
+}
+.matchup4--r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:29rem;
+  margin-top: 10rem;
+  justify-content: space-between;
+  border-left: 0.125rem solid white;
 }
 
 .team {
-  width: 180px;
-  padding: 10px;
+  width: 8.3rem;
+  padding: 0.5rem;
   background: transparent;
-  border-bottom: 2px solid white;
+  border-bottom: 0.125rem solid white;
   text-align: center;
   font-weight: bold;
   position: relative;
