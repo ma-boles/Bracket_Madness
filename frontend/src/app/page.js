@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 export default function Home() {
   return (
     <div className="items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <main className="items-center sm:items-start">
         <div className="flex flex-col items-center justify-center p-10">
-        <Image
+         <Image
           src="/BracketMadness_background.jpg"
           alt="Bracket Madness logo"
           width={640}
@@ -14,16 +15,11 @@ export default function Home() {
           priority
         />
           <div className="flex">
-            
-            {/* create modal for account creation */}
-            <Link href="/Profile"
-              className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2">
-              Create An Account
-            </Link>
-            <Link href="/Profile"
+
+            <Link href="/LogInPage"
               className="
               rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2">
-              Log In
+              Log In / Sign Up
             </Link>
           </div>
         </div>
