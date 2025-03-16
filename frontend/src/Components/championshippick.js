@@ -1,22 +1,37 @@
+'use client'
 import React from "react";
+import { useBracket } from "@/context/BracketContext";
 
 export default function ChampionshipPick () {
+    const { userPicks, setUserPicks, handlePick } = useBracket();
+    
     return (
         <>
             <div className="round">
-                    {/* <h1 className="py-2 text-center text-2xl "></h1> */}
                     <div className="flex gap-6 p-4 bg-blue-600 rounded-md">
                         <div className="my-auto flex flex-col items-center">
-                            <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black" />
+                        <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('championship', 'FF-final', e.target.value)}
+                            placeholder="winner FF-1"
+                            ></input>
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
                         </div>
                         <div className="p-2 flex flex-col items-center">
-                            <input className="bg-white border-2 border-black p-2 rounded-md text-black text-xl" />
+                        <input className="bg-white border-2 border-black p-2 mb-4 rounded-md text-black text-xl text-center"
+                            type="text"
+                            onChange={(e) => handlePick('championship', 'FF-champ', e.target.value)}
+                            placeholder="champion"
+                            ></input>
                             <h1 className="text-2xl">National Champion</h1>
                         </div>
                         <div className="my-auto flex flex-col items-center">
-                            <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black" />
+                        <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('championship', 'FF-final', e.target.value)}
+                            placeholder="winner FF-2"
+                            ></input>
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
                         </div>
