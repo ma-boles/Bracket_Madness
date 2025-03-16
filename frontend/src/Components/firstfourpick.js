@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FirstFour() {
+export default function FirstFourPick() {
     return(
         <>
             <div className="round pt-4">

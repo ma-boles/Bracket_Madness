@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function East() {
+export default function EastPick() {
     return(
         <>
         <div className="east region">

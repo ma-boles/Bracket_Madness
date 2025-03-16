@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Championship () {
+export default function ChampionshipPick () {
     return (
         <>
             <div className="round">

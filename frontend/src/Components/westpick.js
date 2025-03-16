@@ -1,14 +1,27 @@
 import React from "react";
+import { useBracket } from "@/context/BracketContext";
 
-export default function West() {
+export default function WestPick() {
+   const { userPick, setUserPick } = useBracketContext();
+   const { handlePick } = useBracket();
+
+
     return(
         <>
             <div className="west region">
                 <div className="rounds">
                     <div className="round first-round">
                         <div className="matchup bg-pink-500">
-                            <div className="team">seed 1</div>
-                            <div className="team">seed 16</div>
+                            <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('west', 13, e.target.value)}
+                            placeholder="seed 1"
+                            ></input>
+                            <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('west', 13, e.target.value)}
+                            placeholder="seed 16"
+                            ></input>
                         </div>
                         <div className="matchup bg-yellow-500">
                             <div className="team">seed 8</div>

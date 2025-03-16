@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function South() {
+export default function MidwestPick() {
     return(
         <>
-        <div className="south region">
+        <div className="midwest region">
                 <div className="rounds">
                 <div className="round final4">
-                        <div className="mt-100 matchup--r bg-teal-500">
+                        <div className="mt-100 matchup--r bg-teal-500 ">
                             <div className="team">winner 15</div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@ export default function South() {
                             <div className="team">winner 9</div>
                             <div className="team">winner 10</div>
                         </div>
-                        <div className="matchup3--r bg-yellow-500">
+                        <div className="matchup3-last--r bg-yellow-500">
                             <div className="team">winner 11</div>
                             <div className="team">winner 12</div>
                         </div>
@@ -31,7 +31,7 @@ export default function South() {
                             <div className="team">winner 1</div>
                             <div className="team">winner 2</div>
                         </div>
-                        <div className="matchup2--r mb-8 bg-indigo-600">
+                        <div className="matchup2--r mb-8 border-r-indigo-500">
                             <div className="team">winner 3</div>
                             <div className="team">winner 4</div>
                         </div>
