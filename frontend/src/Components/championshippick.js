@@ -12,8 +12,8 @@ export default function ChampionshipPick () {
                         <div className="my-auto flex flex-col items-center">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('championship', 'FF-final', e.target.value)}
-                            placeholder="winner FF-1"
+                            onChange={(e) => handlePick('championship', 9001, e.target.value)}
+                            placeholder="winner 4001"
                             ></input>
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
@@ -21,7 +21,7 @@ export default function ChampionshipPick () {
                         <div className="p-2 flex flex-col items-center">
                         <input className="bg-white border-2 border-black p-2 mb-4 rounded-md text-black text-xl text-center"
                             type="text"
-                            onChange={(e) => handlePick('championship', 'FF-champ', e.target.value)}
+                            onChange={(e) => handlePick('championship', 10000, e.target.value)}
                             placeholder="champion"
                             ></input>
                             <h1 className="text-2xl">National Champion</h1>
@@ -29,8 +29,8 @@ export default function ChampionshipPick () {
                         <div className="my-auto flex flex-col items-center">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('championship', 'FF-final', e.target.value)}
-                            placeholder="winner FF-2"
+                            onChange={(e) => handlePick('championship', 9001, e.target.value)}
+                            placeholder="winner 4002"
                             ></input>
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}

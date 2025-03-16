@@ -13,8 +13,8 @@ export default function MidwestPick() {
                         <div className="mt-100 matchup--r bg-teal-500 ">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'F4-2', e.target.value)}
-                            placeholder="winner EE-2"
+                            onChange={(e) => handlePick('midwest', 4002, e.target.value)}
+                            placeholder="winner 8002"
                         ></input>
                         </div>
                     </div>
@@ -22,13 +22,13 @@ export default function MidwestPick() {
                         <div className="matchup4--r bg-orange-600">
                             <input className="team"
                                 type="text"
-                                onChange={(e) => handlePick('midwest', 'EE-2', e.target.value)}
-                                placeholder="winner SS-3"
+                                onChange={(e) => handlePick('midwest', 8002, e.target.value)}
+                                placeholder="winner 1603"
                             ></input>
                             <input className="team"
                                 type="text"
-                                onChange={(e) => handlePick('midwest', 'EE-2', e.target.value)}
-                                placeholder="winner SS-4"
+                                onChange={(e) => handlePick('midwest', 8002, e.target.value)}
+                                placeholder="winner 1604"
                             ></input>
                         </div>
                     </div>
@@ -36,25 +36,25 @@ export default function MidwestPick() {
                         <div className="matchup3--r bg-pink-500">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'SS-3', e.target.value)}
-                            placeholder="winner Rd2-5"
+                            onChange={(e) => handlePick('midwest', 1603, e.target.value)}
+                            placeholder="winner 1205"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'SS-3', e.target.value)}
-                            placeholder="winner Rd2-6"
+                            onChange={(e) => handlePick('midwest', 1603, e.target.value)}
+                            placeholder="winner 1206"
                             ></input>
                         </div>
                         <div className="matchup3-last--r bg-yellow-500">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'SS-4', e.target.value)}
-                            placeholder="winner Rd2-7"
+                            onChange={(e) => handlePick('midwest', 1604, e.target.value)}
+                            placeholder="winner 1207"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'SS-4', e.target.value)}
-                            placeholder="winner Rd2-8"
+                            onChange={(e) => handlePick('midwest', 1604, e.target.value)}
+                            placeholder="winner 1208"
                             ></input>
                         </div>
                     </div>
@@ -62,49 +62,49 @@ export default function MidwestPick() {
                         <div className="matchup2--r mb-8 bg-green-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-4', e.target.value)}
-                            placeholder="winner Rd1-9"
+                            onChange={(e) => handlePick('midwest', 1205, e.target.value)}
+                            placeholder="winner 1109"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-4', e.target.value)}
-                            placeholder="winner Rd1-10"
+                            onChange={(e) => handlePick('midwest', 1205, e.target.value)}
+                            placeholder="winner 1110"
                             ></input>
                         </div>
                         <div className="matchup2--r mb-8 border-r-indigo-500">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-5', e.target.value)}
-                            placeholder="winner Rd1-11"
+                            onChange={(e) => handlePick('midwest', 1206, e.target.value)}
+                            placeholder="winner 1111"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-5', e.target.value)}
-                            placeholder="winner Rd1-12"
+                            onChange={(e) => handlePick('midwest', 1206, e.target.value)}
+                            placeholder="winner 1112"
                             ></input>
                         </div>
                         <div className="matchup2--r mb-14 bg-lime-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-2', e.target.value)}
-                            placeholder="winner Rd1-13"
+                            onChange={(e) => handlePick('midwest', 1207, e.target.value)}
+                            placeholder="winner 1113"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-2', e.target.value)}
-                            placeholder="winner Rd1-14"
+                            onChange={(e) => handlePick('midwest', 1207, e.target.value)}
+                            placeholder="winner 1114"
                             ></input>
                         </div>
                         <div className="matchup2-last--r bg-slate-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-3', e.target.value)}
-                            placeholder="winner Rd1-15"
+                            onChange={(e) => handlePick('midwest', 1208, e.target.value)}
+                            placeholder="winner 1115"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd2-3', e.target.value)}
-                            placeholder="winner Rd1-16"
+                            onChange={(e) => handlePick('midwest', 1208, e.target.value)}
+                            placeholder="winner 1116"
                             ></input>
                         </div>
                     </div>
@@ -112,96 +112,96 @@ export default function MidwestPick() {
                         <div className="matchup--r bg-pink-500">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-9', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1109, e.target.value)}
                             placeholder="seed 1"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-9', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1109, e.target.value)}
                             placeholder="seed 16"
                             ></input>
                         </div>
                         <div className="matchup--r bg-yellow-500">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-10', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1110, e.target.value)}
                             placeholder="seed 8"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-10', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1110, e.target.value)}
                             placeholder="seed 9"
                             ></input>
                         </div>
                         <div className="matchup--r bg-orange-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-11', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1111, e.target.value)}
                             placeholder="seed 5"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-11', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1111, e.target.value)}
                             placeholder="seed 12"
                             ></input>
                         </div>
                         <div className="matchup--r bg-teal-500">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-12', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1112, e.target.value)}
                             placeholder="seed 4"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-12', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1112, e.target.value)}
                             placeholder="seed 13"
                             ></input>
                         </div>
                         <div className="matchup--r bg-slate-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-13', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1113, e.target.value)}
                             placeholder="seed 6"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-13', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1113, e.target.value)}
                             placeholder="seed 11"
                             ></input>
                         </div>
                         <div className="matchup--r bg-lime-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-14', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1114, e.target.value)}
                             placeholder="seed 3"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-14', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1114, e.target.value)}
                             placeholder="seed 14"
                             ></input>
                         </div>
                         <div className="matchup--r bg-blue-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-15', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1115, e.target.value)}
                             placeholder="seed 7"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-15', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1115, e.target.value)}
                             placeholder="seed 10"
                             ></input>
                         </div>
                         <div className="matchup--r bg-green-600">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-16', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1116, e.target.value)}
                             placeholder="seed 2"
                             ></input>
                             <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('midwest', 'Rd1-16', e.target.value)}
+                            onChange={(e) => handlePick('midwest', 1116, e.target.value)}
                             placeholder="seed 15"
                             ></input>
                         </div>

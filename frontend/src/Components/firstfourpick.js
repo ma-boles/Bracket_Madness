@@ -13,12 +13,12 @@ export default function FirstFourPick() {
                         <div className="flex flex-col items-center">
                             <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-1', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1001, e.target.value)}
                                 placeholder="seed 1"
                                 ></input>
                                 <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1001, e.target.value)}
                                 placeholder="seed 16"
                                 ></input>
                             <input  />
@@ -26,12 +26,12 @@ export default function FirstFourPick() {
                         <div className="flex flex-col items-center">
                             <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-2', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1002, e.target.value)}
                                 placeholder="seed 1"
                                 ></input>
                                 <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-2', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1002, e.target.value)}
                                 placeholder="seed 16"
                                 ></input>
                             <input  />
@@ -39,12 +39,12 @@ export default function FirstFourPick() {
                         <div className="flex flex-col items-center">
                             <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-3', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1003, e.target.value)}
                                 placeholder="seed 1"
                                 ></input>
                                 <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-3', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1003, e.target.value)}
                                 placeholder="seed 16"
                                 ></input>
                             <input  />
@@ -52,12 +52,12 @@ export default function FirstFourPick() {
                         <div className="flex flex-col items-center">
                             <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-4', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1004, e.target.value)}
                                 placeholder="seed 1"
                                 ></input>
                                 <input className="w-36 bg-white border-2 border-black p-2 rounded-md text-black"
                                 type="text"
-                                onChange={(e) => handlePick('west', 'FF-4', e.target.value)}
+                                onChange={(e) => handlePick('firstfour', 1004, e.target.value)}
                                 placeholder="seed 16"
                                 ></input>
                             <input  />
