@@ -10,7 +10,7 @@ export default function WestPick() {
             <div className="west region">
                 <div className="rounds">
                     <div className="round first-round">
-                        <div className="matchup bg-pink-500">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1101, e.target.value)}
@@ -22,7 +22,7 @@ export default function WestPick() {
                             placeholder="seed 16"
                             ></input>
                         </div>
-                        <div className="matchup bg-yellow-500">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1102, e.target.value)}
@@ -34,7 +34,7 @@ export default function WestPick() {
                             placeholder="seed 9"
                             ></input>
                         </div>
-                        <div className="matchup bg-orange-600">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1103, e.target.value)}
@@ -46,7 +46,7 @@ export default function WestPick() {
                             placeholder="seed 12"
                             ></input>
                         </div>
-                        <div className="matchup bg-teal-500">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1104, e.target.value)}
@@ -58,7 +58,7 @@ export default function WestPick() {
                             placeholder="seed 13"
                             ></input>
                         </div>
-                        <div className="matchup bg-slate-600">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1105, e.target.value)}
@@ -70,7 +70,7 @@ export default function WestPick() {
                             placeholder="seed 11"
                             ></input>
                         </div>
-                        <div className="matchup bg-lime-600">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1106, e.target.value)}
@@ -82,7 +82,7 @@ export default function WestPick() {
                             placeholder="seed 14"
                             ></input>
                         </div>
-                        <div className="matchup bg-indigo-500">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1107, e.target.value)}
@@ -94,7 +94,7 @@ export default function WestPick() {
                             placeholder="seed 10"
                             ></input>
                         </div>
-                        <div className="matchup bg-green-600">
+                        <div className="matchup bg-blue-800">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1108, e.target.value)}
@@ -108,7 +108,7 @@ export default function WestPick() {
                         </div>
                     </div>
                     <div className="round second-round">
-                        <div className="matchup2 mb-8 bg-green-600">
+                        <div className="matchup2 mb-8 bg-gray-700">
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1201, e.target.value)}
@@ -120,7 +120,7 @@ export default function WestPick() {
                             placeholder="winner 1102"
                             ></input>
                         </div>
-                        <div className="matchup2 mb-8 bg-indigo-500">
+                        <div className="matchup2 mb-8 bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1202, e.target.value)}
@@ -132,7 +132,7 @@ export default function WestPick() {
                             placeholder="winner 1104"
                             ></input>
                         </div>
-                        <div className="matchup2 mb-14 bg-lime-600">
+                        <div className="matchup2 mb-14 bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1203, e.target.value)}
@@ -144,7 +144,7 @@ export default function WestPick() {
                             placeholder="winner 1106"
                             ></input>
                         </div>
-                        <div className="matchup2-last bg-slate-600">
+                        <div className="matchup2-last bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1204, e.target.value)}
@@ -158,7 +158,7 @@ export default function WestPick() {
                         </div>
                     </div>
                     <div className="round sweet-16">
-                        <div className="matchup3  bg-blue-500">
+                        <div className="matchup3  bg-blue-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1601, e.target.value)}
@@ -170,7 +170,7 @@ export default function WestPick() {
                             placeholder="winner 1202"
                             ></input>
                         </div>
-                        <div className="matchup3-last bg-yellow-500">
+                        <div className="matchup3-last bg-blue-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1602, e.target.value)}
@@ -184,7 +184,7 @@ export default function WestPick() {
                         </div>
                     </div>
                     <div className="round elite8">
-                        <div className="matchup4 bg-orange-600">
+                        <div className="matchup4 bg-gray-600">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 8001, e.target.value)}
@@ -198,7 +198,7 @@ export default function WestPick() {
                         </div>
                     </div>
                     <div className="round final4">
-                        <div className="mt-100 matchup bg-teal-500 ">
+                        <div className="mt-100 matchup bg-blue-500">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 4001, e.target.value)}

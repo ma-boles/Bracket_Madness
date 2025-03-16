@@ -10,7 +10,7 @@ export default function SouthPick() {
         <div className="midwest region">
             <div className="rounds">
                 <div className="round final4">
-                        <div className="mt-100 matchup--r bg-teal-500 ">
+                        <div className="mt-100 matchup--r bg-blue-500">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 4002, e.target.value)}
@@ -19,7 +19,7 @@ export default function SouthPick() {
                         </div>
                     </div>
                     <div className="round elite8">
-                        <div className="matchup4--r bg-orange-600">
+                        <div className="matchup4--r bg-gray-600">
                             <input className="team"
                                 type="text"
                                 onChange={(e) => handlePick('south', 8003, e.target.value)}
@@ -33,7 +33,7 @@ export default function SouthPick() {
                         </div>
                     </div>
                     <div className="round sweet-16">
-                        <div className="matchup3--r bg-pink-500">
+                        <div className="matchup3--r bg-blue-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1605, e.target.value)}
@@ -45,7 +45,7 @@ export default function SouthPick() {
                             placeholder="winner 1218"
                             ></input>
                         </div>
-                        <div className="matchup3-last--r bg-yellow-500">
+                        <div className="matchup3-last--r bg-blue-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1606, e.target.value)}
@@ -59,7 +59,7 @@ export default function SouthPick() {
                         </div>
                     </div>
                     <div className="round second-round">
-                        <div className="matchup2--r mb-8 bg-green-600">
+                        <div className="matchup2--r mb-8 bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1209, e.target.value)}
@@ -71,7 +71,7 @@ export default function SouthPick() {
                             placeholder="winner 1118"
                             ></input>
                         </div>
-                        <div className="matchup2--r mb-8 border-r-indigo-500">
+                        <div className="matchup2--r mb-8 bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1210, e.target.value)}
@@ -83,7 +83,7 @@ export default function SouthPick() {
                             placeholder="winner 1120"
                             ></input>
                         </div>
-                        <div className="matchup2--r mb-14 bg-lime-600">
+                        <div className="matchup2--r mb-14 bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1211, e.target.value)}
@@ -95,7 +95,7 @@ export default function SouthPick() {
                             placeholder="winner 1122"
                             ></input>
                         </div>
-                        <div className="matchup2-last--r bg-slate-600">
+                        <div className="matchup2-last--r bg-gray-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1212, e.target.value)}
@@ -109,7 +109,7 @@ export default function SouthPick() {
                         </div>
                     </div>
                     <div className="round first-round">
-                        <div className="matchup--r bg-pink-500">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1117, e.target.value)}
@@ -121,7 +121,7 @@ export default function SouthPick() {
                             placeholder="seed 16"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-yellow-500">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1118, e.target.value)}
@@ -133,7 +133,7 @@ export default function SouthPick() {
                             placeholder="seed 9"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-orange-600">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1119, e.target.value)}
@@ -145,7 +145,7 @@ export default function SouthPick() {
                             placeholder="seed 12"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-teal-500">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1120, e.target.value)}
@@ -157,7 +157,7 @@ export default function SouthPick() {
                             placeholder="seed 13"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-slate-600">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1121, e.target.value)}
@@ -169,7 +169,7 @@ export default function SouthPick() {
                             placeholder="seed 11"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-lime-600">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1122, e.target.value)}
@@ -181,7 +181,7 @@ export default function SouthPick() {
                             placeholder="seed 14"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-blue-600">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1123, e.target.value)}
@@ -193,7 +193,7 @@ export default function SouthPick() {
                             placeholder="seed 10"
                             ></input>
                         </div>
-                        <div className="matchup--r bg-green-600">
+                        <div className="matchup--r bg-blue-800">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1124, e.target.value)}
