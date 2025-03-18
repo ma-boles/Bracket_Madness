@@ -37,24 +37,24 @@ export default function SouthPick() {
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1605, e.target.value)}
-                            placeholder="winner 1217"
+                            placeholder="winner 1209"
                             ></input>
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1605, e.target.value)}
-                            placeholder="winner 1218"
+                            placeholder="winner 1210"
                             ></input>
                         </div>
                         <div className="matchup3-last--r bg-blue-700">
                         <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1606, e.target.value)}
-                            placeholder="winner 1219"
+                            placeholder="winner 1211"
                             ></input>
                             <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1606, e.target.value)}
-                            placeholder="winner 1220"
+                            placeholder="winner 1212"
                             ></input>
                         </div>
                     </div>

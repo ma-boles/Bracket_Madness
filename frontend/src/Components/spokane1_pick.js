@@ -1,9 +1,14 @@
 'use client'
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
+import Select from "react-select";
+import dynamic from 'next/dynamic';
+
+
 
 export default function WestPick() {
     const { userPicks, setUserPicks, handlePick } = useBracket();
+    const Select = dynamic(() => import('react-select'), { ssr: false });
 
     return(
         <>
@@ -11,100 +16,100 @@ export default function WestPick() {
                 <div className="rounds">
                     <div className="round first-round">
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select classNamePrefix="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1101, e.target.value)}
                             placeholder="seed 1"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select classNamePrefix="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1101, e.target.value)}
                             placeholder="seed 16"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1102, e.target.value)}
                             placeholder="seed 8"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1102, e.target.value)}
                             placeholder="seed 9"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1103, e.target.value)}
                             placeholder="seed 5"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1103, e.target.value)}
                             placeholder="seed 12"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1104, e.target.value)}
                             placeholder="seed 4"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1104, e.target.value)}
                             placeholder="seed 13"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1105, e.target.value)}
                             placeholder="seed 6"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1105, e.target.value)}
                             placeholder="seed 11"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1106, e.target.value)}
                             placeholder="seed 3"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1106, e.target.value)}
                             placeholder="seed 14"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1107, e.target.value)}
                             placeholder="seed 7"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1107, e.target.value)}
                             placeholder="seed 10"
-                            ></input>
+                            />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <input className="team"
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1108, e.target.value)}
                             placeholder="seed 2"
-                            ></input>
-                            <input className="team"
+                            />
+                            <Select className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 1108, e.target.value)}
                             placeholder="seed 15"
-                            ></input>
+                            />
                         </div>
                     </div>
                     <div className="round second-round">
