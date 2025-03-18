@@ -12,26 +12,51 @@ export default function ChampionshipPick () {
                         <div className="my-auto flex flex-col items-center">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('championship', 9001, e.target.value)}
-                            placeholder="winner 4001"
+                            onChange={(e) => handlePick('west', 9001, e.target.value)}
+                            placeholder="winner 8001"
                             ></input>
+                            <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('west', 9001, e.target.value)}
+                            placeholder="winner 8004"
+                            ></input>
+                       
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
                         </div>
+
                         <div className="p-2 flex flex-col items-center">
                         <input className="bg-white border-2 border-black p-2 mb-4 rounded-md text-black text-xl text-center"
                             type="text"
-                            onChange={(e) => handlePick('championship', 10000, e.target.value)}
+                            onChange={(e) => handlePick('championship', 10001, e.target.value)}
                             placeholder="champion"
                             ></input>
-                            <h1 className="text-2xl">National Champion</h1>
+                            <h1 className="text-2xl pb-2">Championship</h1>
+
+                            <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('championship', 10000, e.target.value)}
+                            placeholder="winner 4001"
+                            ></input>
+                            <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('west', 10000, e.target.value)}
+                            placeholder="winner 4002"
+                            ></input>
                         </div>
+
                         <div className="my-auto flex flex-col items-center">
                         <input className="team"
                             type="text"
-                            onChange={(e) => handlePick('championship', 9001, e.target.value)}
-                            placeholder="winner 4002"
+                            onChange={(e) => handlePick('championship', 9002, e.target.value)}
+                            placeholder="winner 8002"
                             ></input>
+                            <input className="team"
+                            type="text"
+                            onChange={(e) => handlePick('west', 9002, e.target.value)}
+                            placeholder="winner 8003"
+                            ></input>
+                            
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
                         </div>
