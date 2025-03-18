@@ -1,11 +1,12 @@
 import React from "react";
-import WestPick from "../../Components/westpick";
-import EastPick from "../../Components/eastpick";
-import SouthPick from "../../Components/southpick";
-import MidwestPick from "../../Components/midwestpick";
+import WestPick from "../../Components/spokane1_pick";
+import EastPick from "../../Components/spokane4_pick";
+import SouthPick from "../../Components/birmingham3_pick";
+import MidwestPick from "../../Components/birmingham2_pick";
 import NavBar from "../../Components/NavBar";
 import FirstFourPick from "../../Components/firstfourpick";
 import ChampionshipPick from "../../Components/championshippick";
+
 
 
 export default function Profile() {
@@ -23,7 +24,7 @@ export default function Profile() {
                     <WestPick />
                     <MidwestPick />
                 </div>
-            <Championship />
+                <ChampionshipPick />
                 <div className="flex">
                     <EastPick />
                     <SouthPick />
