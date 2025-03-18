@@ -1,9 +1,10 @@
+'use client'
 import { createContext, useContext, useState  } from "react";
 
 const BracketContext = createContext();
 
 export const BracketProvider = ({ children }) => {
-    const [ userPick, setUserPick ] = useState({ 
+    const [ userPicks, setUserPicks ] = useState({ 
         west: {},
         east: {},
         south: {},
@@ -13,7 +14,7 @@ export const BracketProvider = ({ children }) => {
     });
 
     const handlePick = (region, game_id, team) => {
-        setUserPick((prevPicks) => ({
+        setUserPicks((prevPicks) => ({
             ...prevPicks,
             [region]: {
                 ...(prevPicks[region] || {}),
