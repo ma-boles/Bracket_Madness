@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
+
 
 export default function LogIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] =useState('');
 
     const handleLogin = async (e) => {
-        e.preventdefault();
+        e.preventDefault();
 
         const res = await fetch("/api/auth/route", {
             method:'POST',
