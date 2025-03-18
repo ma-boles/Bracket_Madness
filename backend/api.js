@@ -10,6 +10,7 @@
           teams: game.competitions[0].competitors.map((team) => ({
             name: team.team.displayName,
             score: team.score,
+            seed: team.curatedRank ? team.curatedRank.current : null, // Extract seed
             winner: team.winner, // true if this team won
           })),
           status: game.status.type.description, // "Final", "In Progress", "Scheduled"
@@ -21,4 +22,3 @@
     .catch((error) => {
       console.error("❌ Error fetching data:", error.message);
     });
-  
