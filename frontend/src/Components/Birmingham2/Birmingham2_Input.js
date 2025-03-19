@@ -63,9 +63,9 @@ export default function Birmingham2_Input() {
             <ComboboxOption
               key={team.id}
               value={team}
-              className="group flex cursor-pointer items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/20"
+              className="group flex cursor-pointer items-center gap-2 rounded-lg py-1.5 px-2 select-none data-[focus]:bg-white/20"
             >
-              <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
+              {/* <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" /> */}
               <div className="text-sm/6 text-white">{team.name}</div>
             </ComboboxOption>
           ))}
