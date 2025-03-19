@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+'use client'
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function SignUp() {
@@ -9,7 +10,7 @@ export default function SignUp() {
     const handleSignUp = async (e) => {
         e.preventDefault();
 
-        const res = await fetch('/api/auth/route', {
+        const res = await fetch('/api/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ export default function SignUp() {
 
         if(res.ok) {
             localStorage.setItem('token', data.token);
-            router.push('/profile');
+            router.push('/Womens_Bracket');
         } else {
             console.error("Sign Up Failed", data.message);
         }
@@ -34,11 +35,13 @@ export default function SignUp() {
 
             <div className="flex flex-col items-center space-y-2">
                 <input className="w-60 p-2 bg-[#000E14] border-1 border-white rounded-md" 
+                type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username" />
 
                 <input className="w-60 p-2 bg-[#000E14] border-1 border-white rounded-md" 
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password" />

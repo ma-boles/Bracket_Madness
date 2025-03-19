@@ -1,15 +1,17 @@
+'use client'
 import React, { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 
 export default function LogIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] =useState('');
-
+    const router = useRouter();
+    
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        const res = await fetch("/api/auth/route", {
+        const res = await fetch("/api/auth/login", {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +23,7 @@ export default function LogIn() {
 
         if(res.ok) {
             localStorage.setItem('token', data.token);
-            Router.push('/profile');
+            router.push('/Womens_Bracket');
         } else {
             console.log('LogIn Failed', data.message);
         }
