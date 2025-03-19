@@ -7,7 +7,7 @@ export default function LogInPage() {
     const [isSignUp, setIsSignUp] = useState(false);
 
     const handleToggle = () => {
-        setIsSignUp(!isSignUp);
+        setIsSignUp((prev) => !prev);
     };
 
     return(
