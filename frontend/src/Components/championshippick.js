@@ -1,6 +1,10 @@
 'use client'
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
+import Spokane1_Input from "./Spokane1/Spokane1_Input";
+import Birmingham2_Input from "./Birmingham2/Birmingham2_Input";
+import Birmingham3_Input from "./Birmingham3/Birmingham3_Input";
+import Spokane4_Input from "./Spokane4/Spokane4_Input";
 
 export default function ChampionshipPick () {
     const { userPicks, setUserPicks, handlePick } = useBracket();
@@ -10,7 +14,9 @@ export default function ChampionshipPick () {
             <div className="round">
                     <div className="flex gap-6 p-4 bg-blue-600 rounded-md">
                         <div className="my-auto flex flex-col items-center">
-                        <input className="team"
+                            <Spokane1_Input />
+                            <Spokane4_Input />
+                        {/* <input className="team"
                             type="text"
                             onChange={(e) => handlePick('west', 9001, e.target.value)}
                             placeholder="winner 8001"
@@ -19,8 +25,8 @@ export default function ChampionshipPick () {
                             type="text"
                             onChange={(e) => handlePick('west', 9001, e.target.value)}
                             placeholder="winner 8004"
-                            ></input>
-                       
+                            ></input> */}
+
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
                         </div>
@@ -46,7 +52,9 @@ export default function ChampionshipPick () {
                         </div>
 
                         <div className="my-auto flex flex-col items-center">
-                        <input className="team"
+                            <Birmingham2_Input />
+                            <Birmingham3_Input />
+                        {/* <input className="team"
                             type="text"
                             onChange={(e) => handlePick('championship', 9002, e.target.value)}
                             placeholder="winner 8002"
@@ -55,8 +63,8 @@ export default function ChampionshipPick () {
                             type="text"
                             onChange={(e) => handlePick('west', 9002, e.target.value)}
                             placeholder="winner 8003"
-                            ></input>
-                            
+                            ></input> */}
+
                             {/* <input className="bg-white border-2 border-black p-2 rounded-md" />
                             <p>Championship</p> */}
                         </div>
