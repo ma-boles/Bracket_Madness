@@ -178,7 +178,7 @@ export default function SouthPick() {
                         </div>
                         <div className="matchup--r bg-blue-800">
                             <p className="team">4 OSU</p>
-                            <p className="team">143 Montana...</p>
+                            <p className="team">13 Montana...</p>
                         {/* <input className="team"
                             type="text"
                             onChange={(e) => handlePick('south', 1120, e.target.value)}
