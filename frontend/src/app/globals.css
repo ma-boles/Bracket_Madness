@@ -75,50 +75,59 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:9rem;
+  height:8.5rem;
   margin-top: 1.25rem;
   justify-content: space-between;
   border-right: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 
 }
 .matchup2-last {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:9rem;
+  height:8.5rem;
   margin-top: 0.75rem;
   justify-content: space-between;
   border-right: 0.125rem solid white;
-
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:16rem;
+  height:14rem;
   margin-top: 3.75rem;
   margin-bottom: 4.5rem;
   justify-content: space-between;
   border-right: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup3-last {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:16rem;
-  margin-top: 5rem;
+  height:14rem;
+  margin-top: 6rem;
   margin-bottom: 4.5rem;
   justify-content: space-between;
   border-right: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:29rem;
-  margin-top: 10rem;
+  height:27rem;
+  margin-top: 11rem;
   justify-content: space-between;
   border-right: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 
 .matchup--r {
@@ -133,58 +142,66 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:9rem;
+  height:8.5rem;
   margin-top: 1.25rem;
   justify-content: space-between;
   border-left: 0.125rem solid white;
-
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup2-last--r {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:9rem;
+  height:8.5rem;
   margin-top: 0.75rem;
   justify-content: space-between;
   border-left: 0.125rem solid white;
-
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup3--r {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:16rem;
+  height:14rem;
   margin-top: 3.75rem;
   margin-bottom: 4.5rem;
   justify-content: space-between;
   border-left: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup3-last--r {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:16rem;
-  margin-top: 5rem;
+  height:14rem;
+  margin-top: 6rem;
   margin-bottom: 4.5rem;
   justify-content: space-between;
   border-left: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 .matchup4--r {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height:29rem;
-  margin-top: 10rem;
+  height:27rem;
+  margin-top: 11rem;
   justify-content: space-between;
   border-left: 0.125rem solid white;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
 }
 
-.team {
+.team{
   width: 8.3rem;
   padding: 0.5rem;
   background: transparent;
   border-bottom: 0.125rem solid white;
-  text-align: center;
+  text-align: left;
   font-weight: bold;
   position: relative;
 }
