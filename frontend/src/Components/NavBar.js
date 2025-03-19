@@ -1,18 +1,36 @@
-import React from "react";
+'use client'
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function NavBar () {
+    const router = useRouter();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(token) {
+            setUser(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+        router.push('/');
+    };
+
     return(
         <>
-            <div className="flex w-full">
-                <div className="flex-1 p-2 text-center bg-red-500 cursor-pointer transition-all duration-300 hover:bg-black">
-                    <Link href="/Profile" className="2xl">
-                        <p className="text-2xl">Women's Bracket</p>
+            <div className="flex w-full bg-white/85">
+                <div className="flex-1 p-2 text-center text-black hover:bg-blue-600 hover:text-white transition 300s">
+                    <Link href="/Womens_Bracket" className="2xl">
+                        <p className="text-2xl">Bracket Results</p>
                     </Link>
                 </div>
-                <div className="flex-1 p-2 bg-yellow-500 text-center cursor-pointer transition-all duration-300 hover:bg-black">
-                    <Link href="/Mens_Bracket" className="2xl">
-                        <p className="text-2xl">Men's Bracket</p>
+                <div className="flex-1 p-2 text-black text-center cursor-pointer transition-all duration-300 hover:bg-blue-600 hover:text-white">
+                    <Link href="/Bracket_Picks" className="2xl">
+                        <p className="text-2xl">Bracket Picks</p>
                     </Link>
                 </div>
                 <div className="flex-1 p-2 bg-blue-600 text-center cursor-pointer transition-all duration-300 hover:bg-blue-500">
@@ -28,6 +46,16 @@ export default function NavBar () {
                         </details>
                     </li>
                     </ol>
+                </div>
+                <div className="p-2 flex">
+                    {user ? (
+                        <button className="w-24 p-2 mx-1 bg-red-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogout}>Log Out</button>
+                    ) : (
+                    <Link href="/auth">
+                        <button className="w-24 p-2 mx-1 bg-green-600  cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md">Log In</button>
+                    </Link>
+                    )}
+                    
                 </div>
             </div>
         </>
