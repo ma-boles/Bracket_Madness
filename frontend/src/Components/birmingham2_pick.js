@@ -4,7 +4,7 @@ import { useBracket } from "@/context/BracketContext";
 import Birmingham2_Input from "./Birmingham2/Birmingham2_Input";
 import Birmingham2_Input_FF from "./Birmingham2/Birmingham2_Inpute_FF";
 
-export default function MidwestPick() {
+export default function Birmingham2_Pick() {
     const { userPicks, setUserPicks, handlePick } = useBracket();
     
     return(

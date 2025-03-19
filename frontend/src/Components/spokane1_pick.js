@@ -8,7 +8,7 @@ import Spokane1_Input_FF from "./Spokane1/Spokane1_Input_FF";
 
 
 
-export default function WestPick() {
+export default function Spokane1_Pick() {
     const { userPicks, setUserPicks, handlePick } = useBracket();
     const Select = dynamic(() => import('react-select'), { ssr: false });
 

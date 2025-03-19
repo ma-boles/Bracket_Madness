@@ -3,7 +3,7 @@ import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import Spokane4_Input from "./Spokane4/Spokane4_Input";
 
-export default function EastPick() {
+export default function Spokane4_Pick() {
     const { userPicks, setUserPicks, handlePick } = useBracket();
     
     return(

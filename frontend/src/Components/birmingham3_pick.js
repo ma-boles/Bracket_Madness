@@ -5,7 +5,7 @@ import Birmingham3_Input from "./Birmingham3/Birmingham3_Input";
 import Birmingham3_Input11_FF from "./Birmingham3/Birmingham3_Input11_FF";
 import Birmingham3_Input16_FF from "./Birmingham2/Birmingham2_Input16_FF";
 
-export default function SouthPick() {
+export default function Birmingham3_Pick() {
     const { userPicks, setUserPicks, handlePick } = useBracket();
     
     return(
