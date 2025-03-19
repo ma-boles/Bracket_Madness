@@ -1,13 +1,13 @@
 import React from "react";
-import NavBar from "../Components/NavBar";
-import West from "../Components/west";
-import East from "../Components/east";
-import South from "../Components/south";
-import Midwest from "../Components/midwest";
-import FirstFour from "../Components/firstfour";
-import Championship from "../Components/championship";
+import NavBar from "../../Components/NavBar";
+import West from "../../Components/spokane1_pick";
+import East from "../../Components/spokane4_pick";
+import South from "../../Components/birmingham3_pick";
+import Midwest from "../../Components/birmingham2_pick";
+import FirstFour from "../../Components/firstfourpick";
+import Championship from "../../Components/championshippick";
 
-export default function Mens_Bracket() {
+export default function Bracket_Picks() {
     return(
         <>
             <nav>
