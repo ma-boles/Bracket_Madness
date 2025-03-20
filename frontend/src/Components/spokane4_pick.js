@@ -126,124 +126,44 @@ export default function Spokane4_Pick() {
                     </div>
                     <div className="round second-round">
                         <div className="matchup2 mb-11 bg-gray-700">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                            {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1213, e.target.value)}
-                            placeholder="winner 1125"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1213, e.target.value)}
-                            placeholder="winner 1126"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={1213}/>
+                            <Spokane4_Input region='spokane4' gameId={1213}/>
                         </div>
                         <div className="matchup2 mb-11 bg-gray-700">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1214, e.target.value)}
-                            placeholder="winner 1127"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1214, e.target.value)}
-                            placeholder="winner 1128"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={1214}/>
+                            <Spokane4_Input region='spokane4' gameId={1214}/>
                         </div>
                         <div className="matchup2 mb-13 bg-gray-700">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1215, e.target.value)}
-                            placeholder="winner 1129"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1215, e.target.value)}
-                            placeholder="winner 1130"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={1215}/>
+                            <Spokane4_Input region='spokane4' gameId={1215}/>
                         </div>
                         <div className="matchup2-last bg-gray-700">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1216, e.target.value)}
-                            placeholder="winner 1131"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1216, e.target.value)}
-                            placeholder="winner 1132"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={1216}/>
+                            <Spokane4_Input region='spokane4' gameId={1216}/>
                         </div>
                     </div>
+
                     <div className="round sweet-16 pt-4">
                         <div className="matchup3  bg-blue-700">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1607, e.target.value)}
-                            placeholder="winner 1213"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1607, e.target.value)}
-                            placeholder="winner 1214"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={1607}/>
+                            <Spokane4_Input region='spokane4' gameId={1607}/>
                         </div>
                         <div className="matchup3-last bg-blue-700">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1608, e.target.value)}
-                            placeholder="winner 1215"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 1608, e.target.value)}
-                            placeholder="winner 1216"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={1608}/>
+                            <Spokane4_Input region='spokane4' gameId={1608}/>
                         </div>
                     </div>
+
                     <div className="round elite8">
                         <div className="matchup4 bg-gray-600">
-                            <Spokane4_Input />
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 8004, e.target.value)}
-                            placeholder="winner 1607"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 8004, e.target.value)}
-                            placeholder="winner 1608"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={8004}/>
+                            <Spokane4_Input region='spokane4' gameId={8004}/>
                         </div>
                     </div>
+
                     <div className="round final4">
                         <div className="mt-80 py-2 matchup bg-blue-500 border-b-2 border-white">
-                            <Spokane4_Input />
-
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('west', 4001, e.target.value)}
-                            placeholder="winner 8004"
-                            ></input> */}
+                            <Spokane4_Input region='spokane4' gameId={4001}/>
                         </div>
                     </div>
                     </div>
