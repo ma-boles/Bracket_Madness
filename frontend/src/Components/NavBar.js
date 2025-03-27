@@ -14,11 +14,23 @@ export default function NavBar () {
         }
     }, []);
 
+    const handleBracketClick = () => {
+        if(user) {
+            router.push("/Bracket_Picks");
+        } else {
+            router.push("/auth");
+        }
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         setUser(null);
         router.push('/');
     };
+
+    const handleLogIn = () => {
+        router.push('/auth');
+    }
 
     return(
         <>
@@ -28,11 +40,14 @@ export default function NavBar () {
                         <p className="text-2xl">Bracket Results</p>
                     </Link>
                 </div>
-                <div className="flex-1 p-2 text-black text-center cursor-pointer transition-all duration-300 hover:bg-blue-600 hover:text-white">
-                    <Link href="/Bracket_Picks" className="2xl">
-                        <p className="text-2xl">Bracket Picks</p>
-                    </Link>
-                </div>
+                {user && (
+                    <div className="flex-1 p-2 text-black text-center cursor-pointer transition-all duration-300 hover:bg-blue-600 hover:text-white">
+                        <Link href="/Bracket_Picks" className="2xl">
+                            <p className="text-2xl">Bracket Picks</p>
+                        </Link>
+                    </div>
+                )}
+                
                 <div className="flex-1 p-2 bg-blue-600 text-center cursor-pointer transition-all duration-300 hover:bg-blue-500">
                      <ol className="px-1">
                     <li> 
@@ -49,11 +64,9 @@ export default function NavBar () {
                 </div>
                 <div className="p-2 flex">
                     {user ? (
-                        <button className="w-24 p-2 mx-1 bg-red-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogout}>Log Out</button>
+                        <button className="w-24 p-2 mx-1 h-10 bg-red-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogout}>Log Out</button>
                     ) : (
-                    <Link href="/auth">
-                        <button className="w-24 p-2 mx-1 bg-green-600  cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md">Log In</button>
-                    </Link>
+                        <button className="w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogIn}>Log In</button>
                     )}
                     
                 </div>
