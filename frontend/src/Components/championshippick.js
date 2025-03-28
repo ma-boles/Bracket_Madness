@@ -11,8 +11,7 @@ import Championship_Input from "./Championship_Input/Championship_Input";
 
 
 export default function ChampionshipPick () {
-    const { userPicks, setUserPicks, handlePick } = useBracket();
-    
+
     return (
         <>
             <div className="round">
