@@ -4,49 +4,44 @@ import { createContext, useContext, useState  } from "react";
 const BracketContext = createContext();
 
 export const BracketProvider = ({ children }) => {
+    const [ bracketData, setBracketData ] = useState({});
     const [ userPicks, setUserPicks ] = useState({ 
-        west: {},
-        east: {},
-        south: {},
-        midwest: {},
+        spokane1: {},
+        birmingham2: {},
+        birmingham3: {},
+        spokane4: {},
         firstfour: {},
         championship: {},
     });
 
     const handlePick = (region, game_id, team) => {
+        if(!team) return;
+
         setUserPicks((prevPicks) => ({
             ...prevPicks,
             [region]: {
                 ...(prevPicks[region] || {}),
-                [game_id]: team,
+                [game_id]: team.name,
+            },
+        }));
+
+        setBracketData((prevData) => ({
+            ...prevData,
+            [game_id]: {
+                region,
+                gameId,
+                winnerId: team.id,
+                winnerName: team.name
             },
         }));
     };
 
-    const submitBracket = async () => {
-        try{
-            const response = await fetch('/api/submit-picks', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userPicks),
-            });
-
-            if(!response.ok) {
-                throw new Error('Failed to submit picks');
-            } 
-            console.log('Bracket successfully submitted');
-        } catch (error) {
-            console.error('Submission error:', error);
-        }
-    };
 
     return(
         <BracketContext.Provider value={{
             userPicks,
+            bracketData,
             handlePick,
-            submitBracket
         }}> 
         {children}
         </BracketContext.Provider>
