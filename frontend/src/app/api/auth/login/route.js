@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
+import { cookies } from "next/headers";
 
 
 // Handles POST (Log In)
@@ -40,15 +41,22 @@ export async function POST(req) {
             return NextResponse.json({ message: 'Password invalid'}, { status: 401 });
         }
 
-
         // Generate JWT token
         const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, {
             expiresIn: '1h',
         });
-        
-        // Send toke to frontend
-        return NextResponse.json({ token });
 
+        // Store token in cookies
+        const response = NextResponse.json({ message: 'Login successful!'});
+        response.cookies.set('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Strict',
+            maxAge: 3600,
+            path: '/',
+        });
+
+        return response;
     } catch(error) {
         console.error('Login Error:', error);
         return NextResponse.json({ error: 'Internal Server Error'}, { status: 500 });
