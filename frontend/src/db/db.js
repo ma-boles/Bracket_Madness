@@ -3,7 +3,7 @@ require('dotenv').config();
 
 
 // Database connection
-const db = await mysql.createCronnection({
+const db = await mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
