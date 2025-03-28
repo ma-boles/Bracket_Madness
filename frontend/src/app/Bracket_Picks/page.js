@@ -10,7 +10,26 @@ import Spokane4_Pick from "../../Components/spokane4_pick";
 import { useBracket } from "@/context/BracketContext";
 
 export default function Bracket_Picks() {
-    const { submitBracket } = useBracket();
+    const { bracketData } = useBracket();
+
+        const submitPicks = async () => {
+            try{
+                const response = await fetch('/api/submit-picks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ picks: Object.values(bracketData), user_id: currentUser.id}),
+                });
+    
+                const result = await response.json();
+                if(response.success) {
+                    console.log('Bracket successfully submitted');
+                } 
+            } catch (error) {
+                console.error('Submission error:', error);
+            }
+        };
 
     return(
         <>
@@ -34,7 +53,7 @@ export default function Bracket_Picks() {
                 </div>
                 <div className="flex justify-center items-center">
                 <button className="mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center hover:bg-white hover:text-black hover:border-transparent font-medium w-1/3 h-12 mx-2 cursor-pointer"
-                    onClick={submitBracket}>
+                    onClick={submitPicks}>
                     Submit
                 </button>
             </div>
