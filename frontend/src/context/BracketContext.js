@@ -36,12 +36,21 @@ export const BracketProvider = ({ children }) => {
         }));
     };
 
+    // Handle selection and update BracketContext
+    const handleSelection = (region, gameId, team) => {
+        if(!team) return;
+        console.log('Selected team:', team);
+            
+        setSelected(team);
+        handlePick(region, gameId, team);
+    };
 
     return(
         <BracketContext.Provider value={{
             userPicks,
             bracketData,
             handlePick,
+            handleSelection
         }}> 
         {children}
         </BracketContext.Provider>
