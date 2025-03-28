@@ -10,16 +10,9 @@ const teams = [
 ]
 
 export default function Birmingham2_Input11_FF({ region, gameId }) {
-  const { handlePick, userPicks } = useBracket();
+  const { handleSelection } = useBracket();
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState(null)
-
-    // Handle selection and update BracktContext
-    const handleSelection = (value) => {
-      if(!value) return;
-      setSelected(value);
-      handlePick(region, gameId, value.name);
-    };
 
   const filteredPeople =
     query === ''
@@ -40,6 +33,7 @@ export default function Birmingham2_Input11_FF({ region, gameId }) {
             placeholder='Select...'
             displayValue={(team) => team?.name || ''}
             onChange={(event) => setQuery(event.target.value)}
+            onSelect={(team) => handleSelection(region, gameId, team)}
           />
           <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5 cursor-pointer">
             <ChevronDownIcon className="size-4 fill-white/60 group-data-[hover]:fill-white" />
