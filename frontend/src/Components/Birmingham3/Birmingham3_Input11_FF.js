@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { useState } from 'react'
 
 const teams = [
-  { id: 45, name: '11 Iowa' },
+  { id: 45, name: '11 Iowa St' },
   { id: 46, name: '11 Princeton' },
 ]
 
