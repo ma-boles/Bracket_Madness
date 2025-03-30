@@ -13,7 +13,12 @@ const db = await mysql.createConnection({
 
 // Utility function to verify JWT token
 const verifyToken = (token) => {
-    const secretKey = 'my-secret-key'
+
+    const secretKey = process.env.JWT_SECRET;
+
+    if(!secretKey) {
+        throw new Error('JWT secret key is not defined in the environment variables');
+    }
 
     try {
         const decoded = jwt.verify(token, secretKey);
@@ -53,9 +58,9 @@ export default async function handler(req, res) {
         ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)
         `;
 
-        const insertPromises = Object.entries(bracketData).flatMap(([RectangleGroupIcon, games]) => 
+        const insertPromises = Object.entries(bracketData).flatMap(([region, games]) => 
         Object.entries(games).map(async([gameId, team]) => {
-            return db.execute(insertQuery, [userId, gameId, team.id]) // Ensure tams.id is being stored as winner_id
+            return db.execute(insertQuery, [userId, gameId, team.id]) // Ensure teams.id is being stored as winner_id
         })
     );
 
