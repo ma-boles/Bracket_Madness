@@ -1,10 +1,11 @@
 'use client'
-import { createContext, useContext, useState  } from "react";
+import { createContext, useContext, useEffect, useState  } from "react";
 
 const BracketContext = createContext();
 
 export const BracketProvider = ({ children }) => {
     const [ bracketData, setBracketData ] = useState({});
+    const [ selectedTeam, setSelectedTeam ] = useState(null);
     const [ userPicks, setUserPicks ] = useState({ 
         spokane1: {},
         birmingham2: {},
@@ -13,6 +14,10 @@ export const BracketProvider = ({ children }) => {
         firstfour: {},
         championship: {},
     });
+
+    useEffect(() => {
+        console.log('BracketData Update:', bracketData);
+    }, [bracketData]);
 
     const handlePick = (region, game_id, team) => {
         if(!team) return;
@@ -29,7 +34,7 @@ export const BracketProvider = ({ children }) => {
             ...prevData,
             [game_id]: {
                 region,
-                gameId,
+                gameId: game_id,
                 winnerId: team.id,
                 winnerName: team.name
             },
@@ -41,7 +46,7 @@ export const BracketProvider = ({ children }) => {
         if(!team) return;
         console.log('Selected team:', team);
             
-        setSelected(team);
+        setSelectedTeam(team);
         handlePick(region, gameId, team);
     };
 
