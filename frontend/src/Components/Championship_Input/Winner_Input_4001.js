@@ -40,7 +40,7 @@ const teams = [
   { id: 68, name: '16 UNC Greensboro' },
 ]
 
-export default function Winner_Input_4001({ region, gaemeId }) {
+export default function Winner_Input_4001({ region, gameId }) {
   const { handleSelection, selectedTeam } = useBracket();
   const [query, setQuery] = useState('')
 
