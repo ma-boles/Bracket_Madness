@@ -23,7 +23,7 @@ const teams = [
   { id: 68, name: '16 UNC Greensboro' },
 ]
 
-export default function Spokane4_Input(region, gameId) {
+export default function Spokane4_Input({region, gameId}) {
   const { handleSelection, selectedTeam } = useBracket();
   const [query, setQuery] = useState('')
 
