@@ -163,7 +163,7 @@ export default function Spokane4_Pick() {
 
                     <div className="round final4">
                         <div className="mt-80 py-2 matchup bg-blue-500 border-b-2 border-white">
-                            <Spokane4_Input region='spokane4' gameId={4001}/>
+                            <Spokane4_Input region='spokane4' gameId={4004}/>
                         </div>
                     </div>
                     </div>
