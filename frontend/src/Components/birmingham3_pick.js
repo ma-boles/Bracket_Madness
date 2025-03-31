@@ -14,7 +14,7 @@ export default function Birmingham3_Pick() {
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r bg-blue-500 border-b-2 border-white">
-                            <Birmingham3_Input region='birmingham3' gameId={4002}/>
+                            <Birmingham3_Input region='birmingham3' gameId={4003}/>
                         </div>
                     </div>
 
