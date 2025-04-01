@@ -1,14 +1,14 @@
 const axios = require("axios");
-import { getStoredGames } from "./gameUtils";
-import { updateDatabase } from "./updateDatabase";
+// import { getStoredGames } from "./gameUtils";
+// import { updateDatabase } from "./updateDatabase";
 
 
 // Function to fetch scores from ESPN API
 const fetchPastScores = async () => {
   try {
 
-    const dates = ["20250312", "20250313", "20250314", "20250315", "20250316", "20250317", "20250321", "20250322", "20250323", "20250324", "20250328", "20250329", "20250330", "20250331"];
-    const storedGames = await getStoredGames();
+    const dates = ["20250312", "20250313"/*, "20250314", "20250315", "20250316", "20250317", "20250321", "20250322", "20250323", "20250324", "20250328", "20250329", "20250330", "20250331"*/];
+    // const storedGames = await getStoredGames();
 
     for ( const date of dates ) {
     const url =
@@ -24,7 +24,7 @@ const fetchPastScores = async () => {
       })),
     }));
 
-    await updateDatabase(storedGames, espnGames);
+    // await updateDatabase(storedGames, espnGames);
 
     }
   } catch (error) {

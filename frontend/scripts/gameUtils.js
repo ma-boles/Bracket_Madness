@@ -1,4 +1,4 @@
-const connection = require("../db/db");
+const connection = require("../src/db/db");
 
   // Fetch stored matchups from db
   const getStoredGames = () => {
