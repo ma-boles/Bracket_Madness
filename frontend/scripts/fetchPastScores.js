@@ -1,5 +1,5 @@
 const axios = require("axios");
-// import { getStoredGames } from "./gameUtils";
+// import { getStoredGames } from "../utils/gameUtils";
 // import { updateDatabase } from "./updateDatabase";
 
 
@@ -7,25 +7,43 @@ const axios = require("axios");
 const fetchPastScores = async () => {
   try {
 
-    const dates = ["20250312", "20250313"/*, "20250314", "20250315", "20250316", "20250317", "20250321", "20250322", "20250323", "20250324", "20250328", "20250329", "20250330", "20250331"*/];
+    const dates = ["20250319", "20250320", "20250321", "20250322"/*, "20250323", "20250324", "20250328", "20250329", "20250330", "20250331"*/];
     // const storedGames = await getStoredGames();
 
-    for ( const date of dates ) {
-    const url =
-      `https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard?groups=50&dates=${date}`;
-    const response = await axios.get(url);
+    for (const date of dates) {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard?groups=50&dates=${date}`;
+      const response = await axios.get(url);
 
-    const espnGames = response.data.events.map((game) => ({
-      espnGameId: game.id,
-      teams: game.competitions[0].competitors.map((team) => ({
-        name: team.team.displayName,
-        score: parseInt(team.score, 10),
-        winner: team.winner, // true if team won
-      })),
-    }));
+      if (!response.data.events || response.data.events.length === 0) {
+        console.log(`No games found for date: ${date}`);
+        continue;
+      }
 
-    // await updateDatabase(storedGames, espnGames);
+      // Filter games where at least one team is ranked ≤ 16
+      const filteredGames = response.data.events
+        .map((game) => {
+          const teams = game.competitions[0].competitors.map((team) => ({
+            rank: team.curatedRank ? team.curatedRank.current : null,
+            name: team.team.displayName,
+            score: parseInt(team.score, 10),
+            winner: team.winner,
+          }));
 
+          return {
+            espnGameId: game.id,
+            teams,
+          };
+        })
+        .filter((game) =>
+          game.teams.some((team) => team.rank !== null && team.rank <= 16)
+        );
+
+      if (filteredGames.length === 0) {
+        console.log(`No ranked games found for date: ${date}`);
+        continue;
+      }
+
+      console.log(`Ranked Games for ${date}:`, JSON.stringify(filteredGames, null, 2));
     }
   } catch (error) {
     console.error("Error fetching data:", error.message);
