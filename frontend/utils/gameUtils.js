@@ -1,210 +1,151 @@
-// const connection = require("../src/db/db");
+const connection = require("../src/db/db");
 
-  // Fetch stored matchups from db
-  // const getStoredGames = () => {
-  //   return new Promise((resolve, reject) => {
-  //     connection.query(
-  //       `SELECT
-  //             r.game_id,
-  //             t1.team_name AS team_a_name,
-  //             t2.team_name AS team_b_name
-  //         FROM results r
-  //         JOIN teams t1 ON r.team_a_id = t1.team_id
-  //         JOIN teams t2 ON r.team_b_id = t2.team_id`,
-  //         (err, results) => {
-  //           if(err) {
-  //             reject(err);
-  //           } else {
-  //             resolve(results);
-  //           }
-  //         }
-  //     );
-  //   });
-  // };
-
-    const levenshteinDistance = (a, b) => {
-      const matrix = Array.from({ length: a.length + 1 }, (_, i) => Array(b.length + 1).fill(i));
-    
-      for(let j = 1; j <= b.length; j++) {
-        matrix[0][j] = j;
-      }
-
-      for(let i = 1; i <= a.length; i++) {
-        for(let j = 1; j <= b.length; j++) {
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j] + 1, //Deletion
-            matrix[i][j - 1] + 1, // Insertion
-            matrix[i - 1][j - 1] + (a[i - 1] === b[j - 1]? 0 : 1) // Substitution
-          );
-        }
-      }
-
-      return matrix[a.length][b.length];
+// Fetch stored matchups from db
+  const getStoredGames = () => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT
+              r.game_id,
+              t1.team_name AS team_a_name,
+              t2.team_name AS team_b_name
+          FROM results r
+          JOIN teams t1 ON r.team_a_id = t1.team_id
+          JOIN teams t2 ON r.team_b_id = t2.team_id`,
+          (err, results) => {
+            if(err) {
+              reject(err);
+            } else {
+              resolve(results);
+            }
+          }
+      );
+    });
   };
 
-  // Funtion to handle matching
-  const findBestMatch = (dbTeamName, espnTeams, threshold = 3) => {
+ // A simple function that returns true if the Levenshtein distance is below a certain threshold
+const matchTeams = (team1, team2, threshold = 3) => {
+  const a = team1.toLowerCase();
+  const b = team2.toLowerCase();
+  
+  // Word/stubstring inclusion first
+  if(b.includes(a) || a.includes(b)) 
+    return true;
+
+  const wordsA = a.split(/\s+/);
+  const wordsB = b.split(/\s+/);
+  const common = wordsA.filter(word => wordsB.includes(word));
+  if(common.length > 0) 
+    return true;
+
+  // Fall back to Levenshtein
+  const levDistance = levenshteinDistance(team1, team2);
+  return levDistance <= threshold;
+};
+
+  const levenshteinDistance = (a, b) => {
+    const matrix = Array.from({ length: a.length + 1 }, (_, i) => Array(b.length + 1).fill(i));
+  
+    for (let j = 1; j <= b.length; j++) {
+      matrix[0][j] = j;
+    }
+  
+    for (let i = 1; i <= a.length; i++) {
+      for (let j = 1; j <= b.length; j++) {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1, // Deletion
+          matrix[i][j - 1] + 1, // Insertion
+          matrix[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1) // Substitution
+        );
+      }
+    }
+  
+    return matrix[a.length][b.length];
+  };
+  
+  // This function will handle the matching
+  const findBestMatch = (dbTeamName, espnTeams) => {
     let bestMatch = null;
     let lowestDistance = Infinity;
-
-    // for(const espnGame of espnGames) {
-    // for(const espnTeam of espnGame.teams) {
-    for(const espnGame of espnTeams) {
-      for(const espnTeam of espnGame.teams) {
-      // for(const espnTeam of espnTeams) {
-        if(!espnTeam || !espnTeam.name) continue;
-
-      const dbLower = dbTeamName.toLowerCase();
-      const espnLower = espnTeam.name.toLowerCase();
-
-      // const words = espnLower.split(/\s+/);
-      // if(words.includes(dbLower)) {
-      //   console.log(`Exact word match found: ${dbTeamName} -> ${espnTeam.name} `);
-      //   return espnTeam
-      
-      // if(words.includes(dbLower) || dbLower.split(" ").some(word => words.includes(word))) {
-      //   console.log(`Partial match found: ${dbTeamName} -> ${espnTeam.name}`);
-      //   return espnTeam;
-      // }
-
-      // if(espnLower.includes(dbLower)) {
-      //   console.log(`Full name match found ${dbTeamName} -> ${espnTeam.name}`);
-      //   return espnTeam;
-      // }
-
-      const distance = levenshteinDistance(dbLower, espnLower);
-      console.log(`Checking ${dbTeamName} vs ${espnTeam.name}`)
-    
+  
+    for (const espnTeam of espnTeams) {
+      const distance = levenshteinDistance(dbTeamName.toLowerCase(), espnTeam.name.toLowerCase());
+  
       // Allows up to 2 edits
-      if(distance < lowestDistance && distance < threshold) {
+      if (distance < lowestDistance && distance < 3) {
         lowestDistance = distance;
         bestMatch = espnTeam;
       }
-  }
-}
-
-  return bestMatch;
-
-    // if(bestMatch) {
-    //   if(
-    //     bestMatch.name.toLowerCase().includes("state") !== dbTeamName.toLowerCase().includes("state")
-    //   ) {
-    //     console.log(`Prevented mix-up: ${dbTeamName} should not match ${bestMatch.name}`);
-    //     return null;
-    //   }
-    //   console.log(`Best match for ${dbTeamName} -> ${bestMatch.name}`);
-    //   return bestMatch;
-    // }
-    // console.log(`No match found for ${dbTeamName}`);
-    // return null;
-
-    // return bestMatch ? bestMatch : null;
+    }
+  
+    return bestMatch;
   };
+  
 
-  const createLookupTable = (espnGames) => {
-    const lookupTable = new Map();
+  module.exports = { findBestMatch, getStoredGames };
+  
 
-    espnGames.forEach(game => {
-      const teamNames = game.teams.map(team => team.name.toLowerCase());
-      lookupTable.set(game.espnGameId, teamNames);
-    });
-    return lookupTable;
-  }
-
-  const matchGamesWithLookup = (storedGames, espnGames) => {
-    const lookupTable = createLookupTable(espnGames);
-
-    storedGames.forEach(storedGame => {
-      const teamA = findBestMatch(storedGame.team_a_name, espnGames);
-      const teamB = findBestMatch(storedGame.team_b_name, espnGames);
+//     // Example usage:
+//     const storedGames = [
+//       { team_a_name: 'Michigan', team_b_name: 'Indiana' }, // Example data from DB
+//       { team_a_name: 'Duke', team_b_name: 'North Carolina' },
+//       { team_a_name: 'Fair Dickson', team_b_name: 'Stanford' },
+//       { team_a_name: 'Michighan State', team_b_name: 'South Florida' },
+//     ];
     
-      if(teamA && teamB) {
-        const match1 = [teamA.name.toLowerCase(), teamB.name.toLowerCase()];
-        const match2 = [teamB.name.toLowerCase(), teamA.name.toLowerCase()];
-
-        const matchedGame = [...lookupTable.values()].find(matchup =>
-          JSON.stringify(matchup) === JSON.stringify(match1) || JSON.stringify(matchup) === JSON.stringify(match2)
-        );
-
-        if(matchedGame) {
-          console.group(`New match found for ${storedGame.team_a_name} and ${storedGame.team_b_name}`);
-          // update DB
-        } else {
-          console.log(`No new match found for ${storedGame.team_a_name} and ${storedGame.team_b_name}`);
-        }
-      } else {
-        console.log(`No match found for ${storedGame.team_a_name} and ${storedGame.team_b_name}`);
-      }
-    });
-  };
-    // module.exports = { getStoredGames, findBestMatch };
-
-  // Function to match games using lookup table
-  // const matchGames = (storedGames, espnGames) => {
-  //   const espnGameLookup = new Map();
-
-  //   espnGames.forEach((espnGame) => {
-  //     const teamNames = espnGame.teams.map((team) => team.name.toLowerCase());
-  //     const gameKey = teamNames.sort().join(" vs ").toLowerCase();
-  //     espnGameLookup.set(gameKey, espnGame);
-  //   });
-
-  //   storedGames.forEach((storedGame) => {
-  //     const teamA = storedGame.team_a_name.toLowerCase().trim();
-  //     const teamB = storedGame.team_b_name.toLowerCase().trim();
-
-  //     const gameKey1 = [teamA, teamB].sort().join(" vs ");
-  //     const gameKey2 = [teamB, teamA].sort().join(" vs ");
-
-  //     let matchedGame = espnGameLookup.get(gameKey1) || espnGameLookup.get(gameKey2);
-    
-  //     if(matchedGame) {
-  //       console.log(`Found matching game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
-  //       // update db here
-  //     } else {
-  //       console.log(`No match found for: ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
-  //     }
-  //   });
-  // };
+// const espnGames = [
+//   { 
+//     teams: [
+//       { name: 'Michigan State' }, 
+//       { name: 'Indiana University' }
+//     ] 
+//   },
+//   { 
+//     teams: [
+//       { name: 'Duke Blue Devils' }, 
+//       { name: 'North Carolina Tar Heels' }
+//     ] 
+//   },
+//   { 
+//     teams: [
+//       { name: 'Michigan' }, 
+//       { name: 'Indiana' }
+//     ] 
+//   },
+//   { 
+//     teams: [
+//       { name: 'Fairly Dickson' }, 
+//       { name: 'Stanford' }
+//     ] 
+//   },
+//   { 
+//     teams: [
+//       { name: 'South Carolina' }, 
+//       { name: 'University of South Florida' }
+//     ] 
+//   },
+// ];
 
 
-    // Example usage:
-const storedGames = [
-  { team_a_name: 'Michigan', team_b_name: 'Indiana' }, // Example data from DB
-  { team_a_name: 'Duke', team_b_name: 'North Carolina' },
-];
+// Now check if teams match between stored games and ESPN games using Levenshtein distance
+storedGames.forEach((storedGame) => {
+  const matchingEspnGame = espnGames.find((game) => {
+    const teamNames = game.teams.map((t) => t.name);
 
-const espnGames = [
-  { 
-    teams: [
-      { name: 'Michigan State' }, 
-      { name: 'Indiana University' }
-    ] 
-  },
-  { 
-    teams: [
-      { name: 'Duke Blue Devils' }, 
-      { name: 'North Carolina Tar Heels' }
-    ] 
-  },
-  { 
-    teams: [
-      { name: 'Michigan' }, 
-      { name: 'Indiana' }
-    ] 
-  },
-];
+    // Compare team names using the Levenshtein function from gameUtils
+    const team1Matches = teamNames.some(name => matchTeams(name, storedGame.team_a_name));
+    const team2Matches = teamNames.some(name => matchTeams(name, storedGame.team_b_name));
 
-matchGamesWithLookup(storedGames, espnGames);
+    return team1Matches && team2Matches;
+  });
 
-storedGames.forEach(storedGame => {
-  const teamA = findBestMatch(storedGame.team_a_name, espnGames);
-  const teamB = findBestMatch(storedGame.team_b_name, espnGames);
+  // If a matching ESPN game is found, update the DB
+  if (matchingEspnGame) {
+    console.log(`Found a match for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
 
-  if (teamA && teamB) {
-    console.log(`New Match found for ${storedGame.team_a_name} and ${storedGame.team_b_name}`);
-    // Proceed to update the database with the matched teams.
+
+    // Proceed with updating the DB
+    updateDatabase(storedGame.game_id, matchingEspnGame);
   } else {
-    console.log(`No new match found for ${storedGame.team_a_name} and ${storedGame.team_b_name}`);
+    console.log(`No match found for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
   }
 });
