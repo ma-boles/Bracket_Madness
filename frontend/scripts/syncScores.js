@@ -1,7 +1,7 @@
-const runScoresSync = require('../controllers/scoresController');
+const {runScoresSync} = require('../controllers/scoresController');
 
 // Live scores
-runScoresSync({ mode: 'live' });
+// runScoresSync( 'live', true );
 
 // Past scores
-runScoresSync({ mode: 'past' });
+runScoresSync( 'past', true );
