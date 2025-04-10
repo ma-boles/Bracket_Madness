@@ -1,3 +1,4 @@
+require('dotenv').config();
 const {runScoresSync} = require('../controllers/scoresController');
 
 // Live scores
