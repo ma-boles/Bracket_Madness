@@ -1,25 +1,50 @@
-const connection = require("../src/db/db");
+const fetchPastScores = require('../scripts/fetchPastScores');
+const { connectionToDatabase } = require('../src/db/db');
 
 // Fetch stored matchups from db
-  const getStoredGames = () => {
-    return new Promise((resolve, reject) => {
-      connection.query(
+  // const getStoredGames = () => {
+  //   return new Promise((resolve, reject) => {
+  //     connection.query(
+  //       `SELECT
+  //             r.game_id,
+  //             t1.team_name AS team_a_name,
+  //             t2.team_name AS team_b_name
+  //         FROM results r
+  //         JOIN teams t1 ON r.team_a_id = t1.team_id
+  //         JOIN teams t2 ON r.team_b_id = t2.team_id`,
+  //         (err, results) => {
+  //           if(err) {
+  //             reject(err);
+  //           } else {
+  //             resolve(results);
+  //           }
+  //         }
+  //     );
+  //   });
+  // };
+
+  const getStoredGames = async () => {
+    try {
+      const db = await connectionToDatabase();
+
+      const [results] = await db.execute(
         `SELECT
-              r.game_id,
-              t1.team_name AS team_a_name,
-              t2.team_name AS team_b_name
-          FROM results r
-          JOIN teams t1 ON r.team_a_id = t1.team_id
-          JOIN teams t2 ON r.team_b_id = t2.team_id`,
-          (err, results) => {
-            if(err) {
-              reject(err);
-            } else {
-              resolve(results);
-            }
-          }
+          r.game_id,
+          r.team_a_id,
+          t1.team_name AS team_a_name,
+          r.team_b_id,
+          t2.team_name AS team_b_name
+         FROM results r
+         JOIN teams t1 ON r.team_a_id = t1.team_id
+         JOIN teams t2 ON r.team_b_id = t2.team_id`
       );
-    });
+
+      await db.end();
+      return results; // Array of results returned from the query
+    } catch(error) {
+      console.error('Error fetching stored game:', error);
+      throw error;
+    }
   };
 
  // A simple function that returns true if the Levenshtein distance is below a certain threshold
@@ -80,17 +105,13 @@ const matchTeams = (team1, team2, threshold = 3) => {
     return bestMatch;
   };
   
-
-  module.exports = { findBestMatch, getStoredGames };
-  
-
-//     // Example usage:
-//     const storedGames = [
-//       { team_a_name: 'Michigan', team_b_name: 'Indiana' }, // Example data from DB
-//       { team_a_name: 'Duke', team_b_name: 'North Carolina' },
-//       { team_a_name: 'Fair Dickson', team_b_name: 'Stanford' },
-//       { team_a_name: 'Michighan State', team_b_name: 'South Florida' },
-//     ];
+    // Example usage:
+    // const storedGames = [
+    //   { team_a_name: 'Michigan', team_b_name: 'Indiana' }, // Example data from DB
+    //   { team_a_name: 'Duke', team_b_name: 'North Carolina' },
+    //   { team_a_name: 'Fair Dickson', team_b_name: 'Stanford' },
+    //   { team_a_name: 'Michighan State', team_b_name: 'South Florida' },
+    // ];
     
 // const espnGames = [
 //   { 
@@ -125,27 +146,80 @@ const matchTeams = (team1, team2, threshold = 3) => {
 //   },
 // ];
 
-
 // Now check if teams match between stored games and ESPN games using Levenshtein distance
-storedGames.forEach((storedGame) => {
-  const matchingEspnGame = espnGames.find((game) => {
-    const teamNames = game.teams.map((t) => t.name);
+const matchStoredGamesWithEspn = (storedGames, espnGames) => {
+  storedGames.forEach((storedGame) => {
+    const matchingEspnGame = espnGames.find((game) => {
+      const teamNames = game.teams.map((t) => t.name);
 
-    // Compare team names using the Levenshtein function from gameUtils
-    const team1Matches = teamNames.some(name => matchTeams(name, storedGame.team_a_name));
-    const team2Matches = teamNames.some(name => matchTeams(name, storedGame.team_b_name));
+      // Compare team names using the Levenshtein function from gameUtils
+      const team1Matches = teamNames.some(name => matchTeams(name, storedGame.team_a_name));
+      const team2Matches = teamNames.some(name => matchTeams(name, storedGame.team_b_name));
 
-    return team1Matches && team2Matches;
-  });
+      return team1Matches && team2Matches;
+    });
 
-  // If a matching ESPN game is found, update the DB
-  if (matchingEspnGame) {
-    console.log(`Found a match for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
+    // If a matching ESPN game is found, update the DB
+    if (matchingEspnGame) {
+      console.log(`Found a match for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
+
+      // Find matching ESPN teams individually
+      const teamA = matchingEspnGame.teams.find(t => matchTeams(t.name, storedGame.team_a_name));
+      const teamB = matchingEspnGame.teams.find(t => matchTeams(t.name, storedGame.team_b_name));
+
+      // Fallback: Use ESPN name if no match found
+      const cleanTeamAName = teamA ? storedGame.team_a_name : matchingEspnGame.teams[0].name;
+      const cleanTeamBName = teamB ? storedGame.team_b_name : matchingEspnGame.teams[1].name;
+
+      // console.log('Full matching ESPN game object:', matchingEspnGame);
+
+      console.log(`ESPN Game ID: ${matchingEspnGame.espnGameId}`);
+      console.log(`${teamA.name}: ${teamA.score} - ${teamB.name}: ${teamB.score}`);
+      console.log(`Winner: ${teamA.winner ? teamA.name : teamB.name}`);
+
+      console.log('Saving game info:', {
+        espn_game_id: matchingEspnGame.espnGameId,
+        team_a_id: storedGame.team_a_id,
+        teamA: cleanTeamAName,
+        team_a_score: teamA ? teamA.score : null,
+        team_b_id: storedGame.team_b_id,
+        teamB: cleanTeamBName,
+        team_b_score: teamB ? teamB.score : null,
+        winner_id: (teamA && teamA.winner) ? storedGame.team_a_id : storedGame.team_b_id,
+        winner: (teamA && teamA.winner) ? cleanTeamAName : cleanTeamBName,
+      });
+      
+      // Proceed with updating the DB
+      // updateDatabase(storedGame.game_id, matchingEspnGame);
+      } else {
+        console.log(`No match found for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
+      }
+    })
+  };
 
 
-    // Proceed with updating the DB
-    updateDatabase(storedGame.game_id, matchingEspnGame);
-  } else {
-    console.log(`No match found for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
-  }
-});
+  // const getMatchedResults = async () => {
+  //   const games = await fetchPastScores();
+  //   const storedGames = await getStoredGames();
+
+  //   const matchResults = [];
+
+  //   for(const game of games) {
+  //     const foundMatch = matchTeams(game, storedGames);
+
+  //     if(foundMatch) {
+  //       const teamA = game.teams[0];
+  //       const teamB = game.teams[1];
+
+  //       matchResults.push({
+  //         team_a_name: teamA.name,
+  //         team_a_score: teamA.score,
+  //         team_b_name: teamB.name,
+  //         team_b_score: teamB.score,
+  //         winner: teamA.winner ? teamA.name : teamB.name,
+  //       });
+  //     }
+  //   }
+  //   return matchResults;
+  // }
+module.exports = { findBestMatch, getStoredGames, matchStoredGamesWithEspn/*, getMatchedResults */};
