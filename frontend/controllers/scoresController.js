@@ -1,5 +1,5 @@
 const { connectionToDatabase } = require("../src/db/db");
-const { getStoredGames, findBestMatch, matchStoredGamesWithEspn/*, getMatchedResults*/ } = require('../utils/gameUtils');
+const { getStoredGames, matchStoredGamesWithEspn } = require('../utils/gameUtils');
 const fetchPastScores = require('../scripts/fetchPastScores');
 const fetchScores = require('../scripts/fetchScores');
 const updateDatabase = require('../scripts/updateDatabase');
