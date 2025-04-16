@@ -1,4 +1,3 @@
-const { findBestMatch, getStoredGames } = require("../utils/gameUtils");
 const { connectionToDatabase } = require('../src/db/db');
 const axios = require("axios");
 
@@ -31,7 +30,7 @@ const updateDatabase = async (gameInfo) => {
             ];
 
             console.log('Running query with values:', values);
-            console.log('Types:', values.map(val => typeof val));
+            // console.log('Types:', values.map(val => typeof val));
 
             // Now update the `results` table with all necessary info
               await connection.execute(
