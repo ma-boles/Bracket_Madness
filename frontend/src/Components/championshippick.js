@@ -2,6 +2,8 @@
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "./TeamButton";
+import ChampionshipButton from "./ChampionshButton";
+import Image from "next/image";
 
 
 export default function ChampionshipPick () {
@@ -19,6 +21,13 @@ export default function ChampionshipPick () {
 
     // Champion
     const teamAWinner10003 = getWinnerFromGame(bracketData, 10003);
+
+    const lockInPicks = () => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth',
+        });
+    };
 
     return (
         <>
@@ -46,12 +55,21 @@ export default function ChampionshipPick () {
                         </div>
 
                         <div className="pb-2 px-2 flex flex-col items-center">
-                            <div className="py-4 px-8 my-4 bg-white/10 rounded-lg">
+                            <div className="flex py-4 px-8 my-4 bg-white/10 rounded-lg">
                                 {teamAWinner10003 ? (
-                                        <TeamButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
+                                        <ChampionshipButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
                                     ) : (
-                                        <p className="team">Select...</p>
+                                        <p className="w-50 m-auto text-center text-xl">Select...</p>
                                     )}
+                                    <button className="ml-2 p-2 cursor-pointer rounded-lg border border-white/70" onClick={lockInPicks}>
+                                    <Image 
+                                        alt="lock in"
+                                        src="../lock-open-solid.svg"
+                                        className="image-filter"
+                                        width={22}
+                                        height={40}
+                                        />
+                                    </button>
                             </div>
 
                                 {teamAWinner10001 ? (
