@@ -36,7 +36,8 @@ export const BracketProvider = ({ children }) => {
                 region,
                 gameId: game_id,
                 winnerId: team.id,
-                winnerName: team.name
+                winnerName: team.name,
+                winnerSeed: team.seed
             },
         }));
     };
@@ -50,12 +51,23 @@ export const BracketProvider = ({ children }) => {
         handlePick(region, gameId, team);
     };
 
+    const getWinnerFromGame = (bracketData, gameId) => {
+        return bracketData[gameId]
+        ? {
+            id:bracketData[gameId].winnerId,
+            name: bracketData[gameId].winnerName,
+            seed: bracketData[gameId].winnerSeed
+        } 
+        : null;
+    };
+
     return(
         <BracketContext.Provider value={{
             userPicks,
             bracketData,
             handlePick,
-            handleSelection
+            handleSelection,
+            getWinnerFromGame
         }}> 
         {children}
         </BracketContext.Provider>
