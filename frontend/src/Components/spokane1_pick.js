@@ -50,32 +50,32 @@ export default function Spokane1_Pick() {
                             )}
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1102} team={{ id: 1, name: 'Richmond', seed: 8}} />
-                            <TeamButton region="spokane1" gameId={1102} team={{ id: 1, name: 'Georgia Tech', seed: 9}} />
+                            <TeamButton region="spokane1" gameId={1102} team={{ id: 8, name: 'Richmond', seed: 8}} />
+                            <TeamButton region="spokane1" gameId={1102} team={{ id: 9, name: 'Georgia Tech', seed: 9}} />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1103} team={{ id: 1, name: 'Ole Miss', seed: 5}} />
-                            <TeamButton region="spokane1" gameId={1103} team={{ id: 1, name: 'Ball State', seed: 12}} />
+                            <TeamButton region="spokane1" gameId={1103} team={{ id: 5, name: 'Ole Miss', seed: 5}} />
+                            <TeamButton region="spokane1" gameId={1103} team={{ id: 12, name: 'Ball St', seed: 12}} />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1104} team={{ id: 1, name: 'Baylor', seed: 4}} />
-                            <TeamButton region="spokane1" gameId={1104} team={{ id: 1, name: 'Grand Canyon', seed: 13}} />
+                            <TeamButton region="spokane1" gameId={1104} team={{ id: 4, name: 'Baylor', seed: 4}} />
+                            <TeamButton region="spokane1" gameId={1104} team={{ id: 13, name: 'Grand Canyon', seed: 13}} />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1105} team={{ id: 1, name: 'Florida St', seed: 6}} />
-                            <TeamButton region="spokane1" gameId={1105} team={{ id: 1, name: 'George Mason', seed: 11}} />
+                            <TeamButton region="spokane1" gameId={1105} team={{ id: 6, name: 'Florida St', seed: 6}} />
+                            <TeamButton region="spokane1" gameId={1105} team={{ id: 11, name: 'George Mason', seed: 11}} />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1106} team={{ id: 1, name: 'LSU', seed: 3}} />
-                            <TeamButton region="spokane1" gameId={1106} team={{ id: 1, name: 'San Diego St', seed: 14}} />
+                            <TeamButton region="spokane1" gameId={1106} team={{ id: 3, name: 'LSU', seed: 3}} />
+                            <TeamButton region="spokane1" gameId={1106} team={{ id: 14, name: 'San Diego St', seed: 14}} />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1107} team={{ id: 1, name: 'Michigan St', seed: 7}} />
-                            <TeamButton region="spokane1" gameId={1107} team={{ id: 1, name: 'Harvard', seed: 10}} />
+                            <TeamButton region="spokane1" gameId={1107} team={{ id: 7, name: 'Michigan St', seed: 7}} />
+                            <TeamButton region="spokane1" gameId={1107} team={{ id: 10, name: 'Harvard', seed: 10}} />
                         </div>
                         <div className="matchup bg-blue-800">
-                            <TeamButton region="spokane1" gameId={1108} team={{ id: 1, name: 'NC State', seed: 2}} />
-                            <TeamButton region="spokane1" gameId={1108} team={{ id: 1, name: 'Vermont', seed: 15}} />
+                            <TeamButton region="spokane1" gameId={1108} team={{ id: 2, name: 'NC State', seed: 2}} />
+                            <TeamButton region="spokane1" gameId={1108} team={{ id: 15, name: 'Vermont', seed: 15}} />
                         </div>
                     </div>
 

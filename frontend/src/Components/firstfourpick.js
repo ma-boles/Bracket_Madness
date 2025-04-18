@@ -16,12 +16,12 @@ export default function FirstFourPick() {
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1001}
-                                team={{ id: 1, name: 'UCSD', seed: 16}}
+                                team={{ id: 16, name: 'UCSD', seed: 16}}
                                 />
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1001}
-                                team={{ id: 1, name: 'Southern', seed: 16}}
+                                team={{ id: 17, name: 'Southern', seed: 16}}
                                 />
                         </div>
                         <div className="pb-6 px-4 flex flex-col items-center">
@@ -29,12 +29,12 @@ export default function FirstFourPick() {
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1002}
-                                team={{ id: 1, name: 'Columbia', seed: 11}}
+                                team={{ id: 28, name: 'Washington', seed: 11}}
                                 />
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1002}
-                                team={{ id: 1, name: 'Washington', seed: 11}}
+                                team={{ id: 29, name: 'Columbia', seed: 11}}
                                 />
                         </div>
                         <div className="pb-6 px-4 flex flex-col items-center">
@@ -42,12 +42,12 @@ export default function FirstFourPick() {
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1003}
-                                team={{ id: 1, name: 'Iowa St', seed: 11}}
+                                team={{ id: 45, name: 'Iowa St', seed: 11}}
                                 />
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1003}
-                                team={{ id: 1, name: 'Princeton', seed: 11}}
+                                team={{ id: 46, name: 'Princeton', seed: 11}}
                                 />
                         </div>
                         <div className="pb-6 px-4 flex flex-col items-center">
@@ -55,12 +55,12 @@ export default function FirstFourPick() {
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1004}
-                                team={{ id: 1, name: 'High Point', seed: 16}}
+                                team={{ id: 51, name: 'High Point', seed: 16}}
                                 />
                             <TeamButton 
                                 region='firstfour'
                                 gameId={1004}
-                                team={{ id: 1, name: 'William & Mary', seed: 16}}
+                                team={{ id: 52, name: 'William & Mary', seed: 16}}
                                 />
                         </div>
                     </div>
