@@ -1,15 +1,11 @@
 import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
+import connectionToDatabase from '../src/db/db';
+import { NextResponse } from 'next/server';
 require('dotenv').config();
 
 
-// Database connection
-const db = await mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+
 
 // Utility function to verify JWT token
 const verifyToken = (token) => {
@@ -28,50 +24,50 @@ const verifyToken = (token) => {
     }
 };
 
-export default async function handler(req, res) {
-    if(req.method !== 'POST') {
-        return res.status(405).json({ message: 'Method Not Allowe '});
-    }
+export async function POST(req) {
+    let db;
 
-        try {
-        const token = req.cookies.token; // Get token from cookie
+    try {
+        // Database connection
+        const db = await connectionToDatabase();
+        const token = req.cookies.get('token')?.value; 
         const decodedUser = verifyToken(token); // Verify JWT token
 
         if(!decodedUser) {
             // If token is invalid, return 401 unauthorized response
-            return res.status(401).json({ message: 'Unauthorized. Please log in.' });
+            return NextResponse.json({ message: 'Unauthorized. Please log in.' });
         }
 
         // Get picks data from request body
-        const { bracketData } = req.body;
+        const { bracketData } = await req.json();
 
         if(!bracketData) {
-            return res.status(400).json({ message: 'No picks data provided' });
+            return NextResponse.json({ message: 'No picks data provided' });
         }
 
         const userId = decodedUser.userId;
 
         // Prepare query to insert picks
         const insertQuery = `
-        INSERT INTO picks (user_id, game_id, winner_id)
-        VALUES(?, ?, ?)
-        ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)
-        `;
+            INSERT INTO picks (user_id, game_id, winner_id)
+            VALUES(?, ?, ?)
+            ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)`
+            ;
 
-        const insertPromises = Object.entries(bracketData).flatMap(([region, games]) => 
-        Object.entries(games).map(async([gameId, team]) => {
-            return db.execute(insertQuery, [userId, gameId, team.id]) // Ensure teams.id is being stored as winner_id
-        })
-    );
+        const insertPromises = Object.entries(bracketData).map(([gameId, team]) => {
+            if(!team || !team.id) return Promise.resolve();
 
-    await Promise.all(insertPromises);
+            return db.execute(insertQuery, [userId, gameId, team.id]); // Ensure teams.id is being stored as winner_id
+        });
 
-    return res.status(200).json({ success: true, message: 'Picks submitted successfully' });
-    
+        await Promise.all(insertPromises);
+
+        return NextResponse.json({ success: true, message: 'Picks submitted successfully' });
+
     } catch(error) {
         console.error('Error submitting picks:', error);
-        return res.status(500).json({ success: false, message: 'Internal Server Error '});
+        return NextResponse.json({ success: false, message: 'Internal Server Error '});
+    } finally {
+        if (db) await db.end();
     }
-
 }
-
