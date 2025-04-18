@@ -12,33 +12,41 @@ import { useBracket } from "@/context/BracketContext";
 
 export default function Bracket_Picks() {
     const [ currentUserId, setCurrentUserId ] = useState(null);
+    const [ isValidated, setIsValidated ] = useState(false);
     const { bracketData } = useBracket();
 
-        const fetchUserId = () => {
-            const token = document.cookie
-                .split('; ')
-                .find(row => row.startsWith('token='))
-                ?.split('=')[1];
-
-            if(!token) {
-                console.error('No token found. User might not be logged in.');
-                return;
-            }
-
-            try{
-                const decoded = jwtDecode(token);
-                setCurrentUserId(decoded.userId);
-                console.log('User ID from token:', decoded.userId);
-            } catch (error) {
-                console.error('Error decoding token:', error);
-            }
-        };
-
-        useEffect(() => {
-            fetchUserId();
-        }, []);
+    const handleCheckPicks = () => {
+        console.log("Check Picks Clicked");
+        console.log("Bracket Data Before Check:", bracketData);
+    
+        const numberOfGames = 63; 
+        
+        const pickCount = Object.keys(bracketData).length;
+        console.log("Pick count:", pickCount);
+    
+        if (pickCount === 0) {
+            // If no picks have been made, trigger the alert
+            alert("Please make a pick for every game before submitting.");
+            setIsValidated(false);
+            return; 
+        }
+    
+        // If there are picks, check if all have a winnerId
+        const allPicked = Object.values(bracketData).every(pick => pick?.winnerId);
+        console.log('All picks made:', allPicked);
+    
+        if (allPicked && pickCount === numberOfGames) {
+            // If all picks are made and we have the right number of picks
+            setIsValidated(true);
+            alert("All picks are made. You can submit now!");
+        } else {
+            alert("Please make a pick for every game before submitting.");
+            setIsValidated(false);
+        }
+    };
 
         const submitPicks = async () => {
+
             if(!currentUserId) {
                 console.error('Error: User not logged in.');
                 return;
@@ -51,14 +59,14 @@ export default function Bracket_Picks() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ 
-                        picks: Object.values(bracketData), 
-                        user_id: currentUserId
+                        bracketData,
                     }),
-                    credential: 'include' // Ensure cookies are sent
+                    credentials: 'include' // Ensure cookies are sent
                 });
 
                 const result = await response.json();
-                if(response.success) {
+
+                if(result.success) {
                     console.log('Bracket successfully submitted');
                 }  else {
                     console.error('Submission failed:', result.message);
@@ -73,27 +81,34 @@ export default function Bracket_Picks() {
             <nav>
                 <NavBar />
             </nav>
-            <div className="bg-black">
+            <div className="bg-white/15">
                 <div className="w-full">
                     <FirstFour />
                 </div>
                 <div>
-                <div className="flex">
-                    <Spokane1_Pick />
-                    <Birmingham2_Pick />
-                </div>
-                    <ChampionshipPick />
-                <div className="flex">
-                    <Spokane4_Pick />
-                    <Birmingham3_Pick />
-                </div>
+                    <div className="flex">
+                        <Spokane1_Pick />
+                        <Birmingham2_Pick />
+                    </div>
+                        <ChampionshipPick />
+                    <div className="flex">
+                        <Spokane4_Pick />
+                        <Birmingham3_Pick />
+
+                    </div>
+
                 </div>
                 <div className="flex justify-center items-center">
-                <button className="mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center hover:bg-white hover:text-black hover:border-transparent font-medium w-1/3 h-12 mx-2 cursor-pointer"
-                    onClick={submitPicks}>
-                    Submit
-                </button>
-            </div>
+                    <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
+                        onClick={handleCheckPicks}
+                        >Lock In Picks</button>
+                    <button className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                        disabled={!isValidated}
+                        onClick={submitPicks}
+                        >
+                        Submit
+                    </button>
+                </div>
             </div>
         </>
     )
