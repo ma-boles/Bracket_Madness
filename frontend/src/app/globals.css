@@ -228,3 +228,13 @@ background-color: transparent;}
   flex-direction: column;
   align-items: center;
 }
+
+/* styles/globals.css or wherever you keep global styles */
+.image-filter {
+  filter: invert(65%);
+  transition: filter 0.3s ease;
+}
+
+.image-filter:hover {
+  filter: invert(90%);
+}
