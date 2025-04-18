@@ -1,17 +1,24 @@
 'use client'
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
-// import Spokane1_Input from "./Spokane1/Spokane1_Input";
-// import Birmingham2_Input from "./Birmingham2/Birmingham2_Input";
-// import Birmingham3_Input from "./Birmingham3/Birmingham3_Input";
-// import Spokane4_Input from "./Spokane4/Spokane4_Input";
-import Winner_Input_4001 from "./Championship_Input/Winner_Input_4001";
-import Winner_Input_4002 from "./Championship_Input/Winner_Input_4002";
-import Championship_Input from "./Championship_Input/Championship_Input";
+import TeamButton from "./TeamButton";
 
 
 export default function ChampionshipPick () {
-    const { bracketData } = useBracket();
+    const { bracketData, getWinnerFromGame } = useBracket();
+
+    // Winners Elite 8
+    const teamAWinner8001 = getWinnerFromGame(bracketData, 8001);
+    const teamAWinner8002 = getWinnerFromGame(bracketData, 8002);
+    const teamAWinner8003 = getWinnerFromGame(bracketData, 8003);
+    const teamAWinner8004 = getWinnerFromGame(bracketData, 8004);
+
+    // Winners Final Four
+    const teamAWinner10001 = getWinnerFromGame(bracketData, 10001);
+    const teamBWinner10002 = getWinnerFromGame(bracketData, 10002);
+
+    // Champion
+    const teamAWinner10003 = getWinnerFromGame(bracketData, 10003);
 
     return (
         <>
@@ -19,35 +26,63 @@ export default function ChampionshipPick () {
                     <div className="flex gap-6 p-4 bg-blue-600 rounded-md">
                         <div className="my-auto flex flex-col items-center">
                             <div className="mx-auto w-33 pt-0">
-                                <div className="rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white">
-                                    {bracketData[4001]?.winnerName || 'Spokane 1'}
+                                <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
+                                 {teamAWinner8001 ? ( 
+                                    <TeamButton region="spokane1" gameId={10001} team={teamAWinner8001}/>
+                                ) : (
+                                    <p className="team">Spokane 1</p>
+                                )}
                                 </div>
                             </div>
                             <div className="mx-auto w-33 pt-0 ">
-                                <div className="rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white">
-                                    {bracketData[4004]?.winnerName || 'Spokane 4'}
+                                <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
+                                {teamAWinner8004 ? (
+                                    <TeamButton region="spokane4" gameId={10001} team={teamAWinner8004}/>
+                                ) : (
+                                    <p className="team">Spokane 4</p>
+                                )}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-2 flex flex-col items-center">
-                            <Championship_Input region='championship' gameId={10001}/>
+                        <div className="pb-2 px-2 flex flex-col items-center">
+                            <div className="py-4 px-8 my-4 bg-white/10 rounded-lg">
+                                {teamAWinner10003 ? (
+                                        <TeamButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
+                                    ) : (
+                                        <p className="team">Select...</p>
+                                    )}
+                            </div>
 
-                            <h1 className="text-2xl pb-2">Championship</h1>
-
-                            <Winner_Input_4001 region='finalfour' gameId={100000}/>
-                            <Winner_Input_4002 region='finalfour' gameId={100000}/>
+                                {teamAWinner10001 ? (
+                                    <TeamButton region="finalfour" gameId={10003} team={teamAWinner10001}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                                {teamBWinner10002 ? (
+                                    <TeamButton region="finalfour" gameId={10003} team={teamBWinner10002}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
                         </div>
 
                         <div className="my-auto flex flex-col items-center">
                             <div className="mx-auto w-33 pt-0">
-                                <div className="rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white">
-                                    {bracketData[4002]?.winnerName || 'Birmingham 2'}
+                                <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
+                                {teamAWinner8002 ? (
+                                    <TeamButton region="birmingham2" gameId={10002} team={teamAWinner8002}/>
+                                ) : (
+                                    <p className="team">Birmingham 2</p>
+                                )}
                                 </div>
                             </div>
                             <div className="mx-auto w-33 pt-0">
-                                <div className="rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white">
-                                    {bracketData[4003]?.winnerName || 'Birmingham 3'}
+                                <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
+                                {teamAWinner8003 ? (
+                                    <TeamButton region="birmingham3" gameId={10002} team={teamAWinner8003}/>
+                                ) : (
+                                    <p className="team">Birmingham 3</p>
+                                )}
                                 </div>
                             </div>
                         </div>

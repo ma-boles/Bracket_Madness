@@ -1,162 +1,186 @@
 'use client'
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
-import Birmingham3_Input from "./Birmingham3/Birmingham3_Input";
-import Birmingham3_Input11_FF from "./Birmingham3/Birmingham3_Input11_FF";
-import Birmingham3_Input16_FF from "./Birmingham3/Birmingham3_Input16_FF";
+import TeamButton from "./TeamButton";
+
 
 export default function Birmingham3_Pick() {
-    const { userPicks, setUserPicks, handlePick } = useBracket();
+    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     
+    // Winners from First Four
+    const teamBWinner1003 = getWinnerFromGame(bracketData, 1003);
+    const teamBWinner1004 = getWinnerFromGame(bracketData, 1004);
+
+    // Winners from Round 1
+    const teamAWinner1117 = getWinnerFromGame(bracketData, 1117);
+    const teamBWinner1118 = getWinnerFromGame(bracketData, 1118);
+    const teamAWinner1119 = getWinnerFromGame(bracketData, 1119);
+    const teamBWinner1120 = getWinnerFromGame(bracketData, 1120);
+    const teamAWinner1121 = getWinnerFromGame(bracketData, 1121);
+    const teamBWinner1122 = getWinnerFromGame(bracketData, 1122);
+    const teamAWinner1123 = getWinnerFromGame(bracketData, 1123);
+    const teamBWinner1124 = getWinnerFromGame(bracketData, 1124);
+
+    // Winners from Round 2
+    const teamAWinner1209 = getWinnerFromGame(bracketData, 1209);
+    const teamBWinner1210 = getWinnerFromGame(bracketData, 1210);
+    const teamAWinner1211 = getWinnerFromGame(bracketData, 1211);
+    const teamBWinner1212 = getWinnerFromGame(bracketData, 1212);
+
+    // Winners from Sweet 16
+    const teamAWinner1605 = getWinnerFromGame(bracketData, 1605);
+    const teamBWinner1606 = getWinnerFromGame(bracketData, 1606);
+
+    // Winner from Elite 8
+    const teamAWinner8003 = getWinnerFromGame(bracketData, 8003);
+
     return(
         <>
         <div className="midwest region">
             <div className="rounds">
                 <div className="round final4">
-                        <div className="mt-105 py-2 matchup--r bg-blue-500 border-b-2 border-white">
-                            <Birmingham3_Input region='birmingham3' gameId={4003}/>
+                        <div className="mt-105 matchup--r bg-blue-500 border-b-2 border-white">
+                            {teamAWinner8003 ? (
+                                <TeamButton region="birmingham3" gameId={4003} team={teamAWinner8003}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                     </div>
 
                     <div className="round elite8">
                         <div className="matchup4--r bg-gray-600">
-                            <Birmingham3_Input region='birmingham3' gameId={8003}/>
-                            <Birmingham3_Input region='birmingham3' gameId={8003}/>
+                            {teamAWinner1605 ? (
+                                <TeamButton region="birmingham3" gameId={8003} team={teamAWinner1605}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1606 ? (
+                                <TeamButton region="birmingham3" gameId={8003} team={teamBWinner1606}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                     </div>
 
                     <div className="round sweet-16 pt-4">
                         <div className="matchup3--r bg-blue-700">
-                            <Birmingham3_Input region='birmingham3' gameId={1605}/>
-                            <Birmingham3_Input region='birmingham3' gameId={1605}/>
+                            {teamAWinner1209 ? (
+                                <TeamButton region="birmingham3" gameId={1605} team={teamAWinner1209}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1210 ? (
+                                <TeamButton region="birmingham3" gameId={1605} team={teamBWinner1210}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                         <div className="matchup3-last--r bg-blue-700">
-                            <Birmingham3_Input region='birmingham3' gameId={1606}/>
-                            <Birmingham3_Input region='birmingham3' gameId={1606}/>
+                            {teamAWinner1211 ? (
+                                <TeamButton region="birmingham3" gameId={1606} team={teamAWinner1211}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1212 ? (
+                                <TeamButton region="birmingham3" gameId={1606} team={teamBWinner1212}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                     </div>
 
                     <div className="round second-round">
                         <div className="matchup2--r mb-11 bg-gray-700">
-                            <Birmingham3_Input region='birmingham3' gameId={1209}/>
-                            <Birmingham3_Input region='birmingham3' gameId={1209}/>
+                        {teamAWinner1117 ? (
+                                <TeamButton region="birmingham3" gameId={1209} team={teamAWinner1117}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1118 ? (
+                                <TeamButton region="birmingham3" gameId={1209} team={teamBWinner1118}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}   
                         </div>
                         <div className="matchup2--r mb-11 bg-gray-700">
-                            <Birmingham3_Input region='birmingham3' gameId={1210}/>
-                            <Birmingham3_Input region='birmingham3' gameId={1210}/>
+                            {teamAWinner1119 ? (
+                                <TeamButton region="birmingham3" gameId={1210} team={teamAWinner1119}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1120 ? (
+                                <TeamButton region="birmingham3" gameId={1210} team={teamBWinner1120}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                         <div className="matchup2--r mb-12 bg-gray-700">
-                            <Birmingham3_Input region='birmingham3' gameId={1211}/>
-                            <Birmingham3_Input region='birmingham3' gameId={1211}/>
+                            {teamAWinner1121 ? (
+                                <TeamButton region="birmingham3" gameId={1211} team={teamAWinner1121}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1122 ? (
+                                <TeamButton region="birmingham3" gameId={1211} team={teamBWinner1122}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                         <div className="matchup2-last--r bg-gray-700">
-                            <Birmingham3_Input region='birmingham3' gameId={1212}/>
-                            <Birmingham3_Input region='birmingham3' gameId={1212}/>
+                            {teamAWinner1123 ? (
+                                <TeamButton region="birmingham3" gameId={1212} team={teamAWinner1123}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
+                            {teamBWinner1124 ? (
+                                <TeamButton region="birmingham3" gameId={1212} team={teamBWinner1124}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                     </div>
 
                     <div className="round first-round">
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">1 Texas</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1117, e.target.value)}
-                            placeholder="seed 1"
-                            ></input> */}
-                            <Birmingham3_Input16_FF region='birmingham3' gameId={1117}/>
+                            <TeamButton region="birmingham3" gameId={1117} team={{ id: 1, name: 'Texas', seed: 1}} />
+                            {teamBWinner1004 ? (
+                                <TeamButton region="birmingham3" gameId={1117} team={teamBWinner1004}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">8 Illinois</p>
-                            <p className="team">9 Creighton</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1118, e.target.value)}
-                            placeholder="seed 8"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1118, e.target.value)}
-                            placeholder="seed 9"
-                            ></input> */}
+                            <TeamButton region="birmingham3" gameId={1118} team={{ id: 1, name: 'Illinois', seed: 8}} />
+                            <TeamButton region="birmingham3" gameId={1118} team={{ id: 1, name: 'Creighton', seed: 9}} />
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">5 Tennessee</p>
-                            <p className="team">12 South Flo...</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1119, e.target.value)}
-                            placeholder="seed 5"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1119, e.target.value)}
-                            placeholder="seed 12"
-                            ></input> */}
+                            <TeamButton region="birmingham3" gameId={1119} team={{ id: 1, name: 'Tennessee', seed: 5}} />
+                            <TeamButton region="birmingham3" gameId={1119} team={{ id: 1, name: 'South Florida', seed: 12}} />
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">4 OSU</p>
-                            <p className="team">13 Montana...</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1120, e.target.value)}
-                            placeholder="seed 4"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1120, e.target.value)}
-                            placeholder="seed 13"
-                            ></input> */}
+                            <TeamButton region="birmingham3" gameId={1120} team={{ id: 1, name: 'Ohio St', seed: 4}} />
+                            <TeamButton region="birmingham3" gameId={1120} team={{ id: 1, name: 'Montana St', seed: 13}} />
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">6 Michigan</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1121, e.target.value)}
-                            placeholder="seed 6"
-                            ></input> */}
-                            <Birmingham3_Input11_FF region='birmingham3' gameId={1121}/>
+                            <TeamButton region="birmingham3" gameId={1121} team={{ id: 1, name: 'Michigan', seed: 6}} />
+                            {teamBWinner1003 ? (
+                                <TeamButton region="birmingham3" gameId={1121} team={teamBWinner1003}/>
+                            ) : (
+                                <p className="team">Select...</p>
+                            )}
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">3 Notre Dame</p>
-                            <p className="team">14 SF Austin</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1122, e.target.value)}
-                            placeholder="seed 3"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1122, e.target.value)}
-                            placeholder="seed 14"
-                            ></input> */}
+                            <TeamButton region="birmingham3" gameId={1122} team={{ id: 1, name: 'Notre Dame', seed: 3}} />
+                            <TeamButton region="birmingham3" gameId={1122} team={{ id: 1, name: 'SF Austin', seed: 14}} />
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">7 Louisville</p>
-                            <p className="team">10 Nebraska</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1123, e.target.value)}
-                            placeholder="seed 7"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1123, e.target.value)}
-                            placeholder="seed 10"
-                            ></input> */}
+                            <TeamButton region="birmingham3" gameId={1123} team={{ id: 1, name: 'Louisville', seed: 7}} />
+                            <TeamButton region="birmingham3" gameId={1123} team={{ id: 1, name: 'Nebraska', seed: 10}} />
                         </div>
                         <div className="matchup--r bg-blue-800">
-                            <p className="team">2 TCU</p>
-                            <p className="team">15 Fair Dicki...</p>
-                        {/* <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1124, e.target.value)}
-                            placeholder="seed 2"
-                            ></input>
-                            <input className="team"
-                            type="text"
-                            onChange={(e) => handlePick('south', 1124, e.target.value)}
-                            placeholder="seed 15"
-                            ></input> */}
+                            <TeamButton region="birmingham3" gameId={1124} team={{ id: 1, name: 'TCU', seed: 2}} />
+                            <TeamButton region="birmingham3" gameId={1124} team={{ id: 1, name: 'Fair Dickinson', seed: 15}} />
                         </div>
                     </div>
                     </div>
