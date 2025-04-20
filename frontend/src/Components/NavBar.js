@@ -8,17 +8,9 @@ import { useAuth } from "@/context/AuthContext";
 export default function NavBar () {
     const router = useRouter();
     const { currentUser } = useAuth();
-    const [user, setUser] = useState(null);
-
-    // useEffect(() => {
-    //     const token = localStorage.getItem('token');
-    //     if(token) {
-    //         setUser(true);
-    //     }
-    // }, []);
 
     const handleBracketClick = () => {
-        if(user) {
+        if(currentUser) {
             router.push("/Bracket_Picks");
         } else {
             router.push("/auth");
