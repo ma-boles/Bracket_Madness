@@ -1,39 +1,57 @@
-import React, { createContext, useEffect, useState } from "react";
+'use client'
+import React, { createContext, useEffect, useState, useContext } from "react";
 import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
 
 const AuthContext = createContext();
+
+export function useAuth() {
+    return useContext(AuthContext);
+};
 
 export function AuthProvider({ children }) {
     const [ currentUser, setCurrentUser ] = useState(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('token');
 
         if(token) {
             try {
                 const decoded = jwtDecode(token);
-                setCurrentUser(decoded.userId);
+                setCurrentUser({ userId: decoded.userId });
             } catch(error) {
                 console.error('Invalid token', error);
-                localStorage.removeItem('token');
+                setCurrentUser(null);
             }
+        } else {
+            setCurrentUser(null);
         }
     }, []);
 
-    const login = (token) => {
-        localStorage.setItem('token', token);
+    const logIn = (token) => {
+        if(typeof token !== 'string') {
+            console.error('Invald token:', token);
+            return;
+        }
+
+        Cookies.set('token', token, { expires: 1, path: '/' });
+        try {
         const decoded = jwtDecode(token);
-        setCurrentUser(decoded.userId);
+        setCurrentUser({ userId: decoded.userId });
+        } catch(error) {
+            console.error('Error deoding token:', error);
+            setCurrentUser(null);
+        }
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
+        Cookies.remove('token');
         setCurrentUser(null);
     };
 
     return (
-        <AuthContext.Provider value={({ currentUser, login, logout })}>
-        {children}
+        <AuthContext.Provider value={({ currentUser, logIn, logout })}>
+            {children}
         </AuthContext.Provider>
     )
 }
