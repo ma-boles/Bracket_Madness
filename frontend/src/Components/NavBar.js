@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import LogoutButton from "@/app/auth/components/LogoutButton";
 
 export default function NavBar () {
     const router = useRouter();
@@ -20,12 +21,6 @@ export default function NavBar () {
         } else {
             router.push("/auth");
         }
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        setUser(null);
-        router.push('/');
     };
 
     const handleLogIn = () => {
@@ -64,7 +59,7 @@ export default function NavBar () {
                 </div>
                 <div className="p-2 flex">
                     {user ? (
-                        <button className="w-24 p-2 mx-1 h-10 bg-red-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogout}>Log Out</button>
+                        <LogoutButton />
                     ) : (
                         <button className="w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogIn}>Log In</button>
                     )}
