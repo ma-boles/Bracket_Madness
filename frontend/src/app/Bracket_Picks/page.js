@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import NavBar from "../../Components/NavBar";
 import FirstFour from "../../Components/firstfourpick";
@@ -9,9 +9,10 @@ import Birmingham2_Pick from "../../Components/birmingham2_pick";
 import Birmingham3_Pick from "../../Components/birmingham3_pick";
 import Spokane4_Pick from "../../Components/spokane4_pick";
 import { useBracket } from "@/context/BracketContext";
+import AuthContext from "@/context/AuthContext";
 
 export default function Bracket_Picks() {
-    const [ currentUserId, setCurrentUserId ] = useState(null);
+    const { currentUser } = useContext(AuthContext);
     const [ isValidated, setIsValidated ] = useState(false);
     const { bracketData } = useBracket();
 
@@ -20,7 +21,7 @@ export default function Bracket_Picks() {
         console.log("Bracket Data Before Check:", bracketData);
     
         const numberOfGames = 63; 
-        
+
         const pickCount = Object.keys(bracketData).length;
         console.log("Pick count:", pickCount);
     
@@ -47,7 +48,7 @@ export default function Bracket_Picks() {
 
         const submitPicks = async () => {
 
-            if(!currentUserId) {
+            if(!currentUser) {
                 console.error('Error: User not logged in.');
                 return;
             }
@@ -98,6 +99,8 @@ export default function Bracket_Picks() {
                     </div>
 
                 </div>
+                
+                {currentUser && (
                 <div className="flex justify-center items-center">
                     <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
                         onClick={handleCheckPicks}
@@ -109,6 +112,8 @@ export default function Bracket_Picks() {
                         Submit
                     </button>
                 </div>
+                    )}
+
             </div>
         </>
     )
