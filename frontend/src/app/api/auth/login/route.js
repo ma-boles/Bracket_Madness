@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
-import { cookies } from "next/headers";
 
 
 // Handles POST (Log In)
@@ -11,6 +10,9 @@ export async function POST(req) {
 
     try {
         const { username, password} = await req.json();
+
+        console.log('Login request received:', { username });
+
 
         // Database connection
         db = await mysql.createConnection({
@@ -46,8 +48,8 @@ export async function POST(req) {
             expiresIn: '1h',
         });
 
-        // Store token in cookies
-        const response = NextResponse.json({ message: 'Login successful!'});
+        // Set cookie in response
+        const response = NextResponse.json({ message: 'Login successful!', token});
         response.cookies.set('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
