@@ -1,11 +1,13 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 
 export default function LogIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] =useState('');
+    const { logIn } = useContext(AuthContext);
     const router = useRouter();
     
     const handleLogin = async (e) => {
@@ -22,8 +24,11 @@ export default function LogIn() {
         const data = await res.json();
 
         if(res.ok) {
-            localStorage.setItem('token', data.token);
-            router.push('/Womens_Bracket');
+            console.log('Login successful:', data);
+
+            logIn(data.token);
+            // localStorage.setItem('token', data.token);
+            router.push('/Bracket_Picks');
         } else {
             console.log('LogIn Failed', data.message);
         }
