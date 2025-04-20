@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { BracketProvider } from "@/context/BracketContext";
 import "./globals.css";
+import { AuthProvider } from "@/context/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +24,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <BracketProvider>
-        {children}
-        </BracketProvider>
+        <AuthProvider>
+          <BracketProvider>
+            {children}
+          </BracketProvider>
+        </AuthProvider>
       </body>
     </html>
   );
