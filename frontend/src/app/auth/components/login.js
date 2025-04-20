@@ -24,10 +24,10 @@ export default function LogIn() {
         const data = await res.json();
 
         if(res.ok) {
-            console.log('Login successful:', data);
+            console.log('Login successful:', data.message);
+            // console.log('Received token:', data.token); // Log the token to check it
 
             logIn(data.token);
-            // localStorage.setItem('token', data.token);
             router.push('/Bracket_Picks');
         } else {
             console.log('LogIn Failed', data.message);
