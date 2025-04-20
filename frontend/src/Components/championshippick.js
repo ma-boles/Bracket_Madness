@@ -1,6 +1,7 @@
 'use client'
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
+import { useAuth } from "@/context/AuthContext";
 import TeamButton from "./TeamButton";
 import ChampionshipButton from "./ChampionshButton";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import Image from "next/image";
 
 export default function ChampionshipPick () {
     const { bracketData, getWinnerFromGame } = useBracket();
+    const { currentUser } = useAuth();
 
     // Winners Elite 8
     const teamAWinner8001 = getWinnerFromGame(bracketData, 8001);
@@ -61,15 +63,17 @@ export default function ChampionshipPick () {
                                     ) : (
                                         <p className="w-50 m-auto text-center text-xl">Select...</p>
                                     )}
-                                    <button className="ml-2 p-2 cursor-pointer rounded-lg border border-white/70" onClick={lockInPicks}>
-                                    <Image 
-                                        alt="lock in"
-                                        src="../lock-open-solid.svg"
-                                        className="image-filter"
-                                        width={22}
-                                        height={40}
-                                        />
-                                    </button>
+                                    {currentUser && (
+                                        <button className="ml-2 p-2 cursor-pointer rounded-lg border border-white/70" onClick={lockInPicks}>
+                                        <Image 
+                                            alt="lock in"
+                                            src="../lock-open-solid.svg"
+                                            className="image-filter"
+                                            width={22}
+                                            height={40}
+                                            />
+                                        </button>
+                                     )}
                             </div>
 
                                 {teamAWinner10001 ? (
