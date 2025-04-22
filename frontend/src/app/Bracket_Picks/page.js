@@ -10,11 +10,22 @@ import Birmingham3_Pick from "../../Components/birmingham3_pick";
 import Spokane4_Pick from "../../Components/spokane4_pick";
 import { useBracket } from "@/context/BracketContext";
 import AuthContext from "@/context/AuthContext";
+import ConfirmationModal from "@/Components/ConfirmationModal";
 
 export default function Bracket_Picks() {
     const { currentUser } = useContext(AuthContext);
     const [ isValidated, setIsValidated ] = useState(false);
     const { bracketData } = useBracket();
+    const [ showModal, setShowModal ] = useState(null);
+    const [ bracketName, setBracketName] = useState("");
+    const [ bracketId, setBracketId ] = useState(null);
+    const [ picksValid, setPicksValid ] = useState(false);
+
+
+    const handleLockIn = () => {
+        setShowModal(true);
+        setPicksValid(false);
+    };
 
     const handleCheckPicks = () => {
         console.log("Check Picks Clicked");
@@ -45,6 +56,28 @@ export default function Bracket_Picks() {
             setIsValidated(false);
         }
     };
+
+    const handleSubmitBracket = async () => {        
+
+        const bracketPayload = {
+            user_id,
+            bracket_name: bracketData || null
+        };
+      
+        await fetch ("/api/brackets", {
+            method: "POST",
+            headers: { "Content-Type": "application/json"}, 
+            body: JSON.stringify(bracketPayload),
+        });
+
+        setShowModal(false);
+        setBracketName("");
+
+        // Now attach bracket_id to all picks and send them (if not already done)
+  // You said you're handling this separately — so trigger that here if needed
+  // Or store bracket_id for later use
+
+    }
 
         const submitPicks = async () => {
 
@@ -99,11 +132,20 @@ export default function Bracket_Picks() {
                     </div>
 
                 </div>
-                
+
+                <ConfirmationModal 
+                    show={showModal}
+                    onClose={() => setShowModal(false)}
+                    onVerify={handleCheckPicks}
+                    onSubmitBracket={handleSubmitBracket}
+                    picksValid={picksValid}
+                    bracketName={bracketName}
+                    setBracketName={setBracketName}/>
+
                 {currentUser && (
                 <div className="flex justify-center items-center">
                     <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
-                        onClick={handleCheckPicks}
+                        onClick={handleLockIn}
                         >Lock In Picks</button>
                     <button className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                         disabled={!isValidated}
@@ -113,6 +155,7 @@ export default function Bracket_Picks() {
                     </button>
                 </div>
                     )}
+                    {/* <button onClick={handleLockIn}>Show modal</button> */}
 
             </div>
         </>
