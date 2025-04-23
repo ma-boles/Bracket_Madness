@@ -1,6 +1,6 @@
 import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import connectionToDatabase from '../src/db/db';
+import { connectionToDatabase } from '@/db/db';
 import { NextResponse } from 'next/server';
 require('dotenv').config();
 
@@ -41,24 +41,24 @@ export async function POST(req) {
 
         // Prepare query to insert bracket data
         const [result] = await db.execute ( `
-            INSERT INTO brackets (user_id, bracketName)
+            INSERT INTO brackets (user_id, bracket_name)
             VALUES(?, ?)`, [userId, bracket_name || null]
         );
 
-        const insertedId = result.insertedId;
+        const bracketId = result.insertId;
         let finalName = bracket_name;
 
         // Generate default name
         if(!bracket_name) {
             const shortYear = new Date().getFullYear().toString().slice(-2);
             finalName = `Challenge${shortYear}_00${insertedId}`;
-            await db.exectute(
+            await db.execute(
                 `UPDATE brackets SET bracket_name = ? WHERE id = ?`,
-                [finalName, insertedId]
+                [finalName, bracketId]
             );
         }
 
-        return NextResponse.json({ success: true, bracket_id: insertedId, bracket_name: finalName });
+        return NextResponse.json({ success: true, bracket_id: bracketId, bracket_name: finalName });
 
     } catch(error) {
         console.error('Error submitting bracket data:', error);
