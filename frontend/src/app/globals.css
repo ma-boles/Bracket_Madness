@@ -238,3 +238,26 @@ background-color: transparent;}
 .image-filter:hover {
   filter: invert(90%);
 }
+
+/* Log-in + Sign Up loading animation */
+.loader {
+  height: 80px;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  position: relative;
+  mask: 
+    radial-gradient(#0000 47%,#000 48% 71%,#0000 72%) exclude,
+    conic-gradient(#000 0 0) no-clip;
+  animation: l11 1.5s linear infinite;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 0 35% 70%;
+  border-radius: 50%;
+  background: #000;
+  filter: blur(15px);
+}
+@keyframes l11 {
+  to {rotate: 1turn}
+}
