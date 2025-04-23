@@ -1,10 +1,8 @@
 import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import connectionToDatabase from '../src/db/db';
+import { connectionToDatabase } from '@/db/db';
 import { NextResponse } from 'next/server';
 require('dotenv').config();
-
-
 
 
 // Utility function to verify JWT token
@@ -39,28 +37,61 @@ export async function POST(req) {
         }
 
         // Get picks data from request body
-        const { bracketData } = await req.json();
+        const { bracketData, bracket_id } = await req.json();
 
-        if(!bracketData) {
-            return NextResponse.json({ message: 'No picks data provided' });
+        // console.log('Received bracketData:', bracketData);
+        console.log('Received bracketId:', bracket_id);
+
+        if(!bracketData || !bracket_id) {
+            return NextResponse.json({ message: 'Missing bracket data or bracket ID.' });
         }
 
         const userId = decodedUser.userId;
 
         // Prepare query to insert picks
         const insertQuery = `
-            INSERT INTO picks (user_id, game_id, winner_id)
-            VALUES(?, ?, ?)
+            INSERT INTO predictions (user_id, bracket_id, game_id, winner_id)
+            VALUES(?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)`
             ;
 
+            console.log('Query:', insertQuery);
+            console.log('Using userId:', userId);
+            console.log('Using bracket_id:', bracket_id);
+            
         const insertPromises = Object.entries(bracketData).map(([gameId, team]) => {
-            if(!team || !team.id) return Promise.resolve();
+            const winnerId = team?.winnerId;
 
-            return db.execute(insertQuery, [userId, gameId, team.id]); // Ensure teams.id is being stored as winner_id
+            if(!winnerId){
+                console.warn(`Skipping game ${gameId} - missing team or team.id`);
+                return Promise.resolve(undefined);
+            }
+
+            console.log(`Preparing to insert: user_id = ${userId}, bracket_id = ${bracket_id}, game_id = ${gameId}, winner_id = ${team.id}`);
+           
+            return db.execute(insertQuery, [userId, bracket_id, gameId, winnerId]) // Ensure teams.id is being stored as winner_id
+            .then(([result]) => {
+                console.log(`Inserted pick for game ${gameId}`);
+                return result;
+            })
+            .catch((err) => {
+                console.error(`Failed to insert for game ${gameId}`, err.message);
+            return undefined;
+            })
         });
 
-        await Promise.all(insertPromises);
+        const results = await Promise.all(insertPromises);
+        const insertCount = results.filter(r => r !== undefined).length;
+
+        if(insertCount === 0) {
+            return NextResponse.json({ success: false, message: 'No picks were inserted'});
+        }
+
+        const [rows] = await db.execute(
+            `SELECT * FROM predictions WHERE bracket_id = ?`, 
+            [bracket_id]
+        );
+        console.log('Predictions now in DB:', rows.length);
 
         return NextResponse.json({ success: true, message: 'Picks submitted successfully' });
 
