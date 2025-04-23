@@ -31,7 +31,7 @@ export default function Bracket_Picks() {
         console.log("Check Picks Clicked");
         console.log("Bracket Data Before Check:", bracketData);
     
-        const numberOfGames = 63; 
+        const numberOfGames = 67; 
 
         const pickCount = Object.keys(bracketData).length;
         console.log("Pick count:", pickCount);
@@ -60,15 +60,25 @@ export default function Bracket_Picks() {
     const handleSubmitBracket = async () => {        
 
         const bracketPayload = {
-            user_id,
-            bracket_name: bracketData || null
+            bracket_name: bracketName || null
         };
       
-        await fetch ("/api/brackets", {
+        try {
+        const res = await fetch ("/api/brackets", {
             method: "POST",
             headers: { "Content-Type": "application/json"}, 
             body: JSON.stringify(bracketPayload),
         });
+
+        const data = await res.json();
+        const bracketId = data.bracket_id;
+        console.log('Bracket creation response:', data);
+
+        if(data.success) {
+            setBracketId(bracketId);
+        } else {
+            console.error('Bracket creation failed:', error.message);
+        };
 
         setShowModal(false);
         setBracketName("");
@@ -77,7 +87,10 @@ export default function Bracket_Picks() {
   // You said you're handling this separately — so trigger that here if needed
   // Or store bracket_id for later use
 
+    } catch(error) {
+        console.error('Error creating bracket:', error)
     }
+};
 
         const submitPicks = async () => {
 
@@ -86,7 +99,14 @@ export default function Bracket_Picks() {
                 return;
             }
 
+            if(!bracketId) {
+                console.error('Error: Bracket ID is missing.');
+                return;
+            }
+
             try{
+                console.log('Submitting picks with Bracket ID:', bracketId);
+
                 const response = await fetch('/api/submit-picks', {
                     method: 'POST',
                     headers: {
@@ -94,6 +114,7 @@ export default function Bracket_Picks() {
                     },
                     body: JSON.stringify({ 
                         bracketData,
+                        bracket_id: bracketId,
                     }),
                     credentials: 'include' // Ensure cookies are sent
                 });
@@ -101,6 +122,7 @@ export default function Bracket_Picks() {
                 const result = await response.json();
 
                 if(result.success) {
+                    console.log('Bracket ID:', bracketId);
                     console.log('Bracket successfully submitted');
                 }  else {
                     console.error('Submission failed:', result.message);
@@ -138,7 +160,7 @@ export default function Bracket_Picks() {
                     onClose={() => setShowModal(false)}
                     onVerify={handleCheckPicks}
                     onSubmitBracket={handleSubmitBracket}
-                    picksValid={picksValid}
+                    picksValid={isValidated}
                     bracketName={bracketName}
                     setBracketName={setBracketName}/>
 
