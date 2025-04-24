@@ -1,8 +1,9 @@
 export default function Loader() {
     return(
         <>
-            <h1 className="mb-12 text-white text-2xl">Logging in...</h1>
-            <div className="loader"></div> 
+        <div className="w-60 h-50 flex justify-center items-center">
+            <div className="loader"></div>
+        </div>
         </>
     )
 }
