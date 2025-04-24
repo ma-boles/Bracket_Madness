@@ -13,7 +13,7 @@ export default function LogInPage() {
     return(
         <>
         <div className="min-h-screen flex items-center justify-center bg-black">
-            <div className="p-10 bg-[#0081B8] rounded-lg text-center space-y-6">
+            <div className="p-10 w-110 h-115 bg-[#0081B8] rounded-lg text-center space-y-6">
                 {isSignUp ? <SignUp /> : <LogIn />}
 
                 <div>
