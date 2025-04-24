@@ -11,6 +11,7 @@ import Spokane4_Pick from "../../Components/spokane4_pick";
 import { useBracket } from "@/context/BracketContext";
 import AuthContext from "@/context/AuthContext";
 import ConfirmationModal from "@/Components/ConfirmationModal";
+import toast from "react-hot-toast";
 
 export default function Bracket_Picks() {
     const { currentUser } = useContext(AuthContext);
@@ -38,7 +39,13 @@ export default function Bracket_Picks() {
     
         if (pickCount === 0) {
             // If no picks have been made, trigger the alert
-            alert("Please make a pick for every game before submitting.");
+            toast.error('Please make a pick for every game before submitting.',{
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                    duration: 4000,
+                }
+            })
             setIsValidated(false);
             return; 
         }
@@ -50,9 +57,21 @@ export default function Bracket_Picks() {
         if (allPicked && pickCount === numberOfGames) {
             // If all picks are made and we have the right number of picks
             setIsValidated(true);
-            alert("All picks are made. You can submit now!");
+            toast.success('All picks are made. You can submit now!', {
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                    duration: 4000,
+                }
+            });
         } else {
-            alert("Please make a pick for every game before submitting.");
+            toast.error('Please make a pick for every game before submitting.',{
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                    duration: 4000,
+                }
+            })
             setIsValidated(false);
         }
     };
@@ -123,12 +142,31 @@ export default function Bracket_Picks() {
 
                 if(result.success) {
                     console.log('Bracket ID:', bracketId);
-                    console.log('Bracket successfully submitted');
+                    toast.success('Bracket successfully sumitted', {
+                            style: {
+                                background: '#333',
+                                color: '#fff'
+                            }
+                    })
+                    // console.log('Bracket successfully submitted');
                 }  else {
-                    console.error('Submission failed:', result.message);
+                    toast.error('Submission failed. Please try again', {
+                        style: {
+                            background: '#333',
+                            color: '#fff',
+                            duration: 4000,
+                        }
+                })
+                    // console.error('Submission failed:', result.message);
                 }
-            } catch (error) {
-                console.error('Submission error:', error);
+            } catch (error) {toast.success('Submission error. Please try again.', {
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                    duration: 4000,
+                }
+            })
+                // console.error('Submission error:', error);
             }
         };
 
