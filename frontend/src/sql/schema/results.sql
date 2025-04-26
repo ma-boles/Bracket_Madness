@@ -1,7 +1,7 @@
 CREATE TABLE results(
     game_id INT PRIMARY KEY,
     espn_game_id VARCHAR(15) NULL,
-    round ENUM('First Four', '1st Round', '2nd Round', 'Sweet 16', 'Elite 8', 'FInal Four', 'Championship') NOT NULL,
+    round ENUM('First Four', '1st Round', '2nd Round', 'Sweet 16', 'Elite 8', 'Final Four', 'Championship') NOT NULL,
     team_a_id INT NULL,
     team_a_score INT DEFAULT NULL,
     team_b_id INT NULL,
