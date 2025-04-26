@@ -1,6 +1,8 @@
 const mysql = require('mysql2');
 require('dotenv').config();
-import { connectionToDatabase } from '@/db/db';
+const { connectionToDatabase } = require('../src/db/db');
+
+
 
 
 // Constraints for scoring
@@ -34,17 +36,20 @@ async function calculateScores () {
             FROM predictions p
             JOIN results r ON p.game_id = r.game_id
             JOIN brackets b ON p.bracket_id = b.id
-            JOIN teams ta ON r.team_a_id = ta.id
-            JOIN teams tb ON r.team_b_id = tb.id
-            JOIN teams t ON r.winner_id = t.team_id`
+            JOIN teams ta ON r.team_a_id = ta.team_id
+            JOIN teams tb ON r.team_b_id = tb.team_id
+            JOIN teams t ON r.winner_id = t.team_id
+            `
         );
 
-        let userScores = {};
+
         let insertValues = [];
 
         for(const prediction of predictions) {
-            if(prediction.predicted_winner === prediction.actual_winner) {
 
+            let points = 0;
+
+            if(prediction.predicted_winner === prediction.actual_winner) {
                 // Use actual_winner_seed from query and assign opponent_seed to other team
                 const actual_winner_seed = prediction.actual_winner_seed;
                 const opponent_seed = prediction.actual_winner === prediction.team_a_id 
@@ -54,29 +59,33 @@ async function calculateScores () {
                 // Determine seed difference
                 const seedDifference = actual_winner_seed - opponent_seed;
 
-                // Skip if difference is less than 0
-                if(seedDifference < 0) {
-                    continue;
-                }
 
-                const BONUS = seedDifference;
+                const BONUS = Math.max(seedDifference, 0);
 
-                let points = (BASE_POINTS + BONUS) * ROUND_MULTIPLIERS[prediction.round];
+                points = (BASE_POINTS + BONUS) * ROUND_MULTIPLIERS[prediction.round];
                 points = Math.min(points, MAX_BONUS);
-
-                insertValues.push([prediction.user_id, prediction.bracket_id, prediction.round, points])
             }
+                insertValues.push([prediction.user_id, prediction.bracket_id, prediction.round, prediction.game_id, points])
         }
 
         if(insertValues.length > 0) {
-            await db.execute(`
-                INSERT into points (user_id, bracket_id, round, awarded_points)
-                VALUES ?
-                ON DUPLICATE KEY UPDATE
-                awarded_points = VALUES(awarded_points)
-            `, [insertValues]);
+            const placeholders = insertValues.map(() => '(?, ?, ?, ?, ?)').join(', ');
+            const flattenedValues = insertValues.flat();
 
-            console.log('Scores updated successfully!');
+            console.log('Insert values:', insertValues);
+
+            try {
+                await db.execute(`
+                    INSERT into points (user_id, bracket_id, round, game_id, awarded_points)
+                    VALUES ${placeholders}
+                    ON DUPLICATE KEY UPDATE
+                    awarded_points = VALUES(awarded_points)
+                `, flattenedValues);
+    
+                console.log('Scores updated successfully!:');
+            } catch(error) {
+                console.error('Error during insert:', error);
+            }
         }
     } catch(error) {
         console.error('Error calculating scores:', error);
