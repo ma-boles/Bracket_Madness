@@ -3,11 +3,11 @@ const axios = require("axios");
 
 // Function to update database
 const updateDatabase = async (gameInfo) => {  
-  const connection = await connectionToDatabase();
+  const db = await connectionToDatabase();
   
   try {
       // Fetch the winner's ID from the `teams` table
-          const [winnerRows] = await connection.execute(
+          const [winnerRows] = await db.execute(
             `SELECT team_id FROM teams WHERE team_name = ? LIMIT 1`,
             [gameInfo.winner],
           );
@@ -33,7 +33,7 @@ const updateDatabase = async (gameInfo) => {
             // console.log('Types:', values.map(val => typeof val));
 
             // Now update the `results` table with all necessary info
-              await connection.execute(
+              await db.execute(
                 `UPDATE results 
                   SET 
                   espn_game_id = ?, 
@@ -47,6 +47,17 @@ const updateDatabase = async (gameInfo) => {
               );
 
               console.log(`Updated game ${gameInfo.game_id} successfully.`);
+            
+              // Update is_finalized column to true
+              await db.execute(
+                `UPDATE results
+                  SET is_finalized = 1
+                  WHERE game_id = ?`,
+                [gameInfo.game_id]
+              );
+
+              console.log(`Game ${gameInfo.game_id} marked as finalized.`);
+            
             } catch(error) {
               console.error('Error running score sync:', error);
             } finally {
