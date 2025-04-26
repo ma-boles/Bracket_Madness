@@ -9,6 +9,7 @@ CREATE TABLE results(
     winner_id INT DEFAULT NULL,
     next_game_id INT NULL,
     next_slot_id ENUM('team_a_id', 'team_b_id') NOT NULL,
+    is_finalized BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (team_a_id) REFERENCES teams(team_id),
     FOREIGN KEY (team_b_id) REFERENCES teams(team_id),
     FOREIGN KEY (winner_id) REFERENCES teams(team_id),
