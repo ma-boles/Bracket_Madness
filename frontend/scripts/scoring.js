@@ -39,6 +39,8 @@ async function calculateScores () {
             JOIN teams ta ON r.team_a_id = ta.team_id
             JOIN teams tb ON r.team_b_id = tb.team_id
             JOIN teams t ON r.winner_id = t.team_id
+            WHERE p.is_scored = 0
+                AND r.is_finalized = 1
             `
         );
 
@@ -83,6 +85,23 @@ async function calculateScores () {
                 `, flattenedValues);
     
                 console.log('Scores updated successfully!:');
+
+                // Update predictions.is_scored to true
+                const updateValues = insertValues.map(val => val[0], val[1], val[3]);
+
+                if(updateValues.length > 0) {
+                    const updatePlacholders = updateValues.map(() => '?', '?', '?').join(', ');
+                    const flattenedUpdateValue = updateValues.flatten
+
+                    await db.execute(`
+                        UPDATE predictions
+                        SET is_scored = 1
+                        WHERE (user_id, bracket_id, game_id) IN (${updatePlacholders})
+                        `, flattenedUpdateValue);
+
+                console.log('Predictions marked as scored!');
+
+                }
             } catch(error) {
                 console.error('Error during insert:', error);
             }
