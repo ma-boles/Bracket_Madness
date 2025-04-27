@@ -5,6 +5,7 @@ const fetchScores = require('../scripts/fetchScores');
 const updateDatabase = require('../scripts/updateDatabase');
 const { connection } = require("next/server");
 const propogateWinners = require("../scripts/propogateWinners");
+const scoring = require("../scripts/scoring");
 
 
 async function runScoresSync(mode, dryRun) {
@@ -29,8 +30,9 @@ async function runScoresSync(mode, dryRun) {
 
           if (!dryRun) {
             // Proceed with updating the DB + propogation
-            await updateDatabase(gameInfo, connection);
-            await propogateWinners(gameInfo, connection);
+            await updateDatabase(gameInfo); // Fetch results
+            await scoring();// Score the predictions
+            await propogateWinners(gameInfo); // Update your progress
             }
         } else {
           console.log(`No valid gameInfo found.`);
