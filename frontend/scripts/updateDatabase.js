@@ -61,7 +61,7 @@ const updateDatabase = async (gameInfo) => {
             } catch(error) {
               console.error('Error running score sync:', error);
             } finally {
-              await connection.end();
+              await db.end();
             }
   };
 
