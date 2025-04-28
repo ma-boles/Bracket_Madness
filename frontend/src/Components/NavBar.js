@@ -25,6 +25,11 @@ export default function NavBar () {
         <>
             <div className="flex w-full bg-white/85">
                 <div className="flex-1 p-2 text-center text-black hover:bg-blue-600 hover:text-white transition 300s">
+                    <Link href="/Dashboard" className="2xl">
+                        <p className="text-2xl">Dashboard</p>
+                    </Link>
+                </div>
+                <div className="flex-1 p-2 text-center text-black hover:bg-blue-600 hover:text-white transition 300s">
                     <Link href="/Womens_Bracket" className="2xl">
                         <p className="text-2xl">Bracket Results</p>
                     </Link>
@@ -36,6 +41,7 @@ export default function NavBar () {
                         </Link>
                     </div>
                 )}
+
                 
                 <div className="flex-1 p-2 bg-blue-600 text-center cursor-pointer transition-all duration-300 hover:bg-blue-500">
                      <ol className="px-1">
