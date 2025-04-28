@@ -80,7 +80,7 @@ export default function Spokane1_Pick() {
                     </div>
 
                     <div className="round second-round">
-                        <div className="matchup2 mb-11 bg-gray-700">
+                        <div className="matchup2 mb-11 bg-blue-800">
                             {teamAWinner1101 ? ( 
                                     <TeamButton region="spokane1" gameId={1201} team={teamAWinner1101}/>
                                 ) : (
@@ -92,7 +92,7 @@ export default function Spokane1_Pick() {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup2 mb-11 bg-gray-700">
+                        <div className="matchup2 mb-11 bg-blue-800">
                             {teamAWinner1103 ? ( 
                                     <TeamButton region="spokane1" gameId={1202} team={teamAWinner1103}/>
                                 ) : (
@@ -104,7 +104,7 @@ export default function Spokane1_Pick() {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup2 mb-12 bg-gray-700">
+                        <div className="matchup2 mb-12 bg-blue-800">
                             {teamAWinner1105 ? ( 
                                     <TeamButton region="spokane1" gameId={1203} team={teamAWinner1105}/>
                                 ) : (
@@ -116,7 +116,7 @@ export default function Spokane1_Pick() {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup2-last bg-gray-700">
+                        <div className="matchup2-last bg-blue-800">
                             {teamAWinner1107 ? ( 
                                     <TeamButton region="spokane1" gameId={1204} team={teamAWinner1107}/>
                                 ) : (
@@ -131,7 +131,7 @@ export default function Spokane1_Pick() {
                     </div>
 
                     <div className="round sweet-16 pt-4">
-                        <div className="matchup3 bg-blue-700">
+                        <div className="matchup3 bg-zinc-700">
                             {teamAWinner1201 ? ( 
                                     <TeamButton region="spokane1" gameId={1601} team={teamAWinner1201}/>
                                 ) : (
@@ -143,7 +143,7 @@ export default function Spokane1_Pick() {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup3-last bg-blue-700">
+                        <div className="matchup3-last bg-zinc-700">
                             {teamAWinner1203 ? ( 
                                     <TeamButton region="spokane1" gameId={1602} team={teamAWinner1203}/>
                                 ) : (
@@ -158,7 +158,7 @@ export default function Spokane1_Pick() {
                     </div>
 
                     <div className="round elite8">
-                        <div className="matchup4 bg-gray-600">
+                        <div className="matchup4 bg-zinc-700">
                             {teamAWinner1601 ? ( 
                                     <TeamButton region="spokane1" gameId={8001} team={teamAWinner1601}/>
                                 ) : (
@@ -173,7 +173,7 @@ export default function Spokane1_Pick() {
                     </div>
 
                     <div className="round final4 ">
-                        <div className="mt-80 matchup bg-blue-500 border-b-2 border-white">
+                        <div className="mt-80 py-2 matchup bg-blue-600 border-b-2 border-white">
                             {teamAWinner8001 ? ( 
                                     <TeamButton region="spokane1" gameId={4001} team={teamAWinner8001}/>
                                 ) : (

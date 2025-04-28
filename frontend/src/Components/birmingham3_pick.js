@@ -39,7 +39,7 @@ export default function Birmingham3_Pick() {
         <div className="midwest region">
             <div className="rounds">
                 <div className="round final4">
-                        <div className="mt-105 matchup--r bg-blue-500 border-b-2 border-white">
+                        <div className="mt-105 py-2 matchup--r bg-blue-600 border-b-2 border-white">
                             {teamAWinner8003 ? (
                                 <TeamButton region="birmingham3" gameId={4003} team={teamAWinner8003}/>
                             ) : (
@@ -49,7 +49,7 @@ export default function Birmingham3_Pick() {
                     </div>
 
                     <div className="round elite8">
-                        <div className="matchup4--r bg-gray-600">
+                        <div className="matchup4--r bg-zinc-700">
                             {teamAWinner1605 ? (
                                 <TeamButton region="birmingham3" gameId={8003} team={teamAWinner1605}/>
                             ) : (
@@ -64,7 +64,7 @@ export default function Birmingham3_Pick() {
                     </div>
 
                     <div className="round sweet-16 pt-4">
-                        <div className="matchup3--r bg-blue-700">
+                        <div className="matchup3--r bg-zinc-700">
                             {teamAWinner1209 ? (
                                 <TeamButton region="birmingham3" gameId={1605} team={teamAWinner1209}/>
                             ) : (
@@ -76,7 +76,7 @@ export default function Birmingham3_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup3-last--r bg-blue-700">
+                        <div className="matchup3-last--r bg-zinc-700">
                             {teamAWinner1211 ? (
                                 <TeamButton region="birmingham3" gameId={1606} team={teamAWinner1211}/>
                             ) : (
@@ -91,7 +91,7 @@ export default function Birmingham3_Pick() {
                     </div>
 
                     <div className="round second-round">
-                        <div className="matchup2--r mb-11 bg-gray-700">
+                        <div className="matchup2--r mb-11 bg-blue-800">
                         {teamAWinner1117 ? (
                                 <TeamButton region="birmingham3" gameId={1209} team={teamAWinner1117}/>
                             ) : (
@@ -103,7 +103,7 @@ export default function Birmingham3_Pick() {
                                 <p className="team">Select...</p>
                             )}   
                         </div>
-                        <div className="matchup2--r mb-11 bg-gray-700">
+                        <div className="matchup2--r mb-11 bg-blue-800">
                             {teamAWinner1119 ? (
                                 <TeamButton region="birmingham3" gameId={1210} team={teamAWinner1119}/>
                             ) : (
@@ -115,7 +115,7 @@ export default function Birmingham3_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup2--r mb-12 bg-gray-700">
+                        <div className="matchup2--r mb-12 bg-blue-800">
                             {teamAWinner1121 ? (
                                 <TeamButton region="birmingham3" gameId={1211} team={teamAWinner1121}/>
                             ) : (
@@ -127,7 +127,7 @@ export default function Birmingham3_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup2-last--r bg-gray-700">
+                        <div className="matchup2-last--r bg-blue-800">
                             {teamAWinner1123 ? (
                                 <TeamButton region="birmingham3" gameId={1212} team={teamAWinner1123}/>
                             ) : (

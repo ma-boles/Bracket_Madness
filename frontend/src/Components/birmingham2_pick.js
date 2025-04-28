@@ -37,7 +37,7 @@ export default function Birmingham2_Pick() {
         <div className="midwest region">
             <div className="rounds">
                 <div className="round final4">
-                        <div className="mt-105 matchup--r bg-blue-500 border-b-2 border-white">
+                        <div className="mt-105 py-2 matchup--r bg-blue-600 border-b-2 border-white">
                             {teamAWinner8002 ? ( 
                                 <TeamButton region="birmingham2" gameId={4002} team={teamAWinner8002}/>
                             ) : (
@@ -47,7 +47,7 @@ export default function Birmingham2_Pick() {
                     </div>
 
                     <div className="round elite8">
-                        <div className="matchup4--r bg-gray-600">
+                        <div className="matchup4--r bg-zinc-700">
                             {teamAWinner1603 ? ( 
                                 <TeamButton region="birmingham2" gameId={8002} team={teamAWinner1603}/>
                             ) : (
@@ -62,7 +62,7 @@ export default function Birmingham2_Pick() {
                     </div>
 
                     <div className="round sweet-16 pt-4">
-                        <div className="matchup3--r bg-blue-700">
+                        <div className="matchup3--r bg-zinc-700">
                             {teamAWinner1205 ? ( 
                                 <TeamButton region="birmingham2" gameId={1603} team={teamAWinner1205}/>
                             ) : (
@@ -74,7 +74,7 @@ export default function Birmingham2_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup3-last--r bg-blue-700">
+                        <div className="matchup3-last--r bg-zinc-700">
                             {teamAWinner1207 ? ( 
                                 <TeamButton region="birmingham2" gameId={1604} team={teamAWinner1207}/>
                             ) : (
@@ -89,7 +89,7 @@ export default function Birmingham2_Pick() {
                     </div>
 
                     <div className="round second-round">
-                        <div className="matchup2--r mb-11 bg-gray-700">
+                        <div className="matchup2--r mb-11 bg-blue-800">
                             {teamAWinner1109 ? ( 
                                 <TeamButton region="birmingham2" gameId={1205} team={teamAWinner1109}/>
                             ) : (
@@ -101,7 +101,7 @@ export default function Birmingham2_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup2--r mb-11 bg-gray-700">
+                        <div className="matchup2--r mb-11 bg-blue-800">
                             {teamAWinner1111 ? ( 
                                 <TeamButton region="birmingham2" gameId={1206} team={teamAWinner1111}/>
                             ) : (
@@ -113,7 +113,7 @@ export default function Birmingham2_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup2--r mb-12 bg-gray-700">
+                        <div className="matchup2--r mb-12 bg-blue-800">
                             {teamAWinner1113 ? ( 
                                 <TeamButton region="birmingham2" gameId={1207} team={teamAWinner1113}/>
                             ) : (
@@ -125,7 +125,7 @@ export default function Birmingham2_Pick() {
                                 <p className="team">Select...</p>
                             )}
                         </div>
-                        <div className="matchup2-last--r bg-gray-700">
+                        <div className="matchup2-last--r bg-blue-800">
                             {teamAWinner1115 ? ( 
                                 <TeamButton region="birmingham2" gameId={1208} team={teamAWinner1115}/>
                             ) : (
