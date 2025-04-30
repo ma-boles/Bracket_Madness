@@ -32,32 +32,33 @@ const updateDatabase = async (gameInfo) => {
             console.log('Running query with values:', values);
             // console.log('Types:', values.map(val => typeof val));
 
+            if(
+              !gameInfo.espn_game_id ||
+              !gameInfo.team_a_id ||
+              !gameInfo.team_b_id ||
+              winnerId === null
+            ) {
+              console.error(`Missing required game info for game${gameInfo.game_id}.`);
+              return;
+            }
+
             // Now update the `results` table with all necessary info
               await db.execute(
                 `UPDATE results 
                   SET 
-                  espn_game_id = ?, 
-                  team_a_id = COALESCE(team_a_id, ?), 
-                  team_a_score = ?, 
-                  team_b_id = COALESCE(team_b_id, ?), 
-                  team_b_score = ?, 
-                  winner_id = ?
+                    espn_game_id = ?, 
+                    team_a_id = COALESCE(team_a_id, ?), 
+                    team_a_score = ?, 
+                    team_b_id = COALESCE(team_b_id, ?), 
+                    team_b_score = ?, 
+                    winner_id = ?,
+                    is_finalized = 1,
                   WHERE game_id = ?`,
                values
               );
 
               console.log(`Updated game ${gameInfo.game_id} successfully.`);
-            
-              // Update is_finalized column to true
-              await db.execute(
-                `UPDATE results
-                  SET is_finalized = 1
-                  WHERE game_id = ?`,
-                [gameInfo.game_id]
-              );
 
-              console.log(`Game ${gameInfo.game_id} marked as finalized.`);
-            
             } catch(error) {
               console.error('Error running score sync:', error);
             } finally {
@@ -66,3 +67,13 @@ const updateDatabase = async (gameInfo) => {
   };
 
 module.exports = updateDatabase;
+
+  // Update is_finalized column to true
+  await db.execute(
+    `UPDATE results
+      SET is_finalized = 1
+      WHERE game_id = ?`,
+    [gameInfo.game_id]
+  );
+
+  console.log(`Game ${gameInfo.game_id} marked as finalized.`);
