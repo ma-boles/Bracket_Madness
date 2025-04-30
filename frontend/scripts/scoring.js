@@ -3,8 +3,6 @@ require('dotenv').config();
 const { connectionToDatabase } = require('../src/db/db');
 
 
-
-
 // Constraints for scoring
 const ROUND_MULTIPLIERS = { 
     'First Four': 1, 
@@ -15,6 +13,17 @@ const ROUND_MULTIPLIERS = {
     'Final Four': 6, 
     'Championship': 7 
 };
+
+const ROUND_TO_COLUMN = {
+    'First Four': 'first_four_points', 
+    '1st Round': 'first_round_points', 
+    '2nd Round': 'second_round_points', 
+    'Sweet 16': 'sweet16_points', 
+    'Elite 8': 'elite8_points', 
+    'Final Four': 'final4_points', 
+    'Championship': 'championship_points' 
+};
+
 const MAX_BONUS = 50;
 const BASE_POINTS = 10;
 
@@ -39,8 +48,6 @@ async function calculateScores () {
             JOIN teams ta ON r.team_a_id = ta.team_id
             JOIN teams tb ON r.team_b_id = tb.team_id
             JOIN teams t ON r.winner_id = t.team_id
-            WHERE p.is_scored = 0
-                AND r.is_finalized = 1
             `
         );
 
@@ -68,13 +75,13 @@ async function calculateScores () {
                 points = Math.min(points, MAX_BONUS);
             }
                 insertValues.push([prediction.user_id, prediction.bracket_id, prediction.round, prediction.game_id, points])
-        }
+            }
 
         if(insertValues.length > 0) {
             const placeholders = insertValues.map(() => '(?, ?, ?, ?, ?)').join(', ');
             const flattenedValues = insertValues.flat();
 
-            console.log('Insert values:', insertValues);
+            // console.log('Insert values:', insertValues);
 
             try {
                 await db.execute(`
@@ -87,19 +94,70 @@ async function calculateScores () {
                 console.log('Scores updated successfully!:');
 
                 // Update predictions.is_scored to true
-                const updateValues = insertValues.map(val => val[0], val[1], val[3]);
+                const updateValues = insertValues.map(val => [val[0], val[1], val[3]]);
 
                 if(updateValues.length > 0) {
-                    const updatePlacholders = updateValues.map(() => '?', '?', '?').join(', ');
-                    const flattenedUpdateValue = updateValues.flatten
+                    const updatePlaceholders = updateValues.map(() => `(?, ?, ?)`).join(', ');
+                    const flattenedUpdateValue = updateValues.flat();
 
                     await db.execute(`
                         UPDATE predictions
                         SET is_scored = 1
-                        WHERE (user_id, bracket_id, game_id) IN (${updatePlacholders})
+                        WHERE (user_id, bracket_id, game_id) IN (${updatePlaceholders})
                         `, flattenedUpdateValue);
 
                 console.log('Predictions marked as scored!');
+
+                // Sum all awarded points 
+                const [totals] = await db.execute(`
+                    SELECT bracket_id, SUM(awarded_points) as total_points
+                    FROM points
+                    GROUP BY bracket_id
+                `);
+
+                // Update each bracket with sum total
+                const updatePromises = totals.map(({ bracket_id, total_points}) => {
+                    return db.execute(`
+                        UPDATE brackets
+                        SET total_points = ?
+                        WHERE id = ?`, 
+                    [total_points, bracket_id]);
+                });
+
+                await Promise.all(updatePromises);
+
+                console.log('Bracket total points updated successfully.')
+
+                // Update round totals
+                const [round_totals] = await db.execute(`
+                    SELECT bracket_id, round, SUM(awarded_points) as round_points
+                    FROM points
+                    GROUP BY bracket_id, round
+                `);
+
+
+                // Update each bracket with sum total
+                const updateRounds = round_totals.map(({ bracket_id, round, round_points}) => {
+                    const column = ROUND_TO_COLUMN[round];
+                    // console.log('Round:', round);
+
+
+                    if(!column) {
+                        console.error('Invalid round:', round);
+                        return;
+                    }
+
+                    return db.execute(`
+                        UPDATE brackets
+                        SET ${column} = ?
+                        WHERE id = ?`, 
+                    [round_points, bracket_id]);
+                });
+
+                // Filter out null returns
+                await Promise.all(updateRounds.filter(Boolean));
+
+                console.log('Bracket round points updated successfully.')
 
                 }
             } catch(error) {
