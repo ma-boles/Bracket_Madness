@@ -115,18 +115,28 @@ async function calculateScores () {
                     GROUP BY bracket_id
                 `);
 
-                // Update each bracket with sum total
-                const updatePromises = totals.map(({ bracket_id, total_points}) => {
+                const sortedTotals = totals.sort((a, b) => b.total_points - a.total_points);
+                let currentRank = 1;
+                let previousPoints = null;
+                let displayRank = 1;
+
+                const updatePromises = sortedTotals.map(({ bracket_id, total_points }) => {
+                    if (total_points !== previousPoints) {
+                        displayRank = currentRank;
+                    }
+
+                    previousPoints = total_points;
+                    currentRank++;
+
                     return db.execute(`
                         UPDATE brackets
-                        SET total_points = ?
+                        SET total_points = ?, rank = ?
                         WHERE id = ?`, 
-                    [total_points, bracket_id]);
+                    [total_points, displayRank, bracket_id]);
                 });
 
                 await Promise.all(updatePromises);
-
-                console.log('Bracket total points updated successfully.')
+                console.log('Bracket total points updated successfully.');
 
                 // Update round totals
                 const [round_totals] = await db.execute(`
@@ -144,7 +154,7 @@ async function calculateScores () {
 
                     if(!column) {
                         console.error('Invalid round:', round);
-                        return;
+                        return null;
                     }
 
                     return db.execute(`
@@ -158,9 +168,8 @@ async function calculateScores () {
                 await Promise.all(updateRounds.filter(Boolean));
 
                 console.log('Bracket round points updated successfully.')
-
-                }
-            } catch(error) {
+            }
+                } catch(error) {
                 console.error('Error during insert:', error);
             }
         }
