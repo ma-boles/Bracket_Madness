@@ -1,16 +1,22 @@
 import NavBar from "@/Components/NavBar";
 import React from "react";
 import Image from "next/image";
-import BracketInfo from "@/Components/BracketInfo";
+import BracketCard from "@/Components/Bracket/BracketCard";
 
 export default function Dashboard() {
+
+    const bracketsCardData = [
+        { name: 'First Bracket 1', id: 6, total_points: 40, ranking: 5},
+        { name: 'Bracket #2', id: 7, total_points: 40, ranking: 5},
+    ];
+
     return(
         <>
         <nav>
             <NavBar />
         </nav>
 
-        <div className="flex justify-between overflow-hidden m-2 h-40 border border-gray-300 bg-gradient-to-r from-blue-600 via-transparent to-black rounded-lg">
+        <div className="flex justify-between overflow-hidden m-2 h-40 bg-gradient-to-r from-blue-600 via-transparent to-black rounded-lg">
             <h1 className="p-6 text-4xl font-bold"> Hello, username</h1>
             <Image
                 src="/BracketMadness_background.jpg"
@@ -30,7 +36,15 @@ export default function Dashboard() {
                 <p className="w-1/4 text-center font-semibold">Ranking</p>
             </div>
 
-            <BracketInfo />
+            {bracketsCardData.map((item, index) => (
+                    <BracketCard 
+                        key={index}
+                        name={item.name}
+                        id ={item.id}
+                        total_points={item.total_points}
+                        ranking={item.ranking}
+                        />
+                    ))}
         </div>
         </>
     )
