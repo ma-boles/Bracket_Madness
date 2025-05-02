@@ -36,7 +36,7 @@ export default function LogIn() {
                 setLogInSuccess(true);
                 setTimeout(() => {
                     logIn(data.token);
-                    router.push('/Bracket_Picks');
+                    router.push('/Dashboard');
                 }, 1000);
             } else {
                 setMessage('Login failed. Please try again.');
