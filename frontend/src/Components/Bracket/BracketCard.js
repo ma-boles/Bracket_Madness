@@ -16,7 +16,7 @@ export default function BracketCard({ name, id, total_points, ranking}) {
 
     return(
         <>
-        <div className="m-2 bg-purple-900 rounded-lg">
+        <div className="m-2 bg-purple-900/10 rounded-lg ">
             <div className="flex mt-2 h-20 bg-purple-900 border border-white rounded-lg" >
                 <div className="flex w-1/4 border-r border-white items-center justify-center" >
                     <h2 className="text-center underline"> 
