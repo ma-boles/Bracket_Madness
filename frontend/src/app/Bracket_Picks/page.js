@@ -175,7 +175,7 @@ export default function Bracket_Picks() {
             <nav>
                 <NavBar />
             </nav>
-            <div className="bg-white/15">
+            <div>
                 <div className="w-full">
                     <FirstFour />
                 </div>
