@@ -15,7 +15,7 @@ export default function Womens_Bracket() {
         <nav>
             <NavBar />
         </nav>
-        <div className="bg-slate-800">
+        <div>
             <div className="w-full">
                 <FirstFourPick />
             </div>
