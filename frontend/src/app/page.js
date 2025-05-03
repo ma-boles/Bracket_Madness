@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
+    <div className="bg-black items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <main className="items-center sm:items-start">
         <div className="flex flex-col items-center justify-center p-10">
          <Image
@@ -23,7 +23,7 @@ export default function Home() {
               Log In / Sign Up
             </Link>
 
-            <Link href="/Bracket_Picks"
+            <Link href="/Womens_Bracket"
               className="
               rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2">
               Bracket
