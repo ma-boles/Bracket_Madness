@@ -16,16 +16,36 @@ export function AuthProvider({ children }) {
         const token = Cookies.get('token');
 
         if(token) {
-            try {
-                const decoded = jwtDecode(token);
-                setCurrentUser({ userId: decoded.userId });
-            } catch(error) {
-                console.error('Invalid token', error);
-                setCurrentUser(null);
-            }
+            const fetchUserId = async () => {
+                try {
+                    const res = await axios.post('api/verify-token', { token });
+
+                    if(res.dat.userId) {
+                        setCurrentUser({ userId: res.data.userId });
+                    } else {
+                        setCurrentUser(null);
+                    }
+                } catch(error) {
+                    console.error('Failed to verify token', error);
+                    setCurrentUser(null);
+                }
+            };
+
+            fetchUserId();
         } else {
             setCurrentUser(null);
         }
+        // if(token) {
+        //     try {
+        //         const decoded = jwtDecode(token);
+        //         setCurrentUser({ userId: decoded.userId });
+        //     } catch(error) {
+        //         console.error('Invalid token', error);
+        //         setCurrentUser(null);
+        //     }
+        // } else {
+        //     setCurrentUser(null);
+        // }
     }, []);
 
     const logIn = (token) => {
