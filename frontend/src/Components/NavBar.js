@@ -11,14 +11,7 @@ export default function NavBar () {
     const router = useRouter();
     const { currentUser } = useAuth();
 
-    // const handleBracketClick = () => {
-    //     if(currentUser) {
-    //         router.push("/Bracket_Picks");
-    //     } else {
-    //         router.push("/auth");
-    //     }
-    // };
-
+ 
     const submitAlert = () => {
         if(!currentUser) {
             toast.error('To submit a bracket, please Log In.',{
@@ -57,12 +50,12 @@ export default function NavBar () {
                         </div>
                     )}
                     <div className="flex-1 p-3 text-center hover:bg-white/20 transition 300s rounded-lg">
-                        <Link href="/Womens_Bracket">
+                        <Link href="/Results">
                             <p>Results</p>
                         </Link>
                     </div>
                         <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 hover:bg-white/20 rounded-lg">
-                            <Link href="/Bracket_Picks" onClick={submitAlert}>
+                            <Link href="/Submit" onClick={submitAlert}>
                                 <p>Submit</p>
                             </Link>
                         </div>
