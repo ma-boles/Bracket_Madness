@@ -13,7 +13,7 @@ import AuthContext from "@/context/AuthContext";
 import ConfirmationModal from "@/Components/ConfirmationModal";
 import toast from "react-hot-toast";
 
-export default function Bracket_Picks() {
+export default function Submit() {
     const { currentUser } = useContext(AuthContext);
     const [ isValidated, setIsValidated ] = useState(false);
     const { bracketData } = useBracket();

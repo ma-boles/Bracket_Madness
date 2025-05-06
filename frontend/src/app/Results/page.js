@@ -9,7 +9,7 @@ import ChampionshipPick from "../../Components/championshippick";
 
 
 
-export default function Womens_Bracket() {
+export default function Results() {
     return(
         <>
         <nav>
