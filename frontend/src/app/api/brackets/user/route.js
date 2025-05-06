@@ -30,8 +30,15 @@ export async function GET(req) {
       `
       SELECT 
         id AS bracket_id,
-        name AS bracket_name,
-        total_points
+        bracket_name,
+        total_points,
+        first_four_points,
+        first_round_points,
+        second_round_points,
+        sweet16_points,
+        elite8_points,
+        final4_points,
+        championship_points
       FROM brackets 
       WHERE user_id = ?
       `,
