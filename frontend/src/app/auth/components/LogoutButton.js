@@ -1,9 +1,12 @@
+'use client'
 import React, { useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
     const { logout } = useContext(AuthContext);
+    const router = useRouter();
 
     const handleLogout = () => {
         logout();
@@ -12,7 +15,9 @@ const LogoutButton = () => {
                 background: '#333',
                 color: '#fff'
             }
-        })
+        });
+
+        router.push('/Womens_Bracket');
     };
 
     return(
