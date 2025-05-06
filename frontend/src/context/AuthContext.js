@@ -35,17 +35,6 @@ export function AuthProvider({ children }) {
         } else {
             setCurrentUser(null);
         }
-        // if(token) {
-        //     try {
-        //         const decoded = jwtDecode(token);
-        //         setCurrentUser({ userId: decoded.userId });
-        //     } catch(error) {
-        //         console.error('Invalid token', error);
-        //         setCurrentUser(null);
-        //     }
-        // } else {
-        //     setCurrentUser(null);
-        // }
     }, []);
 
     const logIn = (token) => {
@@ -59,7 +48,7 @@ export function AuthProvider({ children }) {
         const decoded = jwtDecode(token);
         setCurrentUser({ userId: decoded.userId });
         } catch(error) {
-            console.error('Error deoding token:', error);
+            console.error('Error decoding token:', error);
             setCurrentUser(null);
         }
     };
