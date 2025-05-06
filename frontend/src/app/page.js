@@ -23,7 +23,7 @@ export default function Home() {
               Log In / Sign Up
             </Link>
 
-            <Link href="/Womens_Bracket"
+            <Link href="/Results"
               className="
               rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2">
               Bracket
