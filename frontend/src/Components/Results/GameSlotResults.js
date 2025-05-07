@@ -7,7 +7,7 @@ export default function GameSlotResults ({ region, gameId, previousGames, result
     const { getWinnerFromResults } = useBracket();
 
     return (
-        <div className="team">
+        <div className="h-full flex flex-col justify-between">
             {previousGames.map(prevGameId => {
                 const winner = getWinnerFromResults(results, prevGameId);
                 return winner ? (
@@ -18,7 +18,7 @@ export default function GameSlotResults ({ region, gameId, previousGames, result
                         team={winner}
                     />
                 ) : (
-                    <p key={prevGameId}> empty</p>
+                    <p key={prevGameId}>TBA</p>
                 )
             })}
         </div>
