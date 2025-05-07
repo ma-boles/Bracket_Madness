@@ -1,24 +1,31 @@
 'use client'
 import React from "react"
 import TeamResult from "../TeamResult"
+import GameSlotResults from "./GameSlotResults"
 import { useBracket } from "@/context/BracketContext"
-import ChampionshipButton from "../ChampionshButton"
+import ChampionshipResult from "./ChampionshipResult"
 
-export default function Championship_Results() {
-    const { bracketData, getWinnerFromGame } = useBracket();
+export default function Championship_Results({ results }) {
+    const { bracketData, getWinnerFromGame, getWinnerFromResults } = useBracket();
+
+    const finalFourResults = results.filter(r => r.round === 'Final Four');
+    const championshipResults = results.filter(r => r.round === 'Championship');
     
     // Winners Elite 8
-    const teamAWinner8001 = getWinnerFromGame(bracketData, 8001);
-    const teamAWinner8002 = getWinnerFromGame(bracketData, 8002);
-    const teamAWinner8003 = getWinnerFromGame(bracketData, 8003);
-    const teamAWinner8004 = getWinnerFromGame(bracketData, 8004);
-
-    // Winners Final Four
-    const teamAWinner10001 = getWinnerFromGame(bracketData, 10001);
-    const teamBWinner10002 = getWinnerFromGame(bracketData, 10002);
+    const winner8001 = getWinnerFromResults(results, 8001);
+    const winner8002 = getWinnerFromResults(results, 8002);
+    const winner8003 = getWinnerFromResults(results, 8003);
+    const winner8004 = getWinnerFromResults(results, 8004);
 
     // Champion
-    const teamAWinner10003 = getWinnerFromGame(bracketData, 10003);
+    const winner10003 = getWinnerFromResults(results, 10003);
+
+
+    // Winners Final Four
+    const winner10001 = getWinnerFromResults(results, 10001);
+    const winner10002 = getWinnerFromResults(results, 10002);
+
+   ;
 
     return (
         <>
@@ -27,19 +34,20 @@ export default function Championship_Results() {
                         <div className="my-auto flex flex-col items-center">
                             <div className="mx-auto w-33 pt-0">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                 {teamAWinner8001 ? ( 
-                                    <TeamResult region="spokane1" gameId={10001} team={teamAWinner8001}/>
-                                ) : (
-                                    <p className="team">Spokane 1</p>
+                                {/* <GameSlotResults 
+                                gameId={10001}
+                                previousGames={[8001, 8004]}
+                                results={results}
+                                /> */}
+                                 {winner8001 && ( 
+                                    <TeamResult gameId={10001} team={winner8001}/>
                                 )}
                                 </div>
                             </div>
                             <div className="mx-auto w-33 pt-0 ">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                {teamAWinner8004 ? (
-                                    <TeamResult region="spokane4" gameId={10001} team={teamAWinner8004}/>
-                                ) : (
-                                    <p className="team">Spokane 4</p>
+                                {winner8004 && (
+                                    <TeamResult gameId={10001} team={winner8004}/>
                                 )}
                                 </div>
                             </div>
@@ -47,41 +55,37 @@ export default function Championship_Results() {
 
                         <div className="pb-2 px-2 flex flex-col items-center">
                             <div className="flex py-4 px-8 my-4 bg-white/10 rounded-lg">
-                                {teamAWinner10003 ? (
-                                        <ChampionshipButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
-                                    ) : (
-                                        <p className="w-50 m-auto text-center text-xl">Select...</p>
+                                {winner10003 && (
+                                        <ChampionshipResult region="finalfour" gameId={10004} team={winner10003}/>
                                     )}
                             </div>
 
-                                {teamAWinner10001 ? (
-                                    <TeamResult region="finalfour" gameId={10003} team={teamAWinner10001}/>
-                                ) : (
-                                    <p className="team">Select...</p>
+                            {/* <GameSlotResults 
+                                region="championship"
+                                gameId={10003}
+                                previousGames={[10001, 10002]}
+                                results={results}
+                                /> */}
+                                {winner10001 && (
+                                    <TeamResult region="finalfour" gameId={10003} team={winner10001}/>
                                 )}
-                                {teamBWinner10002 ? (
-                                    <TeamResult region="finalfour" gameId={10003} team={teamBWinner10002}/>
-                                ) : (
-                                    <p className="team">TBA...</p>
+                                {winner10002 && (
+                                    <TeamResult region="finalfour" gameId={10003} team={winner10002}/>
                                 )}
                         </div>
 
                         <div className="my-auto flex flex-col items-center">
                             <div className="mx-auto w-33 pt-0">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                {teamAWinner8002 ? (
-                                    <TeamResult region="birmingham2" gameId={10002} team={teamAWinner8002}/>
-                                ) : (
-                                    <p className="team">Birmingham 2</p>
+                                {winner8002 && (
+                                    <TeamResult gameId={10002} team={winner8002}/>
                                 )}
                                 </div>
                             </div>
                             <div className="mx-auto w-33 pt-0">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                {teamAWinner8003 ? (
-                                    <TeamResult region="birmingham3" gameId={10002} team={teamAWinner8003}/>
-                                ) : (
-                                    <p className="team">Birmingham 3</p>
+                                {winner8003 && (
+                                    <TeamResult gameId={10002} team={winner8003}/>
                                 )}
                                 </div>
                             </div>
