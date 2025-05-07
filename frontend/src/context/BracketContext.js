@@ -61,13 +61,18 @@ export const BracketProvider = ({ children }) => {
         : null;
     };
 
+    const getWinnerFromResults = (results, gameId) => {
+        return results.find(result => result.game_id === gameId);
+    };
+
     return(
         <BracketContext.Provider value={{
             userPicks,
             bracketData,
             handlePick,
             handleSelection,
-            getWinnerFromGame
+            getWinnerFromGame,
+            getWinnerFromResults
         }}> 
         {children}
         </BracketContext.Provider>
