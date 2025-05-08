@@ -5,33 +5,10 @@ import GameSlotResults from "./GameSlotResults"
 import { useBracket } from "@/context/BracketContext"
 
 export default function Spokane4_Results({ results }) {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame, getWinnerFromResults } = useBracket();
+    const { getWinnerFromResults } = useBracket();
 
      // Winner from Elite 8
      const winner8004 = getWinnerFromResults(results, 8004);
-
-
-
-
-     // Winners from Round 1
-     const teamAWinner1125 = getWinnerFromGame(bracketData, 1125);
-     const teamBWinner1126 = getWinnerFromGame(bracketData, 1126);
-     const teamAWinner1127 = getWinnerFromGame(bracketData, 1127);
-     const teamBWinner1128 = getWinnerFromGame(bracketData, 1128);
-     const teamAWinner1129 = getWinnerFromGame(bracketData, 1129);
-     const teamBWinner1130 = getWinnerFromGame(bracketData, 1130);
-     const teamAWinner1131 = getWinnerFromGame(bracketData, 1131);
-     const teamBWinner1132 = getWinnerFromGame(bracketData, 1132);
-
-     // Winners from Round 2
-     const teamAWinner1213 = getWinnerFromGame(bracketData, 1213);
-     const teamBWinner1214 = getWinnerFromGame(bracketData, 1214);
-     const teamAWinner1215 = getWinnerFromGame(bracketData, 1215);
-     const teamBWinner1216 = getWinnerFromGame(bracketData, 1216);
-
-     // Winners from Sweet 16
-     const teamAWinner1607 = getWinnerFromGame(bracketData, 1607);
-     const teamBWinner1608 = getWinnerFromGame(bracketData, 1608);
 
 
     return (
@@ -79,16 +56,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={1213}
                                 previousGames={[1125, 1126]}
                                 results={results} />
-                                {/* {teamAWinner1125 ? (
-                                    <TeamResult region="spokane4" gameId={1213} team={teamAWinner1125}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1126 ? (
-                                    <TeamResult region="spokane4" gameId={1213} team={teamBWinner1126}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                         <div className="matchup2 mb-11 bg-blue-800">
                             <GameSlotResults 
@@ -96,16 +63,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={1214}
                                 previousGames={[1127, 1128]}
                                 results={results} />
-                                {/* {teamAWinner1127 ? (
-                                    <TeamResult region="spokane4" gameId={1214} team={teamAWinner1127}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1128 ? (
-                                    <TeamResult region="spokane4" gameId={1214} team={teamBWinner1128}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                         <div className="matchup2 mb-13 bg-blue-800">
                             <GameSlotResults 
@@ -113,16 +70,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={1215}
                                 previousGames={[1129, 1130]}
                                 results={results} />
-                                {/* {teamAWinner1129 ? (
-                                    <TeamResult region="spokane4" gameId={1215} team={teamAWinner1129}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1130 ? (
-                                    <TeamResult region="spokane4" gameId={1215} team={teamBWinner1130}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                         <div className="matchup2-last bg-blue-800">
                             <GameSlotResults 
@@ -130,16 +77,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={1216}
                                 previousGames={[1131, 1132]}
                                 results={results} />
-                                {/* {teamAWinner1131 ? (
-                                    <TeamResult region="spokane4" gameId={1216} team={teamAWinner1131}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1132 ? (
-                                    <TeamResult region="spokane4" gameId={1216} team={teamBWinner1132}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                     </div>
 
@@ -150,16 +87,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={1607}
                                 previousGames={[1213, 1214]}
                                 results={results} />
-                            {/* {teamAWinner1213 ? (
-                                    <TeamResult region="spokane4" gameId={1607} team={teamAWinner1213}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1214 ? (
-                                    <TeamResult region="spokane4" gameId={1607} team={teamBWinner1214}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                         <div className="matchup3-last bg-zinc-700">
                             <GameSlotResults 
@@ -167,16 +94,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={1608}
                                 previousGames={[1215, 1216]}
                                 results={results} />
-                            {/* {teamAWinner1215 ? (
-                                    <TeamResult region="spokane4" gameId={1608} team={teamAWinner1215}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1216 ? (
-                                    <TeamResult region="spokane4" gameId={1608} team={teamBWinner1216}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                     </div>
 
@@ -187,16 +104,6 @@ export default function Spokane4_Results({ results }) {
                                 gameId={8004}
                                 previousGames={[1607, 1608]}
                                 results={results} />
-                            {/* {teamAWinner1607 ? (
-                                    <TeamResult region="spokane4" gameId={8004} team={teamAWinner1607}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )}
-                                {teamBWinner1608 ? (
-                                    <TeamResult region="spokane4" gameId={8004} team={teamBWinner1608}/>
-                                ) : (
-                                    <p className="team">Select...</p>
-                                )} */}
                         </div>
                     </div>
 

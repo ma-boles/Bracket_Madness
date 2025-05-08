@@ -5,35 +5,13 @@ import TeamResult from "../TeamResult";
 import GameSlotResults from "./GameSlotResults";
 
 export default function Birmingham2_Results({ results }) {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame, getWinnerFromResults } = useBracket();
+    const { getWinnerFromResults } = useBracket();
     
     // First Four Winner
     const winner1002 = getWinnerFromResults(results, 1002);
 
     // Elite 8 Winner
     const winner8002 = getWinnerFromResults(results, 8002);
-
-
-    // Winners from Round 1
-    const teamAWinner1109 = getWinnerFromGame(bracketData, 1109);
-    const teamBWinner1110 = getWinnerFromGame(bracketData, 1110);
-    const teamAWinner1111 = getWinnerFromGame(bracketData, 1111);
-    const teamBWinner1112 = getWinnerFromGame(bracketData, 1112);
-    const teamAWinner1113 = getWinnerFromGame(bracketData, 1113);
-    const teamBWinner1114 = getWinnerFromGame(bracketData, 1114);
-    const teamAWinner1115 = getWinnerFromGame(bracketData, 1115);
-    const teamBWinner1116 = getWinnerFromGame(bracketData, 1116);
-
-    // Winners from Round 2
-    const teamAWinner1205 = getWinnerFromGame(bracketData, 1205);
-    const teamBWinner1206 = getWinnerFromGame(bracketData, 1206);
-    const teamAWinner1207 = getWinnerFromGame(bracketData, 1207);
-    const teamBWinner1208 = getWinnerFromGame(bracketData, 1208);
-
-    // Winners from Sweet 16
-    const teamAWinner1603 = getWinnerFromGame(bracketData, 1603);
-    const teamBWinner1604 = getWinnerFromGame(bracketData, 1604);
-
     
 
     return (
@@ -56,16 +34,6 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1603, 1604]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1603 ? ( 
-                                <TeamResult region="birmingham2" gameId={8002} team={teamAWinner1603}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1604 ? ( 
-                                <TeamResult region="birmingham2" gameId={8002} team={teamBWinner1604}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
                         </div>
                     </div>
 
@@ -77,16 +45,7 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1205, 1206]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1205 ? ( 
-                                <TeamResult region="birmingham2" gameId={1603} team={teamAWinner1205}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1206 ? ( 
-                                <TeamResult region="birmingham2" gameId={1603} team={teamBWinner1206}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
+
                         </div>
                         <div className="matchup3-last--r bg-zinc-700">
                             <GameSlotResults 
@@ -95,16 +54,6 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1207, 1208]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1207 ? ( 
-                                <TeamResult region="birmingham2" gameId={1604} team={teamAWinner1207}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1208 ? ( 
-                                <TeamResult region="birmingham2" gameId={1604} team={teamBWinner1208}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
                         </div>
                     </div>
 
@@ -116,16 +65,6 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1109, 1110]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1109 ? ( 
-                                <TeamResult region="birmingham2" gameId={1205} team={teamAWinner1109}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1110 ? ( 
-                                <TeamResult region="birmingham2" gameId={1205} team={teamBWinner1110}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
                         </div>
                         <div className="matchup2--r mb-11 bg-blue-800">
                             <GameSlotResults 
@@ -134,16 +73,6 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1111, 1112]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1111 ? ( 
-                                <TeamResult region="birmingham2" gameId={1206} team={teamAWinner1111}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1112 ? ( 
-                                <TeamResult region="birmingham2" gameId={1206} team={teamBWinner1112}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
                         </div>
                         <div className="matchup2--r mb-12 bg-blue-800">
                         <   GameSlotResults 
@@ -152,16 +81,6 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1113, 1114]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1113 ? ( 
-                                <TeamResult region="birmingham2" gameId={1207} team={teamAWinner1113}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1114 ? ( 
-                                <TeamResult region="birmingham2" gameId={1207} team={teamBWinner1114}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
                         </div>
                         <div className="matchup2-last--r bg-blue-800">
                             <GameSlotResults 
@@ -170,16 +89,6 @@ export default function Birmingham2_Results({ results }) {
                                 previousGames={[1115, 1116]}
                                 results={results}
                                 />
-                            {/* {teamAWinner1115 ? ( 
-                                <TeamResult region="birmingham2" gameId={1208} team={teamAWinner1115}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )}
-                            {teamBWinner1116 ? ( 
-                                <TeamResult region="birmingham2" gameId={1208} team={teamBWinner1116}/>
-                            ) : (
-                                <p className="team">Select...</p>
-                            )} */}
                         </div>
                     </div>
                     <div className="round first-round">
