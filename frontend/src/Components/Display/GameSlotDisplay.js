@@ -6,8 +6,7 @@ import { useBracket } from "@/context/BracketContext";
 export default function GameSlotDisplay ({ region, gameId, previousGames, results, predictions }) {
     const { getWinnerFromResults } = useBracket();
 
-    const normalize = (str) => str.toLowerCase().replace(/\s+/g, '');
-
+    const normalize = (str) => (str ? str.toLowerCase().replace(/\s+/g, '') : '');
 
     return (
         <div className="h-full flex flex-col justify-between">
@@ -17,7 +16,7 @@ export default function GameSlotDisplay ({ region, gameId, previousGames, result
                     (p) => normalize(p.region) === normalize(region) &&
                     p.game_id === prevGameId
                 );
-
+                
                 return winner && predicted ? (
                     <PredictionCard 
                         key={prevGameId}

@@ -25,4 +25,3 @@ export default function GameSlotResults ({ region, gameId, previousGames, result
 
     )
 }
-
