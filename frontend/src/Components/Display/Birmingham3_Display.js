@@ -2,18 +2,9 @@
 import React from "react";
 import TeamResult from "../TeamResult";
 import GameSlotDisplay from "./GameSlotDisplay";
-import { useBracket } from "@/context/BracketContext";
+import FinalFourCard_Display from "./FinalFourCard_Display";
 
-export default function Birmingham3_Display({ results, predictions }) {
-    const {  getWinnerFromResults } = useBracket();
-
-    // Winners from First Four
-    const winner1003 = getWinnerFromResults(results, 1003);
-    const winner1004 = getWinnerFromResults(results, 1004);
-
-    // Winner from Elite 8
-    const winner8003 = getWinnerFromResults(results, 8003);
-    
+export default function Birmingham3_Display({ results, predictions, game1003, game1004, game8003 }) {
 
     return (
     <>
@@ -21,9 +12,7 @@ export default function Birmingham3_Display({ results, predictions }) {
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r border-b-2 border-white">
-                            {winner8003 && (
-                                <TeamResult region="birmingham3" gameId={4003} team={winner8003}/>
-                            )}
+                            {game8003 && <FinalFourCard_Display game={game8003}/>}
                         </div>
                     </div>
 
@@ -102,9 +91,7 @@ export default function Birmingham3_Display({ results, predictions }) {
                     <div className="round first-round">
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1117} team={{ id: 35, team_name: 'Texas', seed: 1}} />
-                            {winner1004 && (
-                                <TeamResult region="birmingham3" gameId={1117} team={winner1004}/>
-                            )}
+                            {game1004 && <FinalFourCard_Display game={game1004}/>}
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1118} team={{ id: 42, team_name: 'Illinois', seed: 8}} />
@@ -120,9 +107,7 @@ export default function Birmingham3_Display({ results, predictions }) {
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1121} team={{ id: 40, team_name: 'Michigan', seed: 6}} />
-                            {winner1003 && (
-                                <TeamResult region="birmingham3" gameId={1121} team={winner1003}/>
-                            )}
+                            {game1003 && <FinalFourCard_Display game={game1003}/>}
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1122} team={{ id: 37, team_name: 'Notre Dame', seed: 3}} />

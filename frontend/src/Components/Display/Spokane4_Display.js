@@ -1,15 +1,10 @@
 'use client'
 import React from "react"
 import GameSlotDisplay from "./GameSlotDisplay"
+import FinalFourCard_Display from "./FinalFourCard_Display"
 import TeamResult from "../TeamResult"
-import { useBracket } from "@/context/BracketContext"
 
-export default function Spokane4_Display({ results, predictions }) {
-    const { getWinnerFromResults } = useBracket();
-
-     // Winner from Elite 8
-     const winner8004 = getWinnerFromResults(results, 8004);
-
+export default function Spokane4_Display({ results, predictions, game8004 }) {
 
     return (
         <>
@@ -74,7 +69,7 @@ export default function Spokane4_Display({ results, predictions }) {
                                 results={results} 
                                 predictions={predictions}/>
                         </div>
-                        <div className="matchup2-las">
+                        <div className="matchup2-last">
                             <GameSlotDisplay 
                                 region="spokane4"
                                 gameId={1216}
@@ -116,9 +111,7 @@ export default function Spokane4_Display({ results, predictions }) {
 
                     <div className="round final4">
                         <div className="mt-80 py-2 matchup border-b-2 border-white">
-                            {winner8004 && (
-                                    <TeamResult region="spokane4" gameId={4004} team={winner8004}/>
-                                )}
+                            {game8004 && <FinalFourCard_Display game={game8004}/>}
                         </div>
                     </div>
                     </div>

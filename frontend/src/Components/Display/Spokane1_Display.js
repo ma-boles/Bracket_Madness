@@ -1,18 +1,10 @@
 'use client'
 import React from "react";
 import TeamResult from "../TeamResult";
-import PredictionCard from "./PredictionCard";
-import { useBracket } from "@/context/BracketContext";
 import GameSlotDisplay from "./GameSlotDisplay";
+import FinalFourCard_Display from "./FinalFourCard_Display";
 
-export default function Spokane1_Display ({ results, predictions }) {
-    const { getWinnerFromResults } = useBracket();
-
-     // Winner from First Four
-     const winner1001 = getWinnerFromResults(results, 1001);
-
-     // Winner from Elite 8
-     const winner8001 = getWinnerFromResults(results, 8001);
+export default function Spokane1_Display ({ results, predictions, game8001, game1001 }) {
 
     return (
         <>
@@ -21,9 +13,7 @@ export default function Spokane1_Display ({ results, predictions }) {
                     <div className="round first-round">
                         <div className="matchup">
                             <TeamResult region="spokane1" gameId={1101} team={{ id: 1, team_name: 'UCLA', seed: 1}} />
-                            {winner1001 && ( 
-                                <TeamResult region="spokane1" gameId={1101} team={winner1001}/>
-                            )}
+                            {game1001 && <FinalFourCard_Display game={game1001}/>}
                         </div>
                         <div className="matchup">
                             <TeamResult region="spokane1" gameId={1102} team={{ id: 8, team_name: 'Richmond', seed: 8}} />
@@ -122,9 +112,7 @@ export default function Spokane1_Display ({ results, predictions }) {
 
                     <div className="round final4 ">
                         <div className="mt-80 py-2 matchup border-b-2 border-white">
-                            {winner8001 && ( 
-                                    <TeamResult region="spokane1" gameId={4001} team={winner8001}/>
-                                )}
+                            {game8001 && <FinalFourCard_Display game={game8001}/>}
                         </div>
                     </div>
                     </div>

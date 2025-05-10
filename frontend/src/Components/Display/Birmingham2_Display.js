@@ -1,18 +1,10 @@
 'use client'
 import React from "react";
 import GameSlotDisplay from "../Display/GameSlotDisplay";
-import { useBracket } from "@/context/BracketContext";
+import FinalFourCard_Display from "./FinalFourCard_Display";
 import TeamResult from "../TeamResult";
 
-export default function Birmingham2_Display({ results, predictions }) {
-    const { getWinnerFromResults } = useBracket();
-    
-    // First Four Winner
-    const winner1002 = getWinnerFromResults(results, 1002);
-
-    // Elite 8 Winner
-    const winner8002 = getWinnerFromResults(results, 8002);
-    
+export default function Birmingham2_Display({ results, predictions, game1002, game8002 }) {    
 
     return (
         <>
@@ -20,9 +12,7 @@ export default function Birmingham2_Display({ results, predictions }) {
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r border-b-2 border-white">
-                            {winner8002 && ( 
-                                <TeamResult region="birmingham2" gameId={4002} team={winner8002}/>
-                            )}
+                            {game8002 && <FinalFourCard_Display game={game8002}/>}
                         </div>
                     </div>
 
@@ -116,9 +106,7 @@ export default function Birmingham2_Display({ results, predictions }) {
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham2" gameId={1113} team={{ id: 23, team_name: 'West Virginia', seed: 6}} />
-                            {winner1002 && ( 
-                                <TeamResult region="birmingham2" gameId={1113} team={winner1002}/>
-                            )}
+                            {game1002 && <FinalFourCard_Display game={game1002}/>}
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham2" gameId={1114} team={{ id: 20, team_name: 'North Carolina', seed: 3}} />
