@@ -10,23 +10,16 @@ export default function PredictionCard({ region, gameId, predictedTeam, actualTe
 
     return (
         <>
-            <div className={`w-full p-2 rounded-md ${correct ? 'bg-green-700/30' : 'bg-red-700/30'}`}>
-                <div className="text-sm text-gray-300">{region}</div>
-                
-                <div className="flex flex-col gap-1">
-                    <div className="bg-white/10 px-3 py-1 rounded text-white truncate">
-                        <strong>Prediction:</strong> {predictedTeam.seed} {predictedTeam.team_name}
+            <div className={`w-full rounded-md predictionResults ${correct ? 'bg-green-700/30' : 'bg-red-700/30'}`}>
+                <div>
+                    <div className="bg-white/10 px-2 rounded text-white/50 truncate">
+                        {predictedTeam.seed} {predictedTeam.team_name}
                     </div>
-                    <div className="bg-white/5 px-3 py-1 rounded text-white truncate">
-                        <strong>Result:</strong> {actualTeam.seed} {actualTeam.team_name}
+                    <div className="bg-white/5 px-2 rounded text-white truncate">
+                        <strong>{actualTeam.seed} {actualTeam.team_name}</strong> 
                     </div>
                 </div>
             </div>
-        {/* <div 
-            className={`w-full border-none bg-white/5 pl-3 team text-md text-white truncate whitespace-nowrap overflow-hidden`}
-            >
-            {team.seed} {team.team_name}
-        </div> */}
         </>
     )
 }
