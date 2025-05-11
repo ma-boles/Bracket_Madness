@@ -110,7 +110,7 @@ export default function Spokane4_Results({ results }) {
                     <div className="round final4">
                         <div className="mt-80 py-2 matchup bg-blue-600 border-b-2 border-white">
                             {winner8004 && (
-                                    <TeamResult region="spokane4" gameId={4004} team={winner8004}/>
+                                    <TeamResult region="spokane4" gameId={10001} team={winner8004}/>
                                 )}
                         </div>
                     </div>

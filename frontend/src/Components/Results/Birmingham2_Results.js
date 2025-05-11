@@ -1,10 +1,14 @@
 'use client'
 import React from "react";
+import { useBracket } from "@/context/BracketContext";
 import TeamResult from "../TeamResult";
 import GameSlotResults from "./GameSlotResults";
-import FinalFourCard_Display from "../Display/FinalFourCard_Display";
 
-export default function Birmingham2_Results({ results, game8002, game1002 }) {
+export default function Birmingham2_Results({ results }) {
+    const { getWinnerFromResults } = useBracket();
+
+    const winner1002 = getWinnerFromResults(results, 1002);
+    const winner8002 = getWinnerFromResults(results, 8002);
 
     return (
         <>
@@ -12,7 +16,9 @@ export default function Birmingham2_Results({ results, game8002, game1002 }) {
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r bg-blue-600 border-b-2 border-white">
-                            {game8002 && <FinalFourCard_Display game={game8002}/>}
+                            {winner8002 && ( 
+                                <TeamResult region="birmingham2" gameId={10002} team={winner8002}/>
+                                )}
                         </div>
                     </div>
 
@@ -65,7 +71,7 @@ export default function Birmingham2_Results({ results, game8002, game1002 }) {
                                 />
                         </div>
                         <div className="matchup2--r mb-12 bg-blue-800">
-                        <   GameSlotResults 
+                            <GameSlotResults 
                                 region="birmingham2"
                                 gameId={1207}
                                 previousGames={[1113, 1114]}
@@ -100,7 +106,9 @@ export default function Birmingham2_Results({ results, game8002, game1002 }) {
                         </div>
                         <div className="matchup--r bg-blue-800">
                             <TeamResult region="birmingham2" gameId={1113} team={{ id: 23, team_name: 'West Virginia', seed: 6}} />
-                            {game1002 && <FinalFourCard_Display game={game1002}/>}
+                            {winner1002 && ( 
+                                <TeamResult region="birmingham2" gameId={1113} team={winner1002}/>
+                                )}
                         </div>
                         <div className="matchup--r bg-blue-800">
                             <TeamResult region="birmingham2" gameId={1114} team={{ id: 20, team_name: 'North Carolina', seed: 3}} />

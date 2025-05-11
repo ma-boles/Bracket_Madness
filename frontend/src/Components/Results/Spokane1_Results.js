@@ -7,22 +7,8 @@ import GameSlotResults from "./GameSlotResults";
 export default function Spokane1_Results ({ results }) {
     const { getWinnerFromResults } = useBracket();
 
-     // Winner from First Four
-     const winner1001 = getWinnerFromResults(results, 1001);
-
-     // Winner from Elite 8
-     const winner8001 = getWinnerFromResults(results, 8001);
-
-     // Winners from Round 1
-     const winner1101 = getWinnerFromResults(results, 1001);
-     const winner1102 = getWinnerFromResults(results, 1102);
-     const winner1103 = getWinnerFromResults(results, 1103);
-
-     // Winners from Round 2
-     const winner1201 = getWinnerFromResults(results, 1201);
-     const winner1202 = getWinnerFromResults(results, 1202);
-     const winner1203 = getWinnerFromResults(results, 1203);
-     const winner1204 = getWinnerFromResults(results, 1204);
+    const winner1001 = getWinnerFromResults(results, 1001);
+    const winner8001 = getWinnerFromResults(results, 8001);
 
     return (
         <>
@@ -126,7 +112,7 @@ export default function Spokane1_Results ({ results }) {
                     <div className="round final4 ">
                         <div className="mt-80 py-2 matchup bg-blue-600 border-b-2 border-white">
                             {winner8001 && ( 
-                                    <TeamResult region="spokane1" gameId={4001} team={winner8001}/>
+                                    <TeamResult region="spokane1" gameId={10001} team={winner8001}/>
                                 )}
                         </div>
                     </div>
