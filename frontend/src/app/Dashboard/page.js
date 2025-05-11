@@ -11,7 +11,6 @@ export default function Dashboard() {
     const { currentUser } = useContext(AuthContext);
     const userId = currentUser?.userId;
 
-
     useEffect(() => {
         const fetchBrackets = async () => {
             try {
@@ -37,9 +36,11 @@ export default function Dashboard() {
             { round: 'Championship', round_rank: 0, round_points: item.championship_points },
         ];
 
+
         return (
             <BracketCard 
                 key={index}
+                bracketId={item.bracket_id}
                 name={item.bracket_name}
                 total_points={item.total_points}
                 ranking={item.ranking}
@@ -55,7 +56,7 @@ export default function Dashboard() {
             </nav>
 
             <div className="flex justify-between overflow-hidden mx-2 my-8 h-50 bg-gradient-to-r from-blue-600 via-black to-black rounded-lg">
-                <h1 className="p-6 text-4xl font-bold"> Hello, username</h1>
+                <h1 className="p-6 text-4xl font-bold">Welcome{currentUser?.username ? `, ${currentUser.username}` : ''}!</h1>
                 <Image
                     src="/BracketMadness_background.jpg"
                     alt="header"
@@ -68,9 +69,10 @@ export default function Dashboard() {
             <div className="m-2 border border-white bg-white/5 rounded-lg">
                 <h1 className="m-2 py-2 text-3xl font-semibold">My Brackets</h1>
                 <div className="flex mx-2 py-2 bg-white/15 rounded-t-lg">
-                    <p className="w-3/5 text-center font-semibold">Bracket Name</p>
-                    <p className="w-1/5 text-center font-semibold">Total Points</p>
-                    <p className="w-1/5 text-center font-semibold">Ranking</p>
+                    <p className="w-1/4 text-center font-semibold">ID</p>
+                    <p className="w-1/4 text-center font-semibold">Bracket Name</p>
+                    <p className="w-1/4 text-center font-semibold">Total Points</p>
+                    <p className="w-1/4 text-center font-semibold">Ranking</p>
                 </div>
 
                 {bracketCards}
