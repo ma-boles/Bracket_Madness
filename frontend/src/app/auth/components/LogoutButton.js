@@ -17,7 +17,7 @@ const LogoutButton = () => {
             }
         });
 
-        router.push('/Womens_Bracket');
+        router.push('/Results');
     };
 
     return(
