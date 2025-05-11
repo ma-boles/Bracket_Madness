@@ -29,7 +29,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
                     </div>
 
                     <div className="round sweet-16 pt-4">
-                        <div className="matchup3--r">
+                        <div className="matchupdisplay3--r mb-22">
                             <GameSlotDisplay 
                                 region="birmingham3"
                                 gameId={1605}
@@ -50,7 +50,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
                     </div>
 
                     <div className="round second-round">
-                        <div className="matchup2--r mb-11">
+                        <div className="matchupdisplay2--r mb-10">
                             <GameSlotDisplay 
                                 region="birmingham3"
                                 gameId={1209}
@@ -59,7 +59,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
                                 predictions={predictions}
                                 />
                         </div>
-                        <div className="matchup2--r mb-11">
+                        <div className="matchup2--r mb-14">
                             <GameSlotDisplay 
                                 region="birmingham3"
                                 gameId={1210}
@@ -68,7 +68,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
                                 predictions={predictions}
                                 />
                         </div>
-                        <div className="matchup2--r mb-12">
+                        <div className="matchup2--r mb-14">
                             <GameSlotDisplay 
                                 region="birmingham3"
                                 gameId={1211}

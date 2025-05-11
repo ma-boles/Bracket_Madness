@@ -46,7 +46,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
                     </div>
 
                     <div className="round second-round">
-                        <div className="matchup2 mb-11">
+                        <div className="matchupdisplay2 mb-6 ">
                              <GameSlotDisplay 
                                 region="spokane1"
                                 gameId={1201}
@@ -54,7 +54,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
                                 results={results}
                                 predictions={predictions}/>
                         </div>
-                        <div className="matchup2 mb-11">
+                        <div className="matchupdisplay2 mb-6">
                             <GameSlotDisplay 
                                 region="spokane1"
                                 gameId={1202}
@@ -62,7 +62,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
                                 results={results}
                                 predictions={predictions}/>
                         </div>
-                        <div className="matchup2 mb-12">
+                        <div className="matchupdisplay2 mb-11">
                             <GameSlotDisplay 
                                 region="spokane1"
                                 gameId={1203}
@@ -70,7 +70,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
                                 results={results}
                                 predictions={predictions}/>
                         </div>
-                        <div className="matchup2-last">
+                        <div className="matchupdisplay2-last">
                             <GameSlotDisplay 
                                 region="spokane1"
                                 gameId={1204}
@@ -81,7 +81,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
                     </div>
 
                     <div className="round sweet-16 pt-4">
-                        <div className="matchup3">
+                        <div className="matchupdisplay3">
                             <GameSlotDisplay 
                                 region="spokane1"
                                 gameId={1601}

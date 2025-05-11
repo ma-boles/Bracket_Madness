@@ -45,7 +45,7 @@ export default function Spokane4_Display({ results, predictions, game8004 }) {
                         </div>
                     </div>
                     <div className="round second-round">
-                        <div className="matchup2 mb-11">
+                        <div className="matchup2 mb-10">
                             <GameSlotDisplay
                                 region="spokane4"
                                 gameId={1213}
@@ -53,7 +53,7 @@ export default function Spokane4_Display({ results, predictions, game8004 }) {
                                 results={results} 
                                 predictions={predictions}/>
                         </div>
-                        <div className="matchup2 mb-11">
+                        <div className="matchup2 mb-10">
                             <GameSlotDisplay 
                                 region="spokane4"
                                 gameId={1214}
@@ -61,7 +61,7 @@ export default function Spokane4_Display({ results, predictions, game8004 }) {
                                 results={results} 
                                 predictions={predictions}/>
                         </div>
-                        <div className="matchup2 mb-13">
+                        <div className="matchup2 mb-14">
                             <GameSlotDisplay 
                                 region="spokane4"
                                 gameId={1215}

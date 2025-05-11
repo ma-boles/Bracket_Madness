@@ -11,7 +11,7 @@ export default function FinalFourCard_Display({  game, size = "default" }) {
     const isLarge = size === "finalfour";
 
     return (
-          <div className={`w-full rounded-md  
+          <div className={`w-full rounded-md 
           ${correct ? 'bg-green-700/30' : 'bg-red-700/30'}
           ${isLarge ? 'text-lg' : 'predictionResults'}
           `}>
