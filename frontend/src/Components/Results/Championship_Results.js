@@ -30,12 +30,12 @@ export default function Championship_Results({ results }) {
                         <div className="my-auto flex flex-col items-center">
                             <div className="mx-auto w-33 pt-0">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                    <TeamResult gameId={10001} team={winner8001}/>
+                                    <TeamResult gameId={10001} team={winner8001} region="finalfour"/>
                                 </div>
                             </div>
                             <div className="mx-auto w-33 pt-0 ">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                    <TeamResult gameId={10001} team={winner8004}/>
+                                    <TeamResult gameId={10001} team={winner8004} region="finalfour"/>
                                 </div>
                             </div>
                         </div>
@@ -51,12 +51,12 @@ export default function Championship_Results({ results }) {
                         <div className="my-auto flex flex-col items-center">
                             <div className="mx-auto w-33 pt-0">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                    <TeamResult gameId={10002} team={winner8002}/>
+                                    <TeamResult gameId={10002} team={winner8002} region="finalfour"/>
                                 </div>
                             </div>
                             <div className="mx-auto w-33 pt-0">
                                 <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
-                                    <TeamResult gameId={10002} team={winner8003}/>
+                                    <TeamResult gameId={10002} team={winner8003} region="finalfour"/>
                                 </div>
                             </div>
                         </div>
