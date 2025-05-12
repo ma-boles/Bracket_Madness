@@ -10,7 +10,7 @@ export default function TeamResult({ region, gameId, team }) {
         <div 
             className={`w-full border-none bg-white/5 pl-3 team text-md text-white truncate whitespace-nowrap overflow-hidden`}
             >
-            {team?.seed} {team?.team_name || 'TBA'}
+            {team?.seed} {team?.team_name}
         </div>
         </>
     )
