@@ -18,7 +18,9 @@ export default function GameSlotResults ({ region, gameId, previousGames, result
                         team={winner}
                     />
                 ) : (
-                    <p key={prevGameId}>TBA</p>
+                    <p key={prevGameId}
+                    className={`w-full border-none bg-white/5 pl-3 team text-md text-white`}
+                    >TBA</p>
                 )
             })}
         </div>
