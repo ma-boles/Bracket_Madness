@@ -56,7 +56,7 @@ export default function Dashboard() {
             </nav>
 
             <div className="flex justify-between overflow-hidden mx-2 my-8 h-50 bg-gradient-to-r from-blue-600 via-black to-black rounded-lg">
-                <h1 className="p-6 text-4xl font-bold">Welcome{currentUser?.username ? `, ${currentUser.username}` : ''}!</h1>
+                <h1 className="p-6 text-4xl font-bold">Dashboard</h1>
                 <Image
                     src="/BracketMadness_background.jpg"
                     alt="header"
@@ -68,11 +68,11 @@ export default function Dashboard() {
 
             <div className="m-2 border border-white bg-white/5 rounded-lg">
                 <h1 className="m-2 py-2 text-3xl font-semibold">My Brackets</h1>
-                <div className="flex mx-2 py-2 bg-white/15 rounded-t-lg">
+                <div className="flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
                     <p className="w-1/4 text-center font-semibold">ID</p>
                     <p className="w-1/4 text-center font-semibold">Bracket Name</p>
                     <p className="w-1/4 text-center font-semibold">Total Points</p>
-                    <p className="w-1/4 text-center font-semibold">Ranking</p>
+                    <p className="w-1/4 text-center font-semibold">Rank</p>
                 </div>
 
                 {bracketCards}
