@@ -17,10 +17,10 @@ export default function FinalFourCard_Display({  game, size = "default" }) {
           `}>
               <div>
                 <p className="bg-white/10 px-2 rounded text-white/50 truncate">
-                    {game.seed} {game.team_name}
+                    {game?.seed} {game?.team_name}
                 </p>
                 <p className="bg-white/5 px-2 rounded text-white truncate">
-                  <strong>{game.actualTeam?.seed} {game.actualTeam?.team_name || 'TBA'}</strong>
+                  <strong>{game.actualTeam?.seed} {game.actualTeam?.team_name}</strong>
                 </p>
               </div>
           </div>

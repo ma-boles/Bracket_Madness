@@ -13,10 +13,10 @@ export default function PredictionCard({ region, gameId, predictedTeam, actualTe
             <div className={`w-full rounded-md predictionResults ${correct ? 'bg-green-700/30' : 'bg-red-700/30'}`}>
                 <div>
                     <div className="bg-white/10 px-2 rounded text-white/50 truncate">
-                        {predictedTeam.seed} {predictedTeam.team_name}
+                        {predictedTeam?.seed} {predictedTeam?.team_name}
                     </div>
                     <div className="bg-white/5 px-2 rounded text-white truncate">
-                        <strong>{actualTeam.seed} {actualTeam.team_name}</strong> 
+                        <strong>{actualTeam?.seed} {actualTeam?.team_name}</strong> 
                     </div>
                 </div>
             </div>
