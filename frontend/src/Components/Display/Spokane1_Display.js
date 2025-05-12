@@ -13,7 +13,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
                     <div className="round first-round">
                         <div className="matchup">
                             <TeamResult region="spokane1" gameId={1101} team={{ id: 1, team_name: 'UCLA', seed: 1}} />
-                            {game1001 && <FinalFourCard_Display game={game1001}/>}
+                            <FinalFourCard_Display game={game1001}/>
                         </div>
                         <div className="matchup">
                             <TeamResult region="spokane1" gameId={1102} team={{ id: 8, team_name: 'Richmond', seed: 8}} />
@@ -112,7 +112,7 @@ export default function Spokane1_Display ({ results, predictions, game8001, game
 
                     <div className="round final4 ">
                         <div className="mt-80 py-2 matchup border-b-2 border-white">
-                            {game8001 && <FinalFourCard_Display game={game8001}/>}
+                            <FinalFourCard_Display game={game8001}/>
                         </div>
                     </div>
                     </div>

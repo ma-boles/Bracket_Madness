@@ -12,7 +12,7 @@ export default function Birmingham2_Display({ results, predictions, game1002, ga
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r border-b-2 border-white">
-                            {game8002 && <FinalFourCard_Display game={game8002}/>}
+                            <FinalFourCard_Display game={game8002}/>
                         </div>
                     </div>
 
@@ -106,7 +106,7 @@ export default function Birmingham2_Display({ results, predictions, game1002, ga
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham2" gameId={1113} team={{ id: 23, team_name: 'West Virginia', seed: 6}} />
-                            {game1002 && <FinalFourCard_Display game={game1002}/>}
+                            <FinalFourCard_Display game={game1002}/>
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham2" gameId={1114} team={{ id: 20, team_name: 'North Carolina', seed: 3}} />

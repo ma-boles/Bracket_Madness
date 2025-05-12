@@ -111,7 +111,7 @@ export default function Spokane4_Display({ results, predictions, game8004 }) {
 
                     <div className="round final4">
                         <div className="mt-80 py-2 matchup border-b-2 border-white">
-                            {game8004 && <FinalFourCard_Display game={game8004}/>}
+                            <FinalFourCard_Display game={game8004}/>
                         </div>
                     </div>
                     </div>

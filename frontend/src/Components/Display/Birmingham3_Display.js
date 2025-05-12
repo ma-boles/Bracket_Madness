@@ -12,7 +12,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r border-b-2 border-white">
-                            {game8003 && <FinalFourCard_Display game={game8003}/>}
+                            <FinalFourCard_Display game={game8003}/>
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
                     <div className="round first-round">
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1117} team={{ id: 35, team_name: 'Texas', seed: 1}} />
-                            {game1004 && <FinalFourCard_Display game={game1004}/>}
+                            <FinalFourCard_Display game={game1004}/>
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1118} team={{ id: 42, team_name: 'Illinois', seed: 8}} />
@@ -107,7 +107,7 @@ export default function Birmingham3_Display({ results, predictions, game1003, ga
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1121} team={{ id: 40, team_name: 'Michigan', seed: 6}} />
-                            {game1003 && <FinalFourCard_Display game={game1003}/>}
+                            <FinalFourCard_Display game={game1003}/>
                         </div>
                         <div className="matchup--r">
                             <TeamResult region="birmingham3" gameId={1122} team={{ id: 37, team_name: 'Notre Dame', seed: 3}} />
