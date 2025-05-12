@@ -39,22 +39,25 @@ export default function NavBar () {
                         className="object-cover opacity-60"
                     />
                 </div>
-                
+
                 {/* Nav Buttons Section*/}
                 <div className="flex flex-grow text-lg"> 
                     {currentUser && (
-                        <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 hover:bg-white/20 rounded-lg">
+                        <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
+                            hover:bg-blue-600 rounded-lg">
                             <Link href="/Dashboard">
                                 <p>Dashboard</p>
                             </Link>
                         </div>
                     )}
-                    <div className="flex-1 p-3 text-center hover:bg-white/20 transition 300s rounded-lg">
+                    <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
+                            hover:bg-blue-600 rounded-lg">
                         <Link href="/Results">
                             <p>Results</p>
                         </Link>
                     </div>
-                        <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 hover:bg-white/20 rounded-lg">
+                        <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
+                            hover:bg-blue-600 rounded-lg">
                             <Link href="/Submit" onClick={submitAlert}>
                                 <p>Submit</p>
                             </Link>
