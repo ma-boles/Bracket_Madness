@@ -17,9 +17,7 @@ export default function Spokane1_Results ({ results }) {
                     <div className="round first-round">
                         <div className="matchup bg-blue-800">
                             <TeamResult region="spokane1" gameId={1101} team={{ id: 1, team_name: 'UCLA', seed: 1}} />
-                            {winner1001 && ( 
-                                <TeamResult region="spokane1" gameId={1101} team={winner1001}/>
-                            )}
+                            <TeamResult region="spokane1" gameId={1101} team={winner1001}/>
                         </div>
                         <div className="matchup bg-blue-800">
                             <TeamResult region="spokane1" gameId={1102} team={{ id: 8, team_name: 'Richmond', seed: 8}} />
@@ -111,9 +109,7 @@ export default function Spokane1_Results ({ results }) {
 
                     <div className="round final4 ">
                         <div className="mt-80 py-2 matchup bg-blue-600 border-b-2 border-white">
-                            {winner8001 && ( 
-                                    <TeamResult region="spokane1" gameId={10001} team={winner8001}/>
-                                )}
+                            <TeamResult region="spokane1" gameId={10001} team={winner8001}/>
                         </div>
                     </div>
                     </div>

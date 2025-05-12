@@ -17,9 +17,7 @@ export default function Birmingham3_Results({ results }) {
             <div className="rounds">
                 <div className="round final4">
                         <div className="mt-105 py-2 matchup--r bg-blue-600 border-b-2 border-white">
-                            {winner8003 && ( 
-                                <TeamResult region="birmingham3" gameId={10002} team={winner8003}/>
-                                    )}
+                            <TeamResult region="birmingham3" gameId={10002} team={winner8003}/>
                         </div>
                     </div>
 
@@ -91,9 +89,7 @@ export default function Birmingham3_Results({ results }) {
                     <div className="round first-round">
                         <div className="matchup--r bg-blue-800">
                             <TeamResult region="birmingham3" gameId={1117} team={{ id: 35, team_name: 'Texas', seed: 1}} />
-                            {winner1004 && ( 
-                                <TeamResult region="bigminham3" gameId={1117} team={winner1004}/>
-                                    )}
+                            <TeamResult region="bigminham3" gameId={1117} team={winner1004}/>
                         </div>
                         <div className="matchup--r bg-blue-800">
                             <TeamResult region="birmingham3" gameId={1118} team={{ id: 42, team_name: 'Illinois', seed: 8}} />
@@ -109,9 +105,7 @@ export default function Birmingham3_Results({ results }) {
                         </div>
                         <div className="matchup--r bg-blue-800">
                             <TeamResult region="birmingham3" gameId={1121} team={{ id: 40, team_name: 'Michigan', seed: 6}} />
-                            {winner1003 && ( 
-                                <TeamResult region="birmingham3" gameId={1121} team={winner1003}/>
-                                )}
+                            <TeamResult region="birmingham3" gameId={1121} team={winner1003}/>
                         </div>
                         <div className="matchup--r bg-blue-800">
                             <TeamResult region="birmingham3" gameId={1122} team={{ id: 37, team_name: 'Notre Dame', seed: 3}} />
