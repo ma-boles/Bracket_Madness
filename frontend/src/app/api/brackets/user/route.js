@@ -38,7 +38,8 @@ export async function GET(req) {
         sweet16_points,
         elite8_points,
         final4_points,
-        championship_points
+        championship_points,
+        \`rank\`
       FROM brackets 
       WHERE user_id = ?
       `,
