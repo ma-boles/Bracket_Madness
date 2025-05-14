@@ -1,12 +1,10 @@
 'use client'
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import BracketInfoCard from "./BracketInfoCard";
 import Link from "next/link";
-import AuthContext from "@/context/AuthContext";
-import axios from "axios";
 
 
-export default function BracketCard({ name, bracketId, total_points, ranking, bracketInfoData }) {
+export default function BracketCard({ name, bracketId, total_points, rank, bracketInfoData }) {
     const [ showDetails, setShowDetails ] = useState(false);
 
     const handleToggle = () => {
@@ -41,7 +39,7 @@ export default function BracketCard({ name, bracketId, total_points, ranking, br
                     </div>
                     <div className="flex w-1/4 items-center justify-center">
                         <h2>
-                            {ranking}
+                            {rank}
                         </h2>
                     </div>
                 </div>
