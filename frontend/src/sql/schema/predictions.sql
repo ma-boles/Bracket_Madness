@@ -6,6 +6,7 @@ CREATE TABLE predictions(
     winner_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_scored BOOLEAN DEFAULT FALSE,
+    is_correct BOOLEAN DEFAULT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (bracket_id) REFERENCES brackets(id) ON DELETE CASCADE,
     FOREIGN KEY (game_id) REFERENCES results(game_id),
