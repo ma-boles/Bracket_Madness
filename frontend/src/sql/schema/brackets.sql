@@ -11,6 +11,9 @@ CREATE TABLE brackets(
     championship_points INT NOT NULL DEFAULT 0,
     total_points INT NOT NULL DEFAULT 0,
     rank INT NOT NULL DEFAULT 0,
+    total_predictions INT NOT NULL DEFAULT 0,
+    correct_predictions INT NOT NULL DEFAULT 0,
+    accuracy_percentage DECIMAL(5,2) NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
