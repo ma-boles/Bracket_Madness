@@ -43,7 +43,7 @@ export default function Dashboard() {
                 bracketId={item.bracket_id}
                 name={item.bracket_name}
                 total_points={item.total_points}
-                ranking={item.ranking}
+                rank={item.rank}
                 bracketInfoData={bracketInfoData}
                 />
         );
