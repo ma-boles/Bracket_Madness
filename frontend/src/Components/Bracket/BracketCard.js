@@ -4,7 +4,7 @@ import BracketInfoCard from "./BracketInfoCard";
 import Link from "next/link";
 
 
-export default function BracketCard({ name, bracketId, total_points, rank, bracketInfoData }) {
+export default function BracketCard({ name, bracketId, total_points, rank, accuracy_percentage, bracketInfoData }) {
     const [ showDetails, setShowDetails ] = useState(false);
 
     const handleToggle = () => {
@@ -22,24 +22,29 @@ export default function BracketCard({ name, bracketId, total_points, rank, brack
                 </div>
 
                 <div className="flex mx-auto mt-2 h-20 bg-purple-900 rounded-lg w-[90%]" >
-                    <div className="flex w-1/4 border-r border-white items-center justify-center" >
+                    <div className="flex w-1/5 border-r border-white items-center justify-center" >
                         <h2>
                             {bracketId}
                         </h2>
                     </div>
-                    <div className="flex w-1/4 border-r border-white items-center justify-center" >
+                    <div className="flex w-1/5 border-r border-white items-center justify-center" >
                         <h2> 
                             {name}
                         </h2>
                     </div>
-                    <div className="flex w-1/4 border-r border-white items-center justify-center">
+                    <div className="flex w-1/5 border-r border-white items-center justify-center">
                         <h2>
                             {total_points}
                         </h2>
                     </div>
-                    <div className="flex w-1/4 items-center justify-center">
+                    <div className="flex w-1/5 border-r border-white items-center justify-center">
                         <h2>
                             {rank}
+                        </h2>
+                    </div>
+                    <div className="flex w-1/5 items-center justify-center">
+                        <h2>
+                            {accuracy_percentage}
                         </h2>
                     </div>
                 </div>
@@ -58,6 +63,8 @@ export default function BracketCard({ name, bracketId, total_points, rank, brack
                             round={item.round}
                             round_rank={item.round_rank}
                             round_points={item.round_points}
+                            total_predictions={item.total_predictions}
+                            correct_predictions={item.correct_predictions}
                             />
                     ))
                 )}
