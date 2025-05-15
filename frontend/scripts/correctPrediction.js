@@ -6,7 +6,7 @@ async function correctPrediction () {
     const db = await connectionToDatabase();
 
     try {
-        const [rows] = await db.execute (`
+        const [result] = await db.execute (`
             UPDATE predictions p 
             JOIN results r ON p.game_id = r.game_id
             SET p.is_correct = (p.winner_id = r.winner_id)
