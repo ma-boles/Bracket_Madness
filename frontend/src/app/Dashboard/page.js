@@ -27,13 +27,14 @@ export default function Dashboard() {
 
     const bracketCards = bracketsCardData.map((item, index) => {
         const bracketInfoData = [
-            { round: 'First Four', round_rank: 0, round_points: item.first_four_points},
-            { round: '1st Round', round_rank: 0, round_points: item.first_round_points },
-            { round: '2nd Rd', round_rank: 0, round_points: item.second_round_points },
-            { round: 'Sweet 16', round_rank: 0, round_points: item.sweet16_points },
-            { round: 'Elite 8', round_rank: 0, round_points: item.elite8_points },
-            { round: 'Final Four', round_rank: 0, round_points: item.final4_points },
-            { round: 'Championship', round_rank: 0, round_points: item.championship_points },
+            // { round: 'First Four', round_rank: 0, round_points: item.first_four_points},
+            // { round: '1st Round', round_rank: 0, round_points: item.first_round_points },
+            // { round: '2nd Rd', round_rank: 0, round_points: item.second_round_points },
+            // { round: 'Sweet 16', round_rank: 0, round_points: item.sweet16_points },
+            // { round: 'Elite 8', round_rank: 0, round_points: item.elite8_points },
+            // { round: 'Final Four', round_rank: 0, round_points: item.final4_points },
+            // { round: 'Championship', round_rank: 0, round_points: item.championship_points },
+            {correct_predictions: item.correct_predictions, total_predictions: item.total_predictions}
         ];
 
 
@@ -44,6 +45,7 @@ export default function Dashboard() {
                 name={item.bracket_name}
                 total_points={item.total_points}
                 rank={item.rank}
+                accuracy_percentage={item.accuracy_percentage}
                 bracketInfoData={bracketInfoData}
                 />
         );
@@ -69,10 +71,11 @@ export default function Dashboard() {
             <div className="m-2 border border-white bg-white/5 rounded-lg">
                 <h1 className="m-2 py-2 text-3xl font-semibold">My Brackets</h1>
                 <div className="flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
-                    <p className="w-1/4 text-center font-semibold">ID</p>
-                    <p className="w-1/4 text-center font-semibold">Bracket Name</p>
-                    <p className="w-1/4 text-center font-semibold">Total Points</p>
-                    <p className="w-1/4 text-center font-semibold">Rank</p>
+                    <p className="w-1/5 text-center font-semibold">ID</p>
+                    <p className="w-1/5 text-center font-semibold">Bracket Name</p>
+                    <p className="w-1/5 text-center font-semibold">Total Points</p>
+                    <p className="w-1/5 text-center font-semibold">Rank</p>
+                    <p className="w-1/5 text-center font-semibold">Percent</p>
                 </div>
 
                 {bracketCards}
