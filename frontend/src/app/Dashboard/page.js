@@ -27,14 +27,14 @@ export default function Dashboard() {
 
     const bracketCards = bracketsCardData.map((item, index) => {
         const bracketInfoData = [
-            // { round: 'First Four', round_rank: 0, round_points: item.first_four_points},
-            // { round: '1st Round', round_rank: 0, round_points: item.first_round_points },
-            // { round: '2nd Rd', round_rank: 0, round_points: item.second_round_points },
-            // { round: 'Sweet 16', round_rank: 0, round_points: item.sweet16_points },
-            // { round: 'Elite 8', round_rank: 0, round_points: item.elite8_points },
-            // { round: 'Final Four', round_rank: 0, round_points: item.final4_points },
-            // { round: 'Championship', round_rank: 0, round_points: item.championship_points },
-            {correct_predictions: item.correct_predictions, total_predictions: item.total_predictions}
+            { round: 'First Four', round_points: item.first_four_points},
+            { round: '1st Rd', round_points: item.first_round_points },
+            { round: '2nd Rd', round_points: item.second_round_points },
+            { round: 'Sweet 16', round_points: item.sweet16_points },
+            { round: 'Elite 8', round_points: item.elite8_points },
+            { round: 'Final Four', round_points: item.final4_points },
+            { round: 'Champion', round_points: item.championship_points },
+            { correct_predictions: item.correct_predictions, total_predictions: item.total_predictions }
         ];
 
 
