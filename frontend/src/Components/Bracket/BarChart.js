@@ -23,7 +23,7 @@ export default function BarChart({ labels, data }) {
             {
                 label: 'Points per Round',
                 data,
-                backgroundColor: '#60a5fa',
+                backgroundColor: '#c084fc',
                 borderRadius: 6,
                 borderSkipped: false,
             },
@@ -36,16 +36,23 @@ export default function BarChart({ labels, data }) {
             duration: 1000,
             easing: 'easeOutQuart',
         },
+        layout: {
+            padding: {
+            top: 20, // Pushes chart area down — adds space below the legend
+            },
+        },
         scales: {
             y: {
                 beginAtZero: true,
                 ticks: {
                     stepSize: 1,
                     color: '#fff',
+                    stepSize: 100,
                 },
                 grid: {
                     color: 'rgba(255,255,255,0.1)',
                 },
+                suggestedMax: Math.max(...data) + 20,
             },
             x: {
                 ticks: {
@@ -58,6 +65,7 @@ export default function BarChart({ labels, data }) {
         },
         plugins: {
             legend: {
+                align: 'end',
                 labels: {
                     color: '#fff',
                 },
@@ -65,9 +73,10 @@ export default function BarChart({ labels, data }) {
         },
     };
 
+
     return (
         <div className="p-4">
-            <Bar data={chartData} options={options}/>
+            <Bar data={chartData} options={options} />
         </div>
     );
 }
