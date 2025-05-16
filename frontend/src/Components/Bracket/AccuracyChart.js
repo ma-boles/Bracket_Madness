@@ -16,7 +16,7 @@ const AccuracyChart = ({ correct, total}) => {
         datasets: [
             {
                 data: [correct, incorrect],
-                backgroundColor: ['#10b981', '#ef4444'],
+                backgroundColor: ['#6b21a8', '#e9d5ff'],
                 borderWidth: 1,
             },
         ],
