@@ -57,16 +57,10 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
 
             <div className="flex justify-center flex-wrap">
                 {showDetails && (
-                    bracketInfoData?.map((item, index) => (
                         <BracketInfoCard 
-                            key={index}
-                            round={item.round}
-                            round_rank={item.round_rank}
-                            round_points={item.round_points}
-                            total_predictions={item.total_predictions}
-                            correct_predictions={item.correct_predictions}
+                            bracketInfoData={bracketInfoData}
                             />
-                    ))
+                    // ))
                 )}
             </div>
         </div>
