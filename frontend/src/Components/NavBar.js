@@ -62,7 +62,12 @@ export default function NavBar () {
                                 <p>Submit</p>
                             </Link>
                         </div>
-                    
+                    <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
+                            hover:bg-blue-600 rounded-lg">
+                        <Link href="/Pool">
+                            <p>Pool</p>
+                        </Link>
+                    </div>
 
                     <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 hover:bg-white/20 rounded-lg">
                         <ol className="px-1">
