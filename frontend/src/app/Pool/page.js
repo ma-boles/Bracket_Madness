@@ -19,7 +19,7 @@ export default function Pool () {
                     />
                 </div>
 
-        <main>
+        <main className="overflow-hidden w-full relative">
             <SlideCarousel />
         </main>
         </>
