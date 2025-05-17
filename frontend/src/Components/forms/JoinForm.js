@@ -30,23 +30,25 @@ export default function JoinForm () {
         <form onSubmit={handleSubmit} className="p-6 max-w-sm mx-auto space-y-4 bg-white/5 rounded-xl">
             <h1 className="text-2xl text-center font-bold">Join a Pool</h1>
             <div>
-                <label className="block font-medium mb-1">Pool Name</label>
+                {/* <label className="block font-medium mb-1">Pool Name</label> */}
                 <input 
                 type="text"
                 name="poolName"
                 value={formData.poolName}
                 onChange={handleChange}
+                placeholder="Pool Name"
                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
             </div>
 
             <div>
-                <label className="block font-medium mb-1">Join Code</label>
+                {/* <label className="block font-medium mb-1">Join Code</label> */}
                 <input 
                 type="text"
                 name="joinCode"
                 value={formData.joinCode}
                 onChange={handleChange}
+                placeholder="Join Code"
                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
             </div>
