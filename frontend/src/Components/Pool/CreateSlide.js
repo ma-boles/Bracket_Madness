@@ -1,11 +1,10 @@
 import React from "react";
+import CreateForm from "../forms/CreateForm";
 
 export default function CreateSlide () {
-    return (
-        <div className="p-3 bg-black rounded-lg">
-            <h1 className="text-2xl">Create a Pool</h1>
-            <div>form here</div>
-            <div>buttons here</div>
-        </div>
-    )
+        return (
+                <div className="py-18 px-12 bg-black/60 rounded-xl">
+                    <CreateForm />
+                </div>
+        )
 }
