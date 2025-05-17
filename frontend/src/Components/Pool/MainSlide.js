@@ -9,7 +9,7 @@ export default function MainSlide () {
             </div>
             <br></br>
             <div className="w-2/3 leading-relaxed">
-                <h1 className="text-3xl">Create you own <strong>private pool, invite the crew,</strong> and <strong>compete</strong> for ultimate <strong className="text-orange-400 "> bragging rights</strong>.</h1>
+                <h1 className="text-3xl">Create your own <strong>private pool, invite the crew,</strong> and <strong>compete</strong> for ultimate <strong className="underline"> bragging rights</strong>.</h1>
                 <br></br>
                 <h1 className="text-3xl"><strong>Office rivalries, family fueds, fantasy league showdowns</strong> -- all settled right here.</h1>
                 <br></br>
