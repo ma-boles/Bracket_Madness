@@ -5,6 +5,7 @@ import Image from "next/image";
 import BracketCard from "@/Components/Bracket/BracketCard";
 import AuthContext from "@/context/AuthContext";
 import axios from "axios";
+import ManagePools from "@/Components/Dashboard/ManagePools";
 
 export default function Dashboard() {
     const [ bracketsCardData, setBracketsCardData ] = useState([]);
@@ -69,7 +70,10 @@ export default function Dashboard() {
             </div>
 
             <div className="m-2 border border-white bg-white/5 rounded-lg">
-                <h1 className="m-2 py-2 text-3xl font-semibold">My Brackets</h1>
+                <div className="flex px-16">
+                    <h1 className="m-2 py-2 text-2xl font-semibold">Brackets</h1>
+                    <h1 className="m-2 py-2 text-2xl font-semibold">Pools</h1>
+                </div>
                 <div className="flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
                     <p className="w-1/5 text-center font-semibold">ID</p>
                     <p className="w-1/5 text-center font-semibold">Bracket Name</p>
@@ -80,6 +84,9 @@ export default function Dashboard() {
 
                 {bracketCards}
 
+            </div>
+            <div>
+                <ManagePools />
             </div>
         </>
     )
