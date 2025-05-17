@@ -1,11 +1,10 @@
 import React from "react";
+import JoinForm from "../forms/JoinForm";
 
 export default function JoinSlide () {
     return (
-        <div className="p-3 bg-black rounded-xl">
-            <h1>Join a Pool</h1>
-            <div>form here</div>
-            <div>buttons</div>
+        <div className="py-18 px-12 bg-black/60 rounded-xl">
+            <JoinForm />
         </div>
     )
 }
