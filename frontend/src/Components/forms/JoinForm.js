@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function JoinForm () {
     const [formData, setFormData] = useState({
         poolName: "",
-        poolCode: ""
+        joinCode: ""
     });
 
     const handleChange = (e) => {
@@ -22,7 +22,7 @@ export default function JoinForm () {
     const handleClear = (e) => {
         setFormData({
             poolName: "",
-            poolCode: "",
+            joinCode: "",
         });
     };
 
@@ -44,8 +44,8 @@ export default function JoinForm () {
                 <label className="block font-medium mb-1">Join Code</label>
                 <input 
                 type="text"
-                name="poolCode"
-                value={formData.poolCode}
+                name="joinCode"
+                value={formData.joinCode}
                 onChange={handleChange}
                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
