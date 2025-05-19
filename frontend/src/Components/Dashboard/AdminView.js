@@ -1,9 +1,12 @@
 import React from "react";
+import PoolCard from "./PoolCard";
 
 export default function AdminView () {
     return (
-        <div className="p-4 bg-pink-600">
-            <div>Admin View</div>
+        <div className="p-2">
+            <div className="flex flex-wrap">
+                <PoolCard />
+            </div>
         </div>
     )
 }
