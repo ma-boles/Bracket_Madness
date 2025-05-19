@@ -8,6 +8,8 @@ import axios from "axios";
 import ManagePools from "@/Components/Dashboard/ManagePools";
 
 export default function Dashboard() {
+    const [ bracketsView, setBracketsView ] = useState(true);
+    const [ poolsView, setPoolsView ] = useState(false);
     const [ bracketsCardData, setBracketsCardData ] = useState([]);
     const { currentUser } = useContext(AuthContext);
     const userId = currentUser?.userId;
@@ -52,8 +54,18 @@ export default function Dashboard() {
         );
     });
     
+    const handleBracketsView = () => {
+        setPoolsView(false);
+        setBracketsView(true);
+    };
+
+    const handlePoolsView = () => {
+        setPoolsView(true);
+        setBracketsView(false);
+    };
+
     return(
-        <>
+        <div>
             <nav>
                 <NavBar />
             </nav>
@@ -70,24 +82,29 @@ export default function Dashboard() {
             </div>
 
             <div className="m-2 border border-white bg-white/5 rounded-lg">
-                <div className="flex px-16">
-                    <h1 className="m-2 py-2 text-2xl font-semibold">Brackets</h1>
-                    <h1 className="m-2 py-2 text-2xl font-semibold">Pools</h1>
-                </div>
-                <div className="flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
-                    <p className="w-1/5 text-center font-semibold">ID</p>
-                    <p className="w-1/5 text-center font-semibold">Bracket Name</p>
-                    <p className="w-1/5 text-center font-semibold">Total Points</p>
-                    <p className="w-1/5 text-center font-semibold">Rank</p>
-                    <p className="w-1/5 text-center font-semibold">Percent</p>
-                </div>
-
-                {bracketCards}
+                <div className="flex px-16 my-6">
+                        <button className="ml-2 p-2 text-xl font-semibold border-b border-r border-white hover:bg-purple-900"
+                        onClick={handleBracketsView}>My Brackets</button>
+                        <button className="p-2 mx-2 text-xl font-semibold border-b border-r border-white hover:bg-yellow-400 hover:text-black "
+                        onClick={handlePoolsView}>My Pools</button>
+                    </div>
+                    {bracketsView && (
+                        <div>
+                            <div className="flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
+                                <p className="w-1/5 text-center font-semibold">ID</p>
+                                <p className="w-1/5 text-center font-semibold">Bracket Name</p>
+                                <p className="w-1/5 text-center font-semibold">Total Points</p>
+                                <p className="w-1/5 text-center font-semibold">Rank</p>
+                                <p className="w-1/5 text-center font-semibold">Percent</p>
+                            </div>
+                            {bracketCards}
+                        </div>
+                    )}
+                {poolsView && (
+                    <ManagePools />
+                )}
 
             </div>
-            <div>
-                <ManagePools />
-            </div>
-        </>
+        </div>
     )
 }
