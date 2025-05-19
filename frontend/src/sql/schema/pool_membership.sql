@@ -1,4 +1,4 @@
-CREATED TABLE pool_membership (
+CREATE TABLE pool_membership (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pool_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -10,5 +10,5 @@ CREATED TABLE pool_membership (
     UNIQUE KEY unique_bracket(bracket_id),
     FOREIGN KEY (pool_id) REFERENCES pools(id),
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (bracket_id) REFERENCES brckets(id)
+    FOREIGN KEY (bracket_id) REFERENCES brackets(id)
 );
