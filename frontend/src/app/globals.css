@@ -45,6 +45,10 @@ body {
   padding-bottom: 50px; /* Gives extra spacing *//*
 }*/
 
+button {
+  cursor: pointer;
+}
+
 .region {
   display: flex;
   flex-direction: column;
