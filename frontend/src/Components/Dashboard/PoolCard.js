@@ -25,10 +25,10 @@ export default function PoolCard () {
                         <div className="flex my-2 p-1">
                             <p>User Name</p>
                         </div>
-                        <button className="px-2 mx-2 h-1/2 bg-red-600 cursor-pointer rounded-full"> - </button>
+                        <button className="px-2 mx-2 h-1/2 bg-red-500 cursor-pointer rounded-full hover:bg-red-600"> - </button>
                     </div>
                 </div>
-                    <button className="px-4 py-2 w-full bg-red-600 rounded-xl font-bold cursor-pointer hover:border hover:border-white ">DELETE POOL</button>
+                    <button className="px-4 py-2 w-full bg-red-500 rounded-xl font-bold cursor-pointer hover:bg-red-600">DELETE POOL</button>
             </div>
     </div>
     )
