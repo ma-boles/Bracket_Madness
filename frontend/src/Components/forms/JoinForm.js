@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function JoinForm () {
     const [formData, setFormData] = useState({
         poolName: "",
-        joinCode: ""
+        inviteCode: ""
     });
 
     const handleChange = (e) => {
@@ -13,16 +13,44 @@ export default function JoinForm () {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        // do something with form data
+
+        if(!formData.poolName.trim() || !formData.inviteCode.trim()) {
+            alert('Please enter both pool name and invite code.');
+            return;
+        } 
+
+        try {
+            const response = await fetch('/api/pools/join', {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    poolName: formData.poolName.trim(),
+                    inviteCode: formData.inviteCode.trim(),
+                }),
+            });
+
+            const data = await response.json();
+
+            if(response.ok) {
+                alert(`Success! You joined pool: ${data.poolName}`);
+                // redirect ?
+            } else {
+                alert(data.error || "Failed to join pool.");
+            }
+        } catch (error) {
+            alert('An nexpected error occured.');
+            console.error(error);
+        }
     };
 
     const handleClear = (e) => {
         setFormData({
             poolName: "",
-            joinCode: "",
+            inviteCode: "",
         });
     };
 
@@ -30,7 +58,6 @@ export default function JoinForm () {
         <form onSubmit={handleSubmit} className="p-6 max-w-sm mx-auto space-y-4 bg-white/5 rounded-xl">
             <h1 className="text-2xl text-center font-bold">Join a Pool</h1>
             <div>
-                {/* <label className="block font-medium mb-1">Pool Name</label> */}
                 <input 
                 type="text"
                 name="poolName"
@@ -42,13 +69,12 @@ export default function JoinForm () {
             </div>
 
             <div>
-                {/* <label className="block font-medium mb-1">Join Code</label> */}
                 <input 
                 type="text"
-                name="joinCode"
-                value={formData.joinCode}
+                name="inviteCode"
+                value={formData.inviteCode}
                 onChange={handleChange}
-                placeholder="Join Code"
+                placeholder="Invite Code"
                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
             </div>
@@ -57,7 +83,7 @@ export default function JoinForm () {
                 <button
                 type="submit"
                 className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded cursor-pointer"
-                >Submit</button>
+                >Join</button>
                 <button
                 type="button"
                 onClick={handleClear}
