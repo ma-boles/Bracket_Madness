@@ -39,7 +39,10 @@ export async function GET(req) {
         elite8_points,
         final4_points,
         championship_points,
-        \`rank\`
+        \`rank\`, 
+        correct_predictions,
+        total_predictions,
+        accuracy_percentage
       FROM brackets 
       WHERE user_id = ?
       `,
@@ -55,6 +58,5 @@ export async function GET(req) {
   } finally {
     if (db) await db.end?.();
     console.log('🔚 Database connection closed');
-
   }
 }
