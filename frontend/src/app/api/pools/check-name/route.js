@@ -15,7 +15,7 @@ export async function GET(req) {
     const [rows] = await db.execute(
         `SELECT COUNT(*) AS count 
          FROM pools
-         WHERE name = ?`,
+         WHERE pool_name = ?`,
     [name]);
 
     const available = rows[0].count === 0;
