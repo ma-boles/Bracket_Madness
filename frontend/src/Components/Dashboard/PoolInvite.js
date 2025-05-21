@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PoolInvite () {
     return (
-        <div className="text-center">
+        <div className="text-center mx-2">
              <div className="p-4 w-80 bg-blue-600 rounded-md">
                 <h1 className="my-2 font-semibold text-2xl">Invite</h1>
                 <p className="my-4"><strong>Username</strong> invited you to join <strong>pool name</strong>. Click link to join</p>
