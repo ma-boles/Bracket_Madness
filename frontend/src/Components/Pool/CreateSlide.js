@@ -5,7 +5,7 @@ import CreateForm from "../forms/CreateForm";
 import SuccessModal from "./SuccessModal";
 
 export default function CreateSlide () {
-        const [modalOpen, setModalOpen] = useState(true);
+        const [modalOpen, setModalOpen] = useState(false);
         const [createdPool, setCreatedPool] = useState({ name: "", code: ""});
         const router = useRouter();
         
@@ -17,12 +17,15 @@ export default function CreateSlide () {
                                 setModalOpen(true);
                         }}/>
 
-                    <SuccessModal 
+                {modalOpen && (
+                <SuccessModal 
                         isOpen={modalOpen}
                         onClose={() => setModalOpen(false)}
                         poolName={createdPool.name}
                         inviteCode={createdPool.code}
                         onRedirect={() => router.push('/admin/dashboard')}/>
+                )}
+                    
                 </div>
         )
 }
