@@ -11,21 +11,20 @@ export default function CreateSlide () {
         
         return (
                 <div className="py-18 px-12 bg-black/60 rounded-xl">
-                    <CreateForm 
-                        onSuccess={(pool) => {
-                                setCreatedPool(pool)
-                                setModalOpen(true);
-                        }}/>
-
-                {modalOpen && (
-                <SuccessModal 
-                        isOpen={modalOpen}
-                        onClose={() => setModalOpen(false)}
-                        poolName={createdPool.name}
-                        inviteCode={createdPool.code}
-                        onRedirect={() => router.push('/admin/dashboard')}/>
-                )}
-                    
+                        {modalOpen ? (
+                        <SuccessModal 
+                                isOpen={modalOpen}
+                                onClose={() => setModalOpen(false)}
+                                poolName={createdPool.name}
+                                inviteCode={createdPool.code}
+                                onRedirect={() => router.push('/Dashboard')}/>
+                        ):(
+                                <CreateForm 
+                                onSuccess={(pool) => {
+                                        setCreatedPool(pool)
+                                        setModalOpen(true);
+                                }}/>
+                        )}
                 </div>
         )
 }
