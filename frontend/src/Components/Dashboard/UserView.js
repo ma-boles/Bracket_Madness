@@ -3,9 +3,18 @@ import PoolInvite from "./PoolInvite";
 
 export default function UserView () {
     return (
-        <div className="w-80 m-2 border border-white flex flex-col justify-between rounded-xl"> 
-           {/* <PoolInvite /> */}
-           <div className="p-2 bg-blue-600 rounded-t-xl">
+        <div className="w-full">
+            <div className="border-4 p-2 border-white/30 rounded-lg">
+                <div className="mx-2">
+                    <h2 className="font-bold text-lg">Notifications Center</h2>
+                </div>
+                <div className="flex p-2 justify-center items-center">
+                    <PoolInvite />
+                </div>
+            </div>
+
+        <div className="w-80 h-80 my-2 border-4 border-white/70 flex flex-col justify-between rounded-xl"> 
+           <div className="p-2 bg-blue-600 rounded-t-lg">
                 <h1 className="font-bold">Pool Name</h1>
                 <h1>Pool ID: #000</h1>
            </div>
@@ -18,5 +27,7 @@ export default function UserView () {
            </div>
            
         </div>
+                </div>
+
     )
 }
