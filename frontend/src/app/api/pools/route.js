@@ -42,7 +42,7 @@ export async function POST(req) {
 
     try {
         const [poolResult] = await db.execute(`
-            INSERT INTO pools (pool_name, code, created_by VALUES(?, ?, ?)`,
+            INSERT INTO pools (pool_name, code, created_by) VALUES(?, ?, ?)`,
         [poolName, inviteCode, userId]);
 
         const poolId = poolResult.insertId;
