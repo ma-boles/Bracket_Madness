@@ -14,11 +14,12 @@ export default function SuccessModal ({ onClose, poolName, inviteCode, onRedirec
 
     const handleCopy = () => {
         navigator.clipboard.writeText(inviteCode);
+        alert('Invite code copied!')
     };
 
     return(
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white/10 border border-white p-6 rounded-2xl shadow-xl w-[90%] max-w-md text-center">
+        <div className="flex items-center justify-center z-50">
+            <div className="bg-white/10 p-6 rounded-2xl text-center">
             <h2 className="text-2xl font-bold text-yellow-400 mb-4">Pool Created Successfully!</h2>
                 <p className="mb-2 text-lg text-white/90 font-medium">Pool Name:</p>
                 <p className="mb-4 text-xl font-bold">{poolName}</p>
@@ -38,7 +39,7 @@ export default function SuccessModal ({ onClose, poolName, inviteCode, onRedirec
                     onClick={onRedirect}
                     className="w-full text-black/90 bg-yellow-400 hover:bg-white/90 font-semibold py-2 rounded mb-2"
                     >
-                    Go to Admin Dashboard
+                    Go to Dashboard
                 </button>
                 <button
                     onClick={onClose}
