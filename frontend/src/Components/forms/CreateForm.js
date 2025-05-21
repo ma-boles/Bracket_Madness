@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import SuccessModal from "../Pool/SuccessModal";
 
-export default function CreateForm () {
+export default function CreateForm ({ onSuccess }) {
     const [formData, setFormData] = useState({
         poolName: "",
         inviteCode: ""
@@ -24,7 +23,7 @@ export default function CreateForm () {
 
         try {
             // Check name availability
-            const checkRes = await fetch(`api/pools/check-name?name=${formData.poolName}`);
+            const checkRes = await fetch(`api/pools/check-name?name=${encodeURIComponent(formData.poolName)}`);
             const { available } = await checkRes.json();
 
             if(!available) {
@@ -32,9 +31,6 @@ export default function CreateForm () {
                 return;
             }
 
-            // generate code
-            const generateCode = () => Math.random().toString(36).substring(2, 8).toUpperCase();
-            const inviteCode = generateCode();
 
             // post to backend
             const res = await fetch("/api/pools", {
@@ -42,7 +38,6 @@ export default function CreateForm () {
                 headers : { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     poolName: formData.poolName,
-                    inviteCode: inviteCode
                 })
             });
 
@@ -55,8 +50,11 @@ export default function CreateForm () {
 
             const data = await res.json();
             console.log("Pool created:", data);
-             
-            alert(`Pool created! Invite code: ${data.inviteCode}`);
+
+            if(onSuccess) {
+                onSuccess({ name: data.poolName || formData.poolName, code: data.inviteCode })
+            }
+        
         } catch (error) {
             console.error("Failed to create pool", error);
             alert("Something went wrong.");
@@ -74,7 +72,6 @@ export default function CreateForm () {
         <form onSubmit={handleSubmit} className="p-6 max-w-sm mx-auto space-y-4 bg-white/5 rounded-xl">
             <h1 className="text-2xl text-center font-bold">Create a Pool</h1>
             <div>
-                {/* <label className="block font-medium mb-1">Pool Name</label> */}
                 <input 
                 type="text"
                 name="poolName"
