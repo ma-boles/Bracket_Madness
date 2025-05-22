@@ -13,7 +13,8 @@ export async function GET(req) {
 
     try {
         const [rows] = await db.execute(
-            `SELECT username
+            `SELECT id,
+                username
             FROM users
             WHERE username LIKE ? ORDER BY username ASC LIMIT 10`,
             [`${q}%`]
