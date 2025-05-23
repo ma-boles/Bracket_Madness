@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { ComboboxOption, ComboboxOptions, Transition } from "@headlessui/react";
+import { Combobox, ComboboxOption, ComboboxOptions, Transition, ComboboxInput } from "@headlessui/react";
 import ManageCard from "./ManageCard";
 
-export default function AdminPoolCard () {
+export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
     const [manageCard, setManageCard] = useState(false);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
@@ -15,7 +15,7 @@ export default function AdminPoolCard () {
 
     useEffect(() => {
         // request not sent unless 2 characters are provided
-        if(query.length < 2) {
+        if(query?.length < 2) {
             setSuggestions([]);
             return;
         }
@@ -42,62 +42,103 @@ export default function AdminPoolCard () {
 
     const handleUserSelect = (user) => {
         setSelectedUser(user)
-        setQuery(user.username);
+        setQuery('');
         setSuggestions([]);
     }
   
-    // const handleInputChange  = (e) => {
-    //     setQuery(e.target.value);
-    // };
+    const handleInviteClick = async () => {
+        try {
+            const res = await fetch('/api/pools/invite', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: selectedUser.id,
+                    poolId,
+                })
+            });
+
+            const data = await res.json();
+            if(res.ok) {
+                alert('Invite sent!');
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Invite failed:', error);
+            alert('Something went wrong.');
+        }
+    };
 
     return (
         <div className="flex m-2">
             <div className="flex flex-col justify-between w-80 h-80 bg-white/10 border border-white rounded-xl">
-                    <div className="p-2 bg-yellow-400 rounded-t-xl text-black">
-                        <h2 className="font-bold">Pool Name</h2>
-                        <h2>Pool ID: #000</h2>
+                    <div className="flex justify-between p-2 bg-yellow-400 rounded-t-xl text-black">
+                        <div>
+                            <h2 className="font-bold">{poolName}</h2>
+                            <h2><strong>ID:</strong> {poolId}</h2>
+                        </div>
+                        <div className="mt-auto">
+                            <h2><strong>Code:</strong> {inviteCode}</h2>
+                        </div>
+
                     </div>
                     <div className="m-4 border border-white">
                         <div className="p-4">
                             <div className="relative h-30 w-full">
                                 <h2 className="font-semibold">Invite</h2>
-                                
-                                <Transition
-                                    as={Fragment}
-                                    leave="transition ease-in duration-100"
-                                    leaveFrom="opacity-100"
-                                    leaveTo="opacity-0"
-                                    afterLeave={() => setSuggestions([])}
-                                >
+                                <Combobox value={selectedUser} 
+                                    onChange={handleUserSelect}>
+                                    <ComboboxInput 
+                                    placeholder="Search username"
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    displayValue={(user) => user?.username || ''}
+                                    className="w-full bg-white text-gray-700 text-center text-lg"
+                                    />
+                                    <Transition
+                                        as={Fragment}
+                                        show={suggestions.length > 0}
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                        afterLeave={() => setSuggestions([])}
+                                    >
 
-                                <ComboboxOptions className="absolute z-10 w-full mt-1 max-h-60 overflow-auto rounded bg-black/90 border border-white shadow-lg">
-                                    {suggestions.length === 0 && query.length >= 2 && !loading ? (
-                                        <div className="p-2 text-gray-400 cursor-default select-none">
-                                        No results found.
-                                        </div>
-                                    ) : (
-                                        suggestions.map((user, index) => (
-                                            <ComboboxOption
-                                                key={index}
-                                                value={user}
-                                                className={({ active, selected }) =>
-                                                    `cursor-pointer select-none p-2 ${
-                                                    active ? "bg-yellow-400/50" : ""
-                                                    } ${selected ? "font-bold" : ""}`
-                                                }
-                                                >
-                                                {user.username}
-                                                </ComboboxOption>
-                                                                                        
-                                                ))
-                                            )}
-                                            </ComboboxOptions>
-                                </Transition>
+                                        <ComboboxOptions className="absolute z-10 w-full mt-1 max-h-60 overflow-auto rounded bg-black/90 border border-white shadow-lg">
+                                            {suggestions?.length === 0 && query?.length >= 2 && !loading ? (
+                                                <div className="p-2 text-gray-400 cursor-default select-none">
+                                                No results found.
+                                                </div>
+                                            ) : (
+                                                suggestions.map((user, index) => (
+                                                    <ComboboxOption
+                                                        key={index}
+                                                        value={user}
+                                                        className={({ active, selected }) =>
+                                                            `cursor-pointer select-none p-2 ${
+                                                            active ? "bg-yellow-400/50" : ""
+                                                            } ${selected ? "font-bold" : ""}`
+                                                        }
+                                                        >
+                                                        {user.username}
+                                                        </ComboboxOption>
+                                                        ))
+                                                    )}
+                                        </ComboboxOptions>
 
-                                <button className="bg-yellow-400 w-full h-8 mt-2 border border-black text-black cursor-pointer">Send Invite</button>
-                                {!loading && query.length >= 2 && suggestions.length === 0 && (
+                                    </Transition>
+
+                                </Combobox>
+
+                                <button className="bg-yellow-400 w-full h-8 mt-2 border border-black text-black cursor-pointer"
+                                    onClick={handleInviteClick}
+                                    >
+                                    Send Invite
+                                </button>
+
+                                {!loading && query?.length >= 2 && suggestions?.length === 0 && (
                                         <div className="text-center mt-4 text-md text-white font-semibold">No results found</div>
                                     )}
+
                             </div>
                         </div>
                     </div>
