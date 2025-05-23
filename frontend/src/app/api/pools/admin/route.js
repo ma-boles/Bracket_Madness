@@ -6,7 +6,7 @@ export async function GET(req) {
   let db;
 
   try {
-    console.log('Incoming GET request to /api/brackets');
+    console.log('Incoming GET request to /api/pools/admin');
 
     db = await connectionToDatabase();
     console.log('✅ Database connection established');
@@ -37,7 +37,7 @@ export async function GET(req) {
 
     console.log(`Fetched ${rows.length} pools`);
 
-    return NextResponse.json(rows, { status: 200 });
+    return NextResponse.json({ pools:rows }, { status: 200 });
     } catch (error) {
         console.error('Error in GET /api/pools/admin:', error)
         return NextResponse.json({ message: 'Internal Server Error '}, { status: 500 });
