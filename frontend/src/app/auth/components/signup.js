@@ -47,8 +47,7 @@ export default function SignUp() {
                 setLogInSuccess(true);
                 setTimeout(() => {
                     logIn(data.token);
-                    // localStorage.setItem('token', data.token);
-                    router.push('/Bracket_Picks');
+                    router.push('/Submit');
                 }, 1000);
             } else {
                 setMessage('Log in failed. Please try again.');
