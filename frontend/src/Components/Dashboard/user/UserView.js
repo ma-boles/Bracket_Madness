@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import PoolInvite from "./PoolInvite";
+import InviteCard from "./InviteCard";
 import UserPoolCard from "./UserPoolCard";
+import ReminderCard from "./ReminderCard";
 
 export default function UserView () {
     const [invites, setInvites] = useState([]);
@@ -46,13 +47,15 @@ export default function UserView () {
 
                 <div className="flex p-2 justify-center items-center">
                     {invites.map((invite) => (
-                        <PoolInvite 
+                        <InviteCard 
                             key={invite.pool_id}
                             inviterName={invite.inviter_name}
                             poolName={invite.pool_name}
                             poolId={invite.pool_id}
                             onAccept={handleAcceptInvite}/>
                     ))}
+
+                    <ReminderCard />
                 </div>
 
             </div>

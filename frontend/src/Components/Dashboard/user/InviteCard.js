@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PoolInvite ({ inviterName, poolName, onAccept, poolId }) {
+export default function InviteCard ({ inviterName, poolName, onAccept, poolId }) {
     return (
         <div className="text-center mx-2">
              <div className="p-4 w-80 bg-blue-600/70 rounded-md">

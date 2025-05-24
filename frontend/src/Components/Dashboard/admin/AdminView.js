@@ -22,7 +22,6 @@ export default function AdminView () {
                         poolId={pool.id}
                         poolName={pool.pool_name}
                         inviteCode={pool.code}/>
-
                 ))}
             </div>
         </div>
