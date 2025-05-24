@@ -24,33 +24,45 @@ const verifyToken = (token) => {
 
 export async function POST(req) {
     try {
-        const { poolName, inviteCode, token } = await req.json();
+        const { poolName, inviteCode } = await req.json();
+        const token = req.cookies.get('token')?.value;
+
+        console.log("💡 Token from cookie:", token);
+
 
         // verify user token
         const user = verifyToken(token);
-        if(!user) {
-            return NextResponse.json({ error: 'Unauthorized'}, { status: 401 });
+
+        console.log("✅ User verified:", user);
+
+        if (!user || !user.userId) {
+            console.log("Unauthorized user or missing user_id");
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
+
         // find pool by name + code
-        const pool = await db.execute(`
-            SELECT id
+        const [poolRows] = await db.execute(`
+            SELECT id,
+            pool_name
             FROM pools
             WHERE pool_name = ? AND code = ?
             `, [poolName, inviteCode]
         );
 
-        if(!pool.length) {
+        if(!poolRows.length) {
             return NextResponse.json({ error: "Pool not found or invalid code" }, { status: 404 });
         }
 
-        // check if user is already a member fo the pool
-        const membership = await db.execute(`
-            SELECT * FROM pool_membership
-            WHERE pool_id = ? AND user_id =?`,
-        [pool[0].indexOf, user.user_id]);
+        console.log('Attempting membership check with:', poolRows[0]?.id, user?.userId);
 
-    if(membership.length) {
+        // check if user is already a member fo the pool
+        const [membershipRows] = await db.execute(
+            `SELECT * FROM pool_membership
+             WHERE pool_id = ? AND user_id =?`,
+        [poolRows[0].id, user.userId]);
+
+    if(membershipRows.length) {
         return NextResponse.json({ error: "Already a member of this pool"}, {status: 400 });
     }
 
@@ -58,10 +70,13 @@ export async function POST(req) {
     await db.execute(`
         INSERT INTO pool_membership (pool_id, user_id, role, status)
         VALUES (?, ?, 'member', 'pending')`,
-        [pool[0].id, user.user_id]
+        [poolRows[0].id, user.userId]
     );
 
-    return NextResponse.json({ message: `Successfully joined ${poolName}!`}, {status: 200})
+    return NextResponse.json({ 
+        message: `Successfully joined ${poolRows[0].pool_name}!`,
+        poolName: poolRows[0].pool_name}, 
+        {status: 200})
     } catch (error) {
         console.error(error);
         return NextResponse.json({ message: "Internal Sever Error"}, { status: 500});
