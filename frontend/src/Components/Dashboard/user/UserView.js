@@ -40,24 +40,24 @@ export default function UserView () {
 
     return (
         <div className="w-full">
-            <div className="border-4 p-2 border-white/30 rounded-lg">
+            <div className="p-2 bg-white/10 rounded-lg">
                 <div className="mx-2">
-                    <h2 className="font-bold text-lg">Notifications Center</h2>
+                    <h2 className="mx-3 font-bold text-lg">Notifications</h2>
                 </div>
-
-                <div className="flex p-2 justify-center items-center">
-                    {invites.map((invite) => (
-                        <InviteCard 
-                            key={invite.pool_id}
-                            inviterName={invite.inviter_name}
-                            poolName={invite.pool_name}
-                            poolId={invite.pool_id}
-                            onAccept={handleAcceptInvite}/>
-                    ))}
+                    <div className="flex flex-wrap p-2">
+                        {invites.map((invite) => (
+                            <InviteCard 
+                                key={invite.pool_id}
+                                inviterName={invite.inviter_name}
+                                poolName={invite.pool_name}
+                                poolId={invite.pool_id}
+                                onAccept={handleAcceptInvite}/>
+                        ))}
 
                     <ReminderCard />
-                </div>
 
+
+                </div>
             </div>
 
             <div className="flex mt-2 flex-wrap">
