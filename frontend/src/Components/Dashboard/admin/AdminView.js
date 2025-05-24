@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminPoolCard from "./AdminPoolCard";
+import ConfirmationCard from "./ConfirmationCard";
 
 export default function AdminView () {
     const [pools, setPools] = useState([]);
@@ -15,6 +16,16 @@ export default function AdminView () {
 
     return (
         <div className="p-2">
+
+            <div className="p-2 bg-white/10 rounded-lg">
+                <div className="mx-2">
+                    <h2 className="mx-3 font-bold text-lg">Notifications</h2>
+                </div>
+                <div className="p-2">
+                    <ConfirmationCard />
+                </div>
+            </div>
+
             <div className="flex flex-wrap">
                 {pools?.map((pool) => (
                     <AdminPoolCard 
