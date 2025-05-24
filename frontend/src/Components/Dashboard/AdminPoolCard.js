@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Combobox, ComboboxOption, ComboboxOptions, Transition, ComboboxInput } from "@headlessui/react";
 import ManageCard from "./ManageCard";
+import toast from "react-hot-toast";
 
 export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
     const [manageCard, setManageCard] = useState(false);
@@ -59,13 +60,25 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
 
             const data = await res.json();
             if(res.ok) {
-                alert('Invite sent!');
+                toast.success('Invite sent!', {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
             } else {
-                alert(data.message);
+                toast.success(data.message, {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
             }
         } catch (error) {
             console.error('Invite failed:', error);
-            alert('Something went wrong.');
+            toast.success('Something went wrong', {
+                style: {
+                    background: '#333',
+                    color: '#fff'
+                }});
         }
     };
 
