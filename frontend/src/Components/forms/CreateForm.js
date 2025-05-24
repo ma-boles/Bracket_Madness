@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function CreateForm ({ onSuccess }) {
     const [formData, setFormData] = useState({
@@ -17,7 +18,11 @@ export default function CreateForm ({ onSuccess }) {
         e.preventDefault();
 
         if(!formData.poolName.trim()) {
-            alert("Pool name is required.");
+            toast.success('Poolname is required.', {
+            style: {
+                background: '#333',
+                color: '#fff'
+            }});
             return;
         }
 
@@ -27,7 +32,11 @@ export default function CreateForm ({ onSuccess }) {
             const { available } = await checkRes.json();
 
             if(!available) {
-                alert("Pool name already taken.");
+                toast.success('Pool name already', {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
                 return;
             }
 
@@ -44,7 +53,11 @@ export default function CreateForm ({ onSuccess }) {
             if(!res.ok) {
                 const error = await res.json();
                 console.error("Error creating pool:", error);
-                alert("Could not create pool.");
+                toast.success('Could not create pool.', {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
                 return;
             }
 
@@ -57,7 +70,11 @@ export default function CreateForm ({ onSuccess }) {
         
         } catch (error) {
             console.error("Failed to create pool", error);
-            alert("Something went wrong.");
+            toast.success('Something went wrong.', {
+            style: {
+                background: '#333',
+                color: '#fff'
+            }});
         }
     };
 
@@ -80,18 +97,6 @@ export default function CreateForm ({ onSuccess }) {
                 placeholder="Pool Name"
                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
-            </div>
-
-            <div>
-                {/* <label className="block font-medium mb-1">Join Code</label> */}
-                {/* <input 
-                type="text"
-                name="poolCode"
-                value={formData.poolCode}
-                onChange={handleChange}
-                placeholder="Join Code"
-                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                /> */}
             </div>
 
             <div className="flex justify-between gap-4">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function JoinForm () {
     const [formData, setFormData] = useState({
@@ -17,7 +18,12 @@ export default function JoinForm () {
         e.preventDefault();
 
         if(!formData.poolName.trim() || !formData.inviteCode.trim()) {
-            alert('Please enter both pool name and invite code.');
+            toast.success('Please enter both pool name and invite code', {
+            style: {
+                background: '#333',
+                color: '#fff'
+            }});
+
             return;
         } 
 
@@ -31,18 +37,32 @@ export default function JoinForm () {
                     poolName: formData.poolName.trim(),
                     inviteCode: formData.inviteCode.trim(),
                 }),
+                credentials: 'include'
             });
 
             const data = await response.json();
 
             if(response.ok) {
-                alert(`Success! You joined pool: ${data.poolName}`);
+                toast.success(`Success! You joined pool: ${data.poolName}`, {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
                 // redirect ?
             } else {
-                alert(data.error || "Failed to join pool.");
+                toast.success(data.error || "Failed to join pool.", {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
             }
         } catch (error) {
-            alert('An nexpected error occured.');
+            toast.success('An unexpected error occurred', {
+            style: {
+                background: '#333',
+                color: '#fff'
+            }
+        });
             console.error(error);
         }
     };
