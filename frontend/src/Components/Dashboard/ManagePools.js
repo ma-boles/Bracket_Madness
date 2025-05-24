@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AdminView from "./AdminView";
-import UserView from "./UserView";
+import AdminView from "./admin/AdminView";
+import UserView from "./user/UserView";
 
 export default function ManagePools() {
     const [adminView, setAdminView] = useState(false);
