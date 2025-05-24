@@ -29,7 +29,7 @@ export default function NavBar () {
 
     return(
         <>
-            <div className="flex bg-white/5 mt-2 mx-12 rounded-xl justify-center items-center" >
+            <div className="flex mt-2 rounded-xl justify-center items-center" >
                 <div className="w-1/5 h-15 flex justify-center items-center">
                     <Image
                         src="/BM_logo4.jpg"

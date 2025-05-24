@@ -3,8 +3,8 @@ import React from "react";
 export default function InviteCard ({ inviterName, poolName, onAccept, poolId }) {
     return (
         <div className="text-center mx-2">
-             <div className="p-4 w-80 bg-blue-600/70 rounded-md">
-                <h1 className="my-2 font-semibold text-2xl">Pool Invite</h1>
+             <div className="p-4 m-1 w-80 h-50 bg-blue-600/70 rounded-md">
+                <h1 className="mb-2 font-semibold text-2xl">Pool Invite</h1>
                 <p className="my-4 text-lg"><strong>{inviterName}</strong> has invited you to join <strong>{poolName}</strong>.</p>
                 
                 <div className="flex">
