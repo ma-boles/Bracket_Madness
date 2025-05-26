@@ -31,7 +31,7 @@ export async function POST(req) {
     );
 
     if(result.affectedRows === 0) {
-        return NextResponse.json({ message: "Invite not found or alredy accepted"},  { status:404 });
+        return NextResponse.json({ message: "Invite not found or already accepted"},  { status:404 });
     }
 
     return NextResponse.json({ message: "Invite accepted successfully."}, { status: 200 });
