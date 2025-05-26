@@ -18,7 +18,7 @@ export default function UserView () {
     }, []);
 
     const handleAcceptInvite = async (poolId) => {
-        const res = await fetch('/api/pools/invite/accept', {
+        const res = await fetch('/api/pools/member/confirm', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ poolId }),
