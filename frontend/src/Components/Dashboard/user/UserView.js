@@ -40,25 +40,26 @@ export default function UserView () {
 
     return (
         <div className="w-full">
-            <div className="p-2 bg-white/10 rounded-lg">
-                <div className="mx-2">
-                    <h2 className="mx-3 font-bold text-lg">Notifications</h2>
+            {invites.length > 0 && (
+                <div className="p-2 bg-white/10 rounded-lg">
+                    <div className="mx-2">
+                        <h2 className="mx-3 font-bold text-lg">Notifications</h2>
+                    </div>
+
+                        <div className="flex flex-wrap p-2">
+                            {invites.map((invite) => (
+                                <InviteCard 
+                                    key={invite.pool_id}
+                                    inviterName={invite.inviter_name}
+                                    poolName={invite.pool_name}
+                                    poolId={invite.pool_id}
+                                    onAccept={handleAcceptInvite}/>
+                            ))}
+
+                    </div>
                 </div>
-                    <div className="flex flex-wrap p-2">
-                        {invites.map((invite) => (
-                            <InviteCard 
-                                key={invite.pool_id}
-                                inviterName={invite.inviter_name}
-                                poolName={invite.pool_name}
-                                poolId={invite.pool_id}
-                                onAccept={handleAcceptInvite}/>
-                        ))}
+            )}
 
-                    <ReminderCard />
-
-
-                </div>
-            </div>
 
             <div className="flex mt-2 flex-wrap">
                 {pools.map((pool) => (
@@ -66,6 +67,7 @@ export default function UserView () {
                         key={pool.id}
                         poolName={pool.pool_name}
                         poolId={pool.id}
+                        status={pool.status}
                     />
                 ))}
             </div>
