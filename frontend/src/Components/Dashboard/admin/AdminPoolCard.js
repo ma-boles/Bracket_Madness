@@ -161,7 +161,8 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                     </div>
             </div>
             {manageCard && (
-                <ManageCard />
+                <ManageCard 
+                poolId={poolId}/>
             )}
 
     </div>
