@@ -23,18 +23,18 @@ export async function POST(req) {
 
     const actingUserId = decodedUser.userId;
     const isSelf = !targetUserId;
-    const userToCofirm = isSelf? actingUserId : targetUserId; 
+    const userToConfirm = isSelf? actingUserId : targetUserId; 
 
     if(!isSelf) {
       const [rows] = await db.execute(
         `SELECT role 
         FROM pool_membership
-        WHERE user_id = ? AND pool_id ?`,
+        WHERE user_id = ? AND pool_id = ?`,
         [actingUserId, poolId]
       );
 
       if(!rows.length || rows[0].role !== 'admin') {
-        return NextResponse.json({ message: "Forbidden: Only admins can confirm membership."}, { status: 401 });
+        return NextResponse.json({ message: "Forbidden: Only admins can confirm membership."}, { status: 403 });
       }
     }
 
@@ -43,7 +43,7 @@ export async function POST(req) {
         `UPDATE pool_membership
         SET status = 'active'
         WHERE user_id = ? AND pool_id =? AND status = 'pending'`,
-        [userToCofirm, poolId]
+        [userToConfirm, poolId]
     );
 
     if(result.affectedRows === 0) {
