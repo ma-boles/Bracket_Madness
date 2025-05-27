@@ -28,7 +28,8 @@ export async function GET(req) {
     // Fetch all pools created by this user
     const [rows] = await db.execute(
         `SELECT p.id,
-            p.pool_name
+            p.pool_name,
+            pm.status
         FROM pools p
         JOIN pool_membership pm ON p.id = pm.pool_id
         WHERE user_id = ?`,
