@@ -4,14 +4,19 @@ import ManageCard from "./ManageCard";
 import toast from "react-hot-toast";
 
 export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
-    const [manageCard, setManageCard] = useState(false);
+    const [showManageCard, setShowManageCard] = useState(false);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
 
-    const handleManage = () => {
-        setManageCard(prev => !prev)
+    const handleManage = async () => {
+        if(!showManageCard) {
+            const res = await fetch(`/api/pools/${poolId}/members`);
+            const data = await res.json();
+            setMembers({ active: data.activeMembers, pending: data.pendingMembers });
+        }
+        setShowManageCard(prev => !prev)
     };
 
     useEffect(() => {
@@ -160,43 +165,13 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                         onClick={handleManage}>Manage</button>
                     </div>
             </div>
-            {manageCard && (
+            {showManageCard && (
                 <ManageCard 
-                poolId={poolId}/>
+                poolId={poolId}
+                activeMembers={members.active}
+                pendingMembers={members.pending}/>
             )}
 
     </div>
     )
 }
-
-
-
-
-//                                  <input 
-//                                     type="text"
-//                                     value={query}
-//                                     placeholder="Search usernames"
-//                                     onChange={(e) => setQuery(e.target.value)}
-//                                     className="w-full bg-white text-gray-700 text-center text-lg"/>
-
-//                                 {/* {loading && <div className="absolute top-full mt-1 text-sm text-gray-500">Loading...</div>} */}
-
-//                                 {suggestions.length > 0 && (
-//                                     <ul className="absolute z-10 w-full mt-1 bg-black/90 border rounded shadow">
-             
-//                                         {suggestions.map((user, index) => (
-//                                             <li
-//                                                 key={index}
-//                                                 className="p-2 hover:bg-yellow-400/50 cursor-pointer"
-//                                                 onMouseDown={() => {
-//                                                     // setQuery(user.username);
-//                                                     // setSuggestions([]); // close dropdown
-//                                                     handleUserSelect(user)
-//                                                 }}
-//                                                 >
-//                                                 {user.username}
-//                                             </li>
-//                                         ))}
-//                                     </ul>
-
-//                                 )}
