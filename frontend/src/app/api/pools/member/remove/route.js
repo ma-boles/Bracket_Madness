@@ -21,11 +21,24 @@ export async function DELETE(req) {
     }
 
     const { userId, poolId } = await req.json();
+    const actingUserId = decodedUser.userId;
+    const isSelf = actingUserId === userId;
 
-    if(decodedUser.userId !== userId) {
-        return NextResponse.json({ message: "Forbidden" }, { status: 403 });
-        };
+    if(!isSelf) {
+        // Only admins can remove other users
+        const [rows] = await db.execute(
+            `SELECT role 
+            FROM pool_membership
+            WHERE user_id = ? AND pool_id = ?`,
+            [actingUserId, poolId]
+        );
 
+        if(!rows.length || rows[0].role !== 'admin') {
+        return NextResponse.json({ message: "Forbidden - only admins allowed to remove other users" }, { status: 403 });
+    }
+    }
+
+    // Allow for self=removal
     const [result] = await db.execute(
         `DELETE FROM pool_membership
         WHERE user_id = ? AND pool_id = ?`,
