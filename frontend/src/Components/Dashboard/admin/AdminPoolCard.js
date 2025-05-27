@@ -9,15 +9,110 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [members, setMembers] = useState({active: [], pending: []});
 
     const handleManage = async () => {
         if(!showManageCard) {
-            const res = await fetch(`/api/pools/${poolId}/members`);
-            const data = await res.json();
-            setMembers({ active: data.activeMembers, pending: data.pendingMembers });
+            try {
+                const res = await fetch(`/api/pools/${poolId}/members`);
+                const data = await res.json();
+                setMembers({ active: data.activeMembers, pending: data.pendingMembers });
+            } catch(error) {
+                console.error("Failed to load members:", error);
+                toast.error("Failed to load members", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+            }
+            
         }
         setShowManageCard(prev => !prev)
     };
+
+    const handleRemoveMember = async (userId) => {
+        try {
+            const response = await fetch('/api/pools/member/remove', {
+                method: "DELETE",
+                headers: { 
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId, poolId }),
+            });
+
+            const data = await response.json();
+
+            if(response.ok) {
+                    toast.success("Member removed successfully", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+                
+                // Update member lists post removal by triggering useEffect
+                setMembers(prevMembers => ({
+                    ...prevMembers,
+                    active: prevMembers.active.filter(member => member.user_id !== userId),
+                    pending: prevMembers.pending.filter(member => member.user_id !== userId)
+                }));
+            } else {
+                toast.error(data.message || "Failed to remove members", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+            }
+        } catch (error) {
+            console.error("Error removing member:", error);
+            toast.error("An unexpected error occurred", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+        }
+    };
+
+     const handleConfirmMember = async (targetUserId) => {
+        try {
+
+         const response = await fetch('/api/pools/member/confirm', {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ poolId, targetUserId }),
+            });
+
+            const data = await response.json();
+
+            if(response.ok) {
+                toast.success("Member confirmed successfully", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+
+                // Refetch members list after confirmation
+                const res = await fetch(`/api/pools/${poolId}/members`);
+                const updatedData = await res.json();
+                setMembers({ active: updatedData.activeMembers, pending: updatedData.pendingMembers });
+            } else {
+                toast.error(data.message || "Failed to confirm member", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+            } 
+    } catch(error) {
+        console.error("Something went wrong while confirming member:", error)
+        toast.error("Something went wrong while confirming member", {
+                        style: {
+                            background: '#333',
+                            color: '#fff'
+                        }});
+
+    }
+}
 
     useEffect(() => {
         // request not sent unless 2 characters are provided
@@ -71,7 +166,7 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                         color: '#fff'
                     }});
             } else {
-                toast.success(data.message, {
+                toast.error(data.message, {
                     style: {
                         background: '#333',
                         color: '#fff'
@@ -79,7 +174,7 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
             }
         } catch (error) {
             console.error('Invite failed:', error);
-            toast.success('Something went wrong', {
+            toast.error('Something went wrong', {
                 style: {
                     background: '#333',
                     color: '#fff'
@@ -169,7 +264,9 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                 <ManageCard 
                 poolId={poolId}
                 activeMembers={members.active}
-                pendingMembers={members.pending}/>
+                pendingMembers={members.pending}
+                onRemoveMember={handleRemoveMember}
+                onConfirmMember={handleConfirmMember}/>
             )}
 
     </div>
