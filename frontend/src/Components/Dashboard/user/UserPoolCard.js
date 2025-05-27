@@ -19,14 +19,17 @@ export default function UserPoolCard ({ poolId, poolName, status }) {
 
                     {/* if status is pending - link to fill out bracket/start building picks object with pool id*/}
 
-                    <div className="absolute inset-0 z-10 bg-black/70 bg-opacity-50 backdrop-blur-md rounded-xl flex items-center justify-center">
-                        <div className="p-8 text-center">
-                            <h2 className="font-semibold text-xl mb-4">Submit a  bracket for <br></br> full access.</h2>
-                            <Link href="/Submit">
-                                <button className="mt-2 px-4 py-2 w-full font-medium bg-blue-600 rounded-lg hover:bg-white/80 hover:text-black">Submit Bracket</button>
-                            </Link>
+                    {status === 'pending' && (
+                        <div className="absolute inset-0 z-10 bg-black/70 bg-opacity-50 backdrop-blur-md rounded-xl flex items-center justify-center">
+                            <div className="p-8 text-center">
+                                <h2 className="font-semibold text-xl mb-4">Submit a  bracket for <br></br> full access.</h2>
+                                <Link href="/Submit">
+                                    <button className="mt-2 px-4 py-2 w-full font-medium bg-blue-600 rounded-lg hover:bg-white/80 hover:text-black">Submit Bracket</button>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    )}
+                    
            </div>
         </div>
     )
