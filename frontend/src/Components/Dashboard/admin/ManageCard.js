@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ManageCard({ poolId }) {
+export default function ManageCard({ poolId, activeMembers, pendingMembers }) {
 
     const handleRemoveMember = async () => {
         const response = await fetch('/api/pools/member/remove', {
@@ -22,18 +22,28 @@ export default function ManageCard({ poolId }) {
             });
     }
 
+    // render the members list - active and pending
+
     return (
         <div className="flex ">
         <div className="w-60 h-80 bg-white/10 p-4 ml-1 flex flex-col justify-between border border-white/30 rounded-xl">
             <div>
                 <h2 className="font-semibold mb-1">Members:</h2>
 
-                <div className="flex items-center justify-between border border-white/20 mb-4">
-                    <div className="flex my-2 p-1">
-                        <p>User Name</p>
-                    </div>
-                    <button className="px-2 mx-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                    onClick={handleRemoveMember}> - </button>
+                <div className="border border-white/20 mb-4">
+                    {activeMembers.length > 0 ? (
+                        activeMembers.map((member) => (
+                            <div className="flex items-center justify-between">
+                                <div className="flex my-2 p-1">
+                                    <p>User Name</p>
+                                </div>
+                                <button className="px-2 mx-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
+                                onClick={handleRemoveMember}> - </button>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No active members</p>
+                    )}
                 </div>
 
             </div>
@@ -43,16 +53,24 @@ export default function ManageCard({ poolId }) {
         <div className="w-60 h-80 bg-white/10 p-4 ml-1 flex flex-col justify-between border border-white/30 rounded-xl">
             <div>
                 <h2 className="font-semibold mb-1">Pending:</h2>
-                <div className="flex items-center justify-between border border-white/20 mb-4">
-                    <div className="flex my-2 p-1">
-                        <p>User Name</p>
-                    </div>
-                    <div>
-                        <button className="px-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                        onClick={handleRemoveMember}> - </button>
-                        <button className="px-2 mx-2 h-1/2 bg-green-600 rounded-full hover:bg-green-500"
-                        onClick={handleConfirmMember}> + </button>
-                    </div>
+                <div className="border border-white/20 mb-4">
+                    {pendingMembers.length > 0 ? (
+                        pendingMembers.map((member) => (
+                            <div className="flex items-center justify-between">
+                                <div className="flex my-2 p-1">
+                                    <p>{pendingMembers}</p>
+                                </div>
+                                <div>
+                                    <button className="px-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
+                                    onClick={handleRemoveMember}> - </button>
+                                    <button className="px-2 mx-2 h-1/2 bg-green-600 rounded-full hover:bg-green-500"
+                                    onClick={handleConfirmMember}> + </button>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <li className="my-2 p-1">No pending members</li>
+                    )}
                 </div>
 
             </div>
