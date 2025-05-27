@@ -1,75 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function ManageCard({ poolId, activeMembers, pendingMembers }) {
+export default function ManageCard({ poolId, activeMembers, pendingMembers, onRemoveMember, onConfirmMember }) {
 
-    const handleRemoveMember = async () => {
-        const response = await fetch('/api/pools/member/remove', {
-                method: "DELETE",
-                headers: { 
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ userId, poolId }),
-            });
-    }
-
-    const handleConfirmMember = async () => {
-         const response = await fetch('/api/pools/member/confirm', {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ poolId, targetUserId }),
-            });
-    }
+   
 
     // render the members list - active and pending
 
     return (
-        <div className="flex ">
-        <div className="w-60 h-80 bg-white/10 p-4 ml-1 flex flex-col justify-between border border-white/30 rounded-xl">
+        <div className="flex">
+        <div className="w-60 h-80 bg-white/10 px-2 py-4 flex flex-col justify-between border border-white/30 rounded-xl">
             <div>
-                <h2 className="font-semibold mb-1">Members:</h2>
+                <h2 className="font-semibold mb-1 px-1">Members:</h2>
 
-                <div className="border border-white/20 mb-4">
+                <div>
                     {activeMembers.length > 0 ? (
-                        activeMembers.map((member) => (
-                            <div className="flex items-center justify-between">
+                        activeMembers.map((activeMember) => (
+                            <div key={activeMember.user_id}  className="flex items-center justify-between hover:bg-white/10 rounded-lg">
                                 <div className="flex my-2 p-1">
-                                    <p>User Name</p>
+                                    <p>{activeMember.username}</p>
                                 </div>
                                 <button className="px-2 mx-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                                onClick={handleRemoveMember}> - </button>
+                                onClick={() => onRemoveMember(activeMember.user_id)}> - </button>
                             </div>
                         ))
                     ) : (
-                        <p>No active members</p>
+                        <p className="my-2 p-1 font-semibold text-center text-xl text-white/50">No active members</p>
                     )}
                 </div>
 
             </div>
-            <button className="px-4 py-2 w-full bg-red-500 rounded-xl font-bold hover:bg-red-600">DELETE POOL</button>
+            <button className="px-4 py-2 w-full bg-red-600/90 rounded-xl font-bold hover:bg-red-600">DELETE POOL</button>
         </div>
 
-        <div className="w-60 h-80 bg-white/10 p-4 ml-1 flex flex-col justify-between border border-white/30 rounded-xl">
+        <div className="w-60 h-80 bg-white/10 px-2 py-4  flex flex-col justify-between border border-white/30 rounded-xl">
             <div>
-                <h2 className="font-semibold mb-1">Pending:</h2>
-                <div className="border border-white/20 mb-4">
+                <h2 className="font-semibold mb-1 px-1">Pending:</h2>
+                <div>
                     {pendingMembers.length > 0 ? (
-                        pendingMembers.map((member) => (
-                            <div className="flex items-center justify-between">
+                        pendingMembers.map((pendingMember) => (
+                            <div key={pendingMember.user_id} className="flex items-center justify-between hover:bg-white/10 rounded-lg">
                                 <div className="flex my-2 p-1">
-                                    <p>{pendingMembers}</p>
+                                    <p>{pendingMember.username}</p>
                                 </div>
                                 <div>
                                     <button className="px-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                                    onClick={handleRemoveMember}> - </button>
+                                    onClick={onRemoveMember(pendingMember.user_id)}> - </button>
                                     <button className="px-2 mx-2 h-1/2 bg-green-600 rounded-full hover:bg-green-500"
-                                    onClick={handleConfirmMember}> + </button>
+                                    onClick={onConfirmMember(pendingMember.user_id)}> + </button>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <li className="my-2 p-1">No pending members</li>
+                        <div className="my-2 p-1 font-semibold text-center text-xl text-white/50">No pending members</div>
                     )}
                 </div>
 
