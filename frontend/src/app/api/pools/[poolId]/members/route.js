@@ -2,8 +2,9 @@ import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
 
-export async function GET(req, { params }) {
+export async function GET(req, context) {
   let db;
+  const { params } = context;
   const poolId  = params.poolId;
 
   try {
