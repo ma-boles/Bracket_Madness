@@ -4,7 +4,6 @@ CREATE TABLE pool_membership (
     user_id INT NOT NULL,
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     bracket_id INT DEFAULT NULL,
-    bracket_submitted BOOLEAN NOT NULL DEFAULT FALSE,
     `role` ENUM('member', 'admin') DEFAULT 'member',
     `status` ENUM('active', 'pending') DEFAULT 'pending',
     UNIQUE KEY unique_membership(pool_id, user_id),
