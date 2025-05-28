@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import { cookies } from "next/headers";
 
 
 // Handles POST (Log In)
@@ -49,8 +50,8 @@ export async function POST(req) {
         });
 
         // Set cookie in response
-        const response = NextResponse.json({ message: 'Login successful!', token});
-        response.cookies.set('token', token, {
+        const cookiesStore = await cookies();
+        cookiesStore.set('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'Strict',
@@ -58,7 +59,7 @@ export async function POST(req) {
             path: '/',
         });
 
-        return response;
+        return NextResponse.json({ message: 'Login successful!'}, { status: 200});
     } catch(error) {
         console.error('Login Error:', error);
         return NextResponse.json({ error: 'Internal Server Error'}, { status: 500 });
