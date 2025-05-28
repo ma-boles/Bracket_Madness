@@ -11,7 +11,7 @@ export async function POST(req) {
     const token = req.cookies.get('token')?.value;
     const decodedUser = verifyToken(token);
 
-    if(!decodedUser) {
+    if(!token || !decodedUser) {
       return NextResponse.json({ message: 'Unauthorized'}, { status: 401 });
     }
 
@@ -26,17 +26,32 @@ export async function POST(req) {
     const userToConfirm = isSelf? actingUserId : targetUserId; 
 
     if(!isSelf) {
-      const [rows] = await db.execute(
-        `SELECT role 
-        FROM pool_membership
-        WHERE user_id = ? AND pool_id = ?`,
-        [actingUserId, poolId]
-      );
+        // Allow admins and created_by to confirm other users
+        const [creatorRows] = await db.execute(
+            `SELECT created_by
+            FROM pools
+            WHERE id = ?`,
+            [poolId]
+        );
+        
+        const isCreator = creatorRows.length && creatorRows[0].created_by === actingUserId;
 
-      if(!rows.length || rows[0].role !== 'admin') {
-        return NextResponse.json({ message: "Forbidden: Only admins can confirm membership."}, { status: 403 });
-      }
+        // Check if user is admin in the pool
+        const [membershipRows] = await db.execute(
+            `SELECT role 
+            FROM pool_membership
+            WHERE user_id = ? AND pool_id = ?`,
+            [actingUserId, poolId]
+        );
+        
+        const isAdmin = membershipRows.length && membershipRows[0].role === 'admin';
+
+        console.log('isCreator:', isCreator, '| isAdmin:', isAdmin);
+
+        if(!isCreator && !isAdmin) {
+        return NextResponse.json({ message: "Forbidden - only admins allowed to remove other users" }, { status: 403 });
     }
+  }
 
     // Update membership status
     const [result] = await db.execute(

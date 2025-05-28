@@ -21,22 +21,38 @@ export async function DELETE(req) {
     }
 
     const { userId, poolId } = await req.json();
+    console.log('Removing userId:', userId, 'from poolId:', poolId);
+
     const actingUserId = decodedUser.userId;
     const isSelf = actingUserId === userId;
 
     if(!isSelf) {
         // Only admins can remove other users
-        const [rows] = await db.execute(
+        const [creatorRows] = await db.execute(
+            `SELECT created_by
+            FROM pools
+            WHERE id = ?`,
+            [poolId]
+        );
+        
+        const isCreator = creatorRows.length && creatorRows[0].created_by === actingUserId;
+
+        // Check if user is admin in the pool
+        const [membershipRows] = await db.execute(
             `SELECT role 
             FROM pool_membership
             WHERE user_id = ? AND pool_id = ?`,
             [actingUserId, poolId]
         );
+        
+        const isAdmin = membershipRows.length && membershipRows[0].role === 'admin';
 
-        if(!rows.length || rows[0].role !== 'admin') {
+        console.log('isCreator:', isCreator, '| isAdmin:', isAdmin);
+
+        if(!isCreator && !isAdmin) {
         return NextResponse.json({ message: "Forbidden - only admins allowed to remove other users" }, { status: 403 });
     }
-    }
+}
 
     // Allow for self=removal
     const [result] = await db.execute(
