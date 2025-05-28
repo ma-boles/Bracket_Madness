@@ -60,6 +60,11 @@ export default function UserView () {
                 </div>
             )}
 
+            <div>
+                {pools.length === 0 && (
+                    <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Joined</h1>
+                )}
+            </div>
 
             <div className="flex mt-2 flex-wrap">
                 {pools.map((pool) => (
