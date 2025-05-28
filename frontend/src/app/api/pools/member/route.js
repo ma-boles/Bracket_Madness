@@ -29,7 +29,8 @@ export async function GET(req) {
     const [rows] = await db.execute(
         `SELECT p.id,
             p.pool_name,
-            pm.status
+            pm.status,
+            pm.bracket_submitted
         FROM pools p
         JOIN pool_membership pm ON p.id = pm.pool_id
         WHERE user_id = ?`,
