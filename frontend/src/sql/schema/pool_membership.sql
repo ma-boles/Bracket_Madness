@@ -6,6 +6,7 @@ CREATE TABLE pool_membership (
     bracket_id INT DEFAULT NULL,
     `role` ENUM('member', 'admin') DEFAULT 'member',
     `status` ENUM('active', 'pending') DEFAULT 'pending',
+    bracket_submitted BOOLEAN NOT NULL DEFAULT FALSE,
     UNIQUE KEY unique_membership(pool_id, user_id),
     UNIQUE KEY unique_bracket(bracket_id),
     FOREIGN KEY (pool_id) REFERENCES pools(id),
