@@ -44,9 +44,9 @@ export default function ManageCard({ poolId, activeMembers, pendingMembers, onRe
                                 </div>
                                 <div>
                                     <button className="px-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                                    onClick={onRemoveMember(pendingMember.user_id)}> - </button>
+                                    onClick={() => onRemoveMember(pendingMember.user_id)}> - </button>
                                     <button className="px-2 mx-2 h-1/2 bg-green-600 rounded-full hover:bg-green-500"
-                                    onClick={onConfirmMember(pendingMember.user_id)}> + </button>
+                                    onClick={() => onConfirmMember(pendingMember.user_id)}> + </button>
                                 </div>
                             </div>
                         ))
