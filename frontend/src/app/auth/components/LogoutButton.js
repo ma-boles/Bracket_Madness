@@ -8,8 +8,8 @@ const LogoutButton = () => {
     const { logout } = useContext(AuthContext);
     const router = useRouter();
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = async () => {
+        await logout();
         toast.success('Logged out successfully!', {
             style: {
                 background: '#333',
