@@ -1,10 +1,7 @@
 import React, { useState } from "react";
+import DeletePoolButton from "./DeletePoolButton";
 
-export default function ManageCard({ poolId, activeMembers, pendingMembers, onRemoveMember, onConfirmMember }) {
-
-   
-
-    // render the members list - active and pending
+export default function ManageCard({ poolId, pool, activeMembers, pendingMembers, onRemoveMember, onConfirmMember }) {
 
     return (
         <div className="flex">
@@ -29,7 +26,7 @@ export default function ManageCard({ poolId, activeMembers, pendingMembers, onRe
                 </div>
 
             </div>
-            <button className="px-4 py-2 w-full bg-red-600/90 rounded-xl font-bold hover:bg-red-600">DELETE POOL</button>
+                <DeletePoolButton poolId={pool.id}/>
         </div>
 
         <div className="w-60 h-80 bg-white/10 px-2 py-4  flex flex-col justify-between border border-white/30 rounded-xl">
