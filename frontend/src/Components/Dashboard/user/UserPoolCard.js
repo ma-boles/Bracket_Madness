@@ -17,8 +17,6 @@ export default function UserPoolCard ({ poolId, poolName, status }) {
                     </div>
                     <button className="py-2 my-2 bg-red-600 w-full rounded-lg font-semibold hover:bg-white/80 hover:text-black">LEAVE POOL</button>
 
-                    {/* if status is pending - link to fill out bracket/start building picks object with pool id*/}
-
                     {status === 'pending' && (
                         <div className="absolute inset-0 z-10 bg-black/70 bg-opacity-50 backdrop-blur-md rounded-xl flex items-center justify-center">
                             <div className="p-8 text-center">
@@ -29,7 +27,6 @@ export default function UserPoolCard ({ poolId, poolName, status }) {
                             </div>
                         </div>
                     )}
-                    
            </div>
         </div>
     )
