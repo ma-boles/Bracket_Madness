@@ -40,15 +40,13 @@ export default function SignUp() {
                 body: JSON.stringify({ username, password }),
             });
 
-            const data = await res.json();
 
             if(res.ok) {
                 setMessage('Redirecting...');
                 setLogInSuccess(true);
-                setTimeout(() => {
-                    logIn(data.token);
-                    router.push('/Submit');
-                }, 1000);
+                await new Promise(resolve => setTimeout(resolve, 300));
+                await logIn();
+                router.push('/Submit');
             } else {
                 setMessage('Log in failed. Please try again.');
             }

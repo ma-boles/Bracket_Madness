@@ -29,15 +29,13 @@ export default function LogIn() {
                 body: JSON.stringify({ username, password }),
             });
 
-            const data = await res.json();
 
             if(res.ok) {
                 setMessage('Redirecting...');
                 setLogInSuccess(true);
-                setTimeout(() => {
-                    logIn(data.token);
-                    router.push('/Dashboard');
-                }, 1000);
+                await new Promise(resolve => setTimeout(resolve, 300));
+                await logIn();
+                router.push('/Dashboard');
             } else {
                 setMessage('Login failed. Please try again.');
                 setIsLoading(false);
