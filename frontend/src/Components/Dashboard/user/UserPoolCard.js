@@ -6,7 +6,7 @@ export default function UserPoolCard ({ poolId, poolName, status, bracketSubmitt
     return(
         <div className="w-80 h-80 my-2 mx-1 border-2 border-white/70 flex flex-col justify-between rounded-xl"> 
            <div className="p-2 bg-blue-600 rounded-t-xl">
-                <h1 className="font-bold">{poolName} {status} </h1>
+                <h1 className="font-bold">{poolName} </h1>
                 <h1><strong>ID</strong>: {poolId}</h1>
            </div>
 
