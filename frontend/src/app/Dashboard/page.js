@@ -82,7 +82,7 @@ export default function Dashboard() {
             </div>
 
             <div className="mx-2 py-4 border border-white bg-white/5 rounded-lg">
-                <div className="flex px-16 my-6">
+                <div className="flex m-4 pb-2">
                         <button className="ml-2 p-2 text-xl font-semibold border-b border-r border-white hover:bg-purple-900"
                         onClick={handleBracketsView}>My Brackets</button>
                         <button className="p-2 mx-2 text-xl font-semibold border-b border-r border-white hover:bg-yellow-400 hover:text-black "
