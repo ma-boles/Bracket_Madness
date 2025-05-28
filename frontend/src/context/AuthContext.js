@@ -37,25 +37,29 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
-    const logIn = (token) => {
-        if(typeof token !== 'string') {
-            console.error('Invald token:', token);
-            return;
+     const logIn = async () => {
+       try {
+        const res = await fetch('/api/auth/me');
+        if(!res.ok) {
+            throw new Error("Failed to fetch user");
         }
-
-        Cookies.set('token', token, { expires: 1, path: '/' });
-        try {
-        const decoded = jwtDecode(token);
-        setCurrentUser({ userId: decoded.userId });
-        } catch(error) {
-            console.error('Error decoding token:', error);
-            setCurrentUser(null);
-        }
+        const data = await res.json();
+        setCurrentUser({ userId: data.userId, username: data.username });
+       } catch(error) {
+        console.error('Error logging in:', error)
+        setCurrentUser(null);
+       }
     };
 
-    const logout = () => {
-        Cookies.remove('token');
+    const logout = async () => {
+        try {
+            await fetch('/api/auth/logout', { 
+                method: 'POST'
+            });
         setCurrentUser(null);
+        } catch(error) {
+            console.error('Logout fialed:', error);
+        }
     };
 
     return (
