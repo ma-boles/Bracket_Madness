@@ -15,7 +15,7 @@ export default function AdminView () {
     }, []);
 
     return (
-        <div className="p-2">
+        <div className="p-2 w-full">
 
             {/* is notification needed? confirmation now taking place in manage card */}
 
@@ -27,6 +27,12 @@ export default function AdminView () {
 
                 </div>
             </div> */}
+
+            <div>
+                {pools.length === 0 && (
+                    <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Created</h1>
+                )}
+            </div>
 
             <div className="flex flex-wrap">
                 {pools?.map((pool) => (
