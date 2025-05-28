@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
+import { cookies } from "next/headers";
 
 
 // Handle POST (Sign Up)
@@ -34,7 +35,17 @@ export async function POST(req) {
     await db.end();
 
     // Generate JWT Token
-    const token = jwt.sign({ username }, 'secret_key', { expiresIn: '1h'});
+    const token = jwt.sign({ userId: result.insertId, username}, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Set HTTP-only cookie
+    const cookiesStore = await cookies();
+    cookiesStore.set('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Lax',
+        maxAge: 3600,
+        path: '/',
+    });
 
     return NextResponse.json({ message:'User successfully created!'})
     
