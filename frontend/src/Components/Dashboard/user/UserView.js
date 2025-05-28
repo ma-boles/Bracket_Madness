@@ -68,6 +68,7 @@ export default function UserView () {
                         poolName={pool.pool_name}
                         poolId={pool.id}
                         status={pool.status}
+                        bracketSubmitted={pool.bracket_submitted}
                     />
                 ))}
             </div>
