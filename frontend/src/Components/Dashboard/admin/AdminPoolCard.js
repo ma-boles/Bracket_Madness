@@ -34,6 +34,7 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
         try {
             const response = await fetch('/api/pools/member/remove', {
                 method: "DELETE",
+                credentials: 'include',
                 headers: { 
                     "Content-Type": "application/json",
                 },
@@ -77,6 +78,7 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
 
          const response = await fetch('/api/pools/member/confirm', {
                 method: "POST",
+                credentials: 'include',
                 headers: { 
                     "Content-Type": "application/json",
                 },
