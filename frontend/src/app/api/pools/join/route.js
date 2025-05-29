@@ -1,10 +1,8 @@
-import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import { connectionToDatabase } from '@/db/db';
 import { NextResponse } from 'next/server';
+import { pool } from '@/db/db';
 require('dotenv').config();
 
-const db = await connectionToDatabase();
 // Utility function to verify JWT token
 const verifyToken = (token) => {
 
@@ -30,7 +28,7 @@ export async function POST(req) {
         console.log("💡 Token from cookie:", token);
 
 
-        // verify user token
+        // Verify user token
         const user = verifyToken(token);
 
         console.log("✅ User verified:", user);
@@ -41,13 +39,13 @@ export async function POST(req) {
         }
 
 
-        // find pool by name + code
-        const [poolRows] = await db.execute(`
-            SELECT id,
-            pool_name
+        // Find pool by name + code
+        const [poolRows] = await pool.execute(
+            `SELECT id,
+                pool_name
             FROM pools
-            WHERE pool_name = ? AND code = ?
-            `, [poolName, inviteCode]
+            WHERE pool_name = ? AND code = ?`, 
+            [poolName, inviteCode]
         );
 
         if(!poolRows.length) {
@@ -56,8 +54,8 @@ export async function POST(req) {
 
         console.log('Attempting membership check with:', poolRows[0]?.id, user?.userId);
 
-        // check if user is already a member fo the pool
-        const [membershipRows] = await db.execute(
+        // Check if user is already a member fo the pool
+        const [membershipRows] = await pool.execute(
             `SELECT * FROM pool_membership
              WHERE pool_id = ? AND user_id =?`,
         [poolRows[0].id, user.userId]);
@@ -66,8 +64,8 @@ export async function POST(req) {
         return NextResponse.json({ error: "Already a member of this pool"}, {status: 400 });
     }
 
-    // insert new membership
-    await db.execute(`
+    // Insert new membership
+    await pool.execute(`
         INSERT INTO pool_membership (pool_id, user_id, role, status)
         VALUES (?, ?, 'member', 'pending')`,
         [poolRows[0].id, user.userId]

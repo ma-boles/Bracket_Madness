@@ -1,8 +1,6 @@
-import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import { connectionToDatabase } from '@/db/db';
+import { pool } from '@/db/db';
 import { NextResponse } from 'next/server';
-require('dotenv').config();
 
 
 // Utility function to verify JWT token
@@ -23,11 +21,8 @@ const verifyToken = (token) => {
 };
 
 export async function POST(req) {
-    let db;
 
     try {
-        // Database connection
-        const db = await connectionToDatabase();
         const token = req.cookies.get('token')?.value; 
         const decodedUser = verifyToken(token); // Verify JWT token
 
@@ -40,7 +35,7 @@ export async function POST(req) {
         const userId = decodedUser.userId;
 
         // Prepare query to insert bracket data
-        const [result] = await db.execute ( `
+        const [result] = await pool.execute ( `
             INSERT INTO brackets (user_id, bracket_name)
             VALUES(?, ?)`, [userId, bracket_name || null]
         );
@@ -63,7 +58,5 @@ export async function POST(req) {
     } catch(error) {
         console.error('Error submitting bracket data:', error);
         return NextResponse.json({ success: false, message: 'Internal Server Error '});
-    } finally {
-        if (db) await db.end();
-    }
+     } 
 }

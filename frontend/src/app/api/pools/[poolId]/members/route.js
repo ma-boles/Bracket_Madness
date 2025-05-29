@@ -1,14 +1,13 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { pool } from "@/db/db";
 
 export async function GET(req, context) {
   const params = await context.params;
   const poolId = params.poolId;
 
   try {
-    const db = await connectionToDatabase();
     const cookiesStore = await cookies();
     const token = cookiesStore.get('token')?.value;
     const decodedUser = verifyToken(token);
@@ -18,8 +17,7 @@ export async function GET(req, context) {
     }
 
 
-
-    const [rows] = await db.execute(
+    const [rows] = await pool.execute(
         `SELECT
             pm.user_id,
             pm.status,

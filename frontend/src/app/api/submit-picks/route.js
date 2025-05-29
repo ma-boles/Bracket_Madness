@@ -1,7 +1,6 @@
-import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import { connectionToDatabase } from '@/db/db';
 import { NextResponse } from 'next/server';
+import { pool } from '@/db/db';
 require('dotenv').config();
 
 
@@ -23,11 +22,8 @@ const verifyToken = (token) => {
 };
 
 export async function POST(req) {
-    let db;
 
     try {
-        // Database connection
-        const db = await connectionToDatabase();
         const token = req.cookies.get('token')?.value; 
         const decodedUser = verifyToken(token); // Verify JWT token
 
@@ -49,15 +45,14 @@ export async function POST(req) {
         const userId = decodedUser.userId;
 
         // Prepare query to insert picks
-        const insertQuery = `
-            INSERT INTO predictions (user_id, bracket_id, game_id, winner_id)
+        const insertQuery = 
+            `INSERT INTO predictions (user_id, bracket_id, game_id, winner_id)
             VALUES(?, ?, ?, ?)
-            ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)`
-            ;
+            ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)`;
 
-            console.log('Query:', insertQuery);
-            console.log('Using userId:', userId);
-            console.log('Using bracket_id:', bracket_id);
+            // console.log('Query:', insertQuery);
+            // console.log('Using userId:', userId);
+            // console.log('Using bracket_id:', bracket_id);
             
         const insertPromises = Object.entries(bracketData).map(([gameId, team]) => {
             const winnerId = team?.winnerId;
@@ -69,7 +64,7 @@ export async function POST(req) {
 
             console.log(`Preparing to insert: user_id = ${userId}, bracket_id = ${bracket_id}, game_id = ${gameId}, winner_id = ${team.id}`);
            
-            return db.execute(insertQuery, [userId, bracket_id, gameId, winnerId]) // Ensure teams.id is being stored as winner_id
+            return pool.execute(insertQuery, [userId, bracket_id, gameId, winnerId]) // Ensure teams.id is being stored as winner_id
             .then(([result]) => {
                 console.log(`Inserted pick for game ${gameId}`);
                 return result;
@@ -87,8 +82,10 @@ export async function POST(req) {
             return NextResponse.json({ success: false, message: 'No picks were inserted'});
         }
 
-        const [rows] = await db.execute(
-            `SELECT * FROM predictions WHERE bracket_id = ?`, 
+        const [rows] = await pool.execute(
+            `SELECT * 
+            FROM predictions 
+            WHERE bracket_id = ?`, 
             [bracket_id]
         );
         console.log('Predictions now in DB:', rows.length);
@@ -98,7 +95,5 @@ export async function POST(req) {
     } catch(error) {
         console.error('Error submitting picks:', error);
         return NextResponse.json({ success: false, message: 'Internal Server Error '});
-    } finally {
-        if (db) await db.end();
-    }
+    } 
 }

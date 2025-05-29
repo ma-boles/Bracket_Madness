@@ -1,17 +1,16 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 export async function GET(req) {
   try {
-    const db = await connectionToDatabase();
     const token = req.cookies.get("token")?.value;
     const decoded = verifyToken(token);
     if (!decoded) return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
 
     const userId = decoded.userId;
 
-    const [rows] = await db.execute(
+    const [rows] = await pool.execute(
         `SELECT
             pm.pool_id,
             pm.status,

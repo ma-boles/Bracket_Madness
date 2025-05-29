@@ -1,13 +1,10 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 export async function POST(req) {
-  let db;
 
   try {
-    db = await connectionToDatabase();
-
     const token = req.cookies.get('token')?.value;
     const decodedUser = verifyToken(token);
 
@@ -27,7 +24,7 @@ export async function POST(req) {
 
     if(!isSelf) {
         // Allow admins and created_by to confirm other users
-        const [creatorRows] = await db.execute(
+        const [creatorRows] = await pool.execute(
             `SELECT created_by
             FROM pools
             WHERE id = ?`,
@@ -37,7 +34,7 @@ export async function POST(req) {
         const isCreator = creatorRows.length && creatorRows[0].created_by === actingUserId;
 
         // Check if user is admin in the pool
-        const [membershipRows] = await db.execute(
+        const [membershipRows] = await pool.execute(
             `SELECT role 
             FROM pool_membership
             WHERE user_id = ? AND pool_id = ?`,
@@ -54,7 +51,7 @@ export async function POST(req) {
   }
 
     // Update membership status
-    const [result] = await db.execute(
+    const [result] = await pool.execute(
         `UPDATE pool_membership
         SET status = 'active'
         WHERE user_id = ? AND pool_id =? AND status = 'pending'`,

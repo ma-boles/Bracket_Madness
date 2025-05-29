@@ -1,10 +1,7 @@
-import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import { connectionToDatabase } from '@/db/db';
 import { NextResponse } from 'next/server';
-require('dotenv').config();
+import { pool } from '@/db/db'
 
-const db = await connectionToDatabase();
 // Utility function to verify JWT token
 const verifyToken = (token) => {
 
@@ -41,13 +38,13 @@ export async function POST(req) {
     const inviteCode = generateCode();
 
     try {
-        const [poolResult] = await db.execute(`
+        const [poolResult] = await pool.execute(`
             INSERT INTO pools (pool_name, code, created_by) VALUES(?, ?, ?)`,
         [poolName, inviteCode, userId]);
 
         const poolId = poolResult.insertId;
 
-        await db.execute(`
+        await pool.execute(`
             INSERT INTO pool_membership (pool_id, user_id, role, status) VALUES(?, ?, 'admin', 'active')`,
         [poolId, userId]);
 

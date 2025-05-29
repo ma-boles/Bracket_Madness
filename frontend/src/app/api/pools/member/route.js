@@ -1,15 +1,11 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 export async function GET(req) {
-  let db;
 
   try {
     console.log('Incoming GET request to /api/pools/member');
-
-    db = await connectionToDatabase();
-    console.log('✅ Database connection established');
 
     const token = req.cookies.get('token')?.value;
     console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
@@ -26,7 +22,7 @@ export async function GET(req) {
     console.log(`👤 Decoded user ID: ${userId}`);
    
     // Fetch all pools created by this user
-    const [rows] = await db.execute(
+    const [rows] = await pool.execute(
         `SELECT p.id,
             p.pool_name,
             pm.status,

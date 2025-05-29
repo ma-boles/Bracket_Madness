@@ -1,17 +1,13 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { pool } from "@/db/db";
 
 export async function DELETE(req, context) {
     const params = await context.params;
     const poolId = params.poolId;
 
-    let db;
-
     try {
-        db = await connectionToDatabase();
-
         const cookiesStore = await cookies();
         const token = cookiesStore.get('token')?.value;
         const decodedUser = verifyToken(token);
@@ -29,7 +25,7 @@ export async function DELETE(req, context) {
         const { poolId } = await res.json();
 
         // Check if cting user is either creator or admin
-        const [rows] = await db.execute(
+        const [rows] = await pool.execute(
             `SELECT created_by
             FROM pools
             WHERE id = ?`,
@@ -42,7 +38,7 @@ export async function DELETE(req, context) {
 
         const poolCreatorId = rows[0].created_by;
 
-        const [membership] = await db.execute(
+        const [membership] = await pool.execute(
             `SELECT role
             FROM pool_membership
             WHERE user_id = ? AND pool_id = ?`,
@@ -60,13 +56,13 @@ export async function DELETE(req, context) {
         }
 
         // Delete all pool members
-        await db.execute(
+        await pool.execute(
             `DELETE FROM pool_membershi WHERE pool_id = ?`,
             [poolId]
         );
 
         // Delete pool
-        const [result] = await db.execute(
+        const [result] = await pool.execute(
             `DELETE FROM pools WHERE id = ?`,
             [poolId]
         );
@@ -80,7 +76,5 @@ export async function DELETE(req, context) {
     } catch (error) {
         console.error('Delete pool error:', error);
         return NextResponse.json({ message: 'Server error' }, { stauts: 500 });
-    } finally {
-        if (db) await db.end();
-    }
+    } 
 }

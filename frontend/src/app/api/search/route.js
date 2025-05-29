@@ -1,18 +1,17 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from "next/server";
+import { pool } from "@/db/db";
 
 export async function GET(req) {
-    let db = await connectionToDatabase();
 
     const { searchParams } = new URL(req.url);
-    const q= searchParams.get('q');
+    const q = searchParams.get('q');
 
     if(!q || q.trim().length < 2) {
         return NextResponse.json({ error: 'Query too short' }, { status: 400 });
     }
 
     try {
-        const [rows] = await db.execute(
+        const [rows] = await pool.execute(
             `SELECT id,
                 username
             FROM users

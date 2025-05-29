@@ -1,8 +1,7 @@
-import { connectionToDatabase } from '@/db/db';
 import { NextResponse } from 'next/server';
+import { pool } from '@/db/db'; 
 require('dotenv').config();
 
-const db = await connectionToDatabase();
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
@@ -12,11 +11,11 @@ export async function GET(req) {
         return NextResponse.json({ available: false}, { status:400 });
     }
 
-    const [rows] = await db.execute(
+    const [rows] = await pool.execute(
         `SELECT COUNT(*) AS count 
          FROM pools
          WHERE pool_name = ?`,
-    [name]);
+        [name]);
 
     const available = rows[0].count === 0;
 

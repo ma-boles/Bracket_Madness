@@ -1,9 +1,8 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 export async function POST(req) {
-  let db;
 
   try {
     const token = req.cookies.get('token')?.value;
@@ -15,9 +14,7 @@ export async function POST(req) {
 
     const { userId, poolId } = await req.json();
 
-    db = await connectionToDatabase();
-
-    const [result] = await db.execute(
+    const [result] = await pool.execute(
         `INSERT into pool_membership (user_id, pool_id, status, role)
         VALUES (?, ?, 'pending', 'member')
         ON DUPLICATE KEY UPDATE status = 'pending'`,

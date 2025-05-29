@@ -1,15 +1,10 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 export async function GET(req) {
-  let db;
-
   try {
     console.log('Incoming GET request to /api/brackets');
-
-    db = await connectionToDatabase();
-    console.log('✅ Database connection established');
 
     const token = req.cookies.get('token')?.value;
     console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
@@ -26,9 +21,8 @@ export async function GET(req) {
     console.log(`👤 Decoded user ID: ${userId}`);
 
 
-    const [rows] = await db.execute(
-      `
-      SELECT 
+    const [rows] = await pool.execute(
+      `SELECT 
         id AS bracket_id,
         bracket_name,
         total_points,
@@ -44,8 +38,7 @@ export async function GET(req) {
         total_predictions,
         accuracy_percentage
       FROM brackets 
-      WHERE user_id = ?
-      `,
+      WHERE user_id = ?`,
       [userId]
     );
 
@@ -55,8 +48,5 @@ export async function GET(req) {
   } catch (error) {
     console.error('GET /api/brackets error:', error);
     return NextResponse.json({ error: 'Failed to fetch brackets data' }, { status: 500 });
-  } finally {
-    if (db) await db.end?.();
-    console.log('🔚 Database connection closed');
-  }
+   } 
 }

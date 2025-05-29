@@ -1,13 +1,10 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 export async function POST(req) {
-  let db;
 
   try {
-    db = await connectionToDatabase();
-
     const token = req.cookies.get('token')?.value;
     const decodedUser = verifyToken(token);
 
@@ -23,7 +20,7 @@ export async function POST(req) {
     }
 
     // Update membership status
-    const [result] = await db.execute(
+    const [result] = await pool.execute(
         `UPDATE pool_membership
         SET status = 'active'
         WHERE user_id = ? AND pool_id =? AND status = 'pending'`,

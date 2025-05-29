@@ -1,14 +1,11 @@
-import { connectionToDatabase } from "@/db/db";
 import { NextResponse } from 'next/server';
 import { verifyToken } from "@/lib/auth";
+import { pool } from "@/db/db";
 
 
 export async function DELETE(req) {
-  let db;
 
   try {
-    db = await connectionToDatabase();
-
     const token = req.cookies.get('token')?.value;
     console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
 
@@ -28,7 +25,7 @@ export async function DELETE(req) {
 
     if(!isSelf) {
         // Only admins can remove other users
-        const [creatorRows] = await db.execute(
+        const [creatorRows] = await pool.execute(
             `SELECT created_by
             FROM pools
             WHERE id = ?`,
@@ -38,7 +35,7 @@ export async function DELETE(req) {
         const isCreator = creatorRows.length && creatorRows[0].created_by === actingUserId;
 
         // Check if user is admin in the pool
-        const [membershipRows] = await db.execute(
+        const [membershipRows] = await pool.execute(
             `SELECT role 
             FROM pool_membership
             WHERE user_id = ? AND pool_id = ?`,
@@ -55,13 +52,11 @@ export async function DELETE(req) {
 }
 
     // Allow for self=removal
-    const [result] = await db.execute(
+    const [result] = await pool.execute(
         `DELETE FROM pool_membership
         WHERE user_id = ? AND pool_id = ?`,
         [userId, poolId]
     );
-
-    await db.end();
 
     if(result.affectedRows === 0) {
         return NextResponse.json({ message: "No matching member found"}, { status: 404 });
