@@ -1,10 +1,10 @@
-'use cient'
 import React from "react";
+import toast from "react-hot-toast";
 
-export default function DeletePoolButton () {
+export default function DeletePoolButton ({ poolId }) {
     
     const handleDelete = async () => {
-        const confirmed = confirm('Are you sure you want to delte this pool? This action cannot be undone. ');
+        const confirmed = confirm('Are you sure you want to delete this pool? This action cannot be undone. ');
 
         if(!confirmed) return;
 
