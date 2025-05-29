@@ -22,8 +22,6 @@ export async function DELETE(req, context) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
 
-        const { poolId } = await res.json();
-
         // Check if cting user is either creator or admin
         const [rows] = await pool.execute(
             `SELECT created_by
@@ -57,7 +55,7 @@ export async function DELETE(req, context) {
 
         // Delete all pool members
         await pool.execute(
-            `DELETE FROM pool_membershi WHERE pool_id = ?`,
+            `DELETE FROM pool_membership WHERE pool_id = ?`,
             [poolId]
         );
 
