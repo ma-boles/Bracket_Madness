@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AdminPoolCard from "./AdminPoolCard";
 import ConfirmationCard from "./ConfirmationCard";
+import { usePools } from "@/context/PoolsContext";
 
 export default function AdminView () {
-    const [pools, setPools] = useState([]);
-
-    useEffect(() => {
-        const fetchPools  = async () => {
-            const res = await fetch('/api/pools/admin');
-            const data = await res.json();
-            setPools(data.pools);
-        };
-        fetchPools();
-    }, []);
+    const { pools } = usePools();
 
     return (
         <div className="p-2 w-full">
