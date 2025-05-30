@@ -1,12 +1,14 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import InviteCard from "./InviteCard";
 import UserPoolCard from "./UserPoolCard";
+import { usePools } from "@/context/PoolsContext";
+
 import ReminderCard from "./ReminderCard";
 
 export default function UserView () {
     const [invites, setInvites] = useState([]);
-    const [pools, setPools] = useState([]);
-
+    const { pools } = usePools();
 
     useEffect(() => {
         const fetchInvites = async () => {
@@ -29,14 +31,6 @@ export default function UserView () {
         }
     };
 
-    useEffect(() => {
-            const fetchPools  = async () => {
-                const res = await fetch('/api/pools/member');
-                const data = await res.json();
-                setPools(data.pools);
-            };
-            fetchPools();
-        }, []);
 
     return (
         <div className="w-full">
