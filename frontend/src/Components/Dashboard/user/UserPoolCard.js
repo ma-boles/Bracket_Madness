@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import LeavePoolButton from "./LeavePoolButton";
 
-export default function UserPoolCard ({ poolId, poolName, status, bracketSubmitted }) {
+export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
 
     return(
         <div className="w-80 h-80 my-2 mx-1 border-2 border-white/70 flex flex-col justify-between rounded-xl"> 
@@ -15,7 +16,7 @@ export default function UserPoolCard ({ poolId, poolName, status, bracketSubmitt
                         <h2 className="mb-2 underline text-lg text-center">Standings</h2>
                         <p className="text-lg indent-3">rank - username</p>
                     </div>
-                    <button className="py-2 my-2 bg-red-600 w-full rounded-lg font-semibold hover:bg-white/80 hover:text-black">LEAVE POOL</button>
+
 
                     {bracketSubmitted === 0 && (
                         <div className="absolute inset-0 z-10 bg-black/70 bg-opacity-50 backdrop-blur-md rounded-xl flex items-center justify-center">
@@ -28,6 +29,11 @@ export default function UserPoolCard ({ poolId, poolName, status, bracketSubmitt
                         </div>
                     )}
            </div>
+
+           <div className="px-2">
+                <LeavePoolButton poolId={poolId}/>
+           </div>
+
         </div>
     )
 }
