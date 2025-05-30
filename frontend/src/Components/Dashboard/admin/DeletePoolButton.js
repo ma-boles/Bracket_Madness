@@ -1,7 +1,10 @@
+'use client'
 import React from "react";
 import toast from "react-hot-toast";
+import { usePools } from "@/context/PoolsContext";
 
 export default function DeletePoolButton ({ poolId }) {
+    const { deletePool } = usePools();
     
     const handleDelete = async () => {
         const confirmed = confirm('Are you sure you want to delete this pool? This action cannot be undone. ');
@@ -26,12 +29,15 @@ export default function DeletePoolButton ({ poolId }) {
                 return; 
             }
 
-                toast.success('Pool deleted successfuly!', {
+                toast.success('Pool deleted successfully!', {
                     style: {
                     background: '#333',
                     color: '#fff'
                 }
             });
+
+            // Updates UI following removal
+            deletePool(poolId);
 
             // redirect?
 
@@ -47,9 +53,7 @@ export default function DeletePoolButton ({ poolId }) {
 };
 
     return (
-        <>
             <button className="px-4 py-2 w-full bg-red-600/90 rounded-xl font-bold hover:bg-red-600"
             onClick={handleDelete}>DELETE POOL</button>
-        </>
     )
 }
