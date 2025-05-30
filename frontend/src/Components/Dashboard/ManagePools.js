@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AdminView from "./admin/AdminView";
 import UserView from "./user/UserView";
+import { PoolsProvider } from "@/context/PoolsContext";
 
 export default function ManagePools() {
     const [adminView, setAdminView] = useState(false);
@@ -19,7 +20,7 @@ export default function ManagePools() {
     return(
         <div className="m-2 px-4 py-2 bg-black/10 rounded-xl">
             <div className="flex justify-end mb-2">
-                <div>
+                <div> 
                     <button 
                     className="px-4 py-2 w-30 bg-black/20 border border-white hover:bg-white/5 cursor-pointer rounded-l-lg"
                     onClick={handleAdmin}>Admin</button>
@@ -28,14 +29,15 @@ export default function ManagePools() {
                 </div>
             </div>
             <div className="flex flex-wrap">
-                {adminView && (
-                    <AdminView />
-                )}
+                <PoolsProvider>
+                    {adminView && (
+                        <AdminView />
+                    )}
 
-                {userView && (
-                    <UserView />
-                )}
-                
+                    {userView && (
+                        <UserView />
+                    )}
+                </PoolsProvider>
             </div>
         </div>
     )
