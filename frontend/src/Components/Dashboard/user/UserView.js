@@ -9,6 +9,7 @@ import ReminderCard from "./ReminderCard";
 export default function UserView () {
     const [invites, setInvites] = useState([]);
     const { pools } = usePools();
+    const { memberPools } = usePools();
 
     useEffect(() => {
         const fetchInvites = async () => {
@@ -55,13 +56,13 @@ export default function UserView () {
             )}
 
             <div>
-                {pools.length === 0 && (
+                {memberPools.length === 0 && (
                     <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Joined</h1>
                 )}
             </div>
 
             <div className="flex mt-2 flex-wrap">
-                {pools.map((pool) => (
+                {memberPools.map((pool) => (
                     <UserPoolCard 
                         key={pool.id}
                         poolName={pool.pool_name}
