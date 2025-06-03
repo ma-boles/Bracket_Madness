@@ -2,7 +2,19 @@ import React from "react";
 import Link from "next/link";
 import LeavePoolButton from "./LeavePoolButton";
 
+
 export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
+
+    const handleValidatePool = async () => {
+        const res = await fetch(`/api/pool-membership/validate?pool_id=${poolId}`);
+        const data = await res.json();
+
+        if(data.ok) {
+            router.push(`/brackets/new?pool_id=${poolId}`);
+        } else {
+            alert(data.message || 'You cannot fill out a bracket for this pool.');
+        }
+    };
 
     return(
         <div className="w-80 h-80 my-2 mx-1 border-2 border-white/70 flex flex-col justify-between rounded-xl"> 
@@ -23,7 +35,8 @@ export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
                             <div className="p-8 text-center">
                                 <h2 className="font-semibold text-xl mb-4">Submit a  bracket for <br></br> full access.</h2>
                                 <Link href="/Submit">
-                                    <button className="mt-2 px-4 py-2 w-full font-medium bg-blue-600 rounded-lg hover:bg-white/80 hover:text-black">Submit Bracket</button>
+                                    <button className="mt-2 px-4 py-2 w-full font-medium bg-blue-600 rounded-lg hover:bg-white/80 hover:text-black"
+                                    onClick={handleValidatePool}>Submit Bracket</button>
                                 </Link>
                             </div>
                         </div>
