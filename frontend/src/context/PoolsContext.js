@@ -3,49 +3,40 @@ import { createContext, useContext, useEffect, useState } from "react";
 const PoolsContext = createContext();
 
 export const PoolsProvider = ({ children }) => {
-    const [pools, setPools] = useState([]);
+    const [adminPools, setAdminPools] = useState([]);
+    const [memberPools, setMemberPools] = useState([]);
 
-    const fetchAdminPools  = async () => {
+    const fetchPools  = async () => {
         try {
-            const res = await fetch('/api/pools/admin');
-            const data = await res.json();
-                        setPools(data.pools || []);
+            const [adminRes, memberRes] = await Promise.all([
+                fetch('/api/pools/admin'),
+                fetch('/api/pools/member')
+            ]); 
+            const adminData = await adminRes.json();
+            const memberData = await memberRes.json();
+
+            setAdminPools(adminData.pools || []);
+            setMemberPools(memberData.pools || []);
         } catch (error) {
-            console.error('Failed to fetch admin pools:', error);
+            console.error('Error fetching pools:', error);
         }
     };
-
-    const fetchUserPools  = async () => {
-        try {
-            const res = await fetch('/api/pools/member');
-            const data = await res.json();
-            setPools(data.pools || []);
-        } catch(error) {
-            console.error('Failed to fetch user pools:', error)
-        }
-    };
-
 
     const deletePool = (poolId) => {
-        setPools(prev => prev.filter(pool => pool.id !== poolId));
+        setAdminPools(prev => prev.filter(pool => pool.id !== poolId));
     };
 
     const leavePool = (poolId) => {
-        setPools(prev => prev.filter(pool => pool.id !== poolId));
+        setMemberPools(prev => prev.filter(pool => pool.id !== poolId));
     };
 
 
     useEffect(() => {
-        fetchAdminPools();
+        fetchPools();
     }, [])
-
-    useEffect(() => {
-        fetchUserPools();
-    }, [])
-    
 
     return(
-        <PoolsContext.Provider value={{ pools, fetchAdminPools, deletePool, leavePool, fetchUserPools }} >
+        <PoolsContext.Provider value={{ memberPools, adminPools, deletePool, leavePool }} >
             {children}
         </PoolsContext.Provider>
     );
