@@ -4,7 +4,7 @@ import ConfirmationCard from "./ConfirmationCard";
 import { usePools } from "@/context/PoolsContext";
 
 export default function AdminView () {
-    const { pools } = usePools();
+    const { adminPools } = usePools();
 
     return (
         <div className="p-2 w-full">
@@ -21,13 +21,13 @@ export default function AdminView () {
             </div> */}
 
             <div>
-                {pools.length === 0 && (
+                {adminPools.length === 0 && (
                     <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Created</h1>
                 )}
             </div>
 
             <div className="flex flex-wrap">
-                {pools?.map((pool) => (
+                {adminPools?.map((pool) => (
                     <AdminPoolCard 
                         key={pool.id}
                         poolId={pool.id}
