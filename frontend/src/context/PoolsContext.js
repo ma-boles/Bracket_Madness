@@ -1,12 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const PoolsContext = createContext();
 
 export const PoolsProvider = ({ children }) => {
     const [adminPools, setAdminPools] = useState([]);
     const [memberPools, setMemberPools] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchPools  = async () => {
+        setIsLoading(true);
+
         try {
             const [adminRes, memberRes] = await Promise.all([
                 fetch('/api/pools/admin'),
@@ -18,7 +22,14 @@ export const PoolsProvider = ({ children }) => {
             setAdminPools(adminData.pools || []);
             setMemberPools(memberData.pools || []);
         } catch (error) {
-            console.error('Error fetching pools:', error);
+            toast.error('Error fetching pools.', {
+                    style: {
+                    background: '#333',
+                    color: '#fff'
+                    }})
+        }
+        finally {
+            setIsLoading(false);
         }
     };
 
@@ -36,7 +47,7 @@ export const PoolsProvider = ({ children }) => {
     }, [])
 
     return(
-        <PoolsContext.Provider value={{ memberPools, adminPools, deletePool, leavePool }} >
+        <PoolsContext.Provider value={{ memberPools, adminPools, deletePool, leavePool, isLoading }} >
             {children}
         </PoolsContext.Provider>
     );
