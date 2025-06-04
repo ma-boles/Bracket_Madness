@@ -3,6 +3,8 @@ import { BracketProvider } from "@/context/BracketContext";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
+import RouteLoaderWrapper from "@/context/RouteLoaderWrapper";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +22,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body
@@ -27,7 +30,9 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           <BracketProvider>
-            {children}
+            <RouteLoaderWrapper>
+              {children}
+            </RouteLoaderWrapper>
           </BracketProvider>
         </AuthProvider>
         <Toaster position="top-center" toastOptions={{ duration: 3000}}/>
