@@ -65,6 +65,19 @@ export const BracketProvider = ({ children }) => {
         return results.find(result => result.game_id === gameId);
     };
 
+    const resetBracket = () => {
+        setBracketData({});
+        setSelectedTeam(null);
+        setUserPicks({
+            spokane1: {},
+            birmingham2: {},
+            birmingham3: {},
+            spokane4: {},
+            firstfour: {},
+            championship: {}
+        });
+    };
+
     return(
         <BracketContext.Provider value={{
             userPicks,
@@ -72,7 +85,8 @@ export const BracketProvider = ({ children }) => {
             handlePick,
             handleSelection,
             getWinnerFromGame,
-            getWinnerFromResults
+            getWinnerFromResults,
+            resetBracket
         }}> 
         {children}
         </BracketContext.Provider>
