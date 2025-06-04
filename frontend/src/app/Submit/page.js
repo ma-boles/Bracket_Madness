@@ -9,6 +9,7 @@ import Birmingham2_Pick from "../../Components/birmingham2_pick";
 import Birmingham3_Pick from "../../Components/birmingham3_pick";
 import Spokane4_Pick from "../../Components/spokane4_pick";
 import { useBracket } from "@/context/BracketContext";
+import { useSearchParams } from "next/navigation";
 import AuthContext from "@/context/AuthContext";
 import ConfirmationModal from "@/Components/ConfirmationModal";
 import toast from "react-hot-toast";
@@ -16,12 +17,13 @@ import toast from "react-hot-toast";
 export default function Submit() {
     const { currentUser } = useContext(AuthContext);
     const [ isValidated, setIsValidated ] = useState(false);
-    const { bracketData } = useBracket();
+    const { bracketData, resetBracket } = useBracket();
     const [ showModal, setShowModal ] = useState(null);
     const [ bracketName, setBracketName] = useState("");
     const [ bracketId, setBracketId ] = useState(null);
     const [ picksValid, setPicksValid ] = useState(false);
-
+    const searchParams = useSearchParams();
+    const poolId = searchParams.get('pool_id');
 
     const handleLockIn = () => {
         setShowModal(true);
@@ -76,12 +78,14 @@ export default function Submit() {
         }
     };
 
-    const handleSubmitBracket = async () => {        
+
+    const handleSubmitBracket = async () => {
 
         const bracketPayload = {
-            bracket_name: bracketName || null
+            bracket_name: bracketName || null,
+            pool_id: poolId ? Number(poolId) : null
         };
-      
+
         try {
         const res = await fetch ("/api/brackets", {
             method: "POST",
@@ -102,16 +106,13 @@ export default function Submit() {
         setShowModal(false);
         setBracketName("");
 
-        // Now attach bracket_id to all picks and send them (if not already done)
-  // You said you're handling this separately — so trigger that here if needed
-  // Or store bracket_id for later use
-
     } catch(error) {
         console.error('Error creating bracket:', error)
     }
 };
 
-        const submitPicks = async () => {
+
+    const submitPicks = async () => {
 
             if(!currentUser) {
                 console.error('Error: User not logged in.');
@@ -134,6 +135,7 @@ export default function Submit() {
                     body: JSON.stringify({ 
                         bracketData,
                         bracket_id: bracketId,
+                        pool_id: poolId ? Number(poolId) : null
                     }),
                     credentials: 'include' // Ensure cookies are sent
                 });
@@ -142,13 +144,15 @@ export default function Submit() {
 
                 if(result.success) {
                     console.log('Bracket ID:', bracketId);
-                    toast.success('Bracket successfully sumitted', {
+                    toast.success('Bracket successfully submitted', {
                             style: {
                                 background: '#333',
                                 color: '#fff'
                             }
                     })
-                    // console.log('Bracket successfully submitted');
+
+                    resetBracket();
+
                 }  else {
                     toast.error('Submission failed. Please try again', {
                         style: {
@@ -157,8 +161,8 @@ export default function Submit() {
                             duration: 4000,
                         }
                 })
-                    // console.error('Submission failed:', result.message);
-                }
+
+            }
             } catch (error) {toast.success('Submission error. Please try again.', {
                 style: {
                     background: '#333',
@@ -166,8 +170,8 @@ export default function Submit() {
                     duration: 4000,
                 }
             })
-                // console.error('Submission error:', error);
-            }
+
+        }
         };
 
     return(
