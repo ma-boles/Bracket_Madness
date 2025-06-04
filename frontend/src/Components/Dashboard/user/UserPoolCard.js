@@ -1,16 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import LeavePoolButton from "./LeavePoolButton";
-
+import { useRouter } from "next/navigation";
 
 export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
+    const router = useRouter();
 
     const handleValidatePool = async () => {
         const res = await fetch(`/api/pool-membership/validate?pool_id=${poolId}`);
         const data = await res.json();
 
         if(data.ok) {
-            router.push(`/brackets/new?pool_id=${poolId}`);
+            router.push(`/Submit?pool_id=${poolId}`);
         } else {
             alert(data.message || 'You cannot fill out a bracket for this pool.');
         }
