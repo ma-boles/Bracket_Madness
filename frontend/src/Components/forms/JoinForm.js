@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { ButtonSpinner } from "../ui/ButtonSpinner";
 
 export default function JoinForm () {
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         poolName: "",
         inviteCode: ""
@@ -16,9 +18,12 @@ export default function JoinForm () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         if(!formData.poolName.trim() || !formData.inviteCode.trim()) {
-            toast.success('Please enter both pool name and invite code', {
+            setIsLoading(false);
+            
+            toast.error('Please enter both pool name and invite code', {
             style: {
                 background: '#333',
                 color: '#fff'
@@ -43,6 +48,8 @@ export default function JoinForm () {
             const data = await response.json();
 
             if(response.ok) {
+                setIsLoading(false);
+
                 toast.success(`Success! You joined pool: ${data.poolName}`, {
                     style: {
                         background: '#333',
@@ -50,14 +57,18 @@ export default function JoinForm () {
                     }});
                 // redirect ?
             } else {
-                toast.success(data.error || "Failed to join pool.", {
+                setIsLoading(false);
+
+                toast.error(data.error || "Failed to join pool.", {
                     style: {
                         background: '#333',
                         color: '#fff'
                     }});
             }
         } catch (error) {
-            toast.success('An unexpected error occurred', {
+            setIsLoading(false);
+            
+            toast.error('An unexpected error occurred', {
             style: {
                 background: '#333',
                 color: '#fff'
@@ -101,14 +112,22 @@ export default function JoinForm () {
 
             <div className="flex justify-between gap-4">
                 <button
-                type="submit"
-                className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded cursor-pointer"
-                >Join</button>
+                    type="submit"
+                    className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                    >
+                    {isLoading ? (
+                        <ButtonSpinner />
+                    ) : (
+                        'Join'
+                    )}
+
+                </button>
+
                 <button
-                type="button"
-                onClick={handleClear}
-                className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded cursor-pointer"
-                >
+                    type="button"
+                    onClick={handleClear}
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded cursor-pointer"
+                    >
                     Clear
                 </button>
             </div>

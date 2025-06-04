@@ -2,23 +2,20 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import Loader from "@/Components/ui/Loader";
+import toast from "react-hot-toast";
+import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
 
 
 export default function LogIn() {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] =useState('');
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ message, setMessage ] = useState('');
-    const [ logInSuccess, setLogInSuccess ] = useState(false);
     const { logIn } = useContext(AuthContext);
     const router = useRouter();
     
     const handleLogin = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
-        setMessage('');
 
         try {
             const res = await fetch("/api/auth/login", {
@@ -31,19 +28,22 @@ export default function LogIn() {
 
 
             if(res.ok) {
-                setMessage('Redirecting...');
-                setLogInSuccess(true);
-                await new Promise(resolve => setTimeout(resolve, 300));
                 await logIn();
                 router.push('/Dashboard');
             } else {
-                setMessage('Login failed. Please try again.');
+                toast.error('Login failed. Please try again.', {
+                    style: {
+                        background: '#333',
+                        color: '#fff'
+                    }});
                 setIsLoading(false);
             } 
         } catch(error) {
-            setMessage('An unexpeced error occurred.');
-            setIsLoading(false);
-        } finally {
+            toast.error('An unexpeced error occurred.', {
+                style: {
+                    background: '#333',
+                    color: '#fff'
+                }});
             setIsLoading(false);
         }
     };
@@ -51,19 +51,10 @@ export default function LogIn() {
     return (
         <>
         <div className="w-90 h-80 p-6 bg-black rounded-md flex flex-col items-center justify-center space-y-4">
-            <h1 className={`mb-12 text-white text-2xl ${message?.toLowerCase().includes('success') ? 'text-green-500' : 'text-white'}`}>
-                {isLoading
-                    ? 'Logging in...'
-                    : message || 'Log In'
-                    }
+            <h1 className='mb-12 text-white text-2xl font-semibold'>
+                Log In
                 </h1>
 
-            {isLoading ? (
-                <>
-                    <Loader />
-                </>
-                ) : !logInSuccess && (
-                <>
                 <div className="flex flex-col items-center space-y-2">
                     <input className="w-60 p-2 bg-[#000E14] border-1 border-white rounded-md" 
                     type="text"
@@ -78,13 +69,16 @@ export default function LogIn() {
                     placeholder="Password" />
                 </div>
 
-                <button className="w-60 bg-[#f2f2f2] text-black py-2 rounded-lg hover:bg-[#0081B8] hover:text-white transition duration-300 cursor-pointer"
-                onClick={handleLogin}
-                >Log In
-                </button>
-                </>
-             
-             )}
+                <button className="w-60 bg-[#0081B8] py-2 rounded-lg hover:bg-[#f2f2f2] hover:text-black transition duration-300 cursor-pointer"
+                    onClick={handleLogin}
+                    >
+                    {isLoading ? (
+                        <ButtonSpinner />
+                    ) : (
+                        'Log In'
+                    )}        
+                </button>     
+
         </div>
         </>
     )

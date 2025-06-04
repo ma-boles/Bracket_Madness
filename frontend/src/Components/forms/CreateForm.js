@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { ButtonSpinner } from "../ui/ButtonSpinner";
 
 export default function CreateForm ({ onSuccess }) {
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         poolName: "",
         inviteCode: ""
@@ -16,9 +18,13 @@ export default function CreateForm ({ onSuccess }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+
 
         if(!formData.poolName.trim()) {
-            toast.success('Poolname is required.', {
+            setIsLoading(false);
+
+            toast.error('Poolname is required.', {
             style: {
                 background: '#333',
                 color: '#fff'
@@ -32,7 +38,9 @@ export default function CreateForm ({ onSuccess }) {
             const { available } = await checkRes.json();
 
             if(!available) {
-                toast.success('Pool name already', {
+                setIsLoading(false);
+
+                toast.success('Pool name already taken', {
                     style: {
                         background: '#333',
                         color: '#fff'
@@ -51,9 +59,11 @@ export default function CreateForm ({ onSuccess }) {
             });
 
             if(!res.ok) {
+                setIsLoading(false);
+
                 const error = await res.json();
                 console.error("Error creating pool:", error);
-                toast.success('Could not create pool.', {
+                toast.error('Could not create pool.', {
                     style: {
                         background: '#333',
                         color: '#fff'
@@ -69,8 +79,10 @@ export default function CreateForm ({ onSuccess }) {
             }
         
         } catch (error) {
+            setIsLoading(false);
+            
             console.error("Failed to create pool", error);
-            toast.success('Something went wrong.', {
+            toast.error('Something went wrong.', {
             style: {
                 background: '#333',
                 color: '#fff'
@@ -103,7 +115,15 @@ export default function CreateForm ({ onSuccess }) {
                 <button
                 type="submit"
                 className="flex-1 bg-yellow-400 hover:bg-yellow-500 font-bold py-2 px-4 rounded"
-                >Create</button>
+                >
+                    {isLoading ? (
+                        <ButtonSpinner />
+                    ) : (
+                        'Create'
+                    )}
+
+                    </button>
+
                 <button
                 type="button"
                 onClick={handleClear}
