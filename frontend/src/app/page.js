@@ -1,9 +1,24 @@
-require('dotenv').config();
+'use client'
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+  const [isLoadingBracket, setIsLoadingBracket] = useState(false);
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false);
+  const router = useRouter();
+
+  const handleLoginClick = async (e) => {
+    setIsLoadingLogin(true);
+    await router.push('/auth');
+  };
+
+  const handleBracketClick = async (e) => {
+    setIsLoadingBracket(true);
+    await router.push('/Results');
+  };
+
   return (
     <div className="bg-black items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <main className="items-center sm:items-start">
@@ -17,17 +32,29 @@ export default function Home() {
         />
           <div className="flex">
 
-            <Link href="/auth"
+            <button
               className="
-              rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2">
-              Log In / Sign Up
-            </Link>
+              rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2"
+              onClick={handleLoginClick}
+              disabled={isLoadingLogin}>
+                {isLoadingLogin ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  'Log In / Sign Up'
+                )}
+            </button>
 
-            <Link href="/Results"
+             <button
               className="
-              rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2">
-              Bracket
-            </Link>
+              rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2"
+              onClick={handleBracketClick}
+              disabled={isLoadingBracket}>
+                {isLoadingBracket ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  'Bracket'
+                )}
+            </button>
           </div>
         </div>
 
