@@ -5,11 +5,12 @@ import UserPoolCard from "./UserPoolCard";
 import { usePools } from "@/context/PoolsContext";
 
 import ReminderCard from "./ReminderCard";
+import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
 
 export default function UserView () {
     const [invites, setInvites] = useState([]);
-    const { pools } = usePools();
-    const { memberPools } = usePools();
+    const { memberPools, isLoading } = usePools();
+    
 
     useEffect(() => {
         const fetchInvites = async () => {
@@ -56,23 +57,28 @@ export default function UserView () {
             )}
 
             <div>
-                {memberPools.length === 0 && (
-                    <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Joined</h1>
-                )}
-            </div>
+                {isLoading ? (
+                        <div className="flex flex-col space-y-4 items-center justify-center mt-10">
+                            <div className={`w-80 h-80 bg-gray-800 animate-pulse rounded-lg transition-opacity duration-500 ease-out
+                            ${isLoading ? 'opacity-100' : 'opacity-0'}`} />
+                        </div>
 
-            <div className="flex mt-2 flex-wrap">
-                {memberPools.map((pool) => (
-                    <UserPoolCard 
-                        key={pool.id}
-                        poolName={pool.pool_name}
-                        poolId={pool.id}
-                        status={pool.status}
-                        bracketSubmitted={pool.bracket_submitted}
-                    />
-                ))}
-            </div>
+                ) : memberPools.length === 0 ? (
+                        <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Joined</h1>
+                ) : (
+                    <div className="flex mt-2 flex-wrap">
+                        {memberPools.map((pool) => (
+                            <UserPoolCard 
+                                key={pool.id}
+                                poolName={pool.pool_name}
+                                poolId={pool.id}
+                                status={pool.status}
+                                bracketSubmitted={pool.bracket_submitted}
+                            />
+                        ))}
+                    </div>
+            )}
         </div>
-
+        </div>
     )
 }
