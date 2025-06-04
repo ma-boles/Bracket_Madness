@@ -33,7 +33,7 @@ export async function POST(req) {
         }
 
         // Get picks data from request body
-        const { bracketData, bracket_id } = await req.json();
+        const { bracketData, bracket_id, pool_id } = await req.json();
 
         // console.log('Received bracketData:', bracketData);
         console.log('Received bracketId:', bracket_id);
@@ -82,6 +82,19 @@ export async function POST(req) {
             return NextResponse.json({ success: false, message: 'No picks were inserted'});
         }
 
+        // Update brackets submitted flag
+        if(pool_id) {
+            await pool.execute(
+                `UPDATE pool_membership
+                SET bracket_submitted = true
+                WHERE user_id = ? AND pool_id = ?`,
+            [userId, pool_id]
+        );
+        console.log(`Flagged bracket_submitted for user: ${userId} in pool: ${pool_id}`);
+        
+    }
+    
+    // Double checking if all picks were submitted
         const [rows] = await pool.execute(
             `SELECT * 
             FROM predictions 
