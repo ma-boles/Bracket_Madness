@@ -21,7 +21,7 @@ export async function GET(req) {
     console.log(`👤 Decoded user ID: ${userId}`);
 
 
-    const [rows] = await pool.execute(
+    const [globalBrackets] = await pool.execute(
       `SELECT 
         id AS bracket_id,
         bracket_name,
@@ -37,14 +37,39 @@ export async function GET(req) {
         correct_predictions,
         total_predictions,
         accuracy_percentage
-      FROM brackets 
-      WHERE user_id = ?`,
+      FROM brackets b
+      WHERE user_id = ? AND pool_id IS NULL`,
       [userId]
     );
 
-    console.log('📦 Brackets fetched from DB:', rows);
+    console.log('📦 Global brackets fetched from DB:', globalBrackets);
 
-    return NextResponse.json(rows);
+      const [poolBrackets] = await pool.execute(
+      `SELECT 
+        b.id AS bracket_id,
+        b.bracket_name,
+        b.total_points,
+        b.first_four_points,
+        b.first_round_points,
+        b.second_round_points,
+        b.sweet16_points,
+        b.elite8_points,
+        b.final4_points,
+        b.championship_points,
+        b.pool_rank,
+        b.correct_predictions,
+        b.total_predictions,
+        b.accuracy_percentage,
+        p.pool_name
+      FROM brackets b
+      JOIN pools p ON p.id = b.pool_id
+      WHERE b.user_id = ? AND b.pool_id IS NOT NULL`,
+      [userId]
+    );
+
+      console.log('📦 Pool brackets fetched from DB:', poolBrackets);
+
+    return NextResponse.json({ globalBrackets, poolBrackets });
   } catch (error) {
     console.error('GET /api/brackets error:', error);
     return NextResponse.json({ error: 'Failed to fetch brackets data' }, { status: 500 });
