@@ -6,10 +6,14 @@ import LogoutButton from "@/app/auth/components/LogoutButton";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+
 
 export default function NavBar () {
     const router = useRouter();
     const { currentUser } = useAuth();
+
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
 
  
     const submitAlert = () => {
@@ -27,9 +31,13 @@ export default function NavBar () {
         router.push('/auth');
     };
 
+    const toggleUserMenu = () => {
+        setUserMenuOpen(!userMenuOpen);
+    };
+
     return(
         <>
-            <div className="flex mt-2 rounded-xl justify-center items-center" >
+            <div className="flex mt-2 px-2 rounded-xl justify-center items-center" >
                 <div className="w-1/5 h-15 flex justify-center items-center">
                     <Image
                         src="/BM_logo4.jpg"
@@ -40,16 +48,8 @@ export default function NavBar () {
                     />
                 </div>
 
-                {/* Nav Buttons Section*/}
                 <div className="flex flex-grow text-lg"> 
-                    {currentUser && (
-                        <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
-                            hover:bg-blue-600 rounded-lg">
-                            <Link href="/Dashboard">
-                                <p>Dashboard</p>
-                            </Link>
-                        </div>
-                    )}
+
                     <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
                             hover:bg-blue-600 rounded-lg">
                         <Link href="/Results">
@@ -68,27 +68,72 @@ export default function NavBar () {
                             <p>Pool</p>
                         </Link>
                     </div>
-
-                    <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 hover:bg-white/20 rounded-lg">
-                        <ol className="px-1">
-                        <li> 
-                            <details>
-                            <summary>Leader Board</summary>
-                            <ul className="bg-base-100 p-2">
-                                <li>user1</li>
-                                <li>user2</li>
-                                <li>user3</li>
-                            </ul>
-                            </details>
-                        </li>
-                        </ol>
-                    </div>
                 </div>
-                <div className="flex w-1/6 p-2 justify-end items-center">
+
+                <div className="flex w-1/5 p-2 justify-end items-center">
                     {currentUser ? (
-                        <LogoutButton />
+                        <>
+                        <div className="flex w-full px-2 justify-end">
+                        {/* User Icon Button */}
+                            <button
+                                onClick={toggleUserMenu}
+                                aria-haspopup="true"
+                                aria-expanded={userMenuOpen}
+                                className="p-2 rounded-full bg-white/10 hover:bg-blue-600 transition"
+                                title="User Menu"
+                            >
+
+                               <UserCircleIcon className="w-7 h-7 text-white cursor-pointer" />
+
+                            </button>
+                        </div>
+                        {/* Dropdown menu */}
+                        {userMenuOpen && (
+                            <div
+                                className="absolute right-0 top-15 mt-2 p-1 w-48 bg-black/70 rounded-md shadow-lg py-1 z-50"
+                                role="menu"
+                                aria-orientation="vertical"
+                                aria-labelledby="user-menu"
+                                >
+                                <Link href="/Dashboard">
+                                    <button
+                                    className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                                    role="menuitem"
+                                    onClick={() => setUserMenuOpen(false)}
+                                    >
+                                        <div className="mx-4">
+                                            <HomeIcon className="w-6 h-6 text-white" /> 
+                                        </div>
+                                        Dashboard
+
+                                    </button>
+                                </Link>
+
+                                <button
+                                    onClick={() => {
+                                    // TODO: Replace with modal trigger for leaderboard or navigate to leaderboard page
+                                    alert("Open Top 3 Leaderboard modal (to be implemented)");
+                                    setUserMenuOpen(false);
+                                    }}
+                                    className="flex items-center  w-full h-10 my-1 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                                    role="menuitem"
+                                >
+                                    <div className="mx-4">
+                                        <TrophyIcon className="w-6 h-6 text-white" /> 
+                                    </div>
+                                    Leaderboard
+                                </button>
+                                    <LogoutButton />
+                                </div>
+                        )}
+                        </>
                     ) : (
-                        <button className="w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogIn}>Log In</button>
+                        <button
+                            className="w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md"
+                            onClick={handleLogIn}
+                            >
+                            Log In
+                        </button>
                     )}
                     
                 </div>
