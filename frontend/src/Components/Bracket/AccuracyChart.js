@@ -8,7 +8,11 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const AccuracyChart = ({ correct, total}) => {
+const AccuracyChart = ({ correct, total, usePoolDisplay }) => {
+    const backgroundColors = usePoolDisplay 
+        ? ['#facc15', '#c084fc']
+        : ['#6b21a8', '#e9d5ff']; 
+
     const incorrect = total - correct;
 
     const data = {
@@ -16,7 +20,7 @@ const AccuracyChart = ({ correct, total}) => {
         datasets: [
             {
                 data: [correct, incorrect],
-                backgroundColor: ['#6b21a8', '#e9d5ff'],
+                backgroundColor: backgroundColors,
                 borderWidth: 1,
             },
         ],

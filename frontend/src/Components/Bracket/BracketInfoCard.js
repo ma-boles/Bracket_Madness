@@ -2,7 +2,7 @@ import React from "react";
 import AccuracyChart from "./AccuracyChart";
 import BarChart from "./BarChart";
 
-export default function BracketInfoCard({ bracketInfoData }) {
+export default function BracketInfoCard({ bracketInfoData, usePoolDisplay }) {
 
     const filtered = bracketInfoData.filter(item => item.round && typeof item.round_points !== 'undefined' );
 
@@ -21,10 +21,10 @@ export default function BracketInfoCard({ bracketInfoData }) {
         </div>
         <div className="flex justify-between">
             <div className="flex items-center justify-center w-1/2">
-                <AccuracyChart correct={correct} total={total}/>
+                <AccuracyChart correct={correct} total={total} usePoolDisplay={usePoolDisplay} />
             </div>
             <div className="w-1/2">
-                <BarChart labels={labels} data={points}/>
+                <BarChart labels={labels} data={points} usePoolDisplay={usePoolDisplay} />
             </div>
         </div>
     </div>   

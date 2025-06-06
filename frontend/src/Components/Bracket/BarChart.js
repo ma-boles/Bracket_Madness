@@ -16,14 +16,17 @@ ChartJS.register(
   Legend
 );
 
-export default function BarChart({ labels, data }) {
+export default function BarChart({ labels, data, usePoolDisplay }) {
+    const barColor = usePoolDisplay ? '#facc15' : '#c084fc'; 
+    console.log("usePoolDisplay in AccuracyChart:", usePoolDisplay);
+
     const chartData = {
         labels,
         datasets: [
             {
                 label: 'Points per Round',
                 data,
-                backgroundColor: '#c084fc',
+                backgroundColor: barColor,
                 borderRadius: 6,
                 borderSkipped: false,
             },
