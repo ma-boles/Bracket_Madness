@@ -18,8 +18,7 @@ export default function AdminView () {
             </div> */}
                 {isLoading ? (
                     <div className="flex flex-col space-y-4 items-center justify-center mt-10">
-                        <div
-                            className={`
+                        <div className={`
                             w-64 h-24 bg-gray-800 animate-pulse rounded-lg
                             transition-opacity duration-500 ease-out
                             ${isLoading ? 'opacity-100' : 'opacity-0'}
@@ -45,23 +44,3 @@ export default function AdminView () {
                 </div>
             );
         };
-
-
-//             <div>
-//                 {adminPools.length === 0 && (
-//                     <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Created</h1>
-//                 )}
-//             </div>
-
-//             <div className="flex flex-wrap">
-//                 {adminPools?.map((pool) => (
-//                     <AdminPoolCard 
-//                         key={pool.id}
-//                         poolId={pool.id}
-//                         poolName={pool.pool_name}
-//                         inviteCode={pool.code}/>
-//                 ))}
-//             </div>
-//         </div>
-//     )
-// }
