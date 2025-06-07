@@ -17,6 +17,6 @@ export async function GET(req) {
         return NextResponse.json({ data: rows });
     } catch(error) {
         console.error('Error fetching bracket rank data:', error)
-        return NextResponse.json({ error: 'Failed to fetch brackets rank data'}, { status: 500 });
+        return NextResponse.json({ error: 'Failed to fetch bracket rank data'}, { status: 500 });
     } 
 }
