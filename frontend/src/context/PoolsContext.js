@@ -46,8 +46,23 @@ export const PoolsProvider = ({ children }) => {
         fetchPools();
     }, [])
 
+    const fetchPoolBrackets = async (poolId) => {
+        try {
+            const res = await fetch(`/api/pools/${poolId}/brackets`, {
+                method: 'GET',
+                credentials: 'include',
+            });
+            if(!res.ok) throw new Error('Failed to fetch');
+            const { data } = await res.json();
+            return data;
+        } catch(err) {
+            console.error('Fetch error:', err);
+            return [];
+        }
+    };
+
     return(
-        <PoolsContext.Provider value={{ memberPools, adminPools, deletePool, leavePool, isLoading }} >
+        <PoolsContext.Provider value={{ memberPools, adminPools, deletePool, leavePool, isLoading, fetchPoolBrackets }} >
             {children}
         </PoolsContext.Provider>
     );
