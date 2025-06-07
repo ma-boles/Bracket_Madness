@@ -7,15 +7,14 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
-
+import LeaderboardModal from "./LeaderboardModal";
 
 export default function NavBar () {
     const router = useRouter();
     const { currentUser } = useAuth();
-
+    const [showModal,setShowModal] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
 
- 
     const submitAlert = () => {
         if(!currentUser) {
             toast.error('To submit a bracket, please Log In.',{
@@ -111,9 +110,8 @@ export default function NavBar () {
 
                                 <button
                                     onClick={() => {
-                                    // TODO: Replace with modal trigger for leaderboard or navigate to leaderboard page
-                                    alert("Open Top 3 Leaderboard modal (to be implemented)");
-                                    setUserMenuOpen(false);
+                                        setShowModal(true);
+                                        setUserMenuOpen(false);
                                     }}
                                     className="flex items-center  w-full h-10 my-1 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
                                     role="menuitem"
@@ -123,6 +121,8 @@ export default function NavBar () {
                                     </div>
                                     Leaderboard
                                 </button>
+
+                                   
                                     <LogoutButton />
                                 </div>
                         )}
@@ -135,7 +135,11 @@ export default function NavBar () {
                             Log In
                         </button>
                     )}
-                    
+                        <LeaderboardModal 
+                            isOpen={showModal}
+                            onClose={() => setShowModal(false)}
+                            />
+
                 </div>
             </div>
         </>
