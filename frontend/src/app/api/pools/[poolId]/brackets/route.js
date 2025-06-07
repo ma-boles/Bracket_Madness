@@ -3,9 +3,9 @@ import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { pool } from "@/db/db";
 
-export async function GET(req, context) {
-  const params = await context.params;
-  const poolId = params.poolId;
+export async function GET(req, { params }) {
+    const poolId = params.poolId;
+    console.log('Hit pool brackets API');
 
     try {
         const cookiesStore = await cookies();
