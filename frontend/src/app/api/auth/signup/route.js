@@ -1,42 +1,54 @@
 import { NextResponse } from "next/server";
-import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import { cookies } from "next/headers";
 import { pool } from "@/db/db";
 
 
-// Handle POST (Sign Up)
 export async function POST(req) {
-    // let db;
 
     try {
-    const { username, password } = await req.json();
+    const { email, username, password } = await req.json();
 
-    console.log("Received request:", { username, password });
+    console.log("Received request:", { email, username });
 
-    // Database connection
-    // db = await mysql.createConnection({
-    //     host: process.env.DB_HOST,
-    //     user: process.env.DB_USER,
-    //     password: process.env.DB_PASSWORD,
-    //     database: process.env.DB_NAME
-    // });
+    if(!email || !username || !password) {
+        return NextResponse.json({ error: "Missing required fields"}, { status: 400 });
+    }
+
+    if(!email.includes('@')) {
+        return NextResponse.json({ error: "Invalid email address "}, { status: 400 });
+    }
+    if(password.length < 8) {
+        return NextResponse.json({ error: "Password must be at least 8 characters"}, { status: 400 });
+    }
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+
+    // Check for exitisting username + email
+    const [existing] = await pool.execute(
+        `SELECT id 
+        FROM users
+        WHERE email = ? OR username = ?`,
+        [email, username]
+    )
+
+    if (existing.length > 0) {
+        return NextResponse.json({ error: "Email or username already exists"}, { status: 409 });
+    }
+
+
     // Insert into MySQL
     const[result] = await pool.execute(
-        'INSERT INTO users(username, password) VALUES (?, ?)',
-        [username, hashedPassword]
+        'INSERT INTO users(email, username, password) VALUES (?, ?, ?)',
+        [email, username, hashedPassword]
     );
 
-    // Close connection after successful query
-    // await db.end();
 
     // Generate JWT Token
-    const token = jwt.sign({ userId: result.insertId, username}, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: result.insertId, username, email}, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // Set HTTP-only cookie
     const cookiesStore = await cookies();
@@ -52,11 +64,6 @@ export async function POST(req) {
     
     } catch (error) {
         console.error(error);
-
-        // if(db) {
-        //     await db.end();
-        // }
-
         return NextResponse.json({error: "Internal Server Error"}, { status: 500 });
     }
 }
