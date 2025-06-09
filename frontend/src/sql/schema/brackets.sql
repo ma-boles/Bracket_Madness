@@ -12,6 +12,7 @@ CREATE TABLE brackets(
     championship_points INT NOT NULL DEFAULT 0,
     total_points INT NOT NULL DEFAULT 0,
     rank INT NOT NULL DEFAULT 0,
+    pool_rank INT DEFAULT NULL,
     total_predictions INT NOT NULL DEFAULT 0,
     correct_predictions INT NOT NULL DEFAULT 0,
     accuracy_percentage DECIMAL(5,2) NOT NULL DEFAULT 0,
