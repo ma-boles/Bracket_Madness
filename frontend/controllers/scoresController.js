@@ -1,15 +1,13 @@
-const { connectionToDatabase } = require("../src/db/db");
 const { getStoredGames, matchStoredGamesWithEspn } = require('../utils/gameUtils');
 const fetchPastScores = require('../scripts/fetchPastScores');
 const fetchScores = require('../scripts/fetchScores');
 const updateDatabase = require('../scripts/updateDatabase');
-const { connection } = require("next/server");
 const propogateWinners = require("../scripts/propogateWinners");
 const scoring = require("../scripts/scoring");
+const updateRank = require("../scripts/updateRank");
 
 
 async function runScoresSync(mode, dryRun) {
-  const db = await connectionToDatabase();
   console.log('Dry run inside runScoresSync:', dryRun);
 
   try {
@@ -32,6 +30,7 @@ async function runScoresSync(mode, dryRun) {
             // Proceed with updating the DB + propogation
             await updateDatabase(gameInfo); // Fetch results
             await scoring();// Score the predictions
+            await updateRank(); // Update global + pool rank
             await propogateWinners(gameInfo); // Update your progress
             }
         } else {
@@ -45,10 +44,7 @@ async function runScoresSync(mode, dryRun) {
 
   } catch(error) {
     console.error('Error running score sync:', error.message);
-  } finally {
-    await db.end();
-    console.log('Database connection closed.');
-  }
+  } 
 }
 
 module.exports = { runScoresSync };
