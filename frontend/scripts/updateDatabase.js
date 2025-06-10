@@ -1,4 +1,5 @@
-import { pool } from '../src/db/db';
+const { pool } = require('../src/db/db');
+
 
 // Function to update database
 const updateDatabase = async (gameInfo) => {  
