@@ -1,10 +1,9 @@
-const { connectionToDatabase } = require('../src/db/db');
+import { pool } from '../src/db/db';
 
 const updateRank = async () => {
-    const db = await connectionToDatabase();
 
     try {
-        const [rows] = await db.execute(`
+        const [rows] = await pool.execute(`
             SELECT 
                 id,
                 total_points
@@ -28,7 +27,7 @@ const updateRank = async () => {
                     ties = 0;
                 }
 
-                await db.execute(`
+                await pool.execute(`
                     UPDATE brackets
                     SET \`rank\` = ?
                     WHERE id = ?
@@ -42,9 +41,7 @@ const updateRank = async () => {
 
     } catch (error) {
         console.error('Error ranking brackets:', error);
-    } finally {
-        await db.end();
-    }
+    } 
 };
 
 updateRank();

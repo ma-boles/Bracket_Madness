@@ -1,11 +1,10 @@
-const { connectionToDatabase } = require("../src/db/db");
+import { pool } from "../src/db/db";
 
 
 const propogateWinners = async() => {
-    const db = await connectionToDatabase();
 
     try {
-        const [results] = await db.execute(`
+        const [results] = await pool.execute(`
             UPDATE results as r1
             JOIN results AS r2 ON r1.next_game_id = r2.game_id
             SET
@@ -18,9 +17,7 @@ const propogateWinners = async() => {
         console.log('Winner propogation completed successfully');
     } catch(error) {
         console.error('Error propogating winners:', error);
-    } finally {
-        await db.end();
-    }
+    } 
 };
 
 module.exports = propogateWinners;

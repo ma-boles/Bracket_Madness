@@ -1,11 +1,8 @@
 const axios = require("axios");
-import { getStoredGames } from "../utils/gameUtils";
-import { updateDatabase } from "./updateDatabase";
 
 // Function to fetch scores from ESPN API
 const fetchScores = async () => {
   try {
-    const storedGames = await getStoredGames();
 
     const url =
       "https://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard?groups=50";
@@ -20,7 +17,6 @@ const fetchScores = async () => {
       })),
     }));
 
-    await updateDatabase(storedGames, espnGames);
 
     return espnGames;
   } catch (error) {
@@ -28,4 +24,4 @@ const fetchScores = async () => {
   }
 };
 
-fetchScores();
+module.exports = fetchScores;

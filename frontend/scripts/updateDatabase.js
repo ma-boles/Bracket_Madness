@@ -1,13 +1,11 @@
-const { connectionToDatabase } = require('../src/db/db');
-const axios = require("axios");
+import { pool } from '../src/db/db';
 
 // Function to update database
 const updateDatabase = async (gameInfo) => {  
-  const db = await connectionToDatabase();
   
   try {
       // Fetch the winner's ID from the `teams` table
-          const [winnerRows] = await db.execute(
+          const [winnerRows] = await pool.execute(
             `SELECT team_id FROM teams WHERE team_name = ? LIMIT 1`,
             [gameInfo.winner],
           );
@@ -43,7 +41,7 @@ const updateDatabase = async (gameInfo) => {
             }
 
             // Now update the `results` table with all necessary info
-              await db.execute(
+              await pool.execute(
                 `UPDATE results 
                   SET 
                     espn_game_id = ?, 
@@ -61,15 +59,13 @@ const updateDatabase = async (gameInfo) => {
 
             } catch(error) {
               console.error('Error running score sync:', error);
-            } finally {
-              await db.end();
-            }
+            } 
   };
 
 module.exports = updateDatabase;
 
   // Update is_finalized column to true
-  await db.execute(
+  await pool.execute(
     `UPDATE results
       SET is_finalized = 1
       WHERE game_id = ?`,

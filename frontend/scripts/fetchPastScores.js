@@ -1,6 +1,4 @@
 const axios = require("axios");
-// import { getStoredGames } from "../utils/gameUtils";
-// import { updateDatabase } from "./updateDatabase";
 
 
 // Function to fetch scores from ESPN API

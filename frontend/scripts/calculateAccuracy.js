@@ -1,12 +1,12 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 const { connectionToDatabase } = require('../src/db/db');
+import { pool } from '../src/db/db';
 
 async function calculateAccuracy () {
-    const db = await connectionToDatabase();
 
     try {
-        const [results] = await db.execute (`
+        const [results] = await pool.execute (`
             SELECT
                 p.user_id,
                 p.bracket_id,
@@ -23,7 +23,7 @@ async function calculateAccuracy () {
 
         // Update brackets with new values
         for (const row of results) {
-            await db.execute(`
+            await pool.execute(`
                 UPDATE brackets
                 SET
                     total_predictions = ?,
@@ -45,9 +45,7 @@ async function calculateAccuracy () {
 
     } catch(error) {
         console.error('❌ Error calculating/updating accuracy:', error);
-    } finally {
-        await db.end();
-    }
+    } 
 }
 
 calculateAccuracy();

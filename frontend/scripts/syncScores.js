@@ -5,4 +5,13 @@ const {runScoresSync} = require('../controllers/scoresController');
 // runScoresSync( 'live', true );
 
 // Past scores
-runScoresSync( 'past', true );
+runScoresSync( 'past', false );
+
+// (async () => {
+//     try {
+//         await runScoresSync();
+//         console.log('Scoring completed.') ;
+//     } catch(error) {
+//         console.error('Error running scoresController:', error);
+//     }
+// })();
