@@ -1,4 +1,5 @@
-import { pool } from '../src/db/db';
+const { pool } = require('../src/db/db');
+
 require('dotenv').config();
 
 
@@ -89,7 +90,7 @@ async function calculateScores () {
                     awarded_points = VALUES(awarded_points)
                 `, flattenedValues);
     
-                console.log('Scores updated successfully!:');
+                console.log('Scores updated successfully!');
 
                 // Update predictions.is_scored to true
                 const updateValues = insertValues.map(val => [val[0], val[1], val[3]]);
@@ -106,6 +107,7 @@ async function calculateScores () {
 
                 console.log('Predictions marked as scored!');
 
+
                 // Sum all awarded points 
                 const [totals] = await pool.execute(`
                     SELECT bracket_id, SUM(awarded_points) as total_points
@@ -114,72 +116,21 @@ async function calculateScores () {
                 `);
 
                 const sortedTotals = totals.sort((a, b) => b.total_points - a.total_points);
-                let currentRank = 1;
-                let previousPoints = null;
-                let displayRank = 1;
 
                 const updatePromises = sortedTotals.map(({ bracket_id, total_points }) => {
-                    if (total_points !== previousPoints) {
-                        displayRank = currentRank;
-                    }
-
-                    previousPoints = total_points;
-                    currentRank++;
-
                     return pool.execute(`
                         UPDATE brackets
-                        SET total_points = ?, rank = ?
+                        SET total_points = ?
                         WHERE id = ?`, 
-                    [total_points, displayRank, bracket_id]);
+                    [total_points, bracket_id]);
                 });
 
                 await Promise.all(updatePromises);
                 console.log('Bracket total points updated successfully.');
 
 
-                // Fetch brackets pool rank
-                const [pools] = await pool.execute(
-                    `SELECT DISTINCT pool_id
-                    FROM brackets
-                    WHERE pool_id IS NOT NULL`
-                );
-
-                for(const { pool_id } of pools) {
-                    const [brackets] = await pool.execute(
-                        `SELECT id,
-                            total_points
-                          FROM brackets
-                          ORDER BY total_points DESC`,
-                          [pool_id]
-                    );
-
-                    let currentRank = 1;
-                    let previousPoints = null;
-                    let displayRank = 1;
-
-                const updatePromises = sortedTotals.map(({ id, total_points }) => {
-                    if (total_points !== previousPoints) {
-                        displayRank = currentRank;
-                    }
-
-                    previousPoints = total_points;
-                    currentRank++;
-
-                    return pool.execute(`
-                        UPDATE brackets
-                        SET pool_rank = ?
-                        WHERE id = ?`, 
-                    [ poolRank, id]);
-                });     
-
-                await Promise.all(updatePromises);
-                console.log('Pool rank updated successfully.');
-
-            }
-                  
-
                 // Update round totals
-                const [round_totals] = await db.execute(`
+                const [round_totals] = await pool.execute(`
                     SELECT bracket_id, round, SUM(awarded_points) as round_points
                     FROM points
                     GROUP BY bracket_id, round
