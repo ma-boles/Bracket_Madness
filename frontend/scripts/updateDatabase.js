@@ -57,6 +57,16 @@ const updateDatabase = async (gameInfo) => {
               );
 
               console.log(`Updated game ${gameInfo.game_id} successfully.`);
+              
+              // Update is_finalized column to true
+              await pool.execute(
+                `UPDATE results
+                  SET is_finalized = 1
+                  WHERE game_id = ?`,
+                [gameInfo.game_id]
+              );
+
+            console.log(`Game ${gameInfo.game_id} marked as finalized.`);
 
             } catch(error) {
               console.error('Error running score sync:', error);
@@ -65,12 +75,3 @@ const updateDatabase = async (gameInfo) => {
 
 module.exports = updateDatabase;
 
-  // Update is_finalized column to true
-  await pool.execute(
-    `UPDATE results
-      SET is_finalized = 1
-      WHERE game_id = ?`,
-    [gameInfo.game_id]
-  );
-
-  console.log(`Game ${gameInfo.game_id} marked as finalized.`);
