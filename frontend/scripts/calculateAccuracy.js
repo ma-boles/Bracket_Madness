@@ -1,6 +1,3 @@
-const mysql = require('mysql2');
-require('dotenv').config();
-const { connectionToDatabase } = require('../src/db/db');
 import { pool } from '../src/db/db';
 
 async function calculateAccuracy () {
