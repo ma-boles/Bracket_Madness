@@ -1,3 +1,4 @@
+import { pool } from '../src/db/db';
 const mysql = require('mysql2');
 require('dotenv').config();
 const { connectionToDatabase } = require('../src/db/db');
@@ -28,10 +29,9 @@ const MAX_BONUS = 50;
 const BASE_POINTS = 10;
 
 async function calculateScores () {
-    const db = await connectionToDatabase();
     try {
         // Join brackets, predictions, and results tables
-        const [predictions] = await db.execute(`
+        const [predictions] = await pool.execute(`
             SELECT 
                 p.user_id, 
                 p.game_id, 
@@ -84,7 +84,7 @@ async function calculateScores () {
             // console.log('Insert values:', insertValues);
 
             try {
-                await db.execute(`
+                await pool.execute(`
                     INSERT into points (user_id, bracket_id, round, game_id, awarded_points)
                     VALUES ${placeholders}
                     ON DUPLICATE KEY UPDATE
@@ -100,7 +100,7 @@ async function calculateScores () {
                     const updatePlaceholders = updateValues.map(() => `(?, ?, ?)`).join(', ');
                     const flattenedUpdateValue = updateValues.flat();
 
-                    await db.execute(`
+                    await pool.execute(`
                         UPDATE predictions
                         SET is_scored = 1
                         WHERE (user_id, bracket_id, game_id) IN (${updatePlaceholders})
@@ -109,7 +109,7 @@ async function calculateScores () {
                 console.log('Predictions marked as scored!');
 
                 // Sum all awarded points 
-                const [totals] = await db.execute(`
+                const [totals] = await pool.execute(`
                     SELECT bracket_id, SUM(awarded_points) as total_points
                     FROM points
                     GROUP BY bracket_id
@@ -128,7 +128,7 @@ async function calculateScores () {
                     previousPoints = total_points;
                     currentRank++;
 
-                    return db.execute(`
+                    return pool.execute(`
                         UPDATE brackets
                         SET total_points = ?, rank = ?
                         WHERE id = ?`, 
@@ -137,6 +137,48 @@ async function calculateScores () {
 
                 await Promise.all(updatePromises);
                 console.log('Bracket total points updated successfully.');
+
+
+                // Fetch brackets pool rank
+                const [pools] = await pool.execute(
+                    `SELECT DISTINCT pool_id
+                    FROM brackets
+                    WHERE pool_id IS NOT NULL`
+                );
+
+                for(const { pool_id } of pools) {
+                    const [brackets] = await pool.execute(
+                        `SELECT id,
+                            total_points
+                          FROM brackets
+                          ORDER BY total_points DESC`,
+                          [pool_id]
+                    );
+
+                    let currentRank = 1;
+                    let previousPoints = null;
+                    let displayRank = 1;
+
+                const updatePromises = sortedTotals.map(({ id, total_points }) => {
+                    if (total_points !== previousPoints) {
+                        displayRank = currentRank;
+                    }
+
+                    previousPoints = total_points;
+                    currentRank++;
+
+                    return pool.execute(`
+                        UPDATE brackets
+                        SET pool_rank = ?
+                        WHERE id = ?`, 
+                    [ poolRank, id]);
+                });     
+
+                await Promise.all(updatePromises);
+                console.log('Pool rank updated successfully.');
+
+            }
+                  
 
                 // Update round totals
                 const [round_totals] = await db.execute(`
@@ -151,13 +193,12 @@ async function calculateScores () {
                     const column = ROUND_TO_COLUMN[round];
                     // console.log('Round:', round);
 
-
                     if(!column) {
                         console.error('Invalid round:', round);
                         return null;
                     }
 
-                    return db.execute(`
+                    return pool.execute(`
                         UPDATE brackets
                         SET ${column} = ?
                         WHERE id = ?`, 
@@ -175,8 +216,6 @@ async function calculateScores () {
         }
     } catch(error) {
         console.error('Error calculating scores:', error);
-    } finally {
-        await db.end();
     }
 }
 
