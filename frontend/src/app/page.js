@@ -20,8 +20,8 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-black items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
-      <main className="items-center sm:items-start">
+    <div className="flex items-center justify-center min-h-screen bg-black font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col justify-center items-center sm:items-start">
         <div className="flex flex-col items-center justify-center p-10">
          <Image
           src="/BracketMadness_background.jpg"
@@ -29,12 +29,14 @@ export default function Home() {
           width={640}
           height={400}
           priority
+          className="max-w-full h-auto"
         />
           <div className="flex">
 
             <button
-              className="
-              rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2"
+              className="rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
+              w-40 h-10 mx-2
+              sm:w-50 sm:h-12 sm:text-base"
               onClick={handleLoginClick}
               disabled={isLoadingLogin}>
                 {isLoadingLogin ? (
@@ -44,9 +46,10 @@ export default function Home() {
                 )}
             </button>
 
-             <button
-              className="
-              rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium w-50 h-12 mx-2"
+            <button
+              className="rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
+              w-40 h-10 mx-2
+              sm:w-50 sm:h-12 sm:text-base"
               onClick={handleBracketClick}
               disabled={isLoadingBracket}>
                 {isLoadingBracket ? (
