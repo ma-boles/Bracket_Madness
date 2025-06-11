@@ -4,8 +4,10 @@ import MainSlide from "./MainSlide";
 import CreateSlide from "./CreateSlide";
 import JoinSlide from "./JoinSlide";
 
+
 export default function SlideCarousel () {
     const [slideIndex, setSlideIndex] = useState(1);
+    
 
     const handlePrev = () => {
         setSlideIndex((prev) => Math.max(prev - 1, 0));
@@ -15,9 +17,15 @@ export default function SlideCarousel () {
         setSlideIndex((prev) => Math.max(prev + 1, 2));
     };
 
+    // const handleCreateSuccess = (pool) =>{
+    //     setCreatedPool(pool);
+    //     setModalOpen(true);
+    //     setSlideIndex(0);
+    // };
+
     return (
         <>
-            <div className="relative overflow-hidden w-screen h-screen bg-white/5">
+            <div className="relative overflow-hidden w-full h-screen bg-white/5">
 
                 {/* Slide track */}
                 <div className="flex w-[300vw] transition-transform duration-500 ease-in-out"
@@ -64,6 +72,7 @@ export default function SlideCarousel () {
                 )}
 
             </div>
+               
         </>
     )
 }
