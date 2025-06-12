@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function MainSlide ({ handlePrev, handleNext, slideIndex, setSlideIndex }) {
+export default function MainSlide ({ handlePrev, handleNext }) {
     return (
-        <div className="bg-red-600 h-full w-full flex justify-center items-center overflow-y-auto">
-        <div className="flex flex-col md:flex-row p-4 py-8 sm:p-6 md:p-8 sm:w-5/6 md:w-2/3 md:bg-black/20 items-center justify-center rounded-xl">
-            <div className="w-2/3 pt-40 md:px-4 md:pt-0 py-6 font-bold">
+        <div className="h-full w-full flex justify-center items-center overflow-y-auto">
+        <div className="flex flex-col md:flex-row p-4 py-8 sm:p-6 md:p-8 sm:w-5/6 md:w-2/3 md:bg-black/20 items-center justify-center rounded-xl
+        mobile-landscape-padding">
+            <div className="w-2/3 md:px-4 md:pt-0 py-6 font-bold  portrait-padding">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl leading-tight">Start a <span className="text-yellow-400">Bracket Battle </span>with
                 <br></br> Your Friends</h1>
             </div>

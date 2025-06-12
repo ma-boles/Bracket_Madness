@@ -29,6 +29,18 @@
   }
 }
 
+/* @media (orientation: portrait) {
+  .portrait-padding {
+    background-color: none;
+  }
+} */
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .mobile-landscape-padding {
+    padding-top: 15rem;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
