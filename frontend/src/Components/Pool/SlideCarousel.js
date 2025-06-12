@@ -73,6 +73,16 @@ export default function SlideCarousel () {
                         Back
                     </button>
                 )}
+
+                {/* Mobile Nav Buttons */}
+                {slideIndex !== 1 &&
+                    <button 
+                        onClick={() => setSlideIndex(1)}
+                        className={`block md:hidden absolute top-4 ${slideIndex === 0 ? 'right-4' : 'left-4'} 
+                        bg-white/10 text-white font-bold py-2 px-4 rounded z-10`}>
+                        Back
+                    </button>
+                }
             </div>
                
         </>
