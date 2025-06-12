@@ -17,15 +17,10 @@ export default function SlideCarousel () {
         setSlideIndex((prev) => Math.max(prev + 1, 2));
     };
 
-    // const handleCreateSuccess = (pool) =>{
-    //     setCreatedPool(pool);
-    //     setModalOpen(true);
-    //     setSlideIndex(0);
-    // };
 
     return (
         <>
-            <div className="relative overflow-hidden w-full h-screen bg-white/5">
+            <div className="relative overflow-y-auto md:overflow-hidden w-full min-h-screen bg-white/5">
 
                 {/* Slide track */}
                 <div className="flex w-[300vw] transition-transform duration-500 ease-in-out"
@@ -33,19 +28,27 @@ export default function SlideCarousel () {
 
                 {/* slides */}
                     <div className="w-screen h-screen flex items-center justify-center">
-                        <CreateSlide />
+                        <CreateSlide 
+                        setSlideIndex={setSlideIndex}
+                        slideIndex={slideIndex}/>
                     </div>
                     <div className="w-screen h-screen flex items-center justify-center">
-                        <MainSlide />
+                        <MainSlide 
+                        slideIndex={slideIndex}
+                        setSlideIndex={setSlideIndex}
+                        handleNext={handleNext}
+                        handlePrev={handlePrev}/>
                     </div>
                     <div className="w-screen h-screen flex items-center justify-center">
-                        <JoinSlide />
+                        <JoinSlide 
+                        setSlideIndex={setSlideIndex}
+                        slideIndex={slideIndex}/>
                     </div>
                 </div>
 
                 {/* Navigation */}
                 {slideIndex === 1 ? (
-                    <div className="text-center">
+                    <div className="hidden md:block text-center">
                     <button 
                     className="absolute left-0 top-1/2 transform -translate-y-1/2 
                     bg-white/5 font-bold w-30 h-screen p-3 z-10 cursor-pointer
@@ -64,13 +67,12 @@ export default function SlideCarousel () {
                 ): (
                     <button 
                     onClick={() => setSlideIndex(1)}
-                    className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/5 font-bold w-30 h-screen p-3 z-10 cursor-pointer 
+                    className={`hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/5 font-bold w-30 h-screen p-3 z-10 cursor-pointer 
                         hover:bg-white/10
                     ${slideIndex === 0 ? 'right-0' : 'left-0' }`}>
                         Back
                     </button>
                 )}
-
             </div>
                
         </>
