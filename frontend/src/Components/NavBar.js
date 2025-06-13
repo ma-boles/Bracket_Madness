@@ -105,7 +105,7 @@ export default function NavBar () {
                             </button>
                         </Link>
 
-                        {currentUser && (
+                        {currentUser ? (
                             <div className="w-full">
                                 <Link href="/Dashboard">
                                     <button
@@ -137,10 +137,12 @@ export default function NavBar () {
                                 </button>
                             </div>
 
-                        )}
+                        ) : (
                             <button onClick={handleLogIn} className="flex items-center w-full h-10 px-14 border border-transparent hover:border-green-600 hover:bg-green-600/30 cursor-pointer rounded-md">
                                 Log In
                             </button>
+                        )}
+                            
 
                     </div>
                 )}
@@ -148,7 +150,7 @@ export default function NavBar () {
                 <LeaderboardModal isOpen={showModal} onClose={() => setShowModal(false)} />
 
 
-                <div className="relative flex w-1/5 p-2 justify-end items-center">
+                <div className="hidden relative md:flex w-1/5 p-2 justify-end items-center">
                     {currentUser ? (
                         <>
                         <div className="flex w-full px-2 justify-end">
