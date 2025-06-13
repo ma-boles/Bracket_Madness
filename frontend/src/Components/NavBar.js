@@ -1,20 +1,24 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import LogoutButton from "@/app/auth/components/LogoutButton";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+
+import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
+
 
 export default function NavBar () {
     const router = useRouter();
     const { currentUser } = useAuth();
     const [showModal,setShowModal] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
-
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    
     const submitAlert = () => {
         if(!currentUser) {
             toast.error('To submit a bracket, please Log In.',{
@@ -31,24 +35,25 @@ export default function NavBar () {
     };
 
     const toggleUserMenu = () => {
-        setUserMenuOpen(!userMenuOpen);
+        setUserMenuOpen(prev => !prev);
     };
 
     return(
         <>
-            <div className="flex mt-2 px-2 rounded-xl justify-center items-center" >
-                <div className="w-1/5 h-15 flex justify-center items-center">
+            <div className="flex mt-2 px-2 rounded-xl justify-between items-center md:justify-center" >
+                {/* w-1/4 md:w-1/5 md:h-15 flex justify-center items-center */}
+                <div className="flex items-center">
                     <Image
                         src="/BM_logo4.jpg"
                         alt="logo"
                         width={150}
                         height={20}
-                        className="object-cover opacity-60"
+                        className="object-cover opacity-60 py-2 md:py-0"
                     />
                 </div>
 
-                <div className="flex flex-grow text-lg"> 
-
+                {/* Desktop Nav */}
+                <div className="hidden md:flex md:flex-grow text-lg"> 
                     <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
                             hover:bg-blue-600 rounded-lg">
                         <Link href="/Results">
@@ -67,9 +72,83 @@ export default function NavBar () {
                             <p>Pool</p>
                         </Link>
                     </div>
+                 
                 </div>
 
-                <div className="flex w-1/5 p-2 justify-end items-center">
+                {/* Mobile Nav Icon */}
+                <div className="md:hidden">
+                    <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                        {mobileMenuOpen ? (
+                            <XMarkIcon className="w-8 h-8"/>
+                        ) : (
+                            <Bars3Icon className="w-8 h-8"/>
+                        )}
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                {mobileMenuOpen && (
+                    <div className="fixed top-17 left-0 w-full bg-black/95 text-white flex flex-col items-center justify-center text-center text-xl z-20">
+                        <Link href="/Results" onClick={() => setMobileMenuOpen(false)} className="w-full">
+                            <button className="flex items-center w-full h-10 px-14 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md">
+                                Results    
+                            </button>
+                        </Link>
+                        <Link href="/Submit" onClick={() => setMobileMenuOpen(false)} className="w-full">
+                            <button className="flex items-center w-full h-10 px-14 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md">
+                                Submit
+                            </button>
+                        </Link>
+                        <Link href="/Pool" onClick={() => setMobileMenuOpen(false)} className="w-full">
+                            <button className="flex items-center w-full h-10 px-14 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md">
+                                Pool
+                            </button>
+                        </Link>
+
+                        {currentUser && (
+                            <div className="w-full">
+                                <Link href="/Dashboard">
+                                    <button
+                                        className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                                        role="menuitem"
+                                        onClick={() => setUserMenuOpen(false)}
+                                    >
+                                    <div className="mx-4">
+                                        <HomeIcon className="w-6 h-6 text-white" /> 
+                                    </div>
+
+                                        Dashboard
+                                    </button>
+                                </Link>
+
+                                <button
+                                    onClick={() => {
+                                    setShowModal(true);
+                                    setUserMenuOpen(false);
+                                    }}
+                                    className="flex items-center w-full h-10 my-1 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                                    role="menuitem"
+                                >
+                                <div className="mx-4">
+                                    <TrophyIcon className="w-6 h-6 text-white" /> 
+                                </div>
+
+                                    Leaderboard
+                                </button>
+                            </div>
+
+                        )}
+                            <button onClick={handleLogIn} className="flex items-center w-full h-10 px-14 border border-transparent hover:border-green-600 hover:bg-green-600/30 cursor-pointer rounded-md">
+                                Log In
+                            </button>
+
+                    </div>
+                )}
+
+                <LeaderboardModal isOpen={showModal} onClose={() => setShowModal(false)} />
+
+
+                <div className="relative flex w-1/5 p-2 justify-end items-center">
                     {currentUser ? (
                         <>
                         <div className="flex w-full px-2 justify-end">
@@ -86,59 +165,19 @@ export default function NavBar () {
 
                             </button>
                         </div>
-                        {/* Dropdown menu */}
                         {userMenuOpen && (
-                            <div
-                                className="absolute right-0 top-15 mt-2 p-1 w-48 bg-black/70 rounded-md shadow-lg py-1 z-50"
-                                role="menu"
-                                aria-orientation="vertical"
-                                aria-labelledby="user-menu"
-                                >
-                                <Link href="/Dashboard">
-                                    <button
-                                    className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
-                                    role="menuitem"
-                                    onClick={() => setUserMenuOpen(false)}
-                                    >
-                                        <div className="mx-4">
-                                            <HomeIcon className="w-6 h-6 text-white" /> 
-                                        </div>
-                                        Dashboard
-
-                                    </button>
-                                </Link>
-
-                                <button
-                                    onClick={() => {
-                                        setShowModal(true);
-                                        setUserMenuOpen(false);
-                                    }}
-                                    className="flex items-center  w-full h-10 my-1 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
-                                    role="menuitem"
-                                >
-                                    <div className="mx-4">
-                                        <TrophyIcon className="w-6 h-6 text-white" /> 
-                                    </div>
-                                    Leaderboard
-                                </button>
-
-                                   
-                                    <LogoutButton />
-                                </div>
+                            <UserMenu 
+                            currentUser={currentUser}
+                            handleLogIn={handleLogIn}
+                            setShowModal={setShowModal}
+                            setUserMenuOpen={setUserMenuOpen}/>
                         )}
                         </>
                     ) : (
-                        <button
-                            className="w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md"
-                            onClick={handleLogIn}
-                            >
-                            Log In
-                        </button>
+                        <button className="py-1 w-33 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md"
+                        onClick={handleLogIn}>Log In</button>
+
                     )}
-                        <LeaderboardModal 
-                            isOpen={showModal}
-                            onClose={() => setShowModal(false)}
-                            />
 
                 </div>
             </div>

@@ -1,13 +1,10 @@
-'use client'
-import { useState } from "react";
 import Link from "next/link";
-import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, TrophyIcon } from "@heroicons/react/24/outline";
 import LogoutButton from "@/app/auth/components/LogoutButton";
-import LeaderboardModal from "./LeaderboardModal";
 
 
-export default function UserMenu({ currentUser, handleLogIn, setShowModal }) {
-    const [userMenuOpen, setUserMenuOpen] = useState(false);
+export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUserMenuOpen }) {
+
     if (!currentUser) {
         return (
             <button
@@ -20,11 +17,8 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal }) {
     }
 
     return (
-         <div className="relative">
-
-            {userMenuOpen && (
-                <div
-                    className="absolute right-0 top-15 mt-2 p-1 w-48 bg-black/70 rounded-md shadow-lg py-1 z-50"
+        <>
+            <div className="absolute right-0 top-13 mt-2 p-1 w-48 bg-black/70 rounded-md shadow-lg py-1 z-50"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu"
@@ -59,8 +53,8 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal }) {
                 </button>
 
                     <LogoutButton />
-                </div>
-                )}
-         </div>
+            </div>
+
+        </>
     )
 }
