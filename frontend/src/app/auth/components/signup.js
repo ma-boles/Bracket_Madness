@@ -78,7 +78,7 @@ export default function SignUp() {
 
     return (
         <>
-        <div className="w-90 h-80 p-6 bg-black rounded-md flex flex-col items-center justify-center space-y-4">
+        <div className="w-90 h-80 p-6 md:bg-black rounded-md flex flex-col items-center justify-center space-y-4">
             <h1 className="mb-6 text-white text-2xl font-semibold">
                 Sign Up
             </h1>
