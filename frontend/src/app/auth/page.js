@@ -12,8 +12,8 @@ export default function LogInPage() {
 
     return(
         <>
-        <div className="min-h-screen flex items-center justify-center waves z-0">
-            <div className="p-10 w-110 h-115 bg-[#0081B8] rounded-lg text-center space-y-6 z-10">
+        <div className="min-h-screen flex items-center justify-center md:waves z-0">
+            <div className="p-10 w-110 h-115 md:bg-[#0081B8] rounded-lg text-center space-y-6 z-10">
                 {isSignUp ? <SignUp /> : <LogIn />}
 
                 <div>

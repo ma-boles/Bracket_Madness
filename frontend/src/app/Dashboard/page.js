@@ -105,14 +105,14 @@ export default function Dashboard() {
                 <NavBar />
             </nav>
 
-            <div className="flex justify-between overflow-hidden mx-2 my-8 h-50 bg-gradient-to-r from-blue-600 via-black to-black rounded-lg">
+            <div className="flex justify-between overflow-hidden mx-2 my-8 md:h-50 bg-gradient-to-r from-blue-600 via-black to-black rounded-lg">
                 <h1 className="p-6 text-4xl font-bold">Dashboard</h1>
                 <Image
                     src="/BracketMadness_background.jpg"
                     alt="header"
                     width={570}
                     height={330}
-                    className="py-2 object-cover opacity-40"
+                    className="hidden md:block py-2 object-cover opacity-40"
                 />
             </div>
 
@@ -125,7 +125,7 @@ export default function Dashboard() {
                     </div>
                     {bracketsView && (
                         <div>
-                            <div className="flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
+                            <div className="hidden md:flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
                                 <p className="w-1/5 text-center font-semibold">ID</p>
                                 <p className="w-1/5 text-center font-semibold">Bracket Name</p>
                                 <p className="w-1/5 text-center font-semibold">Total Points</p>
