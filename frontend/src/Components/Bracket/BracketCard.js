@@ -4,7 +4,7 @@ import BracketInfoCard from "./BracketInfoCard";
 import Link from "next/link";
 
 
-export default function BracketCard({ name, bracketId, total_points, rank, accuracy_percentage, bracketInfoData, usePoolDisplay, poolRank, poolName }) {
+export default function BracketCard({ name, bracketId, total_points, rank, accuracy_percentage, bracketInfoData, usePoolDisplay, poolRank, poolName, accuracyData }) {
     const [ showDetails, setShowDetails ] = useState(false);
 
     const styleClass = usePoolDisplay
@@ -21,14 +21,14 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
     return(
         <>
         <div className='m-2 rounded-lg'>
-            <div className="flex w-full">
+            <div className="flex flex-row w-full items-center justify-between">
                 <div className="m-auto font-bold cursor-pointer hover:underline">
                     <Link href={`/bracket/${bracketId}`}>
                         View
                     </Link>
                 </div>
 
-                <div className={`flex mx-auto mt-2 h-20 rounded-lg w-[90%] ${styleClass}`} >
+                <div className={`flex flex-row mx-auto mt-2 h-20 rounded-lg w-[90%] ${styleClass}`} >
                     <div className="flex w-1/5 border-r border-white items-center justify-center" >
                         <h2>
                             {bracketId}
@@ -67,6 +67,7 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
                         <BracketInfoCard 
                             bracketInfoData={bracketInfoData}
                             usePoolDisplay={usePoolDisplay}
+                            accuracyData={accuracyData}
                             />
                     // ))
                 )}
