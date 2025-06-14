@@ -5,6 +5,8 @@ const updateDatabase = require('../scripts/updateDatabase');
 const propogateWinners = require("../scripts/propogateWinners");
 const scoring = require("../scripts/scoring");
 const updateRank = require("../scripts/updateRank");
+const correctPrediction = require("../scripts/correctPrediction");
+const calculateAccuracy = require("../scripts/calculateAccuracy");
 
 
 async function runScoresSync(mode, dryRun) {
@@ -30,6 +32,8 @@ async function runScoresSync(mode, dryRun) {
             // Proceed with updating the DB + propogation
             await updateDatabase(gameInfo); // Fetch results
             await scoring();// Score the predictions
+            await correctPrediction(); // Calculate correct predictions
+            await calculateAccuracy(); // Calculate prediction accuracy
             await updateRank(); // Update global + pool rank
             await propogateWinners(gameInfo); // Update your progress
             }
