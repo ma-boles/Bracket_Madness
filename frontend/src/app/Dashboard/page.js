@@ -6,6 +6,7 @@ import BracketCard from "@/Components/Bracket/BracketCard";
 import AuthContext from "@/context/AuthContext";
 import axios from "axios";
 import ManagePools from "@/Components/Dashboard/ManagePools";
+import SmallBracketCard from "@/Components/Bracket/SmallBracketCard";
 
 export default function Dashboard() {
     const [ bracketsView, setBracketsView ] = useState(true);
@@ -42,10 +43,15 @@ export default function Dashboard() {
                 { round: 'Elite 8', round_points: item.elite8_points },
                 { round: 'Final Four', round_points: item.final4_points },
                 { round: 'Champion', round_points: item.championship_points },
-                { correct_predictions: item.correct_predictions, total_predictions: item.total_predictions }
             ];
 
+            const accuracyData = {
+                correct_predictions: item.correct_predictions, 
+                total_predictions: item.total_predictions 
+            }
+
             return (
+                // <div className="flex items-center justify-center">
                 <BracketCard 
                     key={index}
                     bracketId={item.bracket_id}
@@ -54,10 +60,12 @@ export default function Dashboard() {
                     rank={isPool ? undefined : item.rank}
                     accuracy_percentage={item.accuracy_percentage}
                     bracketInfoData={bracketInfoData}
+                    accuracyData={accuracyData}
                     poolRank={isPool ? item.pool_rank : undefined}
                     poolName={isPool ? item.pool_name : undefined}
                     usePoolDisplay={isPool}
                     />
+                    // </div>
             )
         })
     }
