@@ -10,7 +10,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const AccuracyChart = ({ correct, total, usePoolDisplay }) => {
     const backgroundColors = usePoolDisplay 
-        ? ['#facc15', '#c084fc']
+        ? ['#facc15', '#e2e8f0']
         : ['#6b21a8', '#e9d5ff']; 
 
     const incorrect = total - correct;
