@@ -85,4 +85,4 @@ const updateRank = async () => {
     } 
 };
 
-updateRank();
+module.exports = updateRank;

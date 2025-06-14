@@ -74,4 +74,3 @@ const updateDatabase = async (gameInfo) => {
   };
 
 module.exports = updateDatabase;
-

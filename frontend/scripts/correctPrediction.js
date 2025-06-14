@@ -1,7 +1,7 @@
 const { pool } = require('../src/db/db');
 
 
-async function correctPrediction () {
+const correctPrediction = async () => {
 
     try {
         const [result] = await pool.execute (`
@@ -19,4 +19,4 @@ async function correctPrediction () {
     } 
 }
 
-correctPrediction();
+module.exports = correctPrediction;

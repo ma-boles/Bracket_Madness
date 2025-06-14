@@ -16,4 +16,4 @@ const finalizeAllScoredGames = async () => {
     } 
 };
 
-finalizeAllScoredGames();
+module.exports = finalizeAllScoredGames;

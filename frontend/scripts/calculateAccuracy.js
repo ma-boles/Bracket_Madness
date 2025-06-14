@@ -1,7 +1,7 @@
 const { pool } = require('../src/db/db');
 
 
-async function calculateAccuracy () {
+const calculateAccuracy = async () => {
 
     try {
         const [results] = await pool.execute (`
@@ -46,4 +46,4 @@ async function calculateAccuracy () {
     } 
 }
 
-calculateAccuracy();
+module.exports = calculateAccuracy;

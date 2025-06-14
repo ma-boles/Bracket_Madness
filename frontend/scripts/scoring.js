@@ -27,7 +27,7 @@ const ROUND_TO_COLUMN = {
 const MAX_BONUS = 50;
 const BASE_POINTS = 10;
 
-async function calculateScores () {
+const calculateScores = async () => {
     try {
         // Join brackets, predictions, and results tables
         const [predictions] = await pool.execute(`
@@ -168,4 +168,4 @@ async function calculateScores () {
     }
 }
 
-calculateScores();
+module.exports = calculateScores;
