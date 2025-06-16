@@ -23,7 +23,6 @@ export default function Dashboard() {
                 const res = await axios.get(`/api/brackets/user`);
                 setGlobalBrackets(res.data.globalBrackets);
                 setPoolBrackets(res.data.poolBrackets);
-                // setBracketsCardData(res.data);
             } catch(error) {
                 console.error('Failed to fetch bracket data:', error);
             }
@@ -51,21 +50,38 @@ export default function Dashboard() {
             }
 
             return (
-                // <div className="flex items-center justify-center">
-                <BracketCard 
-                    key={index}
-                    bracketId={item.bracket_id}
-                    name={item.bracket_name}
-                    total_points={item.total_points}
-                    rank={isPool ? undefined : item.rank}
-                    accuracy_percentage={item.accuracy_percentage}
-                    bracketInfoData={bracketInfoData}
-                    accuracyData={accuracyData}
-                    poolRank={isPool ? item.pool_rank : undefined}
-                    poolName={isPool ? item.pool_name : undefined}
-                    usePoolDisplay={isPool}
-                    />
-                    // </div>
+                <div>
+                    <div className="hidden sm:block">
+                        <BracketCard 
+                            key={index}
+                            bracketId={item.bracket_id}
+                            name={item.bracket_name}
+                            total_points={item.total_points}
+                            rank={isPool ? undefined : item.rank}
+                            accuracy_percentage={item.accuracy_percentage}
+                            bracketInfoData={bracketInfoData}
+                            accuracyData={accuracyData}
+                            poolRank={isPool ? item.pool_rank : undefined}
+                            poolName={isPool ? item.pool_name : undefined}
+                            usePoolDisplay={isPool}
+                            />
+                    </div>
+                    <div className="flex justify-center sm:hidden">
+                        <SmallBracketCard 
+                            key={index}
+                            bracketId={item.bracket_id}
+                            name={item.bracket_name}
+                            total_points={item.total_points}
+                            rank={isPool ? undefined : item.rank}
+                            accuracy_percentage={item.accuracy_percentage}
+                            bracketInfoData={bracketInfoData}
+                            accuracyData={accuracyData}
+                            poolRank={isPool ? item.pool_rank : undefined}
+                            poolName={isPool ? item.pool_name : undefined}
+                            usePoolDisplay={isPool}
+                            />
+                    </div>
+                </div>
             )
         })
     }
@@ -133,7 +149,7 @@ export default function Dashboard() {
                     </div>
                     {bracketsView && (
                         <div>
-                            <div className="hidden md:flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
+                            <div className="hidden sm:flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
                                 <p className="w-1/5 text-center font-semibold">ID</p>
                                 <p className="w-1/5 text-center font-semibold">Bracket Name</p>
                                 <p className="w-1/5 text-center font-semibold">Total Points</p>
