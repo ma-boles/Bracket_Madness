@@ -1,0 +1,76 @@
+'use client'
+import React from "react";
+import { useBracket } from "@/context/BracketContext";
+import dynamic from 'next/dynamic';
+import TeamButton from "@/Components/TeamButton";
+
+
+export default function MobileSpokane1_SecondRound () {
+    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const Select = dynamic(() => import('react-select'), { ssr: false });
+
+    // Winners from Round 1
+    const teamAWinner1101 = getWinnerFromGame(bracketData, 1101);
+    const teamBWinner1102 = getWinnerFromGame(bracketData, 1102);
+    const teamAWinner1103 = getWinnerFromGame(bracketData, 1103);
+    const teamBWinner1104 = getWinnerFromGame(bracketData, 1104);
+    const teamAWinner1105 = getWinnerFromGame(bracketData, 1105);
+    const teamBWinner1106 = getWinnerFromGame(bracketData, 1106);
+    const teamAWinner1107 = getWinnerFromGame(bracketData, 1107);
+    const teamBWinner1108 = getWinnerFromGame(bracketData, 1108);
+
+    return (
+            <>
+                <div className="round second-round">
+                        <div className="matchup2 mb-11 bg-blue-800">
+                            {teamAWinner1101 ? ( 
+                                    <TeamButton region="spokane1" gameId={1201} team={teamAWinner1101}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                                {teamBWinner1102 ? ( 
+                                    <TeamButton region="spokane1" gameId={1201} team={teamBWinner1102}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                        </div>
+                        <div className="matchup2 mb-11 bg-blue-800">
+                            {teamAWinner1103 ? ( 
+                                    <TeamButton region="spokane1" gameId={1202} team={teamAWinner1103}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                                {teamBWinner1104 ? ( 
+                                    <TeamButton region="spokane1" gameId={1202} team={teamBWinner1104}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                        </div>
+                        <div className="matchup2 mb-12 bg-blue-800">
+                            {teamAWinner1105 ? ( 
+                                    <TeamButton region="spokane1" gameId={1203} team={teamAWinner1105}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                                {teamBWinner1106 ? ( 
+                                    <TeamButton region="spokane1" gameId={1203} team={teamBWinner1106}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                        </div>
+                        <div className="matchup2-last bg-blue-800">
+                            {teamAWinner1107 ? ( 
+                                    <TeamButton region="spokane1" gameId={1204} team={teamAWinner1107}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                                {teamBWinner1108 ? ( 
+                                    <TeamButton region="spokane1" gameId={1204} team={teamBWinner1108}/>
+                                ) : (
+                                    <p className="team">Select...</p>
+                                )}
+                        </div>
+                    </div>
+            </>
+        )
+    }
