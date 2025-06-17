@@ -1,7 +1,9 @@
+import MobileSubmit_FirstFour from "../MobileSubmit/MobileSubmit_FirstFour"
+
 export default function MobileRound_FirstFour () {
     return (
     <>
-    <h1>First Four</h1>
+        <MobileSubmit_FirstFour />
     </>
     )
 }
