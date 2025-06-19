@@ -9,7 +9,7 @@ export default function MobileSubmit_FirstFour() {
     return(
         <>
             <div className="pt-4">
-                        <div className="pb-6 px-4 flex flex-col items-center">
+                        <div className="pb-6 px-4 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Spokane 1</h1>
                             <TeamButton 
                                 region='firstfour'
@@ -22,7 +22,7 @@ export default function MobileSubmit_FirstFour() {
                                 team={{ id: 17, name: 'Southern', seed: 16}}
                                 />
                         </div>
-                        <div className="pb-6 px-4 flex flex-col items-center">
+                        <div className="pb-6 px-4 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Birmingham 2</h1>
                             <TeamButton 
                                 region='firstfour'
@@ -35,7 +35,7 @@ export default function MobileSubmit_FirstFour() {
                                 team={{ id: 29, name: 'Columbia', seed: 11}}
                                 />
                         </div>
-                        <div className="pb-6 px-4 flex flex-col items-center">
+                        <div className="pb-6 px-4 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Birmingham 3</h1>
                             <TeamButton 
                                 region='firstfour'
@@ -48,7 +48,7 @@ export default function MobileSubmit_FirstFour() {
                                 team={{ id: 46, name: 'Princeton', seed: 11}}
                                 />
                         </div>
-                        <div className="pb-6 px-4 flex flex-col items-center">
+                        <div className="pb-6 px-4 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Birmingham 3</h1>
                             <TeamButton 
                                 region='firstfour'
