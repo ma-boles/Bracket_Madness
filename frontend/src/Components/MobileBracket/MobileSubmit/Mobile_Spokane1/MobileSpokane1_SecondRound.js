@@ -21,8 +21,8 @@ export default function MobileSpokane1_SecondRound () {
 
     return (
             <>
-                <div className="round second-round">
-                        <div className="matchup2 mb-11 bg-blue-800">
+                <div className="second-round">
+                        <div className=" bg-blue-800">
                             {teamAWinner1101 ? ( 
                                     <TeamButton region="spokane1" gameId={1201} team={teamAWinner1101}/>
                                 ) : (
@@ -34,7 +34,7 @@ export default function MobileSpokane1_SecondRound () {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup2 mb-11 bg-blue-800">
+                        <div className="bg-blue-800">
                             {teamAWinner1103 ? ( 
                                     <TeamButton region="spokane1" gameId={1202} team={teamAWinner1103}/>
                                 ) : (
@@ -46,7 +46,7 @@ export default function MobileSpokane1_SecondRound () {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup2 mb-12 bg-blue-800">
+                        <div className=" bg-blue-800">
                             {teamAWinner1105 ? ( 
                                     <TeamButton region="spokane1" gameId={1203} team={teamAWinner1105}/>
                                 ) : (
@@ -58,7 +58,7 @@ export default function MobileSpokane1_SecondRound () {
                                     <p className="team">Select...</p>
                                 )}
                         </div>
-                        <div className="matchup2-last bg-blue-800">
+                        <div className=" bg-blue-800">
                             {teamAWinner1107 ? ( 
                                     <TeamButton region="spokane1" gameId={1204} team={teamAWinner1107}/>
                                 ) : (

@@ -19,8 +19,8 @@ export default function MobileSpokane1_SweetSixteen () {
 
     return (
         <>
-            <div className="round sweet-16 pt-4">
-                    <div className="matchup3 bg-zinc-700">
+            <div className="sweet-16">
+                    <div className="bg-zinc-700">
                             {teamAWinner1201 ? ( 
                                     <TeamButton region="spokane1" gameId={1601} team={teamAWinner1201}/>
                                 ) : (
@@ -32,7 +32,7 @@ export default function MobileSpokane1_SweetSixteen () {
                                     <p className="team">Select...</p>
                                 )}
                     </div>
-                    <div className="matchup3-last bg-zinc-700">
+                    <div className=" bg-zinc-700">
                             {teamAWinner1203 ? ( 
                                     <TeamButton region="spokane1" gameId={1602} team={teamAWinner1203}/>
                                 ) : (
