@@ -1,7 +1,9 @@
 import { useState } from "react";
 import RoundsNav from "../MobileBracket/RoundsNav"
 import RegionsNav from "../MobileBracket/RegionsNav"
+import MobileRound_FirstFour from "../MobileBracket/RoundTabs/MobileRound_FirstFour";
 import MobileSubmit_FirstFour from "../MobileBracket/MobileSubmit/MobileSubmit_FirstFour";
+import MobileRound_FinalFour from "../MobileBracket/RoundTabs/MobileRound_FinalFour";
 import MobileRound_Championship from "../MobileBracket/RoundTabs/MobileRound_Championship";
 import MobileSpokane1_SweetSixteen from "../MobileBracket/MobileSubmit/Mobile_Spokane1/MobileSpokane1_SweetSixteen";
 import MobileSpokane1_EliteEight from "../MobileBracket/MobileSubmit/Mobile_Spokane1/MobileSpokane1_EliteEight";
@@ -34,8 +36,8 @@ export default function MobileBracket_Layout () {
             )}
         </div>
         <div>
-            {activeTab == 'First Four' && <MobileSubmit_FirstFour />}
-            {activeTab === "Final 4" && <MobileRound_Championship />}
+            {activeTab == 'First Four' && <MobileRound_FirstFour />}
+            {activeTab === "Final 4" && <MobileRound_FinalFour />}
 
             {activeRegion === 'Spokane 1' && activeTab === 'Rd 1' && <MobileSpokane1_FirstRound />}
             {activeRegion === 'Spokane 1' && activeTab === 'Rd 2' && <MobileSpokane1_SecondRound />}
