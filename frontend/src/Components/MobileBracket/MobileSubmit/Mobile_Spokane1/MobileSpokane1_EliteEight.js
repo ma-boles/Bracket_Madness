@@ -3,6 +3,7 @@ import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import dynamic from 'next/dynamic';
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 
@@ -16,17 +17,17 @@ export default function MobileSpokane1_EliteEight () {
 
     return (
         <>
-            <div className="elite8">
-                    <div className=" bg-zinc-700">
+            <div className="p-4 bg-gray-600/20">
+                    <div className="m-2">
                             {teamAWinner1601 ? ( 
                                     <TeamButton region="spokane1" gameId={8001} team={teamAWinner1601}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                                 {teamBWinner1602 ? ( 
                                     <TeamButton region="spokane1" gameId={8001} team={teamBWinner1602}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                     </div>
                 </div>

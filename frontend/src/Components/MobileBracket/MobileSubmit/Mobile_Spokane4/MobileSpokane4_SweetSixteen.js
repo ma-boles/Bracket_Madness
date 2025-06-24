@@ -2,6 +2,7 @@
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileSpokane4_SweetSixteen() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
@@ -14,29 +15,29 @@ export default function MobileSpokane4_SweetSixteen() {
 
     return (
         <>
-            <div className="round sweet-16 pt-4">
-                <div className="matchup3  bg-zinc-700">
+            <div className="p-4 bg-blue-600/40">
+                <div className="m-2">
                     {teamAWinner1213 ? (
                         <TeamButton region="spokane4" gameId={1607} team={teamAWinner1213}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                         {teamBWinner1214 ? (
                             <TeamButton region="spokane4" gameId={1607} team={teamBWinner1214}/>
                         ) : (
-                            <p className="team">Select...</p>
-                                )}
+                            <SelectPlaceholder />
+                        )}
                 </div>
-                <div className="matchup3-last bg-zinc-700">
+                <div className="m-2">
                     {teamAWinner1215 ? (
                         <TeamButton region="spokane4" gameId={1608} team={teamAWinner1215}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                     {teamBWinner1216 ? (
                         <TeamButton region="spokane4" gameId={1608} team={teamBWinner1216}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                 </div>
             </div>

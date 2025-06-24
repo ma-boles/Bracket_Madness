@@ -3,6 +3,7 @@ import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import dynamic from 'next/dynamic';
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 export default function MobileSpokane1_SecondRound () {
@@ -21,53 +22,53 @@ export default function MobileSpokane1_SecondRound () {
 
     return (
             <>
-                <div className="second-round">
-                        <div className=" bg-blue-800">
+                <div className="p-4 bg-gray-600/20">
+                        <div className="m-2">
                             {teamAWinner1101 ? ( 
                                     <TeamButton region="spokane1" gameId={1201} team={teamAWinner1101}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                                 {teamBWinner1102 ? ( 
                                     <TeamButton region="spokane1" gameId={1201} team={teamBWinner1102}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                         </div>
-                        <div className="bg-blue-800">
+                        <div className="m-2">
                             {teamAWinner1103 ? ( 
                                     <TeamButton region="spokane1" gameId={1202} team={teamAWinner1103}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                                 {teamBWinner1104 ? ( 
                                     <TeamButton region="spokane1" gameId={1202} team={teamBWinner1104}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                         </div>
-                        <div className=" bg-blue-800">
+                        <div className="m-2">
                             {teamAWinner1105 ? ( 
                                     <TeamButton region="spokane1" gameId={1203} team={teamAWinner1105}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                                 {teamBWinner1106 ? ( 
                                     <TeamButton region="spokane1" gameId={1203} team={teamBWinner1106}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                         </div>
-                        <div className=" bg-blue-800">
+                        <div className="m-2">
                             {teamAWinner1107 ? ( 
                                     <TeamButton region="spokane1" gameId={1204} team={teamAWinner1107}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                                 {teamBWinner1108 ? ( 
                                     <TeamButton region="spokane1" gameId={1204} team={teamBWinner1108}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                         </div>
                     </div>

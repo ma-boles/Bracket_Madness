@@ -2,7 +2,7 @@
 import React from "react";
 import { useBracket  } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
-
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileBirmingham2_SweetSixteen() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
@@ -17,29 +17,29 @@ export default function MobileBirmingham2_SweetSixteen() {
     return(
         <>
 
-            <div className="round sweet-16 pt-4">
-                <div className="matchup3--r bg-zinc-700">
+            <div className="p-4 bg-blue-600/40">
+                <div className="m-2">
                     {teamAWinner1205 ? ( 
                         <TeamButton region="birmingham2" gameId={1603} team={teamAWinner1205}/>
                     ) : (
-                        <p className="team">Select...</p>
+                        <SelectPlaceholder />
                     )}
                     {teamBWinner1206 ? ( 
                         <TeamButton region="birmingham2" gameId={1603} team={teamBWinner1206}/>
                     ) : (
-                        <p className="team">Select...</p>
+                        <SelectPlaceholder />
                     )}
                 </div>
-                <div className="matchup3-last--r bg-zinc-700">
+                <div className="m-2">
                     {teamAWinner1207 ? ( 
                         <TeamButton region="birmingham2" gameId={1604} team={teamAWinner1207}/>
                     ) : (
-                        <p className="team">Select...</p>
+                        <SelectPlaceholder />
                     )}
                     {teamBWinner1208 ? ( 
                         <TeamButton region="birmingham2" gameId={1604} team={teamBWinner1208}/>
                     ) : (
-                        <p className="team">Select...</p>
+                        <SelectPlaceholder />
                     )}
                 </div>
             </div>

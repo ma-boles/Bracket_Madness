@@ -3,6 +3,7 @@ import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import dynamic from 'next/dynamic';
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 
@@ -19,29 +20,29 @@ export default function MobileSpokane1_SweetSixteen () {
 
     return (
         <>
-            <div className="sweet-16">
-                    <div className="bg-zinc-700">
+            <div className="p-4 bg-blue-600/40">
+                    <div className="m-2">
                             {teamAWinner1201 ? ( 
                                     <TeamButton region="spokane1" gameId={1601} team={teamAWinner1201}/>
                                 ) : (
-                                    <p className="team">Select...</p>
-                                )}
+                                    <SelectPlaceholder />
+                                                                    )}
                                 {teamBWinner1202 ? ( 
                                     <TeamButton region="spokane1" gameId={1601} team={teamBWinner1202}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                     </div>
-                    <div className=" bg-zinc-700">
+                    <div className="m-2">
                             {teamAWinner1203 ? ( 
                                     <TeamButton region="spokane1" gameId={1602} team={teamAWinner1203}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                                 {teamBWinner1204 ? ( 
                                     <TeamButton region="spokane1" gameId={1602} team={teamBWinner1204}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <SelectPlaceholder />
                                 )}
                     </div>
                 </div>

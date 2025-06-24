@@ -2,6 +2,7 @@
 import React from "react";
 import { useBracket  } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 export default function MobileBirmingham2_SecondRound() {
@@ -20,53 +21,53 @@ export default function MobileBirmingham2_SecondRound() {
 
     return(
         <>
-            <div className="round second-round">
-                        <div className="matchup2--r mb-11 bg-blue-800">
+            <div className="p-4 bg-gray-600/20">
+                        <div className="m-2">
                             {teamAWinner1109 ? ( 
                                 <TeamButton region="birmingham2" gameId={1205} team={teamAWinner1109}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                             {teamBWinner1110 ? ( 
                                 <TeamButton region="birmingham2" gameId={1205} team={teamBWinner1110}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                         </div>
-                        <div className="matchup2--r mb-11 bg-blue-800">
+                        <div className="m-2">
                             {teamAWinner1111 ? ( 
                                 <TeamButton region="birmingham2" gameId={1206} team={teamAWinner1111}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                             {teamBWinner1112 ? ( 
                                 <TeamButton region="birmingham2" gameId={1206} team={teamBWinner1112}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                         </div>
-                        <div className="matchup2--r mb-12 bg-blue-800">
+                        <div className="m-2">
                             {teamAWinner1113 ? ( 
                                 <TeamButton region="birmingham2" gameId={1207} team={teamAWinner1113}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                             {teamBWinner1114 ? ( 
                                 <TeamButton region="birmingham2" gameId={1207} team={teamBWinner1114}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                         </div>
-                        <div className="matchup2-last--r bg-blue-800">
+                        <div className="m-2">
                             {teamAWinner1115 ? ( 
                                 <TeamButton region="birmingham2" gameId={1208} team={teamAWinner1115}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                             {teamBWinner1116 ? ( 
                                 <TeamButton region="birmingham2" gameId={1208} team={teamBWinner1116}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <SelectPlaceholder />
                             )}
                         </div>
                 </div>

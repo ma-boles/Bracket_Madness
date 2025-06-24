@@ -2,6 +2,7 @@
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileSpokane4_SecondRound() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
@@ -18,53 +19,53 @@ export default function MobileSpokane4_SecondRound() {
 
     return (
         <>
-            <div className="round second-round">
-                <div className="matchup2 mb-11 bg-blue-800">
+            <div className="p-4 bg-gray-600/20">
+                <div className="m-2">
                         {teamAWinner1125 ? (
                             <TeamButton region="spokane4" gameId={1213} team={teamAWinner1125}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                         {teamBWinner1126 ? (
                             <TeamButton region="spokane4" gameId={1213} team={teamBWinner1126}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                 </div>
-                <div className="matchup2 mb-11 bg-blue-800">
+                <div className="m-2">
                         {teamAWinner1127 ? (
                             <TeamButton region="spokane4" gameId={1214} team={teamAWinner1127}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                         {teamBWinner1128 ? (
                             <TeamButton region="spokane4" gameId={1214} team={teamBWinner1128}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                 </div>
-                <div className="matchup2 mb-13 bg-blue-800">
+                <div className="m-2">
                         {teamAWinner1129 ? (
                             <TeamButton region="spokane4" gameId={1215} team={teamAWinner1129}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                         {teamBWinner1130 ? (
                             <TeamButton region="spokane4" gameId={1215} team={teamBWinner1130}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                 </div>
-                <div className="matchup2-last bg-blue-800">
+                <div className="m-2">
                         {teamAWinner1131 ? (
                             <TeamButton region="spokane4" gameId={1216} team={teamAWinner1131}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                         {teamBWinner1132 ? (
                             <TeamButton region="spokane4" gameId={1216} team={teamBWinner1132}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                 </div>
             </div>

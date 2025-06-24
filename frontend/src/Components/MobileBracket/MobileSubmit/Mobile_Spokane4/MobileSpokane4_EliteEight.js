@@ -2,6 +2,7 @@
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileSpokane4_EliteElight() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
@@ -12,17 +13,17 @@ export default function MobileSpokane4_EliteElight() {
 
     return(
         <>
-            <div className="round elite8">
-                <div className="matchup4 bg-zinc-700">
+            <div className="p-4 bg-gray-600/20">
+                <div className="m-2">
                     {teamAWinner1607 ? (
                             <TeamButton region="spokane4" gameId={8004} team={teamAWinner1607}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                     {teamBWinner1608 ? (
                             <TeamButton region="spokane4" gameId={8004} team={teamBWinner1608}/>
                         ) : (
-                            <p className="team">Select...</p>
+                            <SelectPlaceholder />
                         )}
                 </div>
             </div>

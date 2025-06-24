@@ -2,6 +2,7 @@
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
+import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 export default function MobileBirmingham3_EliteEight() {
@@ -14,17 +15,17 @@ export default function MobileBirmingham3_EliteEight() {
 
     return (
         <>
-            <div className="round elite8">
-                <div className="matchup4--r bg-zinc-700">
+            <div className="p-4 bg-gray-600/20">
+                <div className="m-2">
                     {teamAWinner1605 ? (
                         <TeamButton region="birmingham3" gameId={8003} team={teamAWinner1605}/>
                     ) : (
-                        <p className="team">Select...</p>
+                        <SelectPlaceholder />
                     )}
                     {teamBWinner1606 ? (
                         <TeamButton region="birmingham3" gameId={8003} team={teamBWinner1606}/>
                     ) : (
-                        <p className="team">Select...</p>
+                        <SelectPlaceholder />
                     )}
                 </div>
             </div>  
