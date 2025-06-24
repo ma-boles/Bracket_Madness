@@ -3,13 +3,12 @@ import React from "react";
 import TeamButton from "@/Components/TeamButton";
 import { useBracket } from "@/context/BracketContext";
 
-export default function MobileRdund_FirstFour() {
+export default function MobileRound_FirstFour() {
     const { userPicks, setUserPicks, handlePick } = useBracket();
     
     return(
         <>
             <div className="pt-4">
-                {/* <div className="flex justify-center items-center"> */}
                         <div className="pb-6 px-4 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Spokane 1</h1>
                             <TeamButton 
@@ -35,10 +34,7 @@ export default function MobileRdund_FirstFour() {
                                 gameId={1002}
                                 team={{ id: 29, name: 'Columbia', seed: 11}}
                                 />
-                        {/* </div> */}
-                    </div>
-
-                    {/* <div className="flex justify-center items-center"> */}
+                        </div>
                         <div className="pb-6 px-4 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Birmingham 3</h1>
                             <TeamButton 
@@ -65,7 +61,6 @@ export default function MobileRdund_FirstFour() {
                                 team={{ id: 52, name: 'William & Mary', seed: 16}}
                                 />
                         </div>
-                        {/* </div> */}
             </div>
         </>
     )
