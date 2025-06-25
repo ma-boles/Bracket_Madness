@@ -10,6 +10,7 @@ import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outlin
 
 import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
+import LogoutButton from "@/app/auth/components/LogoutButton";
 
 
 export default function NavBar () {
@@ -135,6 +136,8 @@ export default function NavBar () {
 
                                     Leaderboard
                                 </button>
+                                
+                                <LogoutButton />
                             </div>
 
                         ) : (
