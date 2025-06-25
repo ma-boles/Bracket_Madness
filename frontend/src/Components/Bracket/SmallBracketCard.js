@@ -19,7 +19,6 @@ export default function SmallBracketCard({ name, bracketId, total_points, rank, 
     };
 
     return(
-        <div>
         <div className='m-2 w-50 rounded-lg'>
             <div className={`border-4 border-white rounded-lg ${styleClass}`}>
                 <div className="mx-auto mt-2" >
@@ -66,8 +65,6 @@ export default function SmallBracketCard({ name, bracketId, total_points, rank, 
                     // ))
                 )}
             </div>
-        </div>
-
         </div>
     )
 }
