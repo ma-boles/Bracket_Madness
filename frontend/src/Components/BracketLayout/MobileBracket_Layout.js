@@ -21,7 +21,7 @@ import MobileSpokane4_SweetSixteen from "../MobileBracket/MobileSubmit/Mobile_Sp
 import MobileSpokane4_EliteElight from "../MobileBracket/MobileSubmit/Mobile_Spokane4/MobileSpokane4_EliteEight";
 
 
-export default function MobileBracket_Layout () {
+export default function MobileBracket_Layout ({ onEnterFinalFour }) {
     const [activeRegion, setActiveRegion] = useState(null);
     const [activeTab, setActiveTab] = useState(null);
 
@@ -35,7 +35,7 @@ export default function MobileBracket_Layout () {
         </div>
         <div>
             {activeTab == 'First Four' && <MobileRound_FirstFour />}
-            {activeTab === "Final 4" && <MobileRound_FinalFour />}
+            {activeTab === "Final 4" && <MobileRound_FinalFour onMount={onEnterFinalFour} />}
 
             {activeRegion === 'Spokane 1' && activeTab === 'Rd 1' && <MobileSpokane1_FirstRound />}
             {activeRegion === 'Spokane 1' && activeTab === 'Rd 2' && <MobileSpokane1_SecondRound />}

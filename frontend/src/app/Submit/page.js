@@ -2,12 +2,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import NavBar from "../../Components/NavBar";
-import FirstFour from "../../Components/firstfourpick";
-import ChampionshipPick from "../../Components/championshippick";
-import Spokane1_Pick from "../../Components/spokane1_pick";
-import Birmingham2_Pick from "../../Components/birmingham2_pick";
-import Birmingham3_Pick from "../../Components/birmingham3_pick";
-import Spokane4_Pick from "../../Components/spokane4_pick";
+import DesktopBracket_Layout from "@/Components/BracketLayout/DesktopBracket_Layout";
+import MobileBracket_Layout from "@/Components/BracketLayout/MobileBracket_Layout";
 import { useBracket } from "@/context/BracketContext";
 import { useSearchParams } from "next/navigation";
 import AuthContext from "@/context/AuthContext";
@@ -22,6 +18,7 @@ export default function Submit() {
     const [ bracketName, setBracketName] = useState("");
     const [ bracketId, setBracketId ] = useState(null);
     const [ picksValid, setPicksValid ] = useState(false);
+    const [isFinalFourActive, setIsFinalFourActive] = useState(false);
     const searchParams = useSearchParams();
     const poolId = searchParams.get('pool_id');
 
@@ -180,22 +177,9 @@ export default function Submit() {
                 <NavBar />
             </nav>
             <div>
-                <div className="w-full">
-                    <FirstFour />
-                </div>
-                <div>
-                    <div className="flex">
-                        <Spokane1_Pick />
-                        <Birmingham2_Pick />
-                    </div>
-                        <ChampionshipPick />
-                    <div className="flex">
-                        <Spokane4_Pick />
-                        <Birmingham3_Pick />
+                {/* <DesktopBracket_Layout /> */}
+                <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)}/>
 
-                    </div>
-
-                </div>
 
                 <ConfirmationModal 
                     show={showModal}
@@ -207,7 +191,47 @@ export default function Submit() {
                     setBracketName={setBracketName}/>
 
                 {currentUser && (
-                <div className="flex justify-center items-center">
+                <>
+                    {/* Desktop: always show */}
+                    <div className="hidden lg:flex justify-center items-center">
+                    <button
+                        className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
+                        onClick={handleLockIn}
+                    >
+                        Lock In Picks
+                    </button>
+                    <button
+                        className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                        disabled={!isValidated}
+                        onClick={submitPicks}
+                    >
+                        Submit
+                    </button>
+                    </div>
+
+                    {/* Mobile: only show if Final Four is active */}
+                    {isFinalFourActive && (
+                    <div className="flex lg:hidden justify-center items-center">
+                        <button
+                        className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/2 h-12 mx-2 cursor-pointer"
+                        onClick={handleLockIn}
+                        >
+                        Lock In Picks
+                        </button>
+                        <button
+                        className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/2 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                        disabled={!isValidated}
+                        onClick={submitPicks}
+                        >
+                        Submit
+                        </button>
+                    </div>
+                    )}
+                </>
+                )}
+
+                {/* {currentUser && (
+                <div className="hidden lg:flex justify-center items-center">
                     <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
                         onClick={handleLockIn}
                         >Lock In Picks</button>
@@ -218,7 +242,21 @@ export default function Submit() {
                         Submit
                     </button>
                 </div>
-                    )}
+
+                {isFinalFourActive && (
+                    <div className="hidden lg:flex justify-center items-center">
+                    <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
+                        onClick={handleLockIn}
+                        >Lock In Picks</button>
+                    <button className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                        disabled={!isValidated}
+                        onClick={submitPicks}
+                        >
+                        Submit
+                    </button>
+                </div>
+                )}
+                    )} */}
                     {/* <button onClick={handleLockIn}>Show modal</button> */}
 
             </div>

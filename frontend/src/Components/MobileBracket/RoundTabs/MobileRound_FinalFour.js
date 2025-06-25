@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { useBracket } from "@/context/BracketContext";
 import { useAuth } from "@/context/AuthContext";
 import TeamButton from "@/Components/TeamButton";
@@ -8,7 +8,7 @@ import SelectPlaceholder from "../SelectPlaceholder";
 import Image from "next/image";
 
 
-export default function MobileRound_FinalFour () {
+export default function MobileRound_FinalFour ({ onMount }) {
     const { bracketData, getWinnerFromGame } = useBracket();
     const { currentUser } = useAuth();
 
@@ -25,21 +25,17 @@ export default function MobileRound_FinalFour () {
     // Champion
     const teamAWinner10003 = getWinnerFromGame(bracketData, 10003);
 
-    const lockInPicks = () => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth',
-        });
-    };
+    useEffect(() => {
+        onMount?.();
+    }, [onMount]);
 
     return (
         <>
                 <div className="p-4 bg-blue-600/50">
                         <div className="my-auto flex flex-col items-center">
-                            <div className="w-full">
-                                <p className="my-2 bg-black/30 text-center">Semifinal #1</p>
+                            <div className="w-full my-4">
                                
-                                <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
+                                <div className="rounded-lg border-none text-sm/6 text-white">
                                  {teamAWinner8001 ? ( 
                                     <TeamButton region="spokane1" gameId={10001} team={teamAWinner8001}/>
                                 ) : (
@@ -62,7 +58,7 @@ export default function MobileRound_FinalFour () {
                                         </p>
                                 )}
                                 </div>
-                                <div className="rounded-lg border-none bg-white/5 text-sm/6 text-white">
+                                <div className="rounded-lg border-none text-sm/6 text-white">
                                 {teamAWinner8004 ? (
                                     <TeamButton region="spokane4" gameId={10001} team={teamAWinner8004}/>
                                 ) : (
@@ -89,7 +85,7 @@ export default function MobileRound_FinalFour () {
                         </div>
 
                             <div className="w-full">
-                                <p className="my-2 bg-black/30 text-center">Semifinal #2</p>
+                                {/* <p className="my-2 bg-black/30 text-center">Semifinal #2</p> */}
 
                                 {teamAWinner8002 ? (
                                     <TeamButton region="birmingham2" gameId={10002} team={teamAWinner8002}/>
@@ -152,23 +148,12 @@ export default function MobileRound_FinalFour () {
                                     <SelectPlaceholder />
                                 )}
 
-                            <div className="flex py-4 px-8 mt-8 bg-white/5 rounded-lg">
+                            <div className="flex w-full px-8 py-4 mt-8 bg-white/5 rounded-lg">
                                 {teamAWinner10003 ? (
                                         <ChampionshipButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
                                     ) : (
                                         <SelectPlaceholder />
                                     )}
-                                    {currentUser && (
-                                        <button className="ml-2 p-2 cursor-pointer rounded-lg border border-white/70" onClick={lockInPicks}>
-                                        <Image 
-                                            alt="lock in"
-                                            src="../lock-open-solid.svg"
-                                            className="image-filter"
-                                            width={22}
-                                            height={40}
-                                            />
-                                        </button>
-                                     )}
                             </div>
 
                         </div>
