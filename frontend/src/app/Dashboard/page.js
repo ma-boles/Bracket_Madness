@@ -50,10 +50,9 @@ export default function Dashboard() {
             }
 
             return (
-                <div>
+                <div key={item.bracket_id}>
                     <div className="hidden sm:block">
                         <BracketCard 
-                            key={index}
                             bracketId={item.bracket_id}
                             name={item.bracket_name}
                             total_points={item.total_points}
@@ -68,7 +67,6 @@ export default function Dashboard() {
                     </div>
                     <div className="flex justify-center sm:hidden">
                         <SmallBracketCard 
-                            key={index}
                             bracketId={item.bracket_id}
                             name={item.bracket_name}
                             total_points={item.total_points}
