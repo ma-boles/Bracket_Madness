@@ -1,19 +1,6 @@
-/* @import "tailwindcss/preflight";
-@tailwind utilities; */
 @import "tailwindcss";
 @layer base, components, utilities;
 
-/* @layer utilities {
-  .custom-padding {
-    padding: 1rem;
-  }
-} */
-
-/* :root {
-  --background: #ffffff; 
-  --foreground: #171717;
-  #1a1a1a
-} */
 
 @theme inline {
   --color-background: var(--background);
@@ -41,10 +28,21 @@
   }
 }
 
-body {
+html, body {
+  margin: 0;
+  padding: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* .bracket {
