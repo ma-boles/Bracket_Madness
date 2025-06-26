@@ -30,7 +30,7 @@ export default function AdminView () {
                             No Pools Created
                             </h1>
                         ) : (
-                            <div className="flex flex-wrap">
+                            <div className="flex flex-wrap justify-center md:justify-start">
                             {adminPools.map((pool) => (
                                 <AdminPoolCard
                                 key={pool.id}
