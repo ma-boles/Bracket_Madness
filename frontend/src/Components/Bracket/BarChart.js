@@ -35,13 +35,14 @@ export default function BarChart({ labels, data, usePoolDisplay }) {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false, // CRUCIAL
         animation: {
             duration: 1000,
             easing: 'easeOutQuart',
         },
         layout: {
             padding: {
-            top: 20, // Pushes chart area down — adds space below the legend
+            top: 0, // Pushes chart area down — adds space below the legend
             },
         },
         scales: {
@@ -78,7 +79,7 @@ export default function BarChart({ labels, data, usePoolDisplay }) {
 
 
     return (
-        <div className="p-4">
+        <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-full mx-auto h-[250px] sm:h-[300px] md:h-[320px] lg:h-[360px] p-4">
             <Bar data={chartData} options={options} />
         </div>
     );

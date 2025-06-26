@@ -27,9 +27,18 @@ const AccuracyChart = ({ correct, total, usePoolDisplay }) => {
     };
 
     const options = {
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'bottom',
+                title: {
+                display: true,
+                text: ' ',
+                padding: {
+                top: 10,
+                bottom: 0,
+                },
+            },
                 labels: {
                     color: '#fff',
                 },
@@ -38,8 +47,18 @@ const AccuracyChart = ({ correct, total, usePoolDisplay }) => {
     };
 
     return (
-        <div className="p-4">
-            <Pie data={data} options={options}/>
+        <div className="w-full max-w-xs sm:max-w-md md:max-w-full mx-auto h-[250px] md:h-[300px] lg:h-[350px] p-4 m-2">
+
+        {/* <div className="w-full max-w-xs mx-auto h-[250px] p-4 m-2"> */}
+            <div className="relative w-full h-full">
+            <Pie
+                data={data}
+                options={{
+                ...options,
+                maintainAspectRatio: false,
+                }}
+            />
+            </div>
         </div>
     );
 };
