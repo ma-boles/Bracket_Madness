@@ -39,24 +39,47 @@ export default function Results() {
         <nav>
             <NavBar />
         </nav>
-        <div>
-            <div className="w-full">
-                <FirstFour_Result results={firstFourResultsData}/>
-            </div>
-            <div>
-                <div className="flex">
-                    <Spokane1_Results results={spokane1ResultsData}/>
-                    <Birmingham2_Results results={birmingham2ResultsData}/>
+
+        <div className="flex justify-center items-center">
+            <div className="w-screen h-screen overflow-x-auto hide-scrollbar"> 
+
+            <div className="px-0 py-6 gap-6"> 
+
+                {/* First Four */}
+                <div className="w-[400px] mx-auto mb-6">
+                    <FirstFour_Result results={firstFourResultsData} />
                 </div>
 
+                {/* Top half of bracket */}
+                <div className="flex  mx-auto mb-6">
+                    <div>
+                        <Spokane1_Results results={spokane1ResultsData} />
+                    </div>
+                    <div>
+                        <Birmingham2_Results results={birmingham2ResultsData} />
+                    </div>
+                </div>
+
+
+                {/* Championship */}
+                <div className="w-[400px] mx-auto mb-6">
                     <Championship_Results results={finalRoundsResultsData} />
-                
-                <div className="flex">
-                    <Spokane4_Results results={spokane4ResultsData}/>
-                    <Birmingham3_Results results={birmingham3ResultsData}/>
+                </div>
+
+
+                {/* Bottom half of bracket */}
+                <div className="flex mx-auto">
+                    <div>
+                        <Spokane4_Results results={spokane4ResultsData} />
+                    </div>
+                    <div>
+                        <Birmingham3_Results results={birmingham3ResultsData} />
+                    </div>
+                </div>
                 </div>
             </div>
-        </div>
-        </>
+    </div>
+    
+    </>
     )
 }
