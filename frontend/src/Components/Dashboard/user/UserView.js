@@ -4,8 +4,6 @@ import InviteCard from "./InviteCard";
 import UserPoolCard from "./UserPoolCard";
 import { usePools } from "@/context/PoolsContext";
 
-import ReminderCard from "./ReminderCard";
-import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
 
 export default function UserView () {
     const [invites, setInvites] = useState([]);
@@ -66,7 +64,7 @@ export default function UserView () {
                 ) : memberPools.length === 0 ? (
                         <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">No Pools Joined</h1>
                 ) : (
-                    <div className="flex mt-2 flex-wrap">
+                    <div className="flex mt-2 flex-wrap justify-center md:justify-start" >
                         {memberPools.map((pool) => (
                             <UserPoolCard 
                                 key={pool.id}
