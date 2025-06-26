@@ -18,7 +18,7 @@ export default function BracketInfoCard({ bracketInfoData, usePoolDisplay, accur
     
     return(
     <> 
-    <div className="w-full h-96 m-2 bg-black/50 rounded-lg ">
+    <div className="w-full m-2 bg-black/60 rounded-lg">
         <div className="flex pt-2 justify-center">
             <p className="px-2 text-xl">Picks: {correct} / {total}</p>
         </div>
@@ -26,8 +26,15 @@ export default function BracketInfoCard({ bracketInfoData, usePoolDisplay, accur
             <div className="flex items-center justify-center w-full lg:w-1/2">
                 <AccuracyChart correct={correct} total={total} usePoolDisplay={usePoolDisplay} />
             </div>
-            <div className="w-full lg:w-1/2">
-                <BarChart labels={labels} data={points} usePoolDisplay={usePoolDisplay} />
+            <div className="w-full lg:w-1/2 flex justify-center lg:block">
+                {/* BarChart container */}
+                <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
+                    <BarChart
+                    labels={labels}
+                    data={points}
+                    usePoolDisplay={usePoolDisplay}
+                    />
+                </div>
             </div>
         </div>
     </div>   
