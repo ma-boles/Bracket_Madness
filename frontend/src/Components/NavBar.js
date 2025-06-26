@@ -90,11 +90,6 @@ export default function NavBar () {
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
                     <div className="fixed top-17 left-0 w-full bg-black/95 text-white flex flex-col items-center justify-center text-center text-xl z-20">
-                        <Link href="/Results" onClick={() => setMobileMenuOpen(false)} className="w-full">
-                            <button className="flex items-center w-full h-10 px-14 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md">
-                                Results    
-                            </button>
-                        </Link>
                         <Link href="/Submit" onClick={() => setMobileMenuOpen(false)} className="w-full">
                             <button className="flex items-center w-full h-10 px-14 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md">
                                 Submit
