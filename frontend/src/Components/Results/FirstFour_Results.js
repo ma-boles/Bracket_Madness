@@ -6,7 +6,7 @@ export default function FirstFour_Result() {
         <>
             <div className="round pt-4">
                 <h1 className="py-2 text-center text-2xl">First Four</h1>
-                    <div className="flex gap-0 pt-4 bg-blue-600 rounded-md">
+                    <div className="flex flex-wrap sm:flex-nowrap justify-center gap-0 pt-4 bg-blue-600 rounded-md">
                         <div className="pb-6 px-4 flex flex-col items-center">
                             <h1 className="w-33 mb-2 bg-black/20 text-center">Spokane 1</h1>
                             <TeamResult 
