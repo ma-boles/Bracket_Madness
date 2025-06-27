@@ -13,14 +13,14 @@ export default function TeamButton({ region, gameId, team }) {
     return (
         <button 
             className={`w-full border border-black/20 bg-white/5 py-3 px-4 text-md text-white cursor-pointer  truncate whitespace-nowrap overflow-hidden
-                lg:w-[8.3rem] 
-                lg:h-[2.75rem] 
-                lg:pr-8
-                lg:pl-3
-                lg:px-2 
-                lg:py-3.5 
-                lg:border-[2px] 
-                lg:border-[rgba(49,43,43,0.119)]
+                sm:w-[8.3rem] 
+                sm:h-[2.75rem] 
+                sm:pr-8
+                sm:pl-3
+                sm:px-2 
+                sm:py-3.5 
+                sm:border-[2px] 
+                sm:border-[rgba(49,43,43,0.119)]
                 ${selected ? 'border border-white font-bold' : 'hover:bg-gray-500'}
                 ${isDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-white/5'}
                 ${isDisabled ? 'pointer-events-none' : ''} 
