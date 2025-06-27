@@ -26,13 +26,21 @@ export default function MobileBracket_Layout ({ onEnterFinalFour }) {
     const [activeTab, setActiveTab] = useState(null);
 
     return (
-        <div className="flex flex-col gap-4 p-2">
+        <div className="sm:hidden flex flex-col gap-4 p-2">
         <div>
             <RoundsNav  activeTab={activeTab} setActiveTab={setActiveTab}/>
             {activeTab !== 'First Four' && activeTab !== 'Final 4' && (
                 <RegionsNav activeRegion={activeRegion} setActiveRegion={setActiveRegion}/>
             )}
         </div>
+        
+        {!activeTab && (
+            <div className="mt-12">
+                <h1 className="text-2xl font-semibold text-center">Please Select Round</h1>
+            </div>
+        )}
+        
+
         <div>
             {activeTab == 'First Four' && <MobileRound_FirstFour />}
             {activeTab === "Final 4" && <MobileRound_FinalFour onMount={onEnterFinalFour} />}
