@@ -8,7 +8,7 @@ import Spokane4_Pick from "../spokane4_pick";
 export default function DesktopBracket_Layout () {
     return (
         <>
-        <div className="flex justify-center items-center">
+        <div className="hidden sm:flex justify-center items-center">
             <div className="w-screen h-screen overflow-x-auto hide-scrollbar"> 
                 <div className="px-0 py-6 gap-6"> 
 
