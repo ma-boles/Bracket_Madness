@@ -15,8 +15,8 @@ export default function MobileSpokane4_SweetSixteen() {
 
     return (
         <>
-            <div className="p-4 bg-blue-600/40">
-                <div className="m-2">
+            <div>
+                <div className="bg-blue-600/40 my-4 p-4">
                     {teamAWinner1213 ? (
                         <TeamButton region="spokane4" gameId={1607} team={teamAWinner1213}/>
                         ) : (
@@ -28,7 +28,7 @@ export default function MobileSpokane4_SweetSixteen() {
                             <SelectPlaceholder />
                         )}
                 </div>
-                <div className="m-2">
+                <div className="bg-blue-600/40 my-4 p-4">
                     {teamAWinner1215 ? (
                         <TeamButton region="spokane4" gameId={1608} team={teamAWinner1215}/>
                         ) : (

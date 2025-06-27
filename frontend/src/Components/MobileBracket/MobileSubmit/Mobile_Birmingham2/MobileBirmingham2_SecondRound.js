@@ -21,8 +21,8 @@ export default function MobileBirmingham2_SecondRound() {
 
     return(
         <>
-            <div className="p-4 bg-gray-600/20">
-                        <div className="m-2">
+            <div>
+                        <div className="bg-white/5 my-4 p-4">
                             {teamAWinner1109 ? ( 
                                 <TeamButton region="birmingham2" gameId={1205} team={teamAWinner1109}/>
                             ) : (
@@ -34,7 +34,7 @@ export default function MobileBirmingham2_SecondRound() {
                                 <SelectPlaceholder />
                             )}
                         </div>
-                        <div className="m-2">
+                        <div className="bg-white/5 my-4 p-4">
                             {teamAWinner1111 ? ( 
                                 <TeamButton region="birmingham2" gameId={1206} team={teamAWinner1111}/>
                             ) : (
@@ -46,7 +46,7 @@ export default function MobileBirmingham2_SecondRound() {
                                 <SelectPlaceholder />
                             )}
                         </div>
-                        <div className="m-2">
+                        <div className="bg-white/5 my-4 p-4">
                             {teamAWinner1113 ? ( 
                                 <TeamButton region="birmingham2" gameId={1207} team={teamAWinner1113}/>
                             ) : (
@@ -58,7 +58,7 @@ export default function MobileBirmingham2_SecondRound() {
                                 <SelectPlaceholder />
                             )}
                         </div>
-                        <div className="m-2">
+                        <div className="bg-white/5 my-4 p-4">
                             {teamAWinner1115 ? ( 
                                 <TeamButton region="birmingham2" gameId={1208} team={teamAWinner1115}/>
                             ) : (

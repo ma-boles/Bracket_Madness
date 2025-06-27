@@ -13,8 +13,8 @@ export default function MobileSpokane4_EliteElight() {
 
     return(
         <>
-            <div className="p-4 bg-gray-600/20">
-                <div className="m-2">
+            <div>
+                <div className="bg-white/5 my-4 p-4">
                     {teamAWinner1607 ? (
                             <TeamButton region="spokane4" gameId={8004} team={teamAWinner1607}/>
                         ) : (

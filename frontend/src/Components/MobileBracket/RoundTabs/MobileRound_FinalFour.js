@@ -31,11 +31,14 @@ export default function MobileRound_FinalFour ({ onMount }) {
 
     return (
         <>
-                <div className="p-4 bg-blue-600/50">
-                        <div className="my-auto flex flex-col items-center">
-                            <div className="w-full my-4">
+                <div>
+                        <div className="my-auto flex flex-col items-center bg-white/5 px-4 pb-4 pt-2">
+                            <p className="px-4 py-2 bg-black/30 font-semibold text-center">Semifinals</p>
+
+                            <div className="w-full my-4 bg-blue-600/40 p-4">
                                
                                 <div className="rounded-lg border-none text-sm/6 text-white">
+
                                  {teamAWinner8001 ? ( 
                                     <TeamButton region="spokane1" gameId={10001} team={teamAWinner8001}/>
                                 ) : (
@@ -83,9 +86,8 @@ export default function MobileRound_FinalFour ({ onMount }) {
                                 </div>
 
                         </div>
-
+                        <div className="bg-blue-600/40 p-4 w-full">
                             <div className="w-full">
-                                {/* <p className="my-2 bg-black/30 text-center">Semifinal #2</p> */}
 
                                 {teamAWinner8002 ? (
                                     <TeamButton region="birmingham2" gameId={10002} team={teamAWinner8002}/>
@@ -132,11 +134,13 @@ export default function MobileRound_FinalFour ({ onMount }) {
                                         </p>
                                 )}
                             </div>
+                        </div>
                     </div>
 
-                        <div className="pb-2 px-2 mt-8 flex flex-col items-center">
-                            <p className="my-2 px-4 py-2 bg-black/30 text-center">Championship</p>
+                        <div className="mt-8 flex flex-col items-center bg-white/5 px-4 pb-4 pt-2">
+                            <p className="my-2 px-4 py-2 bg-black/30 font-semibold text-center">Championship</p>
 
+                            <div className="w-full my-4 bg-blue-600/40 p-4">
                             {teamAWinner10001 ? (
                                     <TeamButton region="finalfour" gameId={10003} team={teamAWinner10001}/>
                                 ) : (
@@ -147,8 +151,10 @@ export default function MobileRound_FinalFour ({ onMount }) {
                                 ) : (
                                     <SelectPlaceholder />
                                 )}
+                            </div>
 
-                            <div className="flex w-full px-8 py-4 mt-8 bg-white/5 rounded-lg">
+                            <p className="mt-4 px-4 py-2 text-2xl bg-black/30 font-semibold text-center">Champion</p>
+                            <div className="flex w-full px-8 py-4 my-2 bg-blue-600/40 p-4">
                                 {teamAWinner10003 ? (
                                         <ChampionshipButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
                                     ) : (

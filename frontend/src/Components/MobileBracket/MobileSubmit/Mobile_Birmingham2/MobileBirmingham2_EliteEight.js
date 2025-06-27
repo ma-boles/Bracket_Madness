@@ -16,8 +16,8 @@ export default function MobileBirmingham2_EliteEight() {
 
     return (
         <>
-            <div className="p-4 bg-gray-600/20">
-                <div className="m-2">
+            <div>
+                <div className="bg-white/5 my-4 p-4">
                     {teamAWinner1603 ? ( 
                         <TeamButton region="birmingham2" gameId={8002} team={teamAWinner1603}/>
                     ) : (
