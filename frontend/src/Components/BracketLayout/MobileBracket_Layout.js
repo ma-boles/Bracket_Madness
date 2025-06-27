@@ -26,7 +26,7 @@ export default function MobileBracket_Layout ({ onEnterFinalFour }) {
     const [activeTab, setActiveTab] = useState(null);
 
     return (
-        <div className="sm:hidden flex flex-col gap-4 p-2">
+        <div className="sm:hidden flex flex-col gap-4 p-2 min-h-screen">
         <div>
             <RoundsNav  activeTab={activeTab} setActiveTab={setActiveTab}/>
             {activeTab !== 'First Four' && activeTab !== 'Final 4' && (
