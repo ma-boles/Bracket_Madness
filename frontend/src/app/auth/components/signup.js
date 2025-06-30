@@ -47,8 +47,15 @@ export default function SignUp() {
             });
 
 
-            if(res.ok) {                
+            if(res.ok) {
                 await new Promise(resolve => setTimeout(resolve, 300));
+                toast.success('Sign up successful! Logging you in...', {
+                    style: {
+                        background: '#333',
+                        color: '#fff',
+                        duration: 4000,
+                    }});
+
                 await logIn();
                 router.push('/Submit');
             } else {
