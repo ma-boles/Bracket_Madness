@@ -12,7 +12,7 @@ export default function TeamButton({ region, gameId, team }) {
 
     return (
         <button 
-            className={`w-full border border-black/20 bg-white/5 py-3 px-4 text-md text-white cursor-pointer  truncate whitespace-nowrap overflow-hidden
+            className={`w-full border border-black/20 bg-white/5 py-3 px-4 text-md text-white text-center cursor-pointer truncate whitespace-nowrap overflow-hidden
                 sm:w-[8.3rem] 
                 sm:h-[2.75rem] 
                 sm:pr-8
@@ -21,6 +21,7 @@ export default function TeamButton({ region, gameId, team }) {
                 sm:py-3.5 
                 sm:border-[2px] 
                 sm:border-[rgba(49,43,43,0.119)]
+                sm:text-left
                 ${selected ? 'border border-white font-bold' : 'hover:bg-gray-500'}
                 ${isDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-white/5'}
                 ${isDisabled ? 'pointer-events-none' : ''} 
