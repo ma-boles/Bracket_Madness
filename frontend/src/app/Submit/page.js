@@ -9,16 +9,20 @@ import { useSearchParams } from "next/navigation";
 import AuthContext from "@/context/AuthContext";
 import ConfirmationModal from "@/Components/ConfirmationModal";
 import toast from "react-hot-toast";
+import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
 
 export default function Submit() {
     const { currentUser } = useContext(AuthContext);
     const [ isValidated, setIsValidated ] = useState(false);
     const { bracketData, resetBracket } = useBracket();
     const [ showModal, setShowModal ] = useState(null);
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ isLoadingCheckPicks, setIsLoadingCheckPicks ] = useState(false);
+    const [ isLoadingSubmit, setIsLoadingSubmit ] = useState(false);
     const [ bracketName, setBracketName] = useState("");
     const [ bracketId, setBracketId ] = useState(null);
     const [ picksValid, setPicksValid ] = useState(false);
-    const [isFinalFourActive, setIsFinalFourActive] = useState(false);
+    const [ isFinalFourActive, setIsFinalFourActive ] = useState(false);
     const searchParams = useSearchParams();
     const poolId = searchParams.get('pool_id');
 
@@ -30,7 +34,8 @@ export default function Submit() {
     const handleCheckPicks = () => {
         console.log("Check Picks Clicked");
         console.log("Bracket Data Before Check:", bracketData);
-    
+        setIsLoadingCheckPicks(true);
+
         const numberOfGames = 67; 
 
         const pickCount = Object.keys(bracketData).length;
@@ -45,6 +50,7 @@ export default function Submit() {
                     duration: 4000,
                 }
             })
+            setIsLoadingCheckPicks(false);
             setIsValidated(false);
             return; 
         }
@@ -56,6 +62,7 @@ export default function Submit() {
         if (allPicked && pickCount === numberOfGames) {
             // If all picks are made and we have the right number of picks
             setIsValidated(true);
+            setIsLoadingCheckPicks(false);
             toast.success('All picks are made. You can submit now!', {
                 style: {
                     background: '#333',
@@ -72,11 +79,13 @@ export default function Submit() {
                 }
             })
             setIsValidated(false);
+            setIsLoadingCheckPicks(false);
         }
     };
 
 
     const handleSubmitBracket = async () => {
+        setIsLoadingSubmit(true);
 
         const bracketPayload = {
             bracket_name: bracketName || null,
@@ -96,8 +105,26 @@ export default function Submit() {
 
         if(data.success) {
             setBracketId(bracketId);
+            setIsLoadingSubmit(false);
+
+            toast.success('Successful! Ready to submit below.',{
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                    duration: 4000,
+                }
+            })
         } else {
+            setIsLoadingSubmit(fale);
+
             console.error('Bracket creation failed:', error.message);
+            toast.error('Bracket creation failed. Please try again.',{
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                    duration: 4000,
+                }
+            })
         };
 
         setShowModal(false);
@@ -110,6 +137,7 @@ export default function Submit() {
 
 
     const submitPicks = async () => {
+        setIsLoading(true);
 
             if(!currentUser) {
                 console.error('Error: User not logged in.');
@@ -141,13 +169,13 @@ export default function Submit() {
 
                 if(result.success) {
                     console.log('Bracket ID:', bracketId);
-                    toast.success('Bracket successfully submitted', {
+                    toast.success('Successfully submitted', {
                             style: {
                                 background: '#333',
                                 color: '#fff'
                             }
                     })
-
+                    setIsLoading(false);
                     resetBracket();
 
                 }  else {
@@ -177,7 +205,7 @@ export default function Submit() {
                 <NavBar />
             </nav>
             <div>
-                {/* <DesktopBracket_Layout /> */}
+                <DesktopBracket_Layout />
                 <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)}/>
 
 
@@ -188,25 +216,33 @@ export default function Submit() {
                     onSubmitBracket={handleSubmitBracket}
                     picksValid={isValidated}
                     bracketName={bracketName}
-                    setBracketName={setBracketName}/>
+                    setBracketName={setBracketName}
+                    isLoadingCheckPicks={isLoadingCheckPicks}
+                    isLoadingSubmit={isLoadingSubmit}/>
 
                 {currentUser && (
                 <>
                     {/* Desktop: always show */}
                     <div className="hidden lg:flex justify-center items-center">
                     <button
-                        className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
+                        className="mb-6 mt-2 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
                         onClick={handleLockIn}
                     >
                         Lock In Picks
                     </button>
+                    
                     <button
-                        className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                        className={`mb-6 mt-2 rounded-lg bg-blue-700 border border-blue-700 transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                         disabled={!isValidated}
                         onClick={submitPicks}
                     >
-                        Submit
+                        {isLoading ? (
+                                <ButtonSpinner size={4} /> 
+                            ) : (
+                                'Submit'
+                            )}
                     </button>
+
                     </div>
 
                     {/* Mobile: only show if Final Four is active */}
@@ -219,11 +255,15 @@ export default function Submit() {
                         Lock In Picks
                         </button>
                         <button
-                        className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/2 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                        className={`mb-6 rounded-lg bg-blue-700 border border-blue-700 transition-colors flex items-center justify-center font-medium w-1/2 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                         disabled={!isValidated}
                         onClick={submitPicks}
                         >
-                        Submit
+                        {isLoading ? (
+                                <ButtonSpinner size={4} /> 
+                            ) : (
+                                'Submit'
+                            )}
                         </button>
                     </div>
                     )}

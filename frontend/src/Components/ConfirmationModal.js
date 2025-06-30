@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { ButtonSpinner } from "./ui/ButtonSpinner";
 
-export default function ConfirmationModal({ show, onClose, onVerify, onSubmitBracket, picksValid, bracketName, setBracketName }) {
+export default function ConfirmationModal({ show, onClose, onVerify, onSubmitBracket, picksValid, bracketName, setBracketName, isLoadingCheckPicks, isLoadingSubmit }) {
     if(!show) return null;
+    
 
     return (
         <>
@@ -11,7 +13,13 @@ export default function ConfirmationModal({ show, onClose, onVerify, onSubmitBra
                 {!picksValid ? (
                     <div>
                         <h2 className="mb-4 font-semibold text-xl">Please verify your picks.</h2>
-                        <button className="p-2 m-2 w-52 border border-white rounded-lg cursor-pointer hover:bg-purple-600 hover:border-purple-600 transition duration-300" onClick={onVerify}>Verify</button>
+                        <button className="p-2 m-2 w-52 border border-white rounded-lg cursor-pointer hover:bg-purple-600 hover:border-purple-600 transition duration-300" onClick={onVerify}>
+                            {isLoadingCheckPicks ? (
+                                    <ButtonSpinner size={4} /> 
+                                ) : (
+                                    'Verify'
+                                )}
+                            </button>
                     </div>
                     ) : (
                     <div>
@@ -24,7 +32,13 @@ export default function ConfirmationModal({ show, onClose, onVerify, onSubmitBra
                             onChange={(e) => setBracketName(e.target.value)}
                             className="p-2 mt-8 mx-2 w-52 bg-white/10 rounded-lg"/>
                         </div>
-                        <button className="p-2 my-2 w-52 border border-white rounded-lg cursor-pointer hover:bg-purple-600 hover:border-purple-600 transition duration-300" onClick={onSubmitBracket}>Submit</button>
+                        <button className="p-2 my-2 w-52 border border-white rounded-lg cursor-pointer hover:bg-purple-600 hover:border-purple-600 transition duration-300" onClick={onSubmitBracket}>
+                            {isLoadingSubmit ? (
+                                    <ButtonSpinner size={4} /> 
+                                ) : (
+                                    'Submit'
+                                )}
+                        </button>
                     </div>
                 )}
 
