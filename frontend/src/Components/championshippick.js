@@ -24,12 +24,12 @@ export default function ChampionshipPick () {
     // Champion
     const teamAWinner10003 = getWinnerFromGame(bracketData, 10003);
 
-    const lockInPicks = () => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth',
-        });
-    };
+    // const lockInPicks = () => {
+    //     window.scrollTo({
+    //         top: document.body.scrollHeight,
+    //         behavior: 'smooth',
+    //     });
+    // };
 
     return (
         <>
@@ -63,7 +63,7 @@ export default function ChampionshipPick () {
                                     ) : (
                                         <p className="w-50 m-auto text-center text-xl">Select...</p>
                                     )}
-                                    {currentUser && (
+                                    {/* {currentUser && (
                                         <button className="ml-2 p-2 cursor-pointer rounded-lg border border-white/70" onClick={lockInPicks}>
                                         <Image 
                                             alt="lock in"
@@ -73,7 +73,7 @@ export default function ChampionshipPick () {
                                             height={40}
                                             />
                                         </button>
-                                     )}
+                                     )} */}
                             </div>
 
                                 {teamAWinner10001 ? (
