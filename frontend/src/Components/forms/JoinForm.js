@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { ButtonSpinner } from "../ui/ButtonSpinner";
 
-export default function JoinForm () {
+export default function JoinForm ({ isUser }) {
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         poolName: "",
@@ -87,6 +87,8 @@ export default function JoinForm () {
 
     return(
         <form onSubmit={handleSubmit} className="p-6 max-w-sm mx-auto space-y-4 bg-white/5 rounded-xl">
+            {isUser ? (
+            <>
             <h1 className="text-2xl text-center font-bold">Join a Pool</h1>
             <div>
                 <input 
@@ -113,8 +115,7 @@ export default function JoinForm () {
             <div className="flex justify-between gap-4">
                 <button
                     type="submit"
-                    className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded cursor-pointer"
-                    >
+                    className='flex-1 font-bold py-2 px-4 bg-yellow-400 hover:bg-yellow-500 rounded transition-colors'>
                     {isLoading ? (
                         <ButtonSpinner />
                     ) : (
@@ -130,7 +131,11 @@ export default function JoinForm () {
                     >
                     Clear
                 </button>
-            </div>
+            </div>   
+            </>
+            ) : (
+                <h1 className="text-2xl text-center font-bold"> Sign in to use this feature</h1>
+            )}
         </form>
     );
 }
