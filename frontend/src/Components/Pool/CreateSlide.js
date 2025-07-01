@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import CreateForm from "../forms/CreateForm";
 import SuccessModal from "./SuccessModal";
 
-export default function CreateSlide () {
+export default function CreateSlide ({ isUser }) {
         const [modalOpen, setModalOpen] = useState(false);
         const [createdPool, setCreatedPool] = useState({ name: "", code: ""});
         const router = useRouter();
@@ -21,6 +21,7 @@ export default function CreateSlide () {
                                         onRedirect={() => router.push('/Dashboard')}/>
                                 ):(
                                         <CreateForm 
+                                        isUser={isUser}
                                         onSuccess={(pool) => {
                                                 setCreatedPool(pool)
                                                 setModalOpen(true);
