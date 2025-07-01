@@ -1,11 +1,15 @@
 'use client'
 import React, { useState } from "react";
+import { useContext } from "react";
+import AuthContext from "@/context/AuthContext";
 import MainSlide from "./MainSlide";
 import CreateSlide from "./CreateSlide";
 import JoinSlide from "./JoinSlide";
 
 
 export default function SlideCarousel () {
+    const { currentUser } = useContext(AuthContext);
+    const isUser = !!currentUser
     const [slideIndex, setSlideIndex] = useState(1);
     
 
@@ -30,7 +34,8 @@ export default function SlideCarousel () {
                     <div className="w-screen h-screen flex items-center justify-center">
                         <CreateSlide 
                         setSlideIndex={setSlideIndex}
-                        slideIndex={slideIndex}/>
+                        slideIndex={slideIndex}
+                        isUser={isUser}/>
                     </div>
                     <div className="w-screen h-screen flex items-center justify-center">
                         <MainSlide 
@@ -42,7 +47,8 @@ export default function SlideCarousel () {
                     <div className="w-screen h-screen flex items-center justify-center">
                         <JoinSlide 
                         setSlideIndex={setSlideIndex}
-                        slideIndex={slideIndex}/>
+                        slideIndex={slideIndex}
+                        isUser={isUser}/>
                     </div>
                 </div>
 
