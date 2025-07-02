@@ -1,6 +1,7 @@
 import React from "react";
 import AdminPoolCard from "./AdminPoolCard";
 import { usePools } from "@/context/PoolsContext";
+import LoadingMessage from "@/Components/ui/LoadingMessage";
 
 export default function AdminView () {
     const { adminPools, isLoading } = usePools();
@@ -17,14 +18,8 @@ export default function AdminView () {
                 </div>
             </div> */}
                 {isLoading ? (
-                    <div className="flex flex-col space-y-4 items-center justify-center mt-10">
-                        <div className={`
-                            w-64 h-24 bg-gray-800 animate-pulse rounded-lg
-                            transition-opacity duration-500 ease-out
-                            ${isLoading ? 'opacity-100' : 'opacity-0'}
-                            `}
-                        />
-                    </div>
+                    <LoadingMessage />
+
                         ) : adminPools.length === 0 ? (
                             <h1 className="my-2 p-1 font-semibold text-center text-2xl text-white/50">
                             No Pools Created
