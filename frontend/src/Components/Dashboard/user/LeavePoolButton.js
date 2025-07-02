@@ -43,7 +43,7 @@ export default function LeavePoolButton ({ poolId }) {
 
         } catch(error) {
             console.error('Error leaving pool:', error);
-            toast.error('Someting went wrong.', {
+            toast.error('Something went wrong.', {
                 style: {
                 background: '#333',
                 color: '#fff'
