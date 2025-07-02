@@ -185,7 +185,7 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
     };
 
     return (
-        <div className="flex m-2">
+        <div className="flex flex-col lg:flex-row m-2">
             <div className="flex flex-col justify-between w-80 h-80 bg-white/10 border border-white rounded-xl">
                     <div className="flex justify-between p-2 bg-yellow-400 rounded-t-xl text-black">
                         <div>
