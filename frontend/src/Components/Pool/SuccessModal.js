@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 
 export default function SuccessModal ({ onClose, poolName, inviteCode, onRedirect}) {
 
@@ -14,7 +15,12 @@ export default function SuccessModal ({ onClose, poolName, inviteCode, onRedirec
 
     const handleCopy = () => {
         navigator.clipboard.writeText(inviteCode);
-        alert('Invite code copied!')
+        toast.success('Invite code copied!', {
+            style: {
+                background: '#333',
+                color: '#fff'
+            }
+        })
     };
 
     return(

@@ -3,6 +3,7 @@ import Link from "next/link";
 import LeavePoolButton from "./LeavePoolButton";
 import { useRouter } from "next/navigation";
 import { usePools } from "@/context/PoolsContext";
+import toast from "react-hot-toast";
 
 export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
     const router = useRouter();
@@ -26,8 +27,13 @@ export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
         if(data.ok) {
             router.push(`/Submit?pool_id=${poolId}`);
         } else {
-            alert(data.message || 'You cannot fill out a bracket for this pool.');
-        }
+            toast.error(data.message || 'You cannot fill out a bracket for this pool.', {
+                        style: {
+                        background: '#333',
+                        color: '#fff'
+                    }}
+                )
+            }
     };
 
     return(
