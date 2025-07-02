@@ -117,7 +117,7 @@ export default function CreateForm ({ onSuccess, isUser }) {
             <div className="flex justify-between gap-4">
                 <button
                 type="submit"
-                className='flex-1 font-bold py-2 px-4 bg-yellow-400 hover:bg-yellow-500 rounded transition-colors'>                
+                className='flex-1 font-bold py-2 px-4 text-black bg-yellow-500 hover:bg-yellow-400 rounded transition-colors'>                
                     {isLoading ? (
                         <ButtonSpinner />
                     ) : (
