@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
+import LoadingMessage from "@/Components/ui/LoadingMessage";
 import NavBar from "../../Components/NavBar";
 import FirstFour_Result from "@/Components/Results/FirstFour_Results";
 import Spokane1_Results from "@/Components/Results/Spokane1_Results";
@@ -11,14 +12,20 @@ import axios from "axios";
 
 export default function Results() {
     const [ resultsData, setResultsData ] = useState([]);
+    const [ isLoading, setIsLoading ] = useState(true);
 
     useEffect(() => {
         const fetchResults = async () => {
             try {
                 const res = await axios.get('/api/results');
+                       
+                await new Promise(resolve => setTimeout(resolve, 500));
+
                 setResultsData(res.data);
             } catch(error) {
                 console.error('Failed to fetch results:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchResults();
@@ -39,8 +46,11 @@ export default function Results() {
         <nav>
             <NavBar />
         </nav>
-
         <div className="flex justify-center items-center">
+            {isLoading && (
+                <LoadingMessage />
+            )}
+
             <div className="w-screen h-screen overflow-x-auto hide-scrollbar"> 
 
             <div className="px-0 py-6 gap-6"> 

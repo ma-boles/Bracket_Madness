@@ -2,6 +2,7 @@
 import NavBar from "@/Components/NavBar";
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import LoadingMessage from "@/Components/ui/LoadingMessage";
 import BracketCard from "@/Components/Bracket/BracketCard";
 import AuthContext from "@/context/AuthContext";
 import axios from "axios";
@@ -14,6 +15,7 @@ export default function Dashboard() {
     const [ bracketsCardData, setBracketsCardData ] = useState([]);
     const [ globalBrackets,setGlobalBrackets ] = useState([]);
     const [ poolBrackets, setPoolBrackets ] = useState([]);
+    const [ isLoading, setIsLoading ] = useState(true);
     const { currentUser } = useContext(AuthContext);
     const userId = currentUser?.userId;
 
@@ -25,6 +27,8 @@ export default function Dashboard() {
                 setPoolBrackets(res.data.poolBrackets);
             } catch(error) {
                 console.error('Failed to fetch bracket data:', error);
+            }  finally {
+                setIsLoading(false);
             }
         };
         if(userId) {
@@ -122,7 +126,7 @@ export default function Dashboard() {
     };
 
     return(
-        <div>
+        <div className="min-h-screen">
             <nav>
                 <NavBar />
             </nav>
@@ -139,6 +143,11 @@ export default function Dashboard() {
             </div>
 
             <div className="mx-2 py-4 border border-white bg-white/5 rounded-lg">
+
+                {isLoading && (
+                        <LoadingMessage />
+                    )}
+
                 <div className="flex m-4 pb-2">
                         <button className="ml-2 p-2 text-xl font-semibold border-b border-r border-white hover:bg-purple-900"
                         onClick={handleBracketsView}>My Brackets</button>
