@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DeletePoolButton from "./DeletePoolButton";
+import Image from "next/image";
 
 export default function ManageCard({ poolId, activeMembers, pendingMembers, onRemoveMember, onConfirmMember }) {
 
@@ -16,8 +17,16 @@ export default function ManageCard({ poolId, activeMembers, pendingMembers, onRe
                                 <div className="flex my-2 p-1">
                                     <p>{activeMember.username}</p>
                                 </div>
-                                <button className="px-2 mx-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                                onClick={() => onRemoveMember(activeMember.user_id)}> - </button>
+                                <button className="p-1 rounded-full hover:bg-red-600/90"
+                                onClick={() => onRemoveMember(activeMember.user_id)}> 
+                                    <Image           
+                                        src="/circle-minus-solid.svg"
+                                        alt="remove"
+                                        width={20}
+                                        height={20}
+                                        className="invert opacity-90" 
+                                    />
+                                 </button>
                             </div>
                         ))
                     ) : (
@@ -40,10 +49,26 @@ export default function ManageCard({ poolId, activeMembers, pendingMembers, onRe
                                     <p>{pendingMember.username}</p>
                                 </div>
                                 <div>
-                                    <button className="px-2 h-1/2 bg-red-600 rounded-full hover:bg-red-500"
-                                    onClick={() => onRemoveMember(pendingMember.user_id)}> - </button>
-                                    <button className="px-2 mx-2 h-1/2 bg-green-600 rounded-full hover:bg-green-500"
-                                    onClick={() => onConfirmMember(pendingMember.user_id)}> + </button>
+                                    <button className="p-1 mx-2 rounded-full hover:bg-red-600/90"
+                                    onClick={() => onRemoveMember(pendingMember.user_id)}> 
+                                        <Image           
+                                            src="/circle-minus-solid.svg"
+                                            alt="remove"
+                                            width={20}
+                                            height={20}
+                                            className="invert opacity-90"
+                                        />
+                                    </button>
+                                    <button className="p-1 rounded-full hover:bg-green-600/90"
+                                    onClick={() => onConfirmMember(pendingMember.user_id)}> 
+                                        <Image           
+                                                src="/circle-plus-solid.svg"
+                                                alt="add"
+                                                width={20}
+                                                height={20}
+                                                className="invert opacity-90"
+                                            />
+                                     </button>
                                 </div>
                             </div>
                         ))
