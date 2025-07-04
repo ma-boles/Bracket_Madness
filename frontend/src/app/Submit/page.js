@@ -243,6 +243,13 @@ export default function Submit() {
                             )}
                     </button>
 
+                    <div
+                        className="mb-6 mt-2 bg-white/5 rounded-lg flex items-center justify-center font-bold w-1/6 h-12 mx-2"
+                    >
+                     Picks Remaining: <span className="font-bold"> 11</span>
+                    </div>
+                    
+
                     </div>
 
                     {/* Mobile: only show if Final Four is active */}
@@ -254,6 +261,7 @@ export default function Submit() {
                         >
                         Lock In Picks
                         </button>
+
                         <button
                         className={`mb-6 rounded-lg bg-blue-700 border border-blue-700 transition-colors flex items-center justify-center font-medium w-1/2 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                         disabled={!isValidated}
@@ -265,6 +273,13 @@ export default function Submit() {
                                 'Submit'
                             )}
                         </button>
+
+                        <div
+                        className="mb-6 mt-2 bg-white/5 rounded-lg hidden sm:flex items-center justify-center font-bold w-1/6 h-12 mx-2"
+                        >
+                        Picks Remaining: <span className="font-bold"> 11</span>
+                        </div>
+
                     </div>
                     )}
                 </>
