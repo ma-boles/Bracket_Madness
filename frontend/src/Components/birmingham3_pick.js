@@ -2,6 +2,7 @@
 import React from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "./TeamButton";
+import TeamPlaceholder from "./TeamPlaceholder";
 
 
 export default function Birmingham3_Pick() {
@@ -43,7 +44,7 @@ export default function Birmingham3_Pick() {
                             {teamAWinner8003 ? (
                                 <TeamButton region="birmingham3" gameId={4003} team={teamAWinner8003}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                     </div>
@@ -53,12 +54,12 @@ export default function Birmingham3_Pick() {
                             {teamAWinner1605 ? (
                                 <TeamButton region="birmingham3" gameId={8003} team={teamAWinner1605}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1606 ? (
                                 <TeamButton region="birmingham3" gameId={8003} team={teamBWinner1606}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                     </div>
@@ -68,24 +69,24 @@ export default function Birmingham3_Pick() {
                             {teamAWinner1209 ? (
                                 <TeamButton region="birmingham3" gameId={1605} team={teamAWinner1209}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1210 ? (
                                 <TeamButton region="birmingham3" gameId={1605} team={teamBWinner1210}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                         <div className="matchup3-last--r bg-zinc-700">
                             {teamAWinner1211 ? (
                                 <TeamButton region="birmingham3" gameId={1606} team={teamAWinner1211}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1212 ? (
                                 <TeamButton region="birmingham3" gameId={1606} team={teamBWinner1212}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                     </div>
@@ -95,48 +96,48 @@ export default function Birmingham3_Pick() {
                         {teamAWinner1117 ? (
                                 <TeamButton region="birmingham3" gameId={1209} team={teamAWinner1117}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1118 ? (
                                 <TeamButton region="birmingham3" gameId={1209} team={teamBWinner1118}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}   
                         </div>
                         <div className="matchup2--r mb-11 bg-blue-800">
                             {teamAWinner1119 ? (
                                 <TeamButton region="birmingham3" gameId={1210} team={teamAWinner1119}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1120 ? (
                                 <TeamButton region="birmingham3" gameId={1210} team={teamBWinner1120}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                         <div className="matchup2--r mb-12 bg-blue-800">
                             {teamAWinner1121 ? (
                                 <TeamButton region="birmingham3" gameId={1211} team={teamAWinner1121}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1122 ? (
                                 <TeamButton region="birmingham3" gameId={1211} team={teamBWinner1122}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                         <div className="matchup2-last--r bg-blue-800">
                             {teamAWinner1123 ? (
                                 <TeamButton region="birmingham3" gameId={1212} team={teamAWinner1123}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                             {teamBWinner1124 ? (
                                 <TeamButton region="birmingham3" gameId={1212} team={teamBWinner1124}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                     </div>
@@ -147,7 +148,7 @@ export default function Birmingham3_Pick() {
                             {teamBWinner1004 ? (
                                 <TeamButton region="birmingham3" gameId={1117} team={teamBWinner1004}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                         <div className="matchup--r bg-blue-800">
@@ -167,7 +168,7 @@ export default function Birmingham3_Pick() {
                             {teamBWinner1003 ? (
                                 <TeamButton region="birmingham3" gameId={1121} team={teamBWinner1003}/>
                             ) : (
-                                <p className="team">Select...</p>
+                                <TeamPlaceholder />
                             )}
                         </div>
                         <div className="matchup--r bg-blue-800">

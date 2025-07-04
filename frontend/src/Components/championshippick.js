@@ -4,7 +4,7 @@ import { useBracket } from "@/context/BracketContext";
 import { useAuth } from "@/context/AuthContext";
 import TeamButton from "./TeamButton";
 import ChampionshipButton from "./ChampionshButton";
-import Image from "next/image";
+import TeamPlaceholder from "./TeamPlaceholder";
 
 
 export default function ChampionshipPick () {
@@ -24,12 +24,6 @@ export default function ChampionshipPick () {
     // Champion
     const teamAWinner10003 = getWinnerFromGame(bracketData, 10003);
 
-    // const lockInPicks = () => {
-    //     window.scrollTo({
-    //         top: document.body.scrollHeight,
-    //         behavior: 'smooth',
-    //     });
-    // };
 
     return (
         <>
@@ -41,7 +35,7 @@ export default function ChampionshipPick () {
                                  {teamAWinner8001 ? ( 
                                     <TeamButton region="spokane1" gameId={10001} team={teamAWinner8001}/>
                                 ) : (
-                                    <p className="team">Spokane 1</p>
+                                    <p className="team team--submit text-black">Spokane 1</p>
                                 )}
                                 </div>
                             </div>
@@ -50,7 +44,7 @@ export default function ChampionshipPick () {
                                 {teamAWinner8004 ? (
                                     <TeamButton region="spokane4" gameId={10001} team={teamAWinner8004}/>
                                 ) : (
-                                    <p className="team">Spokane 4</p>
+                                    <p className="team team--submit text-black">Spokane 4</p>
                                 )}
                                 </div>
                             </div>
@@ -61,30 +55,19 @@ export default function ChampionshipPick () {
                                 {teamAWinner10003 ? (
                                         <ChampionshipButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
                                     ) : (
-                                        <p className="w-50 m-auto text-center text-xl">Select...</p>
+                                        <TeamPlaceholder />
                                     )}
-                                    {/* {currentUser && (
-                                        <button className="ml-2 p-2 cursor-pointer rounded-lg border border-white/70" onClick={lockInPicks}>
-                                        <Image 
-                                            alt="lock in"
-                                            src="../lock-open-solid.svg"
-                                            className="image-filter"
-                                            width={22}
-                                            height={40}
-                                            />
-                                        </button>
-                                     )} */}
                             </div>
 
                                 {teamAWinner10001 ? (
                                     <TeamButton region="finalfour" gameId={10003} team={teamAWinner10001}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <TeamPlaceholder />
                                 )}
                                 {teamBWinner10002 ? (
                                     <TeamButton region="finalfour" gameId={10003} team={teamBWinner10002}/>
                                 ) : (
-                                    <p className="team">Select...</p>
+                                    <TeamPlaceholder />
                                 )}
                         </div>
 
@@ -94,7 +77,7 @@ export default function ChampionshipPick () {
                                 {teamAWinner8002 ? (
                                     <TeamButton region="birmingham2" gameId={10002} team={teamAWinner8002}/>
                                 ) : (
-                                    <p className="team">Birmingham 2</p>
+                                    <p className="team team--submit text-black">Birmingham 2</p>
                                 )}
                                 </div>
                             </div>
@@ -103,7 +86,7 @@ export default function ChampionshipPick () {
                                 {teamAWinner8003 ? (
                                     <TeamButton region="birmingham3" gameId={10002} team={teamAWinner8003}/>
                                 ) : (
-                                    <p className="team">Birmingham 3</p>
+                                    <p className="team team--submit text-black">Birmingham 3</p>
                                 )}
                                 </div>
                             </div>
