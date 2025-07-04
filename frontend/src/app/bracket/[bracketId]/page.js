@@ -89,29 +89,5 @@ export default async function BracketPage(props) {
             </main>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-    //     <main className="max-w-3xl mx-auto p-6">
-    //         <div className="grid grid-cols-1 gap-4">
-    //             {predictionsWithResults.map((pred) => (
-    //                 <div key={pred.game_id}>
-    //                     <PredictionCard 
-    //                         region={pred.region}
-    //                         gameId={pred.game_id}
-    //                         predictedTeam={pred}
-    //                         actualTeam={pred.actualTeam}
-    //                     />
-    //                 </div>
-    //             ))}
-    //         </div>
-    //   </main>
     );
 } 
