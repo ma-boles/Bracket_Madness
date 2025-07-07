@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import RouteLoaderWrapper from "@/context/RouteLoaderWrapper";
+import MobileProvider from "@/context/MobileContext";
 
 
 const geistSans = Geist({
@@ -31,7 +32,9 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <BracketProvider>
             <RouteLoaderWrapper>
-              {children}
+              <MobileProvider>
+                {children}
+              </MobileProvider>
             </RouteLoaderWrapper>
           </BracketProvider>
         </AuthProvider>
