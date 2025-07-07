@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useBracket } from "@/context/BracketContext";
 import RoundsNav from "../MobileBracket/RoundsNav"
 import RegionsNav from "../MobileBracket/RegionsNav"
 import MobileRound_FirstFour from "../MobileBracket/RoundTabs/MobileRound_FirstFour";
@@ -21,9 +22,11 @@ import MobileSpokane4_SweetSixteen from "../MobileBracket/MobileSubmit/Mobile_Sp
 import MobileSpokane4_EliteElight from "../MobileBracket/MobileSubmit/Mobile_Spokane4/MobileSpokane4_EliteEight";
 
 
-export default function MobileBracket_Layout ({ onEnterFinalFour }) {
+export default function MobileBracket_Layout ({ onEnterFinalFour, picksRemaining }) {
     const [activeRegion, setActiveRegion] = useState(null);
     const [activeTab, setActiveTab] = useState(null);
+    const { userPicks } = useBracket();
+
 
     return (
         <div className="sm:hidden flex flex-col gap-4 p-2 min-h-screen">
@@ -39,6 +42,10 @@ export default function MobileBracket_Layout ({ onEnterFinalFour }) {
                 <h1 className="text-2xl font-semibold text-center">Please Select Round</h1>
             </div>
         )}
+
+            <div className="mb-6 mt-2 bg-white/5 rounded-lg sm:hidden flex items-center justify-center font-bold  h-12 mx-2">
+                Picks Remaining: <span className="font-bold"> {picksRemaining} </span>
+            </div>
         
 
         <div>
