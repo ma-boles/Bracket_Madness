@@ -23,6 +23,7 @@ export default function Submit() {
     const [ bracketId, setBracketId ] = useState(null);
     const [ picksValid, setPicksValid ] = useState(false);
     const [ isFinalFourActive, setIsFinalFourActive ] = useState(false);
+    const [ picksRemaining, setPicksRemaining ] = useState(67);
     const searchParams = useSearchParams();
     const poolId = searchParams.get('pool_id');
 
@@ -31,6 +32,12 @@ export default function Submit() {
         setPicksValid(false);
     };
 
+    useEffect(() => {
+        const totalGames = 67;
+        const filledPicks = Object.keys(bracketData).length;
+        setPicksRemaining(totalGames - filledPicks);
+    }, [bracketData]);
+    
     const handleCheckPicks = () => {
         console.log("Check Picks Clicked");
         console.log("Bracket Data Before Check:", bracketData);
@@ -206,7 +213,7 @@ export default function Submit() {
             </nav>
             <div>
                 <DesktopBracket_Layout />
-                <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)}/>
+                <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)} picksRemaining={picksRemaining} />
 
 
                 <ConfirmationModal 
@@ -246,7 +253,7 @@ export default function Submit() {
                     <div
                         className="mb-6 mt-2 bg-white/5 rounded-lg flex items-center justify-center font-bold w-1/6 h-12 mx-2"
                     >
-                     Picks Remaining: <span className="font-bold"> 11</span>
+                     Picks Remaining: <span className="font-bold"> {picksRemaining}</span>
                     </div>
                     
 
@@ -273,12 +280,6 @@ export default function Submit() {
                                 'Submit'
                             )}
                         </button>
-
-                        <div
-                        className="mb-6 mt-2 bg-white/5 rounded-lg hidden sm:flex items-center justify-center font-bold w-1/6 h-12 mx-2"
-                        >
-                        Picks Remaining: <span className="font-bold"> 11</span>
-                        </div>
 
                     </div>
                     )}
