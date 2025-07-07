@@ -8,9 +8,11 @@ import SelectPlaceholder from "../SelectPlaceholder";
 import Image from "next/image";
 
 
-export default function MobileRound_FinalFour ({ onMount }) {
-    const { bracketData, getWinnerFromGame } = useBracket();
+export default function MobileRound_FinalFour ({ onMount, sectionId  }) {
+    const { bracketData, getWinnerFromGame, userPicks } = useBracket();
     const { currentUser } = useAuth();
+    const [ sectionStatus, setSectionStatus ] = useState();
+
 
     // Winners Elite 8
     const teamAWinner8001 = getWinnerFromGame(bracketData, 8001);
@@ -28,6 +30,19 @@ export default function MobileRound_FinalFour ({ onMount }) {
     useEffect(() => {
         onMount?.();
     }, [onMount]);
+
+
+    useEffect(() => {
+        const sectionGameIds = [10001, 10002, 10003];
+        const regionPicks = userPicks["finalfour"] || {};
+
+        const pickedCount = sectionGameIds.filter((gameId) => regionPicks[gameId]?.winnerId).length;
+
+        const missingCount = sectionGameIds.length - pickedCount;
+        
+        setSectionStatus(sectionId, missingCount);
+    }, [userPicks, sectionId, setSectionStatus]);
+
 
     return (
         <>

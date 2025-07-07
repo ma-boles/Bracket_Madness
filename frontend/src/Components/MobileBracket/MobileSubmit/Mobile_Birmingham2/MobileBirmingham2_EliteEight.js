@@ -1,17 +1,28 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
 import { useBracket  } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
 
-export default function MobileBirmingham2_EliteEight() {
+export default function MobileBirmingham2_EliteEight({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    
+    const [ sectionStatus, setSectionStatus ] = useState();
 
     // Winners from Sweet 16
     const teamAWinner1603 = getWinnerFromGame(bracketData, 1603);
     const teamBWinner1604 = getWinnerFromGame(bracketData, 1604);
+
+    useEffect(() => {
+        const sectionGameIds = [8002];
+        const regionPicks = userPicks["birmingham2"];
+
+        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+
+        const missingCount = sectionGameIds.length - pickedCount;
+
+        setSectionStatus(sectionId, missingCount);
+    },[userPicks, sectionId, setSectionStatus]);
 
 
     return (

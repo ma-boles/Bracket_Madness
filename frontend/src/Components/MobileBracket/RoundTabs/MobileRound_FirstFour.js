@@ -1,11 +1,25 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TeamButton from "@/Components/TeamButton";
 import { useBracket } from "@/context/BracketContext";
+import { useMobileContext } from "@/context/MobileContext";
 
-export default function MobileRound_FirstFour() {
+export default function MobileRound_FirstFour({ sectionId, picks }) {
+    const [ missing, setMissing] = useState(true);
     const { userPicks, setUserPicks, handlePick } = useBracket();
-    
+    const [ sectionStatus, setSectionStatus ] = useState();
+
+    useEffect(() => {
+        const regionPicks = userPicks["firstfour"];
+        const totalGamesFirstFour = 4;
+
+        const pickedCount = Object.keys(regionPicks).length;
+        const missingCount = totalGamesFirstFour - pickedCount;
+        
+        setSectionStatus(sectionId, missingCount);
+    }, [userPicks, sectionId, setSectionStatus]);
+
+
     return(
         <>
             <div className="pt-4">
