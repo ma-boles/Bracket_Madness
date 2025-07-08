@@ -1,13 +1,14 @@
 'use client'
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useBracket } from "@/context/BracketContext";
 import dynamic from 'next/dynamic';
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
 
-export default function MobileSpokane1_SecondRound () {
+export default function MobileSpokane1_SecondRound ({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const [ sectionStatus, setSectionStatus ] = useState();
     const Select = dynamic(() => import('react-select'), { ssr: false });
 
     // Winners from Round 1
@@ -19,6 +20,17 @@ export default function MobileSpokane1_SecondRound () {
     const teamBWinner1106 = getWinnerFromGame(bracketData, 1106);
     const teamAWinner1107 = getWinnerFromGame(bracketData, 1107);
     const teamBWinner1108 = getWinnerFromGame(bracketData, 1108);
+
+    useEffect(() => {
+        const sectionGameIds = [1201, 1202, 1203, 1204];
+        const regionPicks = userPicks["spokane1"];
+
+        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+
+        const missingCount = sectionGameIds.length - pickedCount;
+
+        setSectionStatus(sectionId, missingCount);
+    },[userPicks, sectionId, setSectionStatus]);
 
     return (
             <>
