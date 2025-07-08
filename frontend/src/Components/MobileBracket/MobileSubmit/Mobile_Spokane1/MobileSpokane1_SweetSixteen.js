@@ -24,9 +24,9 @@ export default function MobileSpokane1_SweetSixteen ({ sectionId }) {
 
         const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
 
-        const complete = sectionGameIds.length === pickedCount;
+        const isComplete = sectionGameIds.length === pickedCount;
 
-        setSectionStatus(sectionId, complete);
+        setSectionStatus(sectionId, isComplete);
     },[userPicks, sectionId, setSectionStatus]);
 
     return (

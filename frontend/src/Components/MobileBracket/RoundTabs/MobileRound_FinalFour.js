@@ -37,9 +37,10 @@ export default function MobileRound_FinalFour ({ onMount, sectionId  }) {
         const regionPicks = userPicks["finalfour"] || {};
 
         const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
-        const complete = sectionGameIds.length === pickedCount;
         
-        setSectionStatus(sectionId, complete);
+        const isComplete = sectionGameIds.length === pickedCount;
+        
+        setSectionStatus(sectionId, isComplete);
     }, [userPicks, sectionId, setSectionStatus]);
 
 
