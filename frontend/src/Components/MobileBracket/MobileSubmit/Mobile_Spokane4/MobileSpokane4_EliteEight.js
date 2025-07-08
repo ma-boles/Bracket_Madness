@@ -6,7 +6,7 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileSpokane4_EliteElight({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
 
     // Winners from Sweet 16
     const teamAWinner1607 = getWinnerFromGame(bracketData, 1607);
@@ -16,11 +16,11 @@ export default function MobileSpokane4_EliteElight({ sectionId }) {
         const sectionGameIds = [8004];
         const regionPicks = userPicks["spokane4"];
 
-        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
 
-        const missingCount = sectionGameIds.length - pickedCount;
+        const complete = sectionGameIds.length === pickedCount;
 
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     },[userPicks, sectionId, setSectionStatus]);
     
     return(

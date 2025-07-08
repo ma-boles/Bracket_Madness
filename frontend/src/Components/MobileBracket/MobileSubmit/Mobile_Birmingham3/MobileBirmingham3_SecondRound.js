@@ -7,7 +7,7 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileBirmingham3_SecondRound({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
 
     // Winners from Round 1
     const teamAWinner1117 = getWinnerFromGame(bracketData, 1117);
@@ -23,11 +23,11 @@ export default function MobileBirmingham3_SecondRound({ sectionId }) {
         const sectionGameIds = [1209, 1210, 1211, 1212];
         const regionPicks = userPicks["birmingham3"];
 
-        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        
+        const complete = sectionGameIds.length === pickedCount;
 
-        const missingCount = sectionGameIds.length - pickedCount;
-
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     },[userPicks, sectionId, setSectionStatus]);
 
 

@@ -8,7 +8,7 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileSpokane1_SecondRound ({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
     const Select = dynamic(() => import('react-select'), { ssr: false });
 
     // Winners from Round 1
@@ -25,11 +25,11 @@ export default function MobileSpokane1_SecondRound ({ sectionId }) {
         const sectionGameIds = [1201, 1202, 1203, 1204];
         const regionPicks = userPicks["spokane1"];
 
-        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
 
-        const missingCount = sectionGameIds.length - pickedCount;
+        const complete = sectionGameIds.length === pickedCount;
 
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     },[userPicks, sectionId, setSectionStatus]);
 
     return (

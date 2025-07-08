@@ -6,7 +6,7 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileSpokane4_SecondRound({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
 
     // Winners from Round 1
     const teamAWinner1125 = getWinnerFromGame(bracketData, 1125);
@@ -23,11 +23,11 @@ export default function MobileSpokane4_SecondRound({ sectionId }) {
         const sectionGameIds = [1213, 1214, 1215, 1216];
         const regionPicks = userPicks["spokane4"];
 
-        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        
+        const complete = sectionGameIds.length === pickedCount;
 
-        const missingCount = sectionGameIds.length - pickedCount;
-
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     },[userPicks, sectionId, setSectionStatus]);
 
     return (

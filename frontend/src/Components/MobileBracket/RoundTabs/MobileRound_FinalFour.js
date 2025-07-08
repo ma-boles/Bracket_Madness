@@ -11,7 +11,7 @@ import Image from "next/image";
 export default function MobileRound_FinalFour ({ onMount, sectionId  }) {
     const { bracketData, getWinnerFromGame, userPicks } = useBracket();
     const { currentUser } = useAuth();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
 
 
     // Winners Elite 8
@@ -36,11 +36,10 @@ export default function MobileRound_FinalFour ({ onMount, sectionId  }) {
         const sectionGameIds = [10001, 10002, 10003];
         const regionPicks = userPicks["finalfour"] || {};
 
-        const pickedCount = sectionGameIds.filter((gameId) => regionPicks[gameId]?.winnerId).length;
-
-        const missingCount = sectionGameIds.length - pickedCount;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const complete = sectionGameIds.length === pickedCount;
         
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     }, [userPicks, sectionId, setSectionStatus]);
 
 

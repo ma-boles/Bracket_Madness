@@ -7,7 +7,7 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 export default function MobileBirmingham2_EliteEight({ sectionId }) {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
 
     // Winners from Sweet 16
     const teamAWinner1603 = getWinnerFromGame(bracketData, 1603);
@@ -17,11 +17,11 @@ export default function MobileBirmingham2_EliteEight({ sectionId }) {
         const sectionGameIds = [8002];
         const regionPicks = userPicks["birmingham2"];
 
-        const pickedCount = sectionGameIds.filter((gameId) > regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
 
-        const missingCount = sectionGameIds.length - pickedCount;
+        const complete = sectionGameIds.length === pickedCount;
 
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     },[userPicks, sectionId, setSectionStatus]);
 
 

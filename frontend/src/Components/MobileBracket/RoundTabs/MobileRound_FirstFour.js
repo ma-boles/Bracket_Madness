@@ -4,19 +4,20 @@ import TeamButton from "@/Components/TeamButton";
 import { useBracket } from "@/context/BracketContext";
 import { useMobileContext } from "@/context/MobileContext";
 
-export default function MobileRound_FirstFour({ sectionId, picks }) {
+export default function MobileRound_FirstFour({ sectionId }) {
     const [ missing, setMissing] = useState(true);
     const { userPicks, setUserPicks, handlePick } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState();
+    const [ sectionStatus, setSectionStatus ] = useState(false);
 
     useEffect(() => {
         const regionPicks = userPicks["firstfour"];
-        const totalGamesFirstFour = 4;
+        const sectionGameIds = [1001, 1002, 1003, 1004];
 
-        const pickedCount = Object.keys(regionPicks).length;
-        const missingCount = totalGamesFirstFour - pickedCount;
+        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+
+        const complete = sectionGameIds.length === pickedCount;
         
-        setSectionStatus(sectionId, missingCount);
+        setSectionStatus(sectionId, complete);
     }, [userPicks, sectionId, setSectionStatus]);
 
 
