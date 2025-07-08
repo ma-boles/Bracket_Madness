@@ -5,10 +5,11 @@ import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
 
-export default function MobileBirmingham3_FirstRound({ sectionId }) {
+export default function MobileBirmingham3_FirstRound() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
-    
+    const sectionId = 'birmingham3_rd1';
+
     // Winners from First Four
     const teamBWinner1003 = getWinnerFromGame(bracketData, 1003);
     const teamBWinner1004 = getWinnerFromGame(bracketData, 1004);

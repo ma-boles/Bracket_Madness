@@ -4,9 +4,10 @@ import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
-export default function MobileSpokane4_SweetSixteen({ sectionId }) {
+export default function MobileSpokane4_SweetSixteen() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
+    const sectionId = 'spokane4_sweet16';
 
     // Winners from Round 2
     const teamAWinner1213 = getWinnerFromGame(bracketData, 1213);

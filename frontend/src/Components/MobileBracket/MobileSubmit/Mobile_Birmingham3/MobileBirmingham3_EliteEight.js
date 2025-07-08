@@ -5,10 +5,11 @@ import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
 
-export default function MobileBirmingham3_EliteEight({ sectionId }) {
+export default function MobileBirmingham3_EliteEight() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
-    
+    const sectionId = 'birmingham3_elite8';
+
     // Winners from Sweet 16
     const teamAWinner1605 = getWinnerFromGame(bracketData, 1605);
     const teamBWinner1606 = getWinnerFromGame(bracketData, 1606);

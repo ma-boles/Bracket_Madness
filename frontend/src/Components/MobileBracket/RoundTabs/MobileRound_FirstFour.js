@@ -4,8 +4,8 @@ import TeamButton from "@/Components/TeamButton";
 import { useBracket } from "@/context/BracketContext";
 import { useMobileContext } from "@/context/MobileContext";
 
-export default function MobileRound_FirstFour({ sectionId }) {
-    const [ missing, setMissing] = useState(true);
+export default function MobileRound_FirstFour() {
+    const sectionId = 'firstfour';
     const { userPicks, setUserPicks, handlePick } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
 

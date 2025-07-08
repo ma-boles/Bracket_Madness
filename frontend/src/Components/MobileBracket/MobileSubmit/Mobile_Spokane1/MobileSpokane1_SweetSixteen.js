@@ -7,9 +7,11 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 
-export default function MobileSpokane1_SweetSixteen ({ sectionId }) {
+export default function MobileSpokane1_SweetSixteen () {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
+    const sectionId = 'spokane1_sweet16';
+
     const Select = dynamic(() => import('react-select'), { ssr: false });
 
     // Winners from Round 2

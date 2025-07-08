@@ -7,9 +7,11 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 
 
 
-export default function MobileSpokane1_FirstRound({ sectionId }) {
+export default function MobileSpokane1_FirstRound() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
+    const sectionId = 'spokane1_rd1';
+
     const Select = dynamic(() => import('react-select'), { ssr: false });
 
     // Winner from First Four

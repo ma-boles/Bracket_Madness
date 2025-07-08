@@ -6,9 +6,11 @@ import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
 
-export default function MobileSpokane1_SecondRound ({ sectionId }) {
+export default function MobileSpokane1_SecondRound () {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
+    const sectionId = 'spokane1_rd2';
+
     const Select = dynamic(() => import('react-select'), { ssr: false });
 
     // Winners from Round 1

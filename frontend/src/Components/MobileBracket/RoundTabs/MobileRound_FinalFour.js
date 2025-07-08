@@ -8,7 +8,8 @@ import SelectPlaceholder from "../SelectPlaceholder";
 import Image from "next/image";
 
 
-export default function MobileRound_FinalFour ({ onMount, sectionId  }) {
+export default function MobileRound_FinalFour ({ onMount }) {
+    const sectionId = 'finalfour';
     const { bracketData, getWinnerFromGame, userPicks } = useBracket();
     const { currentUser } = useAuth();
     const [ sectionStatus, setSectionStatus ] = useState(false);

@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 
-export default function MobileSpokane4_FirstRound({ sectionId }) {
+export default function MobileSpokane4_FirstRound() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
+    const sectionId = 'spokane4_rd1';
 
     useEffect(() => {
         const sectionGameIds = [1125, 1126, 1127, 1128, 1129, 1130, 1131, 1132];

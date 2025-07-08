@@ -4,9 +4,10 @@ import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
-export default function MobileSpokane4_EliteElight({ sectionId }) {
+export default function MobileSpokane4_EliteElight() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
+    const sectionId = 'spokane4_elite8';
 
     // Winners from Sweet 16
     const teamAWinner1607 = getWinnerFromGame(bracketData, 1607);

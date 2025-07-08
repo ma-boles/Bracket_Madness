@@ -4,10 +4,11 @@ import { useBracket  } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 
-export default function MobileBirmingham2_SweetSixteen({ sectionId }) {
+export default function MobileBirmingham2_SweetSixteen() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
     const [ sectionStatus, setSectionStatus ] = useState(false);
-    
+    const sectionId = 'birmingham2_sweet16';
+
     // Winners from Round 2
     const teamAWinner1205 = getWinnerFromGame(bracketData, 1205);
     const teamBWinner1206 = getWinnerFromGame(bracketData, 1206);
