@@ -1,3 +1,4 @@
+'use client'
 import React, { createContext, useContext, useReducer } from "react";
 
 const initialState = {
@@ -7,13 +8,13 @@ const initialState = {
 const SET_SECTION_STATUS = 'SET_SECTION_STATUS';
 
 function mobileReducer(state, action) {
-    switch(action.tpype) {
+    switch(action.type) {
         case SET_SECTION_STATUS:
             return {
                 ...state,
                 sections: {
                     ...state.sections,
-                    [action.paylod.sectionId]: action.payload.missingPicks
+                    [action.payload.sectionId]: action.payload.isComplete
                 }
             };
             default:
@@ -26,8 +27,8 @@ const MobileContext = createContext();
 export default function MobileProvider ({ children }) {
     const [state, dispatch] = useReducer(mobileReducer, initialState);
 
-    const setSectionStatus = (sectionId, missingPicks) => {
-        dispatch({ type: SET_SECTION_STATUS, payload: { sectionId, missingPicks } })
+    const setSectionStatus = (sectionId, isComplete) => {
+        dispatch({ type: SET_SECTION_STATUS, payload: { sectionId, isComplete } })
     };
 
     return (
