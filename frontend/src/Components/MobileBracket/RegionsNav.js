@@ -45,7 +45,7 @@ export default function RegionsNav({ activeRegion, setActiveRegion, activeRoundT
                     <button
                         key={region}
                         onClick={() => setActiveRegion(region)}
-                        className={`px-3 py-1 text-sm font-semibold ${
+                        className={`relative px-3 py-1 text-sm font-semibold ${
                             activeRegion === region ? 'text-yellow-600 border-b-2 border-yellow-400' : 'text-gray-600'
                         }`}
                     >
