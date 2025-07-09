@@ -25,6 +25,9 @@ export default function SignUp() {
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #ef4444', 
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             });
@@ -53,6 +56,9 @@ export default function SignUp() {
                     style: {
                         background: '#333',
                         color: '#fff',
+                        border: '2px solid #10b981',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                         duration: 4000,
                     }});
 
@@ -63,7 +69,10 @@ export default function SignUp() {
                 toast.error(errorData.error || 'Sign up failed. Please try again.', {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #ef4444', 
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
 
                 setIsLoading(false);
@@ -74,7 +83,10 @@ export default function SignUp() {
             toast.error('An unexpected error occurred.', {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #ef4444', 
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
 
                 }

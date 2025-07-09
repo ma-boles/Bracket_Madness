@@ -17,7 +17,11 @@ const LogoutButton = () => {
         toast.success('Logged out successfully!', {
             style: {
                 background: '#333',
-                color: '#fff'
+                color: '#fff',
+                border: '2px solid #10b981',
+                padding: '12px 16px',
+                borderRadius: '8px',
+                
             }
         });
 

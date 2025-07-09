@@ -34,7 +34,10 @@ export default function LogIn() {
                 toast.error('Login failed. Please try again.', {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #ef4444', 
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
                 setIsLoading(false);
             } 
@@ -42,7 +45,10 @@ export default function LogIn() {
             toast.error('An unexpeced error occurred.', {
                 style: {
                     background: '#333',
-                    color: '#fff'
+                    color: '#fff',
+                    border: '2px solid #ef4444', 
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                 }});
             setIsLoading(false);
         }
