@@ -6,11 +6,11 @@ export default function ChampionshipButton({ region, gameId, team }) {
     const selected = userPicks?.[region]?.[gameId] === team.name;
 
     return (
-        <button 
-            className={`w-50 text-xl font-bold text-white truncate whitespace-nowrap overflow-hidden`}
+        <div 
+            className={`w-50 text-xl text-center font-bold text-white truncate whitespace-nowrap overflow-hidden`}
             onClick={() => handleSelection(region, gameId, team)}
             >
             {team.seed} {team.name}
-        </button>
+        </div>
     );
 }
