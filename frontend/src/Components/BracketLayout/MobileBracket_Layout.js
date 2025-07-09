@@ -33,19 +33,21 @@ export default function MobileBracket_Layout ({ onEnterFinalFour, picksRemaining
         <div>
             <RoundsNav  activeTab={activeTab} setActiveTab={setActiveTab}/>
             {activeTab !== 'First Four' && activeTab !== 'Final 4' && (
-                <RegionsNav activeRegion={activeRegion} setActiveRegion={setActiveRegion}/>
+                <RegionsNav activeRegion={activeRegion} setActiveRegion={setActiveRegion} activeRoundTab={activeTab} />
             )}
         </div>
         
+        <div className="mb-6 mt-2 bg-white/5 rounded-lg sm:hidden flex items-center justify-center font-bold  h-12 mx-2">
+                Picks Remaining: <span className="font-bold"> {picksRemaining} </span>
+        </div>
+
         {!activeTab && (
             <div className="mt-12">
                 <h1 className="text-2xl font-semibold text-center">Please Select Round</h1>
             </div>
         )}
 
-            <div className="mb-6 mt-2 bg-white/5 rounded-lg sm:hidden flex items-center justify-center font-bold  h-12 mx-2">
-                Picks Remaining: <span className="font-bold"> {picksRemaining} </span>
-            </div>
+            
         
 
         <div>
