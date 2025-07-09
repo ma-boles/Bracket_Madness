@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useCallback } from "react";
 
 const initialState = {
     sections: {}
@@ -27,9 +27,9 @@ const MobileContext = createContext();
 export default function MobileProvider ({ children }) {
     const [state, dispatch] = useReducer(mobileReducer, initialState);
 
-    const setSectionStatus = (sectionId, isComplete) => {
+    const setSectionStatus = useCallback((sectionId, isComplete) => {
         dispatch({ type: SET_SECTION_STATUS, payload: { sectionId, isComplete } })
-    };
+    }, []);
 
     return (
         <MobileContext.Provider value={{ sections: state.sections, setSectionStatus }}>
