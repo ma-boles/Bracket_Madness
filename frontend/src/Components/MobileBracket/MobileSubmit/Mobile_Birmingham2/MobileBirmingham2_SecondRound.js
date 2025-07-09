@@ -3,18 +3,19 @@ import React, { useState, useEffect } from "react";
 import { useBracket  } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
+import { useMobileContext } from "@/context/MobileContext";
 
 
 export default function MobileBirmingham2_SecondRound() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const [ sectionStatus, setSectionStatus] = useState(false);
+    const { setSectionStatus } = useMobileContext();
     const sectionId = 'birmingham2_rd2';
 
     useEffect(() => {
         const sectionGameIds = [1205, 1206, 1207, 1208];
         const regionPicks = userPicks["birmingham2"];
 
-        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter(gameId => !!regionPicks[gameId]).length;
 
         const isComplete = sectionGameIds.length === pickedCount;
 

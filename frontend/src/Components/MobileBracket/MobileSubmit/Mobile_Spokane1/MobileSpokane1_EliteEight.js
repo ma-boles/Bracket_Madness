@@ -4,12 +4,13 @@ import { useBracket } from "@/context/BracketContext";
 import dynamic from 'next/dynamic';
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
+import { useMobileContext } from "@/context/MobileContext";
 
 
 
 export default function MobileSpokane1_EliteEight () {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState(false);
+    const { setSectionStatus } = useMobileContext();
     const sectionId = 'spokane1_elite8';
 
     const Select = dynamic(() => import('react-select'), { ssr: false });
@@ -22,7 +23,7 @@ export default function MobileSpokane1_EliteEight () {
         const sectionGameIds = [8001];
         const regionPicks = userPicks["spokane1"];
 
-        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter(gameId => !!regionPicks[gameId]).length;
         
         const isComplete = sectionGameIds.length === pickedCount;
 

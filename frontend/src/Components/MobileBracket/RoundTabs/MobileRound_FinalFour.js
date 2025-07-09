@@ -6,13 +6,14 @@ import TeamButton from "@/Components/TeamButton";
 import ChampionshipButton from "@/Components/ChampionshButton";
 import SelectPlaceholder from "../SelectPlaceholder";
 import Image from "next/image";
+import { useMobileContext } from "@/context/MobileContext";
 
 
 export default function MobileRound_FinalFour ({ onMount }) {
     const sectionId = 'finalfour';
     const { bracketData, getWinnerFromGame, userPicks } = useBracket();
     const { currentUser } = useAuth();
-    const [ sectionStatus, setSectionStatus ] = useState(false);
+    const { setSectionStatus } = useMobileContext();
 
 
     // Winners Elite 8
@@ -37,7 +38,7 @@ export default function MobileRound_FinalFour ({ onMount }) {
         const sectionGameIds = [10001, 10002, 10003];
         const regionPicks = userPicks["finalfour"] || {};
 
-        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter(gameId => !!regionPicks[gameId]).length;
         
         const isComplete = sectionGameIds.length === pickedCount;
         

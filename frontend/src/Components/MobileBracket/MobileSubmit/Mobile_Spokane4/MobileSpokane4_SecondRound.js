@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
+import { useMobileContext } from "@/context/MobileContext";
 
 export default function MobileSpokane4_SecondRound() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState(false);
+    const { setSectionStatus } = useMobileContext();
     const sectionId = 'spokane4_rd2';
 
     // Winners from Round 1
@@ -24,7 +25,7 @@ export default function MobileSpokane4_SecondRound() {
         const sectionGameIds = [1213, 1214, 1215, 1216];
         const regionPicks = userPicks["spokane4"];
 
-        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter(gameId => !!regionPicks[gameId]).length;
         
         const isComplete = sectionGameIds.length === pickedCount;
 

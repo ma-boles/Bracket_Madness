@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useBracket } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
+import { useMobileContext } from "@/context/MobileContext";
 
 export default function MobileSpokane4_EliteElight() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState(false);
+    const { setSectionStatus } = useMobileContext();
     const sectionId = 'spokane4_elite8';
 
     // Winners from Sweet 16
@@ -17,7 +18,7 @@ export default function MobileSpokane4_EliteElight() {
         const sectionGameIds = [8004];
         const regionPicks = userPicks["spokane4"];
 
-        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter(gameId => !!regionPicks[gameId]).length;
 
         const isComplete = sectionGameIds.length === pickedCount;
 

@@ -3,11 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useBracket  } from "@/context/BracketContext";
 import TeamButton from "@/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
+import { useMobileContext } from "@/context/MobileContext";
 
 
 export default function MobileBirmingham2_EliteEight() {
     const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const [ sectionStatus, setSectionStatus ] = useState(false);
+    const { setSectionStatus } = useMobileContext();
     const sectionId = 'birmingham2_elite8';
 
     // Winners from Sweet 16
@@ -18,7 +19,7 @@ export default function MobileBirmingham2_EliteEight() {
         const sectionGameIds = [8002];
         const regionPicks = userPicks["birmingham2"];
 
-        const pickedCount = sectionGameIds.filter((gameId) => !!regionPicks[gameId]?.winnerId).length;
+        const pickedCount = sectionGameIds.filter(gameId => !!regionPicks[gameId]).length;
 
         const isComplete = sectionGameIds.length === pickedCount;
 
