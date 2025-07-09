@@ -27,7 +27,7 @@ export default function RoundsNav({ activeTab, setActiveTab }) {
         <div>
             <div className="flex justify-around p-2 bg-slate-100 rounded-lg shadow-md">
                 {tabs.map(({ label, sectionId }) => {
-                    const sectionIds = roundMap[sectionId] | {};
+                    const sectionIds = roundMap[sectionId] || {};
                     const isComplete = sectionIds.every(id => sections[id]);
                     const showRedDot = !isComplete;
 
@@ -35,13 +35,13 @@ export default function RoundsNav({ activeTab, setActiveTab }) {
                          <button
                         key={label}
                         onClick={() => setActiveTab(label)}
-                        className={`px-3 py-1 text-sm font-semibold ${
-                            activeTab === tab ? 'text-yellow-600 border-b-2 border-yellow-400' : 'text-gray-600'
+                        className={`relative px-3 py-1 text-sm font-semibold ${
+                            activeTab === label ? 'text-yellow-600 border-b-2 border-yellow-400' : 'text-gray-600'
                         }`}
                     >
                         {label}
                         {showRedDot && (
-                            <span className="h-3 w-3 rounded-full bg-red-600" />
+                            <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-600" />
                         )}
                     </button>
                     );
