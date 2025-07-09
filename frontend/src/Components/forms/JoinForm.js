@@ -26,7 +26,10 @@ export default function JoinForm ({ isUser }) {
             toast.error('Please enter both pool name and invite code', {
             style: {
                 background: '#333',
-                color: '#fff'
+                color: '#fff',
+                border: '2px solid #ef4444',
+                padding: '12px 16px',
+                borderRadius: '8px',
             }});
 
             return;
@@ -53,16 +56,22 @@ export default function JoinForm ({ isUser }) {
                 toast.success(`Success! You joined ${data.poolName}!`, {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #10b981',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
-                // redirect ?
-            } else {
+
+                } else {
                 setIsLoading(false);
 
                 toast.error(data.error || "Failed to join pool.", {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #ef4444',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
             }
         } catch (error) {
@@ -71,7 +80,10 @@ export default function JoinForm ({ isUser }) {
             toast.error('An unexpected error occurred', {
             style: {
                 background: '#333',
-                color: '#fff'
+                color: '#fff',
+                border: '2px solid #ef4444',
+                padding: '12px 16px',
+                borderRadius: '8px',
             }
         });
             console.error(error);

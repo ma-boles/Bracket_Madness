@@ -27,7 +27,10 @@ export default function CreateForm ({ onSuccess, isUser }) {
             toast.error('Poolname is required.', {
             style: {
                 background: '#333',
-                color: '#fff'
+                color: '#fff',
+                border: '2px solid #ef4444',
+                padding: '12px 16px',
+                borderRadius: '8px',
             }});
             return;
         }
@@ -66,7 +69,10 @@ export default function CreateForm ({ onSuccess, isUser }) {
                 toast.error('Could not create pool.', {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #ef4444',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
                 return;
             }
@@ -85,7 +91,10 @@ export default function CreateForm ({ onSuccess, isUser }) {
             toast.error('Something went wrong.', {
             style: {
                 background: '#333',
-                color: '#fff'
+                color: '#fff',
+                border: '2px solid #ef4444',
+                padding: '12px 16px',
+                borderRadius: '8px',
             }});
         }
     };
