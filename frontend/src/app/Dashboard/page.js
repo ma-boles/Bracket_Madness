@@ -12,7 +12,7 @@ import SmallBracketCard from "@/Components/Bracket/SmallBracketCard";
 export default function Dashboard() {
     const [ bracketsView, setBracketsView ] = useState(true);
     const [ poolsView, setPoolsView ] = useState(false);
-    const [ bracketsCardData, setBracketsCardData ] = useState([]);
+    // const [ bracketsCardData, setBracketsCardData ] = useState([]);
     const [ globalBrackets,setGlobalBrackets ] = useState([]);
     const [ poolBrackets, setPoolBrackets ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
@@ -21,6 +21,11 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchBrackets = async () => {
+            if(!currentUser) {
+                setIsLoading(false);
+                return;
+            }
+
             try {
                 const res = await axios.get(`/api/brackets/user`);
                 setGlobalBrackets(res.data.globalBrackets);
@@ -88,33 +93,7 @@ export default function Dashboard() {
         })
     }
 
-        
-    // const bracketCards = bracketsCardData.map((item, index) => {
-    //     const bracketInfoData = [
-    //         { round: 'First Four', round_points: item.first_four_points},
-    //         { round: '1st Rd', round_points: item.first_round_points },
-    //         { round: '2nd Rd', round_points: item.second_round_points },
-    //         { round: 'Sweet 16', round_points: item.sweet16_points },
-    //         { round: 'Elite 8', round_points: item.elite8_points },
-    //         { round: 'Final Four', round_points: item.final4_points },
-    //         { round: 'Champion', round_points: item.championship_points },
-    //         { correct_predictions: item.correct_predictions, total_predictions: item.total_predictions }
-    //     ];
 
-
-    //     return (
-    //         <BracketCard 
-    //             key={index}
-    //             bracketId={item.bracket_id}
-    //             name={item.bracket_name}
-    //             total_points={item.total_points}
-    //             rank={item.rank}
-    //             accuracy_percentage={item.accuracy_percentage}
-    //             bracketInfoData={bracketInfoData}
-    //             />
-    //     );
-    // });
-    
     const handleBracketsView = () => {
         setPoolsView(false);
         setBracketsView(true);
@@ -144,7 +123,7 @@ export default function Dashboard() {
 
             <div className="mx-2 py-4 border border-white bg-white/5 rounded-lg">
 
-                {isLoading && (
+                {isLoading && currentUser && (
                         <LoadingMessage />
                     )}
 
