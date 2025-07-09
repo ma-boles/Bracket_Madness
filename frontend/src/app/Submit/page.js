@@ -49,11 +49,13 @@ export default function Submit() {
         console.log("Pick count:", pickCount);
     
         if (pickCount === 0) {
-            // If no picks have been made, trigger the alert
             toast.error('Please make a pick for every game before submitting.',{
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #ef4444', 
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             })
@@ -74,6 +76,9 @@ export default function Submit() {
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #10b981',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             });
@@ -82,6 +87,9 @@ export default function Submit() {
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #ef4444', 
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             })
@@ -118,6 +126,9 @@ export default function Submit() {
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #10b981',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             })
@@ -129,6 +140,9 @@ export default function Submit() {
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #ef4444', 
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             })
@@ -179,7 +193,10 @@ export default function Submit() {
                     toast.success('Successfully submitted', {
                             style: {
                                 background: '#333',
-                                color: '#fff'
+                                color: '#fff',
+                                border: '2px solid #10b981',
+                                padding: '12px 16px',
+                                borderRadius: '8px',
                             }
                     })
                     setIsLoading(false);
@@ -190,6 +207,9 @@ export default function Submit() {
                         style: {
                             background: '#333',
                             color: '#fff',
+                            border: '2px solid #ef4444', 
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                             duration: 4000,
                         }
                 })
@@ -199,6 +219,9 @@ export default function Submit() {
                 style: {
                     background: '#333',
                     color: '#fff',
+                    border: '2px solid #10b981',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                     duration: 4000,
                 }
             })
@@ -285,35 +308,6 @@ export default function Submit() {
                     )}
                 </>
                 )}
-
-                {/* {currentUser && (
-                <div className="hidden lg:flex justify-center items-center">
-                    <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
-                        onClick={handleLockIn}
-                        >Lock In Picks</button>
-                    <button className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-                        disabled={!isValidated}
-                        onClick={submitPicks}
-                        >
-                        Submit
-                    </button>
-                </div>
-
-                {isFinalFourActive && (
-                    <div className="hidden lg:flex justify-center items-center">
-                    <button className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
-                        onClick={handleLockIn}
-                        >Lock In Picks</button>
-                    <button className={`mb-6 rounded-lg border border-solid bg-blue-600 border-white/[0.8] transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-                        disabled={!isValidated}
-                        onClick={submitPicks}
-                        >
-                        Submit
-                    </button>
-                </div>
-                )}
-                    )} */}
-                    {/* <button onClick={handleLockIn}>Show modal</button> */}
 
             </div>
         </>

@@ -29,8 +29,11 @@ export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
         } else {
             toast.error(data.message || 'You cannot fill out a bracket for this pool.', {
                         style: {
-                        background: '#333',
-                        color: '#fff'
+                            background: '#333',
+                            color: '#fff',
+                            border: '2px solid #ef4444', 
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                     }}
                 )
             }

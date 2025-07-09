@@ -22,8 +22,11 @@ export default function DeletePoolButton ({ poolId }) {
             if(!res.ok) {
                     toast.error(data.message || 'Failed to delete pool.', {
                         style: {
-                        background: '#333',
-                        color: '#fff'
+                            background: '#333',
+                            color: '#fff',
+                            border: '2px solid #ef4444', 
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                     }
                 });
                 return; 
@@ -31,22 +34,27 @@ export default function DeletePoolButton ({ poolId }) {
 
                 toast.success('Pool deleted successfully!', {
                     style: {
-                    background: '#333',
-                    color: '#fff'
+                        background: '#333',
+                        color: '#fff',
+                        border: '2px solid #10b981',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                 }
             });
 
             // Updates UI following removal
             deletePool(poolId);
 
-            // redirect?
 
         } catch(error) {
             console.error('Error deleting pool:', error);
             toast.error('Someting went wrong.', {
                 style: {
-                background: '#333',
-                color: '#fff'
+                    background: '#333',
+                    color: '#fff',
+                    border: '2px solid #ef4444',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
             }
         });
     }

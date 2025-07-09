@@ -1,6 +1,6 @@
 'use client'
-import { useContext } from "react";
-import AuthContext from "@/context/AuthContext";
+// import { useContext } from "react";
+// import AuthContext from "@/context/AuthContext";
 import NavBar from "@/Components/NavBar";
 import SlideCarousel from "@/Components/Pool/SlideCarousel";
 

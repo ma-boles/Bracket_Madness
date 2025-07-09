@@ -32,8 +32,11 @@ export default function UserView () {
             setInvites((prev) => prev.filter((inv) => inv.pool_id !== poolId ));
             toast.success('Successfully joined pool!', {
             style: {
-                background: '#333',
-                color: '#fff'
+                 background: '#333',
+                color: '#fff',
+                border: '2px solid #10b981',
+                padding: '12px 16px',
+                borderRadius: '8px',
             }
         })
         }

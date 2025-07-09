@@ -22,7 +22,10 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                 toast.error("Failed to load members", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #ef4444',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
             }
             
@@ -47,7 +50,10 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                     toast.success("Member removed successfully", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #10b981',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
                 
                 // Update member lists post removal by triggering useEffect
@@ -60,15 +66,21 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                 toast.error(data.message || "Failed to remove members", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #ef4444',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
             }
         } catch (error) {
             console.error("Error removing member:", error);
-            toast.error("An unexpected error occurred", {
+                toast.error("An unexpected error occurred", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #ef4444',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
         }
     };
@@ -91,7 +103,10 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                 toast.success("Member confirmed successfully", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #10b981',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
 
                 // Refetch members list after confirmation
@@ -102,18 +117,24 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                 toast.error(data.message || "Failed to confirm member", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #ef4444',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
             } 
     } catch(error) {
         console.error("Something went wrong while confirming member:", error)
-        toast.error("Something went wrong while confirming member", {
+            toast.error("Something went wrong while confirming member", {
                         style: {
                             background: '#333',
-                            color: '#fff'
+                            color: '#fff',
+                            border: '2px solid #ef4444',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
                         }});
 
-    }
+        }
 }
 
     useEffect(() => {
@@ -130,7 +151,7 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
         fetch(`/api/search?q=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
-                console.log("Suggestions returned from API:", data); // 👈 ADD THIS
+            console.log("Suggestions returned from API:", data);
             setSuggestions(data);
             setLoading(false);
         })
@@ -165,13 +186,19 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
                 toast.success('Invite sent!', {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #10b981',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
             } else {
                 toast.error(data.message, {
                     style: {
                         background: '#333',
-                        color: '#fff'
+                        color: '#fff',
+                        border: '2px solid #ef4444',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
                     }});
             }
         } catch (error) {
@@ -179,7 +206,10 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
             toast.error('Something went wrong', {
                 style: {
                     background: '#333',
-                    color: '#fff'
+                    color: '#fff',
+                    border: '2px solid #ef4444',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
                 }});
         }
     };
