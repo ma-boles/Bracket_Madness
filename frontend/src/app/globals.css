@@ -65,24 +65,26 @@ button:hover {
 }
 
 .toastSuccess {
-  background-color: #065f46;
-  color: #ffffff;
+  background-color: #065f46 !important;
+  color: #ffffff !important;
   padding: 12px 16px;
   border-radius: 8px;
+  font-weight: 600 !important;
 }
 
 .toastError {
-  background-color: #7f1d1d;
-  color: #ffffff;
+  background-color: #7f1d1d !important;
+  color: #ffffff !important;
   padding: 12px 16px;
   border-radius: 8px;
+  font-weight: 600 !important;
 }
 .toastWarning {
-  background-color: #facc15;
-  color: #000;
+  background-color: #facc15 !important;
+  color: #000 !important;
   padding: 12px 16px;
   border-radius:8px;
-  font-weight: 500;
+  font-weight: 600 !important;
 }
 
 .region {

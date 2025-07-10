@@ -22,25 +22,22 @@ export default function NavBar () {
     
     const submitAlert = () => {
         if(!currentUser) {
-            toast.error('To submit a bracket, please Log In.',{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    duration: 4000,
-            }})
+            toast('To submit a bracket, please log in.',{
+                icon: '⚠️',
+                className: 'toastWarning',
+                duration: 4000,
+            });
         } 
     };
-
     const mobileSubmitAlert = () => {
         setMobileMenuOpen(false);
 
         if(!currentUser) {
-            toast.error('To submit a bracket, please Log In.',{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    duration: 4000,
-            }})
+            toast('To submit a bracket, please log in.',{
+                icon: '⚠️',
+                className: 'toastWarning',
+                duration: 4000,
+            });
         } 
     };
 
