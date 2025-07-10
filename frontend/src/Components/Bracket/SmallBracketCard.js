@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from "react";
 import BracketInfoCard from "./BracketInfoCard";
-import Link from "next/link";
 
 
 export default function SmallBracketCard({ name, bracketId, total_points, rank, accuracy_percentage, bracketInfoData, usePoolDisplay, poolRank, poolName, accuracyData }) {
