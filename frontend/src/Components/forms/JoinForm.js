@@ -24,13 +24,8 @@ export default function JoinForm ({ isUser }) {
             setIsLoading(false);
             
             toast.error('Please enter both pool name and invite code', {
-            style: {
-                background: '#333',
-                color: '#fff',
-                border: '2px solid #ef4444',
-                padding: '12px 16px',
-                borderRadius: '8px',
-            }});
+                className: 'toastError',
+            });
 
             return;
         } 
@@ -54,38 +49,22 @@ export default function JoinForm ({ isUser }) {
                 setIsLoading(false);
 
                 toast.success(`Success! You joined ${data.poolName}!`, {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #10b981',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                    }});
+                    className: 'toastSuccess',
+                    });
 
                 } else {
                 setIsLoading(false);
 
                 toast.error(data.error || "Failed to join pool.", {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #ef4444',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                    }});
+                    className: 'toastError',
+                });
             }
         } catch (error) {
             setIsLoading(false);
             
             toast.error('An unexpected error occurred', {
-            style: {
-                background: '#333',
-                color: '#fff',
-                border: '2px solid #ef4444',
-                padding: '12px 16px',
-                borderRadius: '8px',
-            }
-        });
+                className: 'toastError',
+            });
             console.error(error);
         }
     };

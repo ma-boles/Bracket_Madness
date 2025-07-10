@@ -16,11 +16,8 @@ export default function SuccessModal ({ onClose, poolName, inviteCode, onRedirec
     const handleCopy = () => {
         navigator.clipboard.writeText(inviteCode);
         toast.success('Invite code copied!', {
-            style: {
-                background: '#333',
-                color: '#fff'
-            }
-        })
+            className: 'toastSuccess',
+        });
     };
 
     return(

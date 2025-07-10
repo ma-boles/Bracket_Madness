@@ -25,13 +25,8 @@ export default function CreateForm ({ onSuccess, isUser }) {
             setIsLoading(false);
 
             toast.error('Poolname is required.', {
-            style: {
-                background: '#333',
-                color: '#fff',
-                border: '2px solid #ef4444',
-                padding: '12px 16px',
-                borderRadius: '8px',
-            }});
+                className: 'toastError',
+            });
             return;
         }
 
@@ -44,10 +39,8 @@ export default function CreateForm ({ onSuccess, isUser }) {
                 setIsLoading(false);
 
                 toast.success('Pool name already taken', {
-                    style: {
-                        background: '#333',
-                        color: '#fff'
-                    }});
+                    className: 'toastSuccess',
+                    });
                 return;
             }
 
@@ -67,13 +60,8 @@ export default function CreateForm ({ onSuccess, isUser }) {
                 const error = await res.json();
                 console.error("Error creating pool:", error);
                 toast.error('Could not create pool.', {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #ef4444',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                    }});
+                    className: 'toastError',
+                    });
                 return;
             }
 
@@ -89,13 +77,8 @@ export default function CreateForm ({ onSuccess, isUser }) {
             
             console.error("Failed to create pool", error);
             toast.error('Something went wrong.', {
-            style: {
-                background: '#333',
-                color: '#fff',
-                border: '2px solid #ef4444',
-                padding: '12px 16px',
-                borderRadius: '8px',
-            }});
+                className: 'toastError',
+            });
         }
     };
 

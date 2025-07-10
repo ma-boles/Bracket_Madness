@@ -21,25 +21,13 @@ export default function LeavePoolButton ({ poolId }) {
 
             if(!res.ok) {
                     toast.error(data.message || 'Failed to leave pool.', {
-                        style: {
-                            background: '#333',
-                            color: '#fff',
-                            border: '2px solid #ef4444', 
-                            padding: '12px 16px',
-                            borderRadius: '8px',
-                    }
-                });
+                        className: 'toastError',
+                    });
                 return; 
             }
 
                 toast.success('Successfully left pool!', {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #10b981',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                }
+                    className: 'toastSuccess',
             });
 
             // Updates UI following removal
@@ -48,14 +36,8 @@ export default function LeavePoolButton ({ poolId }) {
         } catch(error) {
             console.error('Error leaving pool:', error);
             toast.error('Something went wrong.', {
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #ef4444', 
-                    padding: '12px 16px',
-                    borderRadius: '8px'
-            }
-        });
+                className: 'toastError',
+            });
     }
 };
 
