@@ -32,24 +32,14 @@ export default function LogIn() {
                 router.push('/Dashboard');
             } else {
                 toast.error('Login failed. Please try again.', {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #ef4444', 
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                    }});
+                    className: 'toastError',
+                });
                 setIsLoading(false);
             } 
         } catch(error) {
             toast.error('An unexpeced error occurred.', {
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #ef4444', 
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                }});
+                className: 'toastError',
+                });
             setIsLoading(false);
         }
     };

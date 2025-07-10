@@ -22,14 +22,8 @@ export default function SignUp() {
             setIsLoading(false);
 
             toast.error('Please fill in all fields.', {
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #ef4444', 
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
+                className: 'toastError',
+                duration: 4000,
             });
             return;
         }
@@ -53,42 +47,25 @@ export default function SignUp() {
             if(res.ok) {
                 await new Promise(resolve => setTimeout(resolve, 300));
                 toast.success('Sign up successful! Logging you in...', {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #10b981',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        duration: 4000,
-                    }});
+                    className: 'toastSuccess',
+                    duration: 4000,
+                });
 
                 await logIn();
                 router.push('/Submit');
             } else {
                 const errorData = await res.json();
                 toast.error(errorData.error || 'Sign up failed. Please try again.', {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #ef4444', 
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                    }});
-
+                    className: 'toastError',
+                });
                 setIsLoading(false);
                 
                 }
         } catch(error) {
 
             toast.error('An unexpected error occurred.', {
-                    style: {
-                        background: '#333',
-                        color: '#fff',
-                        border: '2px solid #ef4444', 
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                    }});
-
+                className: 'toastError',
+                    });
                 }
                 
                 setIsLoading(false);

@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
 import NavBar from "../../Components/NavBar";
 import DesktopBracket_Layout from "@/Components/BracketLayout/DesktopBracket_Layout";
 import MobileBracket_Layout from "@/Components/BracketLayout/MobileBracket_Layout";
@@ -50,15 +50,10 @@ export default function Submit() {
     
         if (pickCount === 0) {
             toast.error('Please make a pick for every game before submitting.',{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #ef4444', 
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
-            })
+                className: 'toastError',
+                duration: 4000,
+            });
+
             setIsLoadingCheckPicks(false);
             setIsValidated(false);
             return; 
@@ -73,26 +68,15 @@ export default function Submit() {
             setIsValidated(true);
             setIsLoadingCheckPicks(false);
             toast.success('All picks are made. You can submit now!', {
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #10b981',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
+                className: 'toastSuccess',
+                duration: 4000,
             });
         } else {
             toast.error('Please make a pick for every game before submitting.',{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #ef4444', 
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
-            })
+                className: 'toastError',
+                duration: 4000,
+            });
+
             setIsValidated(false);
             setIsLoadingCheckPicks(false);
         }
@@ -123,29 +107,17 @@ export default function Submit() {
             setIsLoadingSubmit(false);
 
             toast.success('Successful! Ready to submit below.',{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #10b981',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
-            })
+                className: 'toastSuccess',
+                duration: 4000,
+            });
         } else {
             setIsLoadingSubmit(fale);
 
             console.error('Bracket creation failed:', error.message);
             toast.error('Bracket creation failed. Please try again.',{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #ef4444', 
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
-            })
+                className: 'toastError',
+                duration: 4000,
+            });
         };
 
         setShowModal(false);
@@ -204,27 +176,15 @@ export default function Submit() {
 
                 }  else {
                     toast.error('Submission failed. Please try again', {
-                        style: {
-                            background: '#333',
-                            color: '#fff',
-                            border: '2px solid #ef4444', 
-                            padding: '12px 16px',
-                            borderRadius: '8px',
-                            duration: 4000,
-                        }
-                })
-
+                        className: 'toastError',
+                        duration: 4000,
+                });
             }
+
             } catch (error) {toast.success('Submission error. Please try again.', {
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    border: '2px solid #10b981',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    duration: 4000,
-                }
-            })
+                className: 'toastSuccess',
+                duration: 4000,
+            });
 
         }
         };
