@@ -48,9 +48,10 @@ export default function Submit() {
         const pickCount = Object.keys(bracketData).length;
         console.log("Pick count:", pickCount);
     
-        if (pickCount === 0) {
-            toast.error('Please make a pick for every game before submitting.',{
-                className: 'toastError',
+        if (pickCount > 67) {
+            toast('Please make a pick for every game before submitting.',{
+                icon: '⚠️',
+                className: 'toastWarning',
                 duration: 4000,
             });
 
@@ -163,14 +164,9 @@ export default function Submit() {
                 if(result.success) {
                     console.log('Bracket ID:', bracketId);
                     toast.success('Successfully submitted', {
-                            style: {
-                                background: '#333',
-                                color: '#fff',
-                                border: '2px solid #10b981',
-                                padding: '12px 16px',
-                                borderRadius: '8px',
-                            }
-                    })
+                        className: 'toastSuccess',
+                    });
+
                     setIsLoading(false);
                     resetBracket();
 
@@ -181,8 +177,8 @@ export default function Submit() {
                 });
             }
 
-            } catch (error) {toast.success('Submission error. Please try again.', {
-                className: 'toastSuccess',
+            } catch (error) {toast.error('Submission error. Please try again.', {
+                className: 'toastError',
                 duration: 4000,
             });
 
