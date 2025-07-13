@@ -135,9 +135,9 @@ export default function Dashboard() {
                     </div>
                     {bracketsView && (
                         <div>
-                            <div className="hidden sm:flex mx-auto py-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
+                            <div className="hidden sm:flex mx-auto p-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
                                 <p className="w-1/5 text-center font-semibold">ID</p>
-                                <p className="w-1/5 text-center font-semibold">Bracket Name</p>
+                                <p className="w-1/5 text-center font-semibold">Bracket/Pool Name</p>
                                 <p className="w-1/5 text-center font-semibold">Total Points</p>
                                 <p className="w-1/5 text-center font-semibold">Rank</p>
                                 <p className="w-1/5 text-center font-semibold">Percent</p>
