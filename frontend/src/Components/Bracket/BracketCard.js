@@ -1,11 +1,13 @@
 'use client'
 import React, { useState } from "react";
 import BracketInfoCard from "./BracketInfoCard";
-import Link from "next/link";
-
+import LoadingMessage from "../ui/LoadingMessage";
+import { useRouter } from "next/navigation";
 
 export default function BracketCard({ name, bracketId, total_points, rank, accuracy_percentage, bracketInfoData, usePoolDisplay, poolRank, poolName, accuracyData }) {
     const [ showDetails, setShowDetails ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
+    const router = useRouter();
 
     const styleClass = usePoolDisplay
         ? "bg-yellow-400 text-black"
@@ -18,15 +20,25 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
         setShowDetails(prev => !prev);
     };
 
+    const handleView = () => {
+        setLoading(true);
+        router.push(`/bracket/${bracketId}`)
+    };
+
     return(
         <>
         <div className='m-2 rounded-lg'>
             <div className="flex flex-row w-full items-center justify-between">
-                <div className="m-auto font-bold cursor-pointer hover:underline">
-                    <Link href={`/bracket/${bracketId}`}>
-                        View
-                    </Link>
+                <div className="my-auto pr-2 font-bold cursor-pointer hover:underline"
+                    onClick={handleView}>
+                    View
                 </div>
+
+                {loading && (
+                    <div> 
+                        <LoadingMessage />
+                    </div>
+                )}
 
                 <div className={`flex flex-row mx-auto mt-2 h-20 rounded-lg w-[90%] ${styleClass}`} >
                     <div className="flex w-1/5 border-r border-white items-center justify-center" >
@@ -34,8 +46,8 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
                             {bracketId}
                         </h2>
                     </div>
-                    <div className="flex w-1/5 border-r border-white items-center justify-center" >
-                        <h2> 
+                    <div className="flex w-1/5 border-r px-2 border-white items-center justify-center" >
+                        <h2 className="truncate"> 
                             {displayName}
                         </h2>
                     </div>
@@ -56,7 +68,7 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
                     </div>
                 </div>
 
-                <div className="m-auto font-bold cursor-pointer hover:underline"
+                <div className="m-auto pl-2 font-bold cursor-pointer hover:underline"
                     onClick={handleToggle}>
                     Details
                 </div>
