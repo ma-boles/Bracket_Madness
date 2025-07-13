@@ -29,7 +29,7 @@ export default function SmallBracketCard({ name, bracketId, total_points, rank, 
                             </h2>
                         </div>
                         <div className="w-1/2 px-2 pt-2 items-center justify-center" >
-                            <span className="p-2 font-bold">Name:</span>
+                            <span className="p-2 font-bold">Bracket/Pool Name:</span>
                             <h2 className="p-2">
                                 {displayName}
                             </h2>
