@@ -1,5 +1,6 @@
 'use client'
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +17,9 @@ export default function Home() {
 
   const handleBracketClick = async (e) => {
     setIsLoadingBracket(true);
-    await router.push('/Results');
+    await router.push('/Submit');
+
+    // await router.push('/Results');
   };
 
   return (
@@ -33,18 +36,23 @@ export default function Home() {
         />
           <div className="flex">
 
-            <button
-              className="rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
-              w-40 h-10 mx-2
-              sm:w-50 sm:h-12 sm:text-base"
-              onClick={handleLoginClick}
-              disabled={isLoadingLogin}>
-                {isLoadingLogin ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  'Log In / Sign Up'
-                )}
-            </button>
+          <Link href="https://youtube.com" passHref>
+            <a target="_blank" rel="noopener noreferrer">
+              <button
+                className="rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
+                w-40 h-10 mx-2
+                sm:w-50 sm:h-12 sm:text-base"
+                // onClick={handleLoginClick}
+                disabled={isLoadingLogin}>
+                  {isLoadingLogin ? (
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    'Watch Demo'
+                    // 'Log In / Sign Up'
+                  )}
+              </button>
+            </a>
+          </Link>
 
             <button
               className="rounded-full border border-solid border-white/[0.8] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
@@ -55,7 +63,8 @@ export default function Home() {
                 {isLoadingBracket ? (
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  'Bracket'
+                  'Explore App'
+                  // 'Bracket'
                 )}
             </button>
           </div>
