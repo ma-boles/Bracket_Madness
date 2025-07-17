@@ -8,7 +8,8 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
     if (!currentUser) {
         return (
             <button
-                 className="hidden md:block w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md"
+                disabled
+                className="hidden md:block w-24 p-2 mx-1 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md"
                 onClick={handleLogIn}
             >
                 Log In
@@ -25,6 +26,7 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                 >
                 <Link href="/Dashboard">
                     <button
+                        disabled
                         className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
                         role="menuitem"
                         onClick={() => setUserMenuOpen(false)}
@@ -38,6 +40,7 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                 </Link>
 
                 <button
+                    disabled
                     onClick={() => {
                     setShowModal(true);
                     setUserMenuOpen(false);

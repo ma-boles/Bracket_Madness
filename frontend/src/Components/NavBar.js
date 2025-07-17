@@ -7,7 +7,6 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
-
 import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
 import LogoutButton from "@/app/auth/components/LogoutButton";
@@ -64,7 +63,7 @@ export default function NavBar () {
                 </div>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex md:flex-grow text-lg"> 
+                <div className="hidden md:flex md:flex-grow text-lg">
                     <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
                             hover:bg-blue-600 rounded-lg">
                         <Link href="/Results">
@@ -83,7 +82,7 @@ export default function NavBar () {
                             <p>Pool</p>
                         </Link>
                     </div>
-                 
+
                 </div>
 
                 {/* Mobile Nav Icon */}
@@ -141,16 +140,23 @@ export default function NavBar () {
 
                                     Leaderboard
                                 </button>
-                                
+
                                 <LogoutButton />
                             </div>
 
                         ) : (
-                            <button onClick={handleLogIn} className="flex items-center w-full h-10 px-14 border border-transparent hover:border-green-600 hover:bg-green-600/30 cursor-pointer rounded-md">
-                                Log In
-                            </button>
+                            <div relative group>
+                                <button 
+                                    disabled
+                                    onClick={handleLogIn} 
+                                    className="flex items-center bg-gray-300 text-gray-600 w-full h-10 px-14 border border-transparent hover:border-green-600 hover:bg-green-600/30 cursor-not-allowed rounded-md">
+                                    Log In
+                                </button>
+                                <span className="absolute bottom-full mb-2 w-max text-sm text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                                    Login disabled in demo mode
+                                </span>
+                            </div>
                         )}
-                            
 
                     </div>
                 )}
@@ -184,9 +190,17 @@ export default function NavBar () {
                         )}
                         </>
                     ) : (
-                        <button className="py-1 w-33 h-10 bg-green-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md"
-                        onClick={handleLogIn}>Log In</button>
-
+                        <div>
+                            <button 
+                                disabled
+                                className="py-1 w-33 h-10 bg-gray-300 text-gray-600 cursor-not-allowed hover:bg-white hover:text-black transition duration-300 rounded-md"
+                                onClick={handleLogIn}>
+                                Log In
+                            </button>
+                            <span className="absolute bottom-full mb-2 w-max text-sm text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                                Login disabled in demo mode
+                            </span>
+                        </div>
                     )}
 
                 </div>

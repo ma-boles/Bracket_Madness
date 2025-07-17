@@ -1,6 +1,7 @@
 'use client'
 import NavBar from "@/Components/NavBar";
 import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import LoadingMessage from "@/Components/ui/LoadingMessage";
 import BracketCard from "@/Components/Bracket/BracketCard";
@@ -8,6 +9,7 @@ import AuthContext from "@/context/AuthContext";
 import axios from "axios";
 import ManagePools from "@/Components/Dashboard/ManagePools";
 import SmallBracketCard from "@/Components/Bracket/SmallBracketCard";
+import toast from "react-hot-toast";
 
 export default function Dashboard() {
     const [ bracketsView, setBracketsView ] = useState(true);
@@ -18,28 +20,38 @@ export default function Dashboard() {
     const [ isLoading, setIsLoading ] = useState(true);
     const { currentUser } = useContext(AuthContext);
     const userId = currentUser?.userId;
+    const router = useRouter();
 
     useEffect(() => {
-        const fetchBrackets = async () => {
-            if(!currentUser) {
-                setIsLoading(false);
-                return;
-            }
-
-            try {
-                const res = await axios.get(`/api/brackets/user`);
-                setGlobalBrackets(res.data.globalBrackets);
-                setPoolBrackets(res.data.poolBrackets);
-            } catch(error) {
-                console.error('Failed to fetch bracket data:', error);
-            }  finally {
-                setIsLoading(false);
-            }
-        };
-        if(userId) {
-            fetchBrackets();
+        if(!currentUser) {
+            toast.error("Page not avaiable in Demo Mode");
+            router.push('/Submit');
         }
-    }, [userId]);
+    }, [currentUser]);
+
+    if(!currentUser) return null;
+    
+    // useEffect(() => {
+    //     const fetchBrackets = async () => {
+    //         if(!currentUser) {
+    //             setIsLoading(false);
+    //             return;
+    //         }
+
+    //         try {
+    //             const res = await axios.get(`/api/brackets/user`);
+    //             setGlobalBrackets(res.data.globalBrackets);
+    //             setPoolBrackets(res.data.poolBrackets);
+    //         } catch(error) {
+    //             console.error('Failed to fetch bracket data:', error);
+    //         }  finally {
+    //             setIsLoading(false);
+    //         }
+    //     };
+    //     if(userId) {
+    //         fetchBrackets();
+    //     }
+    // }, [userId]);
 
     const renderBracketCards = (brackets, isPool = false) => {
         return brackets.map((item, index) => {

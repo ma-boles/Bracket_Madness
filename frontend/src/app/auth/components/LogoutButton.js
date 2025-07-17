@@ -25,7 +25,9 @@ const LogoutButton = () => {
     };
 
     return(
-        <button className="py-1 w-full h-10 bg-red-600 cursor-pointer hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogout}>
+        <button 
+            disabled
+            className="py-1 w-full h-10 bg-gray-300 text-gray-600 cursor-not-allowed hover:bg-white hover:text-black transition duration-300 rounded-md" onClick={handleLogout}>
             {isLoading ? (
                 <ButtonSpinner size={4} /> 
             ) : (

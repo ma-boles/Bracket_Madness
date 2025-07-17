@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LoadingMessage from "@/Components/ui/LoadingMessage";
 import NavBar from "../../Components/NavBar";
 import FirstFour_Result from "@/Components/Results/FirstFour_Results";
@@ -9,27 +9,40 @@ import Birmingham3_Results from "@/Components/Results/Birmingham3_Results";
 import Spokane4_Results from "@/Components/Results/Spokane4_Results";
 import Championship_Results from "@/Components/Results/Championship_Results";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import AuthContext from "@/context/AuthContext";
 
 export default function Results() {
     const [ resultsData, setResultsData ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
+    const router = useRouter();
+    const { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
-        const fetchResults = async () => {
-            try {
-                const res = await axios.get('/api/results');
-                       
-                await new Promise(resolve => setTimeout(resolve, 500));
+        if(!currentUser) {
+            toast.error("Page not avaiable in Demo Mode");
+            router.push('/Submit');
+        }
+    }, [currentUser]);
 
-                setResultsData(res.data);
-            } catch(error) {
-                console.error('Failed to fetch results:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchResults();
-    }, []);
+    if(!currentUser) return null;
+    
+    // useEffect(() => {
+    //     const fetchResults = async () => {
+    //         try {
+    //             const res = await axios.get('/api/results');
+                       
+    //             await new Promise(resolve => setTimeout(resolve, 500));
+
+    //             setResultsData(res.data);
+    //         } catch(error) {
+    //             console.error('Failed to fetch results:', error);
+    //         } finally {
+    //             setIsLoading(false);
+    //         }
+    //     };
+    //     fetchResults();
+    // }, []);
 
     const firstFourResultsData = resultsData.filter(result => result.round === 'First Four');
     const spokane1ResultsData = resultsData.filter(result => result.region === 'Spokane 1');
