@@ -11,6 +11,7 @@ import Championship_Results from "@/Components/Results/Championship_Results";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import AuthContext from "@/context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function Results() {
     const [ resultsData, setResultsData ] = useState([]);
