@@ -193,7 +193,14 @@ export default function Submit() {
             <div>
                 <DesktopBracket_Layout />
                 <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)} picksRemaining={picksRemaining} />
-
+                    
+                    {/* Picks counter for demo mode only */}
+                    <div className="hidden md:flex justify-center items-center">
+                        <div className="mb-6 mt-2 bg-white/5 rounded-lg flex items-center justify-center font-bold w-1/6 h-12 mx-2"
+                        >
+                        Picks Remaining: <span className="font-bold"> {picksRemaining}</span>
+                        </div>
+                    </div>
 
                 <ConfirmationModal 
                     show={showModal}
