@@ -8,7 +8,7 @@ export default function TeamButton({ region, gameId, team }) {
     const { currentUser } = useContext(AuthContext);
 
     const selected = userPicks?.[region]?.[gameId] === team.name;
-    const isDisabled = !currentUser;
+    // const isDisabled = !currentUser;
 
     return (
         <button 
@@ -23,11 +23,12 @@ export default function TeamButton({ region, gameId, team }) {
                 sm:border-[rgba(49,43,43,0.119)]
                 sm:text-left
                 ${selected ? 'border border-white font-bold' : 'hover:bg-gray-500'}
-                ${isDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-white/5'}
-                ${isDisabled ? 'pointer-events-none' : ''} 
+ 
             `}
-            disabled={isDisabled}
-            onClick={() => !isDisabled && handleSelection(region, gameId, team)}
+                // ${isDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-white/5'}
+                // ${isDisabled ? 'pointer-events-none' : ''}
+            // disabled={isDisabled}
+            onClick={() => handleSelection(region, gameId, team)}
             >
             {team.seed} {team.name}
         </button>
