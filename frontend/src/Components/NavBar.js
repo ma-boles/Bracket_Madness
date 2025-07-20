@@ -145,16 +145,13 @@ export default function NavBar () {
                             </div>
 
                         ) : (
-                            <div relative group>
+                            <div className="w-full">
                                 <button 
                                     disabled
                                     onClick={handleLogIn} 
-                                    className="flex items-center bg-gray-300 text-gray-600 w-full h-10 px-14 border border-transparent hover:border-green-600 hover:bg-green-600/30 cursor-not-allowed rounded-md">
+                                    className="flex items-center bg-gray-300 text-gray-600 w-full h-10 px-14 border border-transparent !cursor-not-allowed rounded-md">
                                     Log In
                                 </button>
-                                <span className="absolute bottom-full mb-2 w-max text-sm text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                                    Login disabled in demo mode
-                                </span>
                             </div>
                         )}
 
@@ -193,13 +190,10 @@ export default function NavBar () {
                         <div>
                             <button 
                                 disabled
-                                className="py-1 w-33 h-10 bg-gray-300 text-gray-600 cursor-not-allowed hover:bg-white hover:text-black transition duration-300 rounded-md"
+                                className="py-1 w-33 h-10 bg-gray-300 text-gray-600 !cursor-not-allowed transition duration-300 rounded-md"
                                 onClick={handleLogIn}>
                                 Log In
                             </button>
-                            <span className="absolute bottom-full mb-2 w-max text-sm text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                                Login disabled in demo mode
-                            </span>
                         </div>
                     )}
 
