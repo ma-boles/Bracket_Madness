@@ -10,9 +10,6 @@ More than just a platform for managing and tracking picks, Bracket Madness is de
 
 Whether you’re here to organize your brackets, compete with friends, or simply celebrate the game, Bracket Madness provides an interactive, fan-driven platform dedicated to advancing women’s basketball.
 
-<!--## 🚀 Live Site
-👉 [Visit the app here](https://yourdomain.com)-->
-
 ## 👤 User Features
 -  Create and manage multiple brackets
 -  Track bracket performance against other users
@@ -20,48 +17,63 @@ Whether you’re here to organize your brackets, compete with friends, or simply
 -  View live tournament results updated regularly
 
 ## ⚠️ Demo Mode Notice
-
 This release of Bracket Madness is a fully functional demo designed to showcase core features and user experience only. 
 
 In the full version, tournament results are imported into the backend database and then served to the app, but this data integration is not active in the demo. Instead, the demo focuses on front-end bracket management and navigation.
 
 A full-featured release with complete backend support, live results, and expanded functionality is planned for the future.
 
-## 🧠 How It Works
-- Tournament data is sourced from ESPN and automatically updates results.
-- The app calculates winners and updates bracket standings.
-- Predictions are locked once the tournament begins.
+<!--## 🚀 Live Site
+👉 [Visit the app here](https://yourdomain.com)-->
 
 ## 🧱 Tech Stack
 - **Frontend:** Next.js, React, Tailwind CSS
-- **Backend:** Node.js (Next.js API routes)
+- **Backend:** Node.js (via Next.js API routes)
 - **Database:** MySQL
-- **Auth:** JWT (stored securely in cookies)
-- **Data Sources:** ESPN API
+- **Auth:** JSON Web Tokens (JWT), stored securely in cookies
+- **Data Sources:** Periodic sync from ESPN APIs
+- **Background Jobs:** Cron jobs scheduled every 10 minutes to update results and sync data  
 
-## 📂 Database Schema
-Key tables include:
-- `users`: Registered users
-- `brackets`: Bracket metadata
-- `predictions`: User picks for each game
-- `results`: Actual game outcomes
-- `teams`: Teams participating in the tournament
-- `points`: Scoring per game per user per bracket
 
-## 📊 Scoring System
-Points are awarded as follows:
-- All correct picks awarded with 10 points.
-- *Bonuses* awarded for underdog picks.
+## 🧠 How It Works
+- Tournament data is sourced from the ESPN API and updated in the database via scheduled cron jobs.
+- User predictions (brackets) are stored in a relational MySQL database.
+- Once games are played, results are processed and users are awarded points.
+- Leaderboards and private pool rankings are dynamically calculated from prediction and scoring data.
 
-<!--## ✍️ Roadmap
-- [ ] Mobile support
-- [ ] Public bracket sharing
-- [ ] Realtime updates via WebSockets
-- [ ] Admin dashboard-->
 
-<!--## 🙌 Acknowledgments
-- ESPN for game data
-- Open source libraries like React, Tailwind, and NextAuth-->
+### 🧱 System Architecture
+- **Next.js API routes** handle backend logic and authentication.
+- **MySQL database** stores users, brackets, predictions, results, and scoring.
+- **Cron jobs** regularly pull tournament results and sync them to the database.
+- Frontend and backend are unified within the same Next.js app for full-stack control.
 
-<!--## 📫 Contact
-Have questions or feedback? Reach me on [GitHub](https://github.com/yourusername) or via email at your@email.com.-->
+
+### 📊 Scoring System
+- ✅ 10 points awarded for each correct pick  
+- 💥 Bonus points for selecting underdog winners  
+
+## ✍️ Future Plans  
+- [ ] **Game Mode** – Introduce a monetization layer where users can wager in app currency in pools and challenges for bragging rights or leaderboard boosts.  
+- [ ] **Daily & Weekly Challenges** – Launch lightweight prediction games such as:  
+  - Single-game winners  
+  - Player of the Week picks (e.g., A vs B vs C)  
+- [ ] **WNBA Playoffs Support** – Expand the platform to include a full bracket experience for the WNBA postseason.
+
+## 📬 Contact & Credits
+
+- **Creator:** Mary Boles  
+- **Portfolio:** https://mbolesdev.vercel.app/ 
+- **LinkedIn:** https://www.linkedin.com/in/mary-boles/  
+
+---
+
+## ⚖️ License
+
+This project is **not open source** and all rights are reserved by the author.  
+
+---
+
+## 🙏 Credits
+
+Built solely by Mary Boles. No external contributors at this time.
