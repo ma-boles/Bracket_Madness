@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import CreateForm from "../forms/CreateForm";
 import SuccessModal from "./SuccessModal";
+import FeatureGate from "./FeatureGate";
 
 export default function CreateSlide ({ isUser }) {
         const [modalOpen, setModalOpen] = useState(false);
@@ -20,12 +21,19 @@ export default function CreateSlide ({ isUser }) {
                                         inviteCode={createdPool.code}
                                         onRedirect={() => router.push('/Dashboard')}/>
                                 ):(
-                                        <CreateForm 
-                                        isUser={isUser}
-                                        onSuccess={(pool) => {
-                                                setCreatedPool(pool)
-                                                setModalOpen(true);
+                                        <FeatureGate isUser={isUser}>
+                                                <CreateForm 
+                                                        onSuccess={(pool) => {
+                                                        setCreatedPool(pool)
+                                                        setModalOpen(true);
                                         }}/>
+                                        </FeatureGate>
+                                        // <CreateForm 
+                                        // isUser={isUser}
+                                        // onSuccess={(pool) => {
+                                        //         setCreatedPool(pool)
+                                        //         setModalOpen(true);
+                                        // }}/>
                                 )}
                         </div>
                 </div>
