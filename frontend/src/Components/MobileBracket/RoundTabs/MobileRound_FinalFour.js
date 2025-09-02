@@ -1,12 +1,11 @@
 'use client'
 import React, { useEffect } from "react";
-import { useBracket } from "@/context/BracketContext";
-import { useAuth } from "@/context/AuthContext";
-import TeamButton from "@/Components/TeamButton";
-import ChampionshipButton from "@/Components/ChampionshButton";
+import { useBracket } from "@/src/context/BracketContext";
+import { useAuth } from "@/src/context/AuthContext";
+import TeamButton from "../../TeamButton";
+import ChampionshipButton from "../../ChampionshButton";
 import SelectPlaceholder from "../SelectPlaceholder";
-import Image from "next/image";
-import { useMobileContext } from "@/context/MobileContext";
+import { useMobileContext } from "@/src/context/MobileContext";
 
 
 export default function MobileRound_FinalFour ({ onMount }) {

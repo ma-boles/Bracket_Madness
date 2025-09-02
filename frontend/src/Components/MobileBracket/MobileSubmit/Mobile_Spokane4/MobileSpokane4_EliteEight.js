@@ -1,9 +1,10 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import { useBracket } from "@/context/BracketContext";
-import TeamButton from "@/Components/TeamButton";
+import React, { useEffect } from "react";
+import { useBracket } from "@/src/context/BracketContext";
+import TeamButton from "@/src/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
-import { useMobileContext } from "@/context/MobileContext";
+import { useMobileContext } from "@/src/context/MobileContext";
+
 
 export default function MobileSpokane4_EliteElight() {
     const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HomeIcon, TrophyIcon } from "@heroicons/react/24/outline";
-import LogoutButton from "@/app/auth/components/LogoutButton";
+import LogoutButton from "../app/auth/components/LogoutButton";
 
 
 export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUserMenuOpen }) {

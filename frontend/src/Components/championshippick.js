@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
-import { useBracket } from "@/context/BracketContext";
-import { useAuth } from "@/context/AuthContext";
+import { useBracket } from "../context/BracketContext";
+import { useAuth } from "../context/AuthContext";
 import TeamButton from "./TeamButton";
 import ChampionshipButton from "./ChampionshButton";
 import TeamPlaceholder from "./TeamPlaceholder";

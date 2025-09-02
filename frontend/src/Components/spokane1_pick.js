@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import { useBracket } from "@/context/BracketContext";
+import { useBracket } from "../context/BracketContext";
 import dynamic from 'next/dynamic';
 import TeamButton from "./TeamButton";
 import TeamPlaceholder from "./TeamPlaceholder";

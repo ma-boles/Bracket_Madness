@@ -1,4 +1,4 @@
-import { useMobileContext } from "@/context/MobileContext";
+import { useMobileContext } from "@/src/context/MobileContext";
 
 export default function RegionsNav({ activeRegion, setActiveRegion, activeRoundTab }) {
     const { sections } = useMobileContext();

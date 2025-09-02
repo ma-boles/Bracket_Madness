@@ -1,7 +1,7 @@
 'use client'
 import { useContext } from "react";
-import { useBracket } from "@/context/BracketContext"
-import AuthContext from "@/context/AuthContext";
+import { useBracket } from "../context/BracketContext";
+import AuthContext from "../context/AuthContext";
 
 export default function TeamButton({ region, gameId, team }) {
     const { userPicks, handleSelection } = useBracket();

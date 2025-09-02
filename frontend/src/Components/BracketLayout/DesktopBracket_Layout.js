@@ -16,7 +16,7 @@ export default function DesktopBracket_Layout () {
                         <FirstFour />
                     </div>
                     <div>
-                        <div className="flex">
+                        <div className="flex justify-between">
                             <Spokane1_Pick />
                             <Birmingham2_Pick />
                         </div>
@@ -25,7 +25,7 @@ export default function DesktopBracket_Layout () {
                             <ChampionshipPick />
                         </div>
                     
-                        <div className="flex">
+                        <div className="flex justify-between">
                             <Spokane4_Pick />
                             <Birmingham3_Pick />
                         </div>

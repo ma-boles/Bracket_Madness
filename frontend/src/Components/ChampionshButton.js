@@ -1,5 +1,5 @@
 'use client'
-import { useBracket } from "@/context/BracketContext"
+import { useBracket } from "../context/BracketContext";
 
 export default function ChampionshipButton({ region, gameId, team }) {
     const { userPicks, handleSelection } = useBracket();

@@ -1,8 +1,8 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import TeamButton from "@/Components/TeamButton";
-import { useBracket } from "@/context/BracketContext";
-import { useMobileContext } from "@/context/MobileContext";
+import React, { useEffect } from "react";
+import TeamButton from "../../TeamButton";
+import { useBracket } from "@/src/context/BracketContext";
+import { useMobileContext } from "@/src/context/MobileContext";
 
 export default function MobileRound_FirstFour() {
     const sectionId = 'firstfour';

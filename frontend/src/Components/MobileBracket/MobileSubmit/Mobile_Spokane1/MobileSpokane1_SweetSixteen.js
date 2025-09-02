@@ -1,10 +1,10 @@
 'use client'
-import React, { useState, useEffect } from "react";
-import { useBracket } from "@/context/BracketContext";
+import React, { useEffect } from "react";
+import { useBracket } from "@/src/context/BracketContext";
 import dynamic from 'next/dynamic';
-import TeamButton from "@/Components/TeamButton";
+import TeamButton from "@/src/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
-import { useMobileContext } from "@/context/MobileContext";
+import { useMobileContext } from "@/src/context/MobileContext";
 
 
 
