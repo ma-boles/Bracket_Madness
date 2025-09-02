@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { ButtonSpinner } from "../ui/ButtonSpinner";
 
-export default function CreateForm ({ onSuccess, isUser }) {
+export default function CreateForm ({ onSuccess }) {
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         poolName: "",
@@ -91,9 +91,7 @@ export default function CreateForm ({ onSuccess, isUser }) {
 
     return(
         <form onSubmit={handleSubmit} className="p-6 max-w-sm mx-auto space-y-4 bg-white/5 rounded-xl">
-            {isUser ? (
-<>
-
+            <>
             <h1 className="text-2xl text-center font-bold">Create a Pool</h1>
             <div>
                 <input 
@@ -126,9 +124,7 @@ export default function CreateForm ({ onSuccess, isUser }) {
                     Clear
                 </button>
             </div>
-            </>) : (
-                <h1 className="text-2xl text-center font-bold"> Sign in to use this feature</h1>
-            )}
+            </>
         </form>
 
     );
