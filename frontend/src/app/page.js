@@ -36,7 +36,7 @@ export default function Home() {
         />
           <div className="flex">
 
-          <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <Link href="/Learn-More" target="_blank" rel="noopener noreferrer">
               <button
                 className="rounded-full border border-solid border-white/[0.8] text-white transition-colors flex items-center justify-center hover:text-black hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
                 w-40 h-10 mx-2
@@ -46,7 +46,7 @@ export default function Home() {
                   {isLoadingLogin ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   ) : (
-                    'Watch Demo'
+                    'Learn More'
                     // 'Log In / Sign Up'
                   )}
               </button>
