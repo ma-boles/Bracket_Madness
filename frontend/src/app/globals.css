@@ -9,12 +9,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
   :root {
     --background: linear-gradient(to bottom right, black, rgb(7, 7, 7) , #2e1065); 
     --foreground: #ededed; 
   }
-}
 
 /* @media (orientation: portrait) {
   .portrait-padding {
