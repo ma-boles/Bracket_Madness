@@ -1,10 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { BracketProvider } from "@/context/BracketContext";
+import { BracketProvider } from "../context/BracketContext";
 import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
+import { AuthProvider } from "../context/AuthContext";
 import { Toaster } from "react-hot-toast";
-import RouteLoaderWrapper from "@/context/RouteLoaderWrapper";
-import MobileProvider from "@/context/MobileContext";
+import RouteLoaderWrapper from "../context/RouteLoaderWrapper";
+import MobileProvider from "../context/MobileContext";
 
 
 const geistSans = Geist({
