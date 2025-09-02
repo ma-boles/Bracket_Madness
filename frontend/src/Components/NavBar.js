@@ -2,14 +2,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
-import LogoutButton from "@/app/auth/components/LogoutButton";
+import LogoutButton from "../app/auth/components/LogoutButton";
 
 
 export default function NavBar () {

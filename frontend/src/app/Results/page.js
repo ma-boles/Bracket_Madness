@@ -1,16 +1,15 @@
 'use client'
-import React, { useContext, useEffect, useState } from "react";
-import LoadingMessage from "@/Components/ui/LoadingMessage";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import LoadingMessage from "@/src/Components/ui/LoadingMessage";
 import NavBar from "../../Components/NavBar";
-import FirstFour_Result from "@/Components/Results/FirstFour_Results";
-import Spokane1_Results from "@/Components/Results/Spokane1_Results";
-import Birmingham2_Results from "@/Components/Results/Birmingham2_Results";
-import Birmingham3_Results from "@/Components/Results/Birmingham3_Results";
-import Spokane4_Results from "@/Components/Results/Spokane4_Results";
-import Championship_Results from "@/Components/Results/Championship_Results";
-import axios from "axios";
+import FirstFour_Result from "@/src/Components/Results/FirstFour_Results";
+import Spokane1_Results from "@/src/Components/Results/Spokane1_Results";
+import Birmingham2_Results from "@/src/Components/Results/Birmingham2_Results";
+import Birmingham3_Results from "@/src/Components/Results/Birmingham3_Results";
+import Spokane4_Results from "@/src/Components/Results/Spokane4_Results";
+import Championship_Results from "@/src/Components/Results/Championship_Results";
 import { useRouter } from "next/navigation";
-import AuthContext from "@/context/AuthContext";
+import AuthContext from "@/src/context/AuthContext";
 import toast from "react-hot-toast";
 
 export default function Results() {
@@ -18,15 +17,37 @@ export default function Results() {
     const [ isLoading, setIsLoading ] = useState(true);
     const router = useRouter();
     const { currentUser } = useContext(AuthContext);
+    const hasRedirected = useRef(false);
 
-    useEffect(() => {
-        if(!currentUser) {
-            toast.error("Page not avaiable in Demo Mode");
-            router.push('/Submit');
-        }
-    }, [currentUser]);
+    
+  useEffect(() => {
 
-    if(!currentUser) return null;
+    if (currentUser === null && !hasRedirected.current) {
+      hasRedirected.current = true;
+
+      toast.dismiss();
+      toast.dismiss();
+      toast.error('Page not available in Demo Mode');
+      router.replace('/Submit');
+    }
+  }, [currentUser, router]);
+
+  if(!currentUser) return null;
+
+    // useEffect(() => {
+
+    //     if(currentUser === null && !hasRedirected.current) {
+    //         hasRedirected.current = true;
+    //         toast.error("Page not avaiable in Demo Mode");
+    //         router.push('/Submit');
+    //     }
+    // }, [currentUser, router]);
+
+    // if(currentUser === null){
+    //     return (
+    //         <div>Redirecting...</div>
+    //     )
+    // };
     
     // useEffect(() => {
     //     const fetchResults = async () => {

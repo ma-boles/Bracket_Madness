@@ -2,14 +2,14 @@
 import React, { useContext, useEffect, useState } from "react";
 // import { jwtDecode } from "jwt-decode";
 import NavBar from "../../Components/NavBar";
-import DesktopBracket_Layout from "@/Components/BracketLayout/DesktopBracket_Layout";
-import MobileBracket_Layout from "@/Components/BracketLayout/MobileBracket_Layout";
-import { useBracket } from "@/context/BracketContext";
+import DesktopBracket_Layout from "@/src/Components/BracketLayout/DesktopBracket_Layout";
+import MobileBracket_Layout from "@/src/Components/BracketLayout/MobileBracket_Layout";
+import { useBracket } from "@/src/context/BracketContext";
 import { useSearchParams } from "next/navigation";
-import AuthContext from "@/context/AuthContext";
-import ConfirmationModal from "@/Components/ConfirmationModal";
+import AuthContext from "@/src/context/AuthContext";
+import ConfirmationModal from "@/src/Components/ConfirmationModal";
 import toast from "react-hot-toast";
-import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
+import { ButtonSpinner } from "@/src/Components/ui/ButtonSpinner";
 
 export default function Submit() {
     const { currentUser } = useContext(AuthContext);
