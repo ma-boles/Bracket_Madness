@@ -9,7 +9,7 @@ export default function Header ({ title }: Headerprops) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <header className="w-full py-4 px-6 bg-blue-600 shadow-md">
+        <header className="w-full py-4 px-6 bg-purple-600/80">
             <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                 <h1 className="text-xl font-bold">{title}</h1>
 

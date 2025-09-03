@@ -19,7 +19,7 @@ export default function Home() {
             </p>
             <a
               href="#demo"
-              className="inline-block bg-blue-600 font-semibold px-8 py-4 rounded-md text-lg hover:bg-blue-500 transition"
+              className="inline-block bg-purple-600 font-semibold px-8 py-4 rounded-md text-lg hover:bg-purple-500 transition"
             >
               View Demo
             </a>

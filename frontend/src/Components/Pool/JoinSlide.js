@@ -4,7 +4,7 @@ import FeatureGate from "./FeatureGate";
 
 export default function JoinSlide ({ isUser }) {
     return (
-        <div className="md:py-18 px-12 md:bg-black/60 rounded-xl">
+        <div className="py-18 px-12 bg-black/60 rounded-xl">
             <FeatureGate isUser={isUser}>
                 <JoinForm />
             </FeatureGate>

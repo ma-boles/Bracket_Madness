@@ -9,17 +9,17 @@ export default function Footer() {
         </p>
         <a
           href="/Submit"
-          className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-500 hover:text-black  transition"
+          className="inline-block bg-purple-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-purple-500 transition"
         >
           Explore App
         </a>
 
         <div className="flex justify-center gap-6 mt-10">
           <a href="https://github.com/ma-boles" target="_blank" rel="noopener noreferrer">
-            <Github className="w-6 h-6 hover:text-blue-400 transition" />
+            <Github className="w-6 h-6 hover:text-purple-400 transition" />
           </a>
           <a href="https://linkedin.com/in/mary-boles" target="_blank" rel="noopener noreferrer">
-            <Linkedin className="w-6 h-6 hover:text-blue-400 transition" />
+            <Linkedin className="w-6 h-6 hover:text-purple-400 transition" />
           </a>
         </div>
 

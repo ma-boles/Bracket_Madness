@@ -38,7 +38,7 @@ export default function Home() {
 
           <Link href="/Learn-More" target="_blank" rel="noopener noreferrer">
               <button
-                className="rounded-full border border-solid border-white/[0.8] text-white transition-colors flex items-center justify-center hover:text-black hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium 
+                className="rounded-full border border-solid border-white/[0.8] text-white transition-colors flex items-center justify-center hover:text-black hover:bg-[#f2f2f2] hover:border-transparent font-medium 
                 w-40 h-10 mx-2
                 sm:w-50 sm:h-12 sm:text-base"
                 // onClick={handleLoginClick}
@@ -53,7 +53,7 @@ export default function Home() {
           </Link>
 
             <button
-              className="rounded-full border border-solid border-white/[0.8] text-white transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:text-black hover:border-transparent font-medium 
+              className="rounded-full border border-solid border-white/[0.8] text-white transition-colors flex items-center justify-center hover:bg-[#f2f2f2] hover:text-black hover:border-transparent font-medium 
               w-40 h-10 mx-2
               sm:w-50 sm:h-12 sm:text-base"
               onClick={handleBracketClick}
