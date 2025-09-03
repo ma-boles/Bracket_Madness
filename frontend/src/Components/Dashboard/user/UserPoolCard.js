@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import LeavePoolButton from "./LeavePoolButton";
 import { useRouter } from "next/navigation";
-import { usePools } from "@/context/PoolsContext";
+import { usePools } from "@/src/context/PoolsContext";
 import toast from "react-hot-toast";
 
 export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
@@ -18,7 +18,7 @@ export default function UserPoolCard ({ poolId, poolName, bracketSubmitted }) {
             setLoading(false);
         };
         loadBrackets();
-    }, [poolId]);
+    }, [poolId, fetchPoolBrackets]);
 
     const handleValidatePool = async () => {
         const res = await fetch(`/api/pool-membership/validate?pool_id=${poolId}`);
