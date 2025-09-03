@@ -3,16 +3,19 @@ export default function Footer() {
   return (
     <footer className="w-full bg-black text-white py-12 px-6">
       <div className="max-w-6xl mx-auto text-center space-y-6">
-        <h2 className="text-2xl md:text-3xl font-bold">Ready to Run Your Bracket?</h2>
+        <h2 className="text-2xl md:text-3xl font-bold">Get in the Game</h2>
         <p className="text-gray-400 text-lg">
-          Built for March Madness, flexible for any sports tournament.
+          Built for fans. Powered by play. Made to grow the women&apos;s game.
         </p>
         <a
           href="/Submit"
           className="inline-block bg-purple-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-purple-500 transition"
         >
-          Explore App
+          Launch Demo
         </a>
+        <p className="mt-4 italic text-gray-600 text-sm">
+          More coming soon. We&apos;re just getting started.
+        </p>
 
         <div className="flex justify-center gap-6 mt-10">
           <a href="https://github.com/ma-boles" target="_blank" rel="noopener noreferrer">

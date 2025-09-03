@@ -4,9 +4,9 @@ export default function Features() {
   return (
     <section className="py-16 px-6">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Built for Bracket Fans</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Better Experience. A Bigger Vision Ahead.</h2>
         <p className="text-gray-300 mb-12 text-lg">
-          Thoughtfully designed for both casual players and competitive bracketologists.
+          From casual picks to competitive matchups, our bracket tools are crafted for moden fans —— with new game modes, community features, and new ways to play coming soon.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -15,7 +15,7 @@ export default function Features() {
             <div className="text-left">
               <h3 className="text-xl font-semibold">Round Multipliers</h3>
               <p className="text-gray-300">
-                Points increase with each round — pick wisely in the later stages.
+                Points rise through each round —— climb the leaderboard with smart picks. 
               </p>
             </div>
           </div>
@@ -25,7 +25,7 @@ export default function Features() {
             <div className="text-left">
               <h3 className="text-xl font-semibold">Underdog Bonuses</h3>
               <p className="text-gray-300">
-                Get rewarded for bold picks. The lower the seed, the higher the reward.
+                Bold picks. Big payoffs. The lower the seed, the higher the score.
               </p>
             </div>
           </div>
@@ -33,9 +33,9 @@ export default function Features() {
           <div className="flex items-start gap-4">
             <Zap className="w-8 h-8 text-yellow-500" />
             <div className="text-left">
-              <h3 className="text-xl font-semibold">Real-Time Scoring</h3>
+              <h3 className="text-xl font-semibold">Live Tournament Tracking</h3>
               <p className="text-gray-300">
-                Brackets update as games finish. Track your rank instantly.
+                Brackets update automatically throughout game days, so you can stay on top of the action and your rank —— no manual refresh needed.
               </p>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function Features() {
             <div className="text-left">
               <h3 className="text-xl font-semibold">Pool-Friendly</h3>
               <p className="text-gray-300">
-                Share brackets and compete in groups with friends or co-workers.
+                Compete with friends, co-workers, or your whole crew —— no extra setup needed.
               </p>
             </div>
           </div>
