@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from "react";
 import { useContext } from "react";
-import AuthContext from "@/context/AuthContext";
+import AuthContext from "@/src/context/AuthContext";
 import MainSlide from "./MainSlide";
 import CreateSlide from "./CreateSlide";
 import JoinSlide from "./JoinSlide";
@@ -24,7 +24,7 @@ export default function SlideCarousel () {
 
     return (
         <>
-            <div className="relative overflow-y-auto md:overflow-hidden w-full min-h-screen bg-white/5">
+            <div className="relative overflow-y-auto md:overflow-hidden w-full min-h-screen bg-white/5 overflow-x-hidden">
 
                 {/* Slide track */}
                 <div className="flex w-[300vw] transition-transform duration-500 ease-in-out"

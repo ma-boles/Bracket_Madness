@@ -1,8 +1,6 @@
 'use client'
-// import { useContext } from "react";
-// import AuthContext from "@/context/AuthContext";
-import NavBar from "@/Components/NavBar";
-import SlideCarousel from "@/Components/Pool/SlideCarousel";
+import NavBar from "@/src/Components/NavBar";
+import SlideCarousel from "@/src/Components/Pool/SlideCarousel";
 
 export default function Pool () {
     
