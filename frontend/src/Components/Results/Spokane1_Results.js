@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import TeamResult from "../TeamResult";
-import { useBracket } from "@/context/BracketContext";
+import { useBracket } from "@/src/context/BracketContext";
 import GameSlotResults from "./GameSlotResults";
 
 export default function Spokane1_Results ({ results }) {

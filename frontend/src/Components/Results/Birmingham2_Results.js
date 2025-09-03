@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import { useBracket } from "@/context/BracketContext";
+import { useBracket } from "@/src/context/BracketContext";
 import TeamResult from "../TeamResult";
 import GameSlotResults from "./GameSlotResults";
 

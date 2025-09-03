@@ -2,7 +2,7 @@
 import React from "react"
 import TeamResult from "../TeamResult"
 import GameSlotResults from "./GameSlotResults"
-import { useBracket } from "@/context/BracketContext"
+import { useBracket } from "@/src/context/BracketContext"
 
 export default function Spokane4_Results({ results }) {
     const { getWinnerFromResults } = useBracket();
