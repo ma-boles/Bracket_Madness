@@ -48,6 +48,8 @@ export default function NavBar () {
         setUserMenuOpen(prev => !prev);
     };
 
+    const Icon = mobileMenuOpen ? XMarkIcon : Bars3Icon;
+
     return(
         <>
             <div className="flex mt-2 px-2 rounded-xl justify-between items-center md:justify-center" >
@@ -88,11 +90,7 @@ export default function NavBar () {
                 {/* Mobile Nav Icon */}
                 <div className="md:hidden">
                     <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                        {mobileMenuOpen ? (
-                            <XMarkIcon className="w-8 h-8"/>
-                        ) : (
-                            <Bars3Icon className="w-8 h-8"/>
-                        )}
+                        <Icon className="h-8 w-8"/>
                     </button>
                 </div>
 
