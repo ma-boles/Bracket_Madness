@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import toast from "react-hot-toast";
-import { usePools } from "@/context/PoolsContext";
+import { usePools } from "@/src/context/PoolsContext";
 
 export default function DeletePoolButton ({ poolId }) {
     const { deletePool } = usePools();

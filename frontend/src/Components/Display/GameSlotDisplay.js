@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import PredictionCard from "./PredictionCard";
-import { useBracket } from "@/context/BracketContext";
+import { useBracket } from "@/src/context/BracketContext";
 
 export default function GameSlotDisplay ({ region, gameId, previousGames, results, predictions }) {
     const { getWinnerFromResults } = useBracket();

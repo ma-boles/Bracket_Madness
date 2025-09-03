@@ -1,14 +1,13 @@
 'use client'
-import NavBar from "@/Components/NavBar";
+import NavBar from "@/src/Components/NavBar";
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import LoadingMessage from "@/Components/ui/LoadingMessage";
-import BracketCard from "@/Components/Bracket/BracketCard";
-import AuthContext from "@/context/AuthContext";
-import axios from "axios";
-import ManagePools from "@/Components/Dashboard/ManagePools";
-import SmallBracketCard from "@/Components/Bracket/SmallBracketCard";
+import LoadingMessage from "@/src/Components/ui/LoadingMessage";
+import BracketCard from "@/src/Components/Bracket/BracketCard";
+import AuthContext from "@/src/context/AuthContext";
+import ManagePools from "@/src/Components/Dashboard/ManagePools";
+import SmallBracketCard from "@/src/Components/Bracket/SmallBracketCard";
 import toast from "react-hot-toast";
 
 export default function Dashboard() {

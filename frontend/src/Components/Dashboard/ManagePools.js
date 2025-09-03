@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdminView from "./admin/AdminView";
 import UserView from "./user/UserView";
-import { PoolsProvider } from "@/context/PoolsContext";
+import { PoolsProvider } from "@/src/context/PoolsContext";
 
 export default function ManagePools() {
     const [adminView, setAdminView] = useState(false);

@@ -1,7 +1,7 @@
 import React from "react";
 import AdminPoolCard from "./AdminPoolCard";
-import { usePools } from "@/context/PoolsContext";
-import LoadingMessage from "@/Components/ui/LoadingMessage";
+import { usePools } from "@/src/context/PoolsContext";
+import LoadingMessage from "../../ui/LoadingMessage";
 
 export default function AdminView () {
     const { adminPools, isLoading } = usePools();

@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import InviteCard from "./InviteCard";
 import UserPoolCard from "./UserPoolCard";
-import { usePools } from "@/context/PoolsContext";
+import { usePools } from "@/src/context/PoolsContext";
 import toast from "react-hot-toast";
-import LoadingMessage from "@/Components/ui/LoadingMessage";
+import LoadingMessage from "@/src/Components/ui/LoadingMessage";
 
 
 export default function UserView () {
