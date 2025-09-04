@@ -14,11 +14,6 @@
     --foreground: #ededed; 
   }
 
-/* @media (orientation: portrait) {
-  .portrait-padding {
-    background-color: none;
-  }
-} */
 
 @media (max-width: 767px) and (orientation: landscape) {
   .mobile-landscape-padding {
@@ -42,16 +37,6 @@ html, body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
-
-/* .bracket {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 50px;
-  width: 100vw;
-  padding: 20px;
-  padding-bottom: 50px; /* Gives extra spacing *//*
-}*/
 
 button {
   cursor: pointer;
@@ -351,7 +336,6 @@ background-color: transparent;}
   align-items: center;
 }
 
-/* styles/globals.css or wherever you keep global styles */
 .image-filter {
   filter: invert(65%);
   transition: filter 0.3s ease;
