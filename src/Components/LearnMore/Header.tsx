@@ -9,17 +9,19 @@ type Headerprops = {
 export default function Header ({ title }: Headerprops) {
     const [menuOpen, setMenuOpen] = useState(false);
 
+
     return (
-        <header className="w-full py-4 px-6 bg-zinc-900
-shadow-md">
+        <header className="w-full py-4 px-6 bg-gradient-to-r from-pink-900/70 via-pink-600/40 to-zinc-900">
             <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-                <Image
-                    src="/BM_logo4.jpg"
-                    alt="logo"
-                    width={150}
-                    height={20}
-                     className="object-cover py-2 md:py-0"
-                />
+                <div className="bg-black/70 py-2 px-6 rounded-md">
+                    <Image
+                        src="/BM_logo4.jpg"
+                        alt="logo"
+                        width={150}
+                        height={20}
+                        className="object-cover opacity-90 md:py-0"
+                    />
+                </div>
                 {/* <h1 className="text-xl font-bold">{title}</h1> */}
 
                 {/* Hamburger Button */}
