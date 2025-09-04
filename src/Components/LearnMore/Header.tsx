@@ -2,11 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type Headerprops = {
-    title: string;
-};
 
-export default function Header ({ title }: Headerprops) {
+export default function Header () {
     const [menuOpen, setMenuOpen] = useState(false);
 
 
@@ -22,7 +19,6 @@ export default function Header ({ title }: Headerprops) {
                         className="object-cover opacity-90 md:py-0"
                     />
                 </div>
-                {/* <h1 className="text-xl font-bold">{title}</h1> */}
 
                 {/* Hamburger Button */}
                 <button
