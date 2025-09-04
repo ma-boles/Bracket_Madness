@@ -1,7 +1,8 @@
 import { Github, Linkedin } from "lucide-react";
 export default function Footer() {
   return (
-    <footer className="w-full bg-black text-white py-12 px-6">
+    <footer className="w-full bg-gradient-to-t from-purple-950/30 to-zinc-900
+ text-white py-12 px-6">
       <div className="max-w-6xl mx-auto text-center space-y-6">
         <h2 className="text-2xl md:text-3xl font-bold">Get in the Game</h2>
         <p className="text-gray-400 text-lg">
@@ -13,7 +14,7 @@ export default function Footer() {
         >
           Launch Demo
         </a>
-        <p className="mt-4 italic text-gray-600 text-sm">
+        <p className="mt-4 italic text-gray-400 text-md">
           More coming soon. We&apos;re just getting started.
         </p>
 

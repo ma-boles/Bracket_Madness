@@ -1,5 +1,6 @@
 'use client'
 import { useState } from "react";
+import Image from "next/image";
 
 type Headerprops = {
     title: string;
@@ -9,9 +10,17 @@ export default function Header ({ title }: Headerprops) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <header className="w-full py-4 px-6 bg-purple-600/80">
+        <header className="w-full py-4 px-6 bg-zinc-900
+shadow-md">
             <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-                <h1 className="text-xl font-bold">{title}</h1>
+                <Image
+                    src="/BM_logo4.jpg"
+                    alt="logo"
+                    width={150}
+                    height={20}
+                     className="object-cover py-2 md:py-0"
+                />
+                {/* <h1 className="text-xl font-bold">{title}</h1> */}
 
                 {/* Hamburger Button */}
                 <button

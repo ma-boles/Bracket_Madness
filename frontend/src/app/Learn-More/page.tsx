@@ -8,8 +8,8 @@ export default function Home() {
     <>
       <Header title="BracketMadness" />
 
-      <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center py-8">
-        <section id="home"  className="bg-black text-white py-24 px-14">
+      <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
+        <section id="home"  className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-pink-600/70 via-zinc-900 to-purple-950 text-white">
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
               The New Era of Play
@@ -26,21 +26,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="w-full bg-white/5 text-center px-8">
+        <section id="features" className="w-full bg-white/5 text-center">
             <Features />
         </section>
 
-        <section className="py-20 px-14 w-full bg-purple-950/50">
+        <section className="py-20 px-14 w-full bg-purple-900/40">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Why Bracket Madness?</h2>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
-              Women&apos;s sports, especially basketball, are experiencing unprecendented growth —— from audience size and media coverage to sponsorship and social engagement. Yet, one major gap remains: interactive, fan-driven platforms like daily fantasy sports (DFS) and sports betting experiences, which have flourished in men&apos;s sports, are largely missing in the women&apos;s arena.  
+              Women&apos;s sports, especially basketball, are experiencing unprecendented growth — from audience size and media coverage to sponsorship and social engagement. Yet, one major gap remains: interactive, fan-driven platforms like daily fantasy sports (DFS) and sports betting experiences, which have flourished in men&apos;s sports, are largely missing in the women&apos;s arena.  
             </p>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
-              Bracket Madness was created to fill that gap —— providing a dynamic, engaging platform that not only celebrates the women&apos;s game but also fuels its continued growth by offering fans new ways to compete, connect, and play.
+              Bracket Madness was created to fill that gap — providing a dynamic, engaging platform that not only celebrates the women&apos;s game but also fuels its continued growth by offering fans new ways to compete, connect, and play.
             </p>
             <p className="text-lg text-gray-200 leading-relaxed">
-              To bring that vision to life, we started with a reimagined bracket experience. With bold scoring mechanics like underdog bonuses and round multipliers, every pick has weight —— and every round keeps players engaged.
+              To bring that vision to life, we started with a reimagined bracket experience. With bold scoring mechanics like underdog bonuses and round multipliers, every pick has weight — and every round keeps players engaged.
             </p>
             <p className="text-lg text-gray-200 leading-relaxed">
               And because fans live on their phones, Bracket Madness is built mobile-first for a smooth experience, whether you&apos;re at home or courtside.
@@ -48,16 +48,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="demo" className="bg-white/5 w-full text-center py-20 px-14">
+        <section id="demo" className="bg-white/10 w-full text-center py-20 px-6 md:px-14">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Demo Now Live</h2>
               <p className="text-lg text-gray-300 mb-10">
-                Explore an early version of the Bracket Madness platform —— a live preview of the bracket UI and design in action. 
+                Explore an early version of the Bracket Madness platform — a live preview of the bracket UI and design in action. 
                 While features like scoring, pool creation, and dashboards aren&apos;t live yet, this demo offers a clear look at the foundation of what&apos;s coming.  
               </p>
               <div className="w-full h-[300px] border-4 border-white/50 rounded-lg flex items-center justify-center text-gray-500 text-xl">
                 <LayoutDashboard className="w-12 h-12 mb-4" />
-                <p className="text-lg font-medium text-white/70">Interactive bracket demo coming soon</p>
+                <p className="text-lg font-medium text-white/70">Demo video coming soon</p>
               </div>
             </div>
         </section>
