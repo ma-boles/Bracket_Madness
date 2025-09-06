@@ -25,7 +25,7 @@ VALUES
 (1121, NULL, '1st Round', 40, NULL, NULL, NULL, NULL, NULL, 'team_a_id'),
 (1122, NULL, '1st Round', 37, NULL, 49, NULL, NULL, NULL, 'team_b_id'),
 (1123, NULL, '1st Round', 41, NULL, 44, NULL, NULL, NULL, 'team_a_id'),
-(1124, NULL, '1st Round', , NULL, 50, NULL, NULL, NULL, 'team_b_id'),
+(1124, NULL, '1st Round', 36, NULL, 50, NULL, NULL, NULL, 'team_b_id'),
 
 (1125, NULL, '1st Round', 53, NULL, 68, NULL, NULL, NULL, 'team_a_id'),
 (1126, NULL, '1st Round', 60, NULL, 61, NULL, NULL, NULL, 'team_b_id'),
