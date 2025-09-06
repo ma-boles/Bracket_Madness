@@ -2,6 +2,8 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import { mockUser } from "@/mock-data/mockUser";
+import { isDemo } from "@/config";
 
 const AuthContext = createContext();
 
@@ -14,6 +16,11 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const token = Cookies.get('token');
+
+        if(isDemo) {
+            setCurrentUser(mockUser);
+            return;
+        }
 
         if(token) {
             const fetchUserId = async () => {
@@ -63,7 +70,7 @@ export function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={({ currentUser, logIn, logout })}>
+        <AuthContext.Provider value={{ currentUser, logIn, logout }}>
             {children}
         </AuthContext.Provider>
     )
