@@ -6,6 +6,12 @@ export const mockPoints = [
   {"id": 3, "user_id": 1, "bracket_id": 1, "round": "First Four", "game_id": 1003, "awarded_points": 90},
   {"id": 4, "user_id": 1, "bracket_id": 1, "round": "First Four", "game_id": 1004, "awarded_points": 120},
 
+  {"id": 33, "user_id": 2, "bracket_id": 2, "round": "First Four", "game_id": 1001, "awarded_points": 10},
+  {"id": 34, "user_id": 2, "bracket_id": 2, "round": "First Four", "game_id": 1002, "awarded_points": 0},
+  {"id": 35, "user_id": 2, "bracket_id": 2, "round": "First Four", "game_id": 1003, "awarded_points": 10},
+  {"id": 36, "user_id": 2, "bracket_id": 2, "round": "First Four", "game_id": 1004, "awarded_points": 0},
+
+
   /* 1st Round */
   {"id": 5, "user_id": 1, "bracket_id": 1, "round": "1st Round", "game_id": 1101, "awarded_points": 45},
   {"id": 6, "user_id": 1, "bracket_id": 1, "round": "1st Round", "game_id": 1102, "awarded_points": 75},
@@ -40,6 +46,40 @@ export const mockPoints = [
   {"id": 35, "user_id": 1, "bracket_id": 1, "round": "1st Round", "game_id": 1131, "awarded_points": 120},
   {"id": 36, "user_id": 1, "bracket_id": 1, "round": "1st Round", "game_id": 1132, "awarded_points": 40},
 
+  {"id": 37, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1101, "awarded_points": 10},
+  {"id": 38, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1102, "awarded_points": 0},
+  {"id": 39, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1103, "awarded_points": 10},
+  {"id": 40, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1104, "awarded_points": 0},
+  {"id": 41, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1105, "awarded_points": 0},
+  {"id": 42, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1106, "awarded_points": 10},
+  {"id": 43, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1107, "awarded_points": 0},
+  {"id": 44, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1108, "awarded_points": 10},
+  {"id": 45, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1109, "awarded_points": 0},
+  {"id": 46, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1110, "awarded_points": 10},
+  {"id": 47, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1111, "awarded_points": 10},
+  {"id": 48, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1112, "awarded_points": 10},
+  {"id": 49, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1113, "awarded_points": 0},
+  {"id": 50, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1114, "awarded_points": 10},
+  {"id": 51, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1115, "awarded_points": 0},
+  {"id": 52, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1116, "awarded_points": 10},
+  {"id": 53, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1117, "awarded_points": 10},
+  {"id": 54, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1118, "awarded_points": 0},
+  {"id": 55, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1119, "awarded_points": 10},
+  {"id": 56, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1120, "awarded_points": 0},
+  {"id": 57, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1121, "awarded_points": 0},
+  {"id": 58, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1122, "awarded_points": 10},
+  {"id": 59, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1123, "awarded_points": 0},
+  {"id": 60, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1124, "awarded_points": 10},
+  {"id": 61, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1125, "awarded_points": 10},
+  {"id": 62, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1126, "awarded_points": 0},
+  {"id": 63, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1127, "awarded_points": 10},
+  {"id": 64, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1128, "awarded_points": 10},
+  {"id": 65, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1129, "awarded_points": 0},
+  {"id": 66, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1130, "awarded_points": 10},
+  {"id": 67, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1131, "awarded_points": 10},
+  {"id": 68, "user_id": 2, "bracket_id": 2, "round": "1st Round", "game_id": 1132, "awarded_points": 10},
+
+
   /* 2nd Round */
   {"id": 37, "user_id": 1, "bracket_id": 1, "round": "2nd Round", "game_id": 1201, "awarded_points": 85},
   {"id": 38, "user_id": 1, "bracket_id": 1, "round": "2nd Round", "game_id": 1202, "awarded_points": 110},
@@ -58,6 +98,24 @@ export const mockPoints = [
   {"id": 51, "user_id": 1, "bracket_id": 1, "round": "2nd Round", "game_id": 1215, "awarded_points": 120},
   {"id": 52, "user_id": 1, "bracket_id": 1, "round": "2nd Round", "game_id": 1216, "awarded_points": 35},
 
+  {"id": 69, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1201, "awarded_points": 10},
+  {"id": 70, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1202, "awarded_points": 0},
+  {"id": 71, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1203, "awarded_points": 10},
+  {"id": 72, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1204, "awarded_points": 0},
+  {"id": 73, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1205, "awarded_points": 0},
+  {"id": 74, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1206, "awarded_points": 10},
+  {"id": 75, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1207, "awarded_points": 10},
+  {"id": 76, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1208, "awarded_points": 0},
+  {"id": 77, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1209, "awarded_points": 10},
+  {"id": 78, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1210, "awarded_points": 10},
+  {"id": 79, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1211, "awarded_points": 0},
+  {"id": 80, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1212, "awarded_points": 0},
+  {"id": 81, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1213, "awarded_points": 0},
+  {"id": 82, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1214, "awarded_points": 10},
+  {"id": 83, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1215, "awarded_points": 10},
+  {"id": 84, "user_id": 2, "bracket_id": 2, "round": "2nd Round", "game_id": 1216, "awarded_points": 0},
+
+
   /* Sweet 16 */
   {"id": 53, "user_id": 1, "bracket_id": 1, "round": "Sweet 16", "game_id": 1601, "awarded_points": 110},
   {"id": 54, "user_id": 1, "bracket_id": 1, "round": "Sweet 16", "game_id": 1602, "awarded_points": 95},
@@ -68,16 +126,38 @@ export const mockPoints = [
   {"id": 59, "user_id": 1, "bracket_id": 1, "round": "Sweet 16", "game_id": 1607, "awarded_points": 45},
   {"id": 60, "user_id": 1, "bracket_id": 1, "round": "Sweet 16", "game_id": 1608, "awarded_points": 50},
 
+  {"id": 85, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1601, "awarded_points": 0},
+  {"id": 86, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1602, "awarded_points": 10},
+  {"id": 87, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1603, "awarded_points": 10},
+  {"id": 88, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1604, "awarded_points": 0},
+  {"id": 89, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1605, "awarded_points": 0},
+  {"id": 90, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1606, "awarded_points": 10},
+  {"id": 91, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1607, "awarded_points": 10},
+  {"id": 92, "user_id": 2, "bracket_id": 2, "round": "Sweet 16", "game_id": 1608, "awarded_points": 10},
+
+
   /* Elite 8 */
   {"id": 61, "user_id": 1, "bracket_id": 1, "round": "Elite 8", "game_id": 8001, "awarded_points": 110},
   {"id": 62, "user_id": 1, "bracket_id": 1, "round": "Elite 8", "game_id": 8002, "awarded_points": 90},
   {"id": 63, "user_id": 1, "bracket_id": 1, "round": "Elite 8", "game_id": 8003, "awarded_points": 75},
   {"id": 64, "user_id": 1, "bracket_id": 1, "round": "Elite 8", "game_id": 8004, "awarded_points": 60},
 
+  {"id": 93, "user_id": 2, "bracket_id": 2, "round": "Elite 8", "game_id": 8001, "awarded_points": 0},
+  {"id": 94, "user_id": 2, "bracket_id": 2, "round": "Elite 8", "game_id": 8002, "awarded_points": 20},
+  {"id": 95, "user_id": 2, "bracket_id": 2, "round": "Elite 8", "game_id": 8003, "awarded_points": 0},
+  {"id": 96, "user_id": 2, "bracket_id": 2, "round": "Elite 8", "game_id": 8004, "awarded_points": 20},
+
+
   /* Final Four */
   {"id": 65, "user_id": 1, "bracket_id": 1, "round": "Final Four", "game_id": 10001, "awarded_points": 115},
   {"id": 66, "user_id": 1, "bracket_id": 1, "round": "Final Four", "game_id": 10002, "awarded_points": 105},
 
+  {"id": 97, "user_id": 2, "bracket_id": 2, "round": "Final Four", "game_id": 10001, "awarded_points": 40},
+  {"id": 98, "user_id": 2, "bracket_id": 2, "round": "Final Four", "game_id": 10002, "awarded_points": 0},
+
+
   /* Championship */
-  {"id": 67, "user_id": 1, "bracket_id": 1, "round": "Championship", "game_id": 10003, "awarded_points": 120}
+  {"id": 67, "user_id": 1, "bracket_id": 1, "round": "Championship", "game_id": 10003, "awarded_points": 120},
+
+  {"id": 99, "user_id": 2, "bracket_id": 2, "round": "Championship", "game_id": 10003, "awarded_points": 60}
 ]
