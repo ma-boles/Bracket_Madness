@@ -74,7 +74,7 @@ export const mockResults = [
   { "game_id": 8003, "espn_game_id": null, "round": "Elite 8", "team_a_id": 35, "team_a_score": 1, "team_b_id": 36, "team_b_score": 0, "winner_id": 35, "next_game_id": 10002, "next_slot_id": "team_a_id", "is_finalized": true },
   { "game_id": 8004, "espn_game_id": null, "round": "Elite 8", "team_a_id": 53, "team_a_score": 0, "team_b_id": 54, "team_b_score": 1, "winner_id": 54, "next_game_id": 10001, "next_slot_id": "team_b_id", "is_finalized": true },
 
-  /* Final 4 */
+  /* Final Four */
   { "game_id": 10001, "espn_game_id": null, "round": "Final Four", "team_a_id": 1, "team_a_score": 0, "team_b_id": 54, "team_b_score": 1, "winner_id": 54, "next_game_id": 10003, "next_slot_id": "team_a_id", "is_finalized": true },
   { "game_id": 10002, "espn_game_id": null, "round": "Final Four", "team_a_id": 18, "team_a_score": 1, "team_b_id": 35, "team_b_score": 0, "winner_id": 18, "next_game_id": 10003, "next_slot_id": "team_b_id", "is_finalized": true },
 
