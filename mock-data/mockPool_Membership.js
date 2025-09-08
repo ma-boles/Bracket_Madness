@@ -1,13 +1,32 @@
-export const mockPool_Membership = [
-    {
-        "id": 1,
-        "pool_id": 1,
-        "user_id": 1,
-        "joined_at": "2025-09-07T12:30:00Z",
-        "bracket_id": 1,
-        "role": "admin",
-        "status": "active",
-        "bracket_submitted": true
-    }
-
-]
+export const mockPoolMemberships = [
+  {
+    id: 1,
+    pool_id: 1,
+    user_id: 1,
+    joined_at: '2025-09-05T12:10:00Z',
+    bracket_id: 1,
+    role: 'admin',
+    status: 'active',
+    bracket_submitted: true,
+  },
+  {
+    id: 2,
+    pool_id: 1,
+    user_id: 2,
+    joined_at: '2025-09-06T15:45:00Z',
+    bracket_id: 2,
+    role: 'member',
+    status: 'active',
+    bracket_submitted: true,
+  },
+  {
+    id: 3,
+    pool_id: 1,
+    user_id: 3,
+    joined_at: '2025-09-07T11:00:00Z',
+    bracket_id: null,
+    role: 'member',
+    status: 'active',
+    bracket_submitted: false,
+  },
+];
