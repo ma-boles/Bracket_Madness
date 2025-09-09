@@ -40,7 +40,7 @@ export default function Results() {
         const fetchResults = async () => {
             try {
                 const res = await axios.get('/api/results');
-                       
+
                 await new Promise(resolve => setTimeout(resolve, 500));
 
                 setResultsData(res.data);
@@ -75,42 +75,34 @@ export default function Results() {
 
             <div className="w-screen h-screen overflow-x-auto hide-scrollbar"> 
 
-            <div className="px-0 py-6 gap-6"> 
+                <div className="px-0 py-6 gap-6"> 
 
-                {/* First Four */}
-                <div className="w-[400px] mx-auto mb-6">
-                    <FirstFour_Result results={firstFourResultsData} />
-                </div>
-
-                {/* Top half of bracket */}
-                <div className="flex  mx-auto mb-6">
-                    <div>
-                        <Spokane1_Results results={spokane1ResultsData} />
+                    {/* First Four */}
+                    <div className="w-[400px] mx-auto mb-6">
+                        <FirstFour_Result results={firstFourResultsData} />
                     </div>
-                    <div>
+
+                    {/* Top half of bracket */}
+                    <div className="flex  mx-auto mb-6 justify-between">
+                        <Spokane1_Results results={spokane1ResultsData} />
                         <Birmingham2_Results results={birmingham2ResultsData} />
                     </div>
-                </div>
 
 
-                {/* Championship */}
-                <div className="w-[400px] mx-auto mb-6">
-                    <Championship_Results results={finalRoundsResultsData} />
-                </div>
-
-
-                {/* Bottom half of bracket */}
-                <div className="flex mx-auto">
-                    <div>
-                        <Spokane4_Results results={spokane4ResultsData} />
+                    {/* Championship */}
+                    <div className="w-[400px] mx-auto mb-6">
+                        <Championship_Results results={finalRoundsResultsData} />
                     </div>
-                    <div>
+
+
+                    {/* Bottom half of bracket */}
+                    <div className="flex mx-auto justify-between">
+                        <Spokane4_Results results={spokane4ResultsData} />
                         <Birmingham3_Results results={birmingham3ResultsData} />
                     </div>
                 </div>
-                </div>
             </div>
-    </div>
+        </div>
     
     </>
     )
