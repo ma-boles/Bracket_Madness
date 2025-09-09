@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { verifyToken } from "@/lib/auth";
-import { pool } from "@/db/db";
+import { verifyToken } from '@/src/lib/auth';
+import { pool } from '@/src/db/db';
+import { isDemo } from '@/config';
 
 export async function GET(req) {
 
@@ -21,6 +22,10 @@ export async function GET(req) {
     const userId = decodedUser.userId;
     console.log(`👤 Decoded user ID: ${userId}`);
    
+    if(isDemo) {
+      // filter some mock data?
+    }
+
     // Fetch all pools created by this user
     const [rows] = await pool.execute(
         `SELECT p.id,
