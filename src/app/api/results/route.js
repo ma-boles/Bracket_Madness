@@ -1,23 +1,11 @@
 import { NextResponse } from 'next/server';
-import { pool } from "@/db/db";
+import { getResults } from "@/src/lib/results"
 
-export async function GET(req) {
+export async function GET() {
 
     try {
-        const [rows] = await pool.execute(
-            `SELECT 
-              t.region,
-              r.round,
-              r.game_id,
-              t.seed,
-              t.team_name,
-              r.winner_id
-            FROM results r
-            JOIN teams t ON t.team_id = r.winner_id`
-        );
-
-        // console.log('Results fetched from DB:', rows);
-        return NextResponse.json(rows);
+        const results = await getResults();
+        return NextResponse.json(results);
     } catch(error) {
         console.error('Error fetching results:', error)
         return NextResponse.json({ error: 'Failed to fetch results'}, { status: 500 });
