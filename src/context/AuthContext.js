@@ -2,7 +2,7 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
-import { mockUser } from "@/mock-data/mockUser";
+import { mockUser } from "@/mock-data/mockUsers";
 import { isDemo } from "@/config";
 
 const AuthContext = createContext();
