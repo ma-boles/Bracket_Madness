@@ -2,7 +2,7 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
-import { mockUser } from "@/mock-data/mockUsers";
+import { mockUsers } from "@/mock-data/mockUsers";
 import { isDemo } from "@/config";
 
 const AuthContext = createContext();
@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
         const token = Cookies.get('token');
 
         if(isDemo) {
-            setCurrentUser(mockUser);
+            setCurrentUser(mockUsers);
             return;
         }
 
