@@ -1,14 +1,15 @@
 'use client'
 import NavBar from "@/src/Components/NavBar";
 import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import LoadingMessage from "@/src/Components/ui/LoadingMessage";
 import BracketCard from "@/src/Components/Bracket/BracketCard";
 import AuthContext from "@/src/context/AuthContext";
 import ManagePools from "@/src/Components/Dashboard/ManagePools";
 import SmallBracketCard from "@/src/Components/Bracket/SmallBracketCard";
-import toast from "react-hot-toast";
+import axios from "axios";
+// import toast from "react-hot-toast";
 
 export default function Dashboard() {
     const [ bracketsView, setBracketsView ] = useState(true);
@@ -19,41 +20,43 @@ export default function Dashboard() {
     const [ isLoading, setIsLoading ] = useState(true);
     const { currentUser } = useContext(AuthContext);
     const userId = currentUser?.userId;
-    const router = useRouter();
+    // const router = useRouter();
 
-    useEffect(() => {
-        if(!currentUser) {
-            toast.error("Page not avaiable in Demo Mode");
-            router.push('/Submit');
-        }
-    }, [currentUser]);
-
-    if(!currentUser) return null;
-    
     // useEffect(() => {
-    //     const fetchBrackets = async () => {
-    //         if(!currentUser) {
-    //             setIsLoading(false);
-    //             return;
-    //         }
-
-    //         try {
-    //             const res = await axios.get(`/api/brackets/user`);
-    //             setGlobalBrackets(res.data.globalBrackets);
-    //             setPoolBrackets(res.data.poolBrackets);
-    //         } catch(error) {
-    //             console.error('Failed to fetch bracket data:', error);
-    //         }  finally {
-    //             setIsLoading(false);
-    //         }
-    //     };
-    //     if(userId) {
-    //         fetchBrackets();
+    //     if(!currentUser) {
+    //         toast.error("Page not avaiable in Demo Mode");
+    //         router.push('/Submit');
     //     }
-    // }, [userId]);
+    // }, [currentUser, router]);
+
+    // if(!currentUser) return null;
+    
+    useEffect(() => {
+        const fetchBrackets = async () => {
+            if(!currentUser) {
+                setIsLoading(false);
+                return;
+            }
+
+            try {
+                const res = await axios.get(`/api/brackets/user`);
+                setGlobalBrackets(res.data.globalBrackets);
+                setPoolBrackets(res.data.poolBrackets);
+            } catch(error) {
+                console.error('Failed to fetch bracket data:', error);
+            }  finally {
+                setIsLoading(false);
+            }
+        };
+        if(userId) {
+            fetchBrackets();
+        }
+    }, [userId, currentUser]);
 
     const renderBracketCards = (brackets, isPool = false) => {
         return brackets.map((item, index) => {
+              console.log('Rendering bracket:', item.bracket_id);
+
             const bracketInfoData = [
                 { round: 'First Four', round_points: item.first_four_points},
                 { round: '1st Rd', round_points: item.first_round_points },
