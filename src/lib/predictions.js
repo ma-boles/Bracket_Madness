@@ -6,7 +6,27 @@ async function getPredictions (context) {
 
     if(isDemo()) {
         const { mockPredictions } = require("@/mock-data/mockPredictions");
-        return mockPredictions;
+        const { mockTeams} = require("@/mock-data/mockTeams");
+        const { mockResults } = require("@/mock-data/mockResults");
+
+        const joinedRows = mockPredictions
+          .filter(p => p.bracket_id === bracketId)
+          .map (p => {
+            const team = mockTeams.find(t => t.team_id === p.winner_id);
+            const result = mockResults.find(r => r.game_id === p.game_id);
+
+            return {
+              region: team?.region ?? null,
+              round: result?.round ?? null,
+              bracket_id: p.bracket_id,
+              game_id: p.game_id,
+              seed: team?.seed ?? null,
+              team_name: team?.team_name ?? null,
+              winner_id: p.winner_id
+
+            };
+          });
+          return joinedRows;
     }
 
     const [rows] = await pool.execute(
