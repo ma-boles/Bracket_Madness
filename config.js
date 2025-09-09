@@ -1,1 +1,3 @@
-export const isDemo = process.env.NEXT_PUBLIC_DEMO_MODE=== 'true';
+export function isDemo() {
+    return process.env.NEXT_PUBLIC_DEMO_MODE=== 'true';
+}
