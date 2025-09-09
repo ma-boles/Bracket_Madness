@@ -1,4 +1,5 @@
 import { isDemo } from "@/config";
+import { pool } from "@/src/db/db"
 
 async function getResults () {
     if(isDemo()) {
@@ -6,7 +7,19 @@ async function getResults () {
         return mockResults;
     }
 
-      throw new Error('getResults() should not be called outside of demo mode');
+    const [rows] = await pool.execute(
+            `SELECT 
+              t.region,
+              r.round,
+              r.game_id,
+              t.seed,
+              t.team_name,
+              r.winner_id
+            FROM results r
+            JOIN teams t ON t.team_id = r.winner_id`
+        );
+
+        return rows;
 
 }
 

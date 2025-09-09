@@ -1,4 +1,5 @@
 import { isDemo } from "@/config";
+import { pool } from "@/src/db/db"
 
 async function getBrackets () {
     if(isDemo()) {
@@ -6,8 +7,17 @@ async function getBrackets () {
         return mockBrackets;
     }
 
-      throw new Error('getBrackets() should not be called outside of demo mode');
+    const [rows] = await pool.execute(
+            `SELECT 
+              id,
+              bracket_name, 
+              total_points AS points
+            FROM brackets
+            ORDER BY points DESC
+            LIMIT 3`
+        );
 
+        return rows;
 }
 
 module.exports = { getBrackets }
