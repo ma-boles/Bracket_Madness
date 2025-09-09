@@ -54,7 +54,7 @@ export default function NavBar () {
         <>
             <div className="flex mt-2 px-2 rounded-xl justify-between items-center md:justify-center" >
                 {/* w-1/4 md:w-1/5 md:h-15 flex justify-center items-center */}
-                <div className="flex items-center">
+                <div className="flex-1 items-center">
                     <Image
                         src="/BM_logo4.jpg"
                         alt="logo"
@@ -65,7 +65,7 @@ export default function NavBar () {
                 </div>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex md:flex-grow text-lg">
+                <div className="hidden md:flex md:flex-4 text-lg">
                     <div className="flex-1 p-3 text-center cursor-pointer transition-all duration-300 
                             hover:bg-blue-600 rounded-lg">
                         <Link href="/Results">
@@ -159,7 +159,7 @@ export default function NavBar () {
                 <LeaderboardModal isOpen={showModal} onClose={() => setShowModal(false)} />
 
 
-                <div className="hidden relative md:flex w-1/5 p-2 justify-end items-center">
+                <div className="hidden relative md:flex md:flex-1 w-1/5 p-2 justify-end items-center">
                     {currentUser ? (
                         <>
                         <div className="flex w-full px-2 justify-end">
