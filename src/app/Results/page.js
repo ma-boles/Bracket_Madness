@@ -11,6 +11,7 @@ import Championship_Results from "@/src/Components/Results/Championship_Results"
 import { useRouter } from "next/navigation";
 import AuthContext from "@/src/context/AuthContext";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function Results() {
     const [ resultsData, setResultsData ] = useState([]);
@@ -20,51 +21,37 @@ export default function Results() {
     const hasRedirected = useRef(false);
 
     
-  useEffect(() => {
+//   useEffect(() => {
 
-    if (currentUser === null && !hasRedirected.current) {
-      hasRedirected.current = true;
+//     if (currentUser === null && !hasRedirected.current) {
+//       hasRedirected.current = true;
 
-      toast.dismiss();
-      toast.dismiss();
-      toast.error('Page not available in Demo Mode');
-      router.replace('/Submit');
-    }
-  }, [currentUser, router]);
+//       toast.dismiss();
+//       toast.dismiss();
+//       toast.error('Page not available in Demo Mode');
+//       router.replace('/Submit');
+//     }
+//   }, [currentUser, router]);
 
-  if(!currentUser) return null;
+//   if(!currentUser) return null;
 
-    // useEffect(() => {
-
-    //     if(currentUser === null && !hasRedirected.current) {
-    //         hasRedirected.current = true;
-    //         toast.error("Page not avaiable in Demo Mode");
-    //         router.push('/Submit');
-    //     }
-    // }, [currentUser, router]);
-
-    // if(currentUser === null){
-    //     return (
-    //         <div>Redirecting...</div>
-    //     )
-    // };
     
-    // useEffect(() => {
-    //     const fetchResults = async () => {
-    //         try {
-    //             const res = await axios.get('/api/results');
+    useEffect(() => {
+        const fetchResults = async () => {
+            try {
+                const res = await axios.get('/api/results');
                        
-    //             await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise(resolve => setTimeout(resolve, 500));
 
-    //             setResultsData(res.data);
-    //         } catch(error) {
-    //             console.error('Failed to fetch results:', error);
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     };
-    //     fetchResults();
-    // }, []);
+                setResultsData(res.data);
+            } catch(error) {
+                console.error('Failed to fetch results:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchResults();
+    }, []);
 
     const firstFourResultsData = resultsData.filter(result => result.round === 'First Four');
     const spokane1ResultsData = resultsData.filter(result => result.region === 'Spokane 1');
