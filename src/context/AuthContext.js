@@ -18,7 +18,8 @@ export function AuthProvider({ children }) {
         const token = Cookies.get('token');
 
         if(isDemo) {
-            setCurrentUser(mockUsers);
+            const demoUser = mockUsers.find(user => user.username === 'demoUser')
+            setCurrentUser(demoUser || null);
             return;
         }
 
@@ -27,7 +28,7 @@ export function AuthProvider({ children }) {
                 try {
                     const res = await axios.post('api/verify-token', { token });
 
-                    if(res.dat.userId) {
+                    if(res.data?.userId) {
                         setCurrentUser({ userId: res.data.userId });
                     } else {
                         setCurrentUser(null);
