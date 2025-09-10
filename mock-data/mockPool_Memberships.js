@@ -1,4 +1,4 @@
-export const mockPoolMemberships = [
+export const mockPool_Memberships = [
   {
     id: 1,
     pool_id: 1,
