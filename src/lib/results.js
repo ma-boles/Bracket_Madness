@@ -1,7 +1,7 @@
 import { isDemo } from "@/config";
 import { pool } from "@/src/db/db"
 
-async function getResults () {
+export async function getResults () {
     if(isDemo()) {
         const { mockResults } = require("@/mock-data/mockResults");
         const { mockTeams } = require("@/mock-data/mockTeams");
@@ -38,5 +38,3 @@ async function getResults () {
         return rows;
 
 }
-
-module.exports = { getResults }
