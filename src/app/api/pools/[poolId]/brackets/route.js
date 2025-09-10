@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { verifyToken } from "@/lib/auth";
+import { verifyToken } from '@/src/lib/auth';
 import { cookies } from "next/headers";
-import { pool } from "@/db/db";
+import { pool } from '@/src/db/db';
 
 export async function GET(req, { params }) {
     const poolId = params.poolId;

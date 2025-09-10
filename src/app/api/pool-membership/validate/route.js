@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { verifyToken } from "@/lib/auth";
-import { pool } from "@/db/db";
+import { verifyToken } from '@/src/lib/auth';
+import { pool } from '@/src/db/db';
 
 
 export async function GET(req) {

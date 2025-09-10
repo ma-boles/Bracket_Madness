@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { pool } from '@/db/db';
+import { pool } from '@/src/db/db';
 import { NextResponse } from 'next/server';
 
 
