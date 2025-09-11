@@ -7,14 +7,16 @@ export async function getInvites (userId) {
         const { mockUsers } = require("@/mock-data/mockUsers");
         const { mockPools } = require("@/mock-data/mockPools");
 
-        const joinedPoolMembership = mockPool_Memberships.map(pm => {
+        const joinedPoolMembership = mockPool_Memberships
+            .filter(pm => pm.user_id === userId && pm.status === 'pending')
+            .map(pm => {
             const pool = mockPools.find(p => p.id === pm.pool_id );
             const user = mockUsers.find(u => u.id === pool.created_by);
 
             return {
                 pool_id: pm?.pool_id ?? null,
                 status: pm?.status ?? null,
-                username: user?.username ?? null,
+                inviter_name: user.username ?? null,
                 pool_name: pool?.pool_name,
             };
         });
