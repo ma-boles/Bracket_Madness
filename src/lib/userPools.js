@@ -1,16 +1,17 @@
 import { isDemo } from "@/config";
 import { pool } from "@/src/db/db";
 
-export async function getUserPools () {
+export async function getUserPools (userId) {
     if(isDemo()) {
         const { mockPools } = require("@/mock-data/mockPools");
-        const { mockPoolMemberships } = require("@/mock-data/mockPool_Membership");
+        const { mockPool_Memberships } = require("@/mock-data/mockPool_Memberships");
         
         const joinedPools = mockPools.map(p => {
-            const poolMembership = mockPoolMemberships.find(pm => pm.pool_id === p.id);
+            const poolMembership = mockPool_Memberships.find(pm => pm.pool_id === p.id);
         
             return {
-                pool_name: pool?.pool_name,
+                id: p?.id,
+                pool_name: p?.pool_name,
                 status: poolMembership?.status,
                 bracket_submitted: poolMembership?.bracket_submitted,
             };
