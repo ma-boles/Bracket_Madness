@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { verifyToken } from '@/src/lib/auth';
-import { pool } from '@/src/db/db';
+import { getInvites } from '@/src/lib/invites';
 
 export async function GET(req) {
   try {
@@ -10,17 +10,7 @@ export async function GET(req) {
 
     const userId = decoded.userId;
 
-    const [rows] = await pool.execute(
-        `SELECT
-            pm.pool_id,
-            pm.status,
-            u.username AS inviter_name,
-            p.pool_name
-        FROM pool_membership pm
-        JOIN pools p ON p.id = pm.pool_id
-        JOIN users u ON u.id = p.created_by
-        WHERE pm.user_id = ? AND pm.status = 'pending'`,
-        [userId]);
+    const rows = await getInvites(userId);
 
         return NextResponse.json({ invites: rows }, { status: 200 });
   } catch (error) {
