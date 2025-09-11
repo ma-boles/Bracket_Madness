@@ -22,14 +22,6 @@ export default function Dashboard() {
     const userId = currentUser?.userId;
     // const router = useRouter();
 
-    // useEffect(() => {
-    //     if(!currentUser) {
-    //         toast.error("Page not avaiable in Demo Mode");
-    //         router.push('/Submit');
-    //     }
-    // }, [currentUser, router]);
-
-    // if(!currentUser) return null;
     
     useEffect(() => {
         const fetchBrackets = async () => {
