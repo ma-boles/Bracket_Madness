@@ -1,7 +1,7 @@
 import { isDemo } from "@/config";
 import { pool } from "@/src/db/db";
 
-export async function getAdminPools () {
+export async function getAdminPools (userId) {
     if(isDemo()) {
         const { mockPools } = require("@/mock-data/mockPools");
                
