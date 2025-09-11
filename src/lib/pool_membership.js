@@ -2,7 +2,7 @@ import { isDemo } from "@/config";
 
 async function getPool_Membership () {
     if(isDemo()) {
-        const { mockPool_Membership } = require("@/mock-data/mockPool_Membership");
+        const { mockPool_Membership } = require("@/mock-data/mockPool_Memberships");
         return mockPool_Membership;
     }
 
