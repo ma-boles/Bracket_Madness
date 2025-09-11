@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { verifyToken } from '@/src/lib/auth';
-import { pool } from '@/src/db/db';
-import { isDemo } from '@/config';
+import { getUserPools } from '@/src/lib/userPools';
 
 export async function GET(req) {
 
@@ -22,21 +21,7 @@ export async function GET(req) {
     const userId = decodedUser.userId;
     console.log(`👤 Decoded user ID: ${userId}`);
    
-    if(isDemo) {
-      // filter some mock data?
-    }
-
-    // Fetch all pools created by this user
-    const [rows] = await pool.execute(
-        `SELECT p.id,
-            p.pool_name,
-            pm.status,
-            pm.bracket_submitted
-        FROM pools p
-        JOIN pool_membership pm ON p.id = pm.pool_id
-        WHERE user_id = ?`,
-        [userId]
-    );
+    const rows = await getUserPools();
 
     console.log(`Fetched ${rows.length} pools`);
 
