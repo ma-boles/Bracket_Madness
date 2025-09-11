@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { verifyToken } from '@/src/lib/auth';
-import { pool } from '@/src/db/db';
+import { getAdminPools } from '@/src/lib/adminPools';
 
 export async function GET(req) {
 
@@ -21,15 +21,7 @@ export async function GET(req) {
     const userId = decodedUser.userId;
     console.log(`👤 Decoded user ID: ${userId}`);
    
-    // Fetch all pools created by this user
-    const [rows] = await pool.execute(
-        `SELECT id,
-            pool_name,
-            code
-        FROM pools
-        WHERE created_by = ?`,
-        [userId]
-    );
+    const rows = await getAdminPools(userId);
 
     console.log(`Fetched ${rows.length} pools`);
 
