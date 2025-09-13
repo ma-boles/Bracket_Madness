@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { verifyToken } from '@/src/lib/auth';
 import { cookies } from "next/headers";
-import { pool } from '@/src/db/db';
+import { getPoolMembers } from '@/src/lib/poolMembers';
 
-export async function GET(req, context) {
-  const params = await context.params;
+export async function GET(req, { params }) {
   const poolId = params.poolId;
+
 
   try {
     const cookiesStore = await cookies();
@@ -17,16 +17,7 @@ export async function GET(req, context) {
     }
 
 
-    const [rows] = await pool.execute(
-        `SELECT
-            pm.user_id,
-            pm.status,
-            u.username
-        FROM pool_membership pm
-        JOIN users u ON u.id = pm.user_id
-        WHERE pool_id = ?`,
-        [poolId]
-    );
+    const rows = await getPoolMembers(poolId);    
 
     const activeMembers = [];
     const pendingMembers = [];
