@@ -4,7 +4,7 @@ import { pool } from "@/src/db/db";
 export async function getPoolMembers (poolId) {
     if(isDemo()) {
         if (!poolId) {
-            console.warn("❌ poolId is undefined in DEMO mode helper");
+            console.warn("poolId is undefined in DEMO mode helper");
             return [];
             }
 
