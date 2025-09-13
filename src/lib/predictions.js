@@ -1,16 +1,14 @@
 import { isDemo } from "@/config";
 import { pool } from "@/src/db/db"
 
-async function getPredictions (context) {
-    const { bracketId } = await context.params;
-
+async function getPredictions (bracketId) {
     if(isDemo()) {
         const { mockPredictions } = require("@/mock-data/mockPredictions");
         const { mockTeams} = require("@/mock-data/mockTeams");
         const { mockResults } = require("@/mock-data/mockResults");
 
         const joinedRows = mockPredictions
-          .filter(p => p.bracket_id === bracketId)
+          .filter(p => p.bracket_id === Number(bracketId))
           .map (p => {
             const team = mockTeams.find(t => t.team_id === p.winner_id);
             const result = mockResults.find(r => r.game_id === p.game_id);
