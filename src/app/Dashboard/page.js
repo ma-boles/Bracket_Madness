@@ -9,7 +9,6 @@ import AuthContext from "@/src/context/AuthContext";
 import ManagePools from "@/src/Components/Dashboard/ManagePools";
 import SmallBracketCard from "@/src/Components/Bracket/SmallBracketCard";
 import axios from "axios";
-// import toast from "react-hot-toast";
 
 export default function Dashboard() {
     const [ bracketsView, setBracketsView ] = useState(true);
@@ -141,7 +140,8 @@ export default function Dashboard() {
                     </div>
                     {bracketsView && (
                         <div>
-                            <div className="hidden sm:flex mx-auto p-2 rounded-t-lg w-[90%] bg-gradient-to-r from-white/15 to-transparent">
+                            <div className="hidden sm:flex mx-auto p-2 rounded-t-lg w-[90%] 
+                            bg-gradient-to-l from-transparent via-white/15 to-transparent">
                                 <p className="w-1/5 text-center font-semibold">ID</p>
                                 <p className="w-1/5 text-center font-semibold">Bracket/Pool Name</p>
                                 <p className="w-1/5 text-center font-semibold">Total Points</p>
