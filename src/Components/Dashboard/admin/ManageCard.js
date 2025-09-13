@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function ManageCard({ poolId, activeMembers, pendingMembers, onRemoveMember, onConfirmMember }) {
 
     return (
-        <div className="flex">
+        <div className="block md:flex">
         <div className="w-60 h-80 bg-white/10 px-2 py-4 flex flex-col justify-between border border-white/30 rounded-xl">
             <div>
                 <h2 className="font-semibold mb-1 px-1">Members:</h2>
