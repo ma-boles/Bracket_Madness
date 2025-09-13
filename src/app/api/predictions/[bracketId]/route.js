@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getPredictions } from "@/src/lib/predictions"
 
-export async function GET() {
-
+export async function GET(req, context) {
+    const { bracketId } = await context.params;
     try {
-        const predictions = await getPredictions();
+        const predictions = await getPredictions(bracketId);
         return NextResponse.json(predictions);
     } catch(error) {
         console.error('Error fetching predictions:', error)
