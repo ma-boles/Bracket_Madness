@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HomeIcon, TrophyIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, TrophyIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import LogoutButton from "../app/auth/components/LogoutButton";
 
 
@@ -26,7 +26,6 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                 >
                 <Link href="/Dashboard">
                     <button
-                        disabled
                         className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
                         role="menuitem"
                         onClick={() => setUserMenuOpen(false)}
@@ -40,7 +39,6 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                 </Link>
 
                 <button
-                    disabled
                     onClick={() => {
                     setShowModal(true);
                     setUserMenuOpen(false);
@@ -54,6 +52,19 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
 
                     Leaderboard
                 </button>
+                <Link href="/Learn-More">
+                    <button
+                         className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                        role="menuitem"
+                        onClick={() => setUserMenuOpen(false)}
+                    >
+                        <div className="mx-4">
+                            <InformationCircleIcon className="w-6 h-6 text-white" /> 
+                        </div>
+
+                            Learn More
+                    </button>
+                </Link>
 
                     <LogoutButton />
             </div>
