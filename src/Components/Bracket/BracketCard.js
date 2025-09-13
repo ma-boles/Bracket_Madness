@@ -29,7 +29,7 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
         <>
         <div className='m-2 rounded-lg'>
             <div className="flex flex-row w-full items-center justify-between">
-                <div className="my-auto pr-2 font-bold cursor-pointer hover:underline"
+                <div className="my-auto pl-4 pr-2 font-bold cursor-pointer hover:underline"
                     onClick={handleView}>
                     View
                 </div>
@@ -68,7 +68,7 @@ export default function BracketCard({ name, bracketId, total_points, rank, accur
                     </div>
                 </div>
 
-                <div className="m-auto pl-2 font-bold cursor-pointer hover:underline"
+                <div className="m-auto pl-2 pr-4 font-bold cursor-pointer hover:underline"
                     onClick={handleToggle}>
                     Details
                 </div>
