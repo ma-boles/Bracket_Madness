@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { HomeIcon, TrophyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, TrophyIcon, UserCircleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
 import LogoutButton from "../app/auth/components/LogoutButton";
@@ -139,8 +139,23 @@ export default function NavBar () {
                                     Leaderboard
                                 </button>
 
+                                <Link href="/Learn-More">
+                                    <button
+                                        className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                                        role="menuitem"
+                                        onClick={() => setUserMenuOpen(false)}
+                                    >
+                                    <div className="mx-4">
+                                        <InformationCircleIcon className="w-6 h-6 text-white" /> 
+                                    </div>
+
+                                        Learn More
+                                    </button>
+                                </Link>
+
                                 <LogoutButton />
                             </div>
+
 
                         ) : (
                             <div className="w-full">
@@ -171,8 +186,11 @@ export default function NavBar () {
                                 className="p-2 rounded-full bg-white/10 hover:bg-blue-600 transition"
                                 title="User Menu"
                             >
-
-                               <UserCircleIcon className="w-7 h-7 text-white cursor-pointer" />
+                                {userMenuOpen ? (
+                                    <XCircleIcon className="w-7 h-7 text-white cursor-pointer" />
+                                ) : (
+                                    <UserCircleIcon className="w-7 h-7 text-white cursor-pointer" />
+                                )}
 
                             </button>
                         </div>
