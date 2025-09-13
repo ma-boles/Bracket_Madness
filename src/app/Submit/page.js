@@ -1,6 +1,5 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react";
-// import { jwtDecode } from "jwt-decode";
 import NavBar from "../../Components/NavBar";
 import DesktopBracket_Layout from "@/src/Components/BracketLayout/DesktopBracket_Layout";
 import MobileBracket_Layout from "@/src/Components/BracketLayout/MobileBracket_Layout";
@@ -10,6 +9,7 @@ import AuthContext from "@/src/context/AuthContext";
 import ConfirmationModal from "@/src/Components/ConfirmationModal";
 import toast from "react-hot-toast";
 import { ButtonSpinner } from "@/src/Components/ui/ButtonSpinner";
+import { isDemo } from "@/config";
 
 export default function Submit() {
     const { currentUser } = useContext(AuthContext);
@@ -27,7 +27,16 @@ export default function Submit() {
     const searchParams = useSearchParams();
     const poolId = searchParams.get('pool_id');
 
+
     const handleLockIn = () => {
+        if (isDemo) {
+            toast.error('Demo Mode: Locking in picks is disabled.',{
+                className: 'toastError',
+                duration: 4000,
+            });
+            return;
+        }
+
         setShowModal(true);
         setPicksValid(false);
     };
@@ -218,7 +227,7 @@ export default function Submit() {
                     {/* Desktop: always show */}
                     <div className="hidden lg:flex justify-center items-center">
                     <button
-                        className="mb-6 mt-2 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-pointer"
+                        className="mb-6 mt-2 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-not-allowed"
                         onClick={handleLockIn}
                     >
                         Lock In Picks
@@ -249,7 +258,7 @@ export default function Submit() {
                     {isFinalFourActive && (
                     <div className="flex lg:hidden justify-center items-center">
                         <button
-                        className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/2 h-12 mx-2 cursor-pointer"
+                        className="mb-6 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/2 h-12 mx-2 cursor-not-allowed"
                         onClick={handleLockIn}
                         >
                         Lock In Picks
