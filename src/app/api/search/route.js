@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { pool } from "@/src/db/db";
+import { searchUsers } from "@/src/lib/search";
 
 export async function GET(req) {
 
@@ -11,13 +11,7 @@ export async function GET(req) {
     }
 
     try {
-        const [rows] = await pool.execute(
-            `SELECT id,
-                username
-            FROM users
-            WHERE username LIKE ? ORDER BY username ASC LIMIT 10`,
-            [`${q}%`]
-        );
+        const rows = await searchUsers(q);
         return NextResponse.json(rows);
     } catch (error) {
         console.error('Search error:', error);
