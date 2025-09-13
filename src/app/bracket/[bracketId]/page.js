@@ -1,14 +1,14 @@
 import React from "react";
-import Spokane1_Display from "@/Components/Display/Spokane1_Display";
-import Birmingham2_Display from "@/Components/Display/Birmingham2_Display";
-import Birmingham3_Display from "@/Components/Display/Birmingham3_Display";
-import Spokane4_Display from "@/Components/Display/Spokane4_Display";
-import Championship_Display from "@/Components/Display/Championship_Display";
+import Spokane1_Display from "@/src/Components/Display/Spokane1_Display";
+import Birmingham2_Display from "@/src//Components/Display/Birmingham2_Display";
+import Birmingham3_Display from "@/src/Components/Display/Birmingham3_Display";
+import Spokane4_Display from "@/src/Components/Display/Spokane4_Display";
+import Championship_Display from "@/src/Components/Display/Championship_Display";
 
 
 export default async function BracketPage(props) {
     const { bracketId } = (await props.params);
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
     const predictionRes = await fetch(`${baseUrl}/api/predictions/${bracketId}`, {
         cache: 'no-store',
@@ -25,21 +25,22 @@ export default async function BracketPage(props) {
     const results = await resultsRes.json();
     const predictions = await predictionRes.json();
 
-    console.log("Raw predictions:", predictions.length);
-    console.log("Raw results:", results.length);
+    // console.log("Raw predictions:", predictions.length);
+    // console.log("Raw results:", results.length);
 
 
     // Match results to prediction
     const predictionsWithResults = predictions.map((pred) => {
         const matchingResult = results.find(
             (result) => 
-                result.region === pred.region && result.game_id === pred.game_id
+                // result.region === pred.region &&
+                 result.game_id === pred.game_id
         );
         return { ...pred, actualTeam: matchingResult ?? null };
     });
 
-    console.log("Predictions with results mapped:", predictionsWithResults.length);
-    console.log("Sample predictionWithResult:", predictionsWithResults[0]);
+    // console.log("Predictions with results mapped:", predictionsWithResults.length);
+    // console.log("Sample predictionWithResult:", predictionsWithResults[0]);
 
     const grouped = predictionsWithResults.reduce((acc, pred) => {
         if(!acc[pred.region]) acc[pred.region] = [];
@@ -47,7 +48,7 @@ export default async function BracketPage(props) {
         return acc;
     }, {});
 
-    console.log("Grouped by region keys:", Object.keys(grouped));
+    // console.log("Grouped by region keys:", Object.keys(grouped));
 
     const groupedRound = predictionsWithResults.reduce((acc, pred) => {
         if(pred.round === "Elite 8" || pred.round === "Final Four" || pred.round === "Championship") {
@@ -60,13 +61,16 @@ export default async function BracketPage(props) {
         return acc;
     }, {});
 
-    console.log("Grouped rounds:", Object.keys(groupedRound));
-    console.log("FinalRounds length:", groupedRound.FinalRounds?.length ?? 0);
+    // console.log("Grouped rounds:", Object.keys(groupedRound));
+    // console.log("FinalRounds length:", groupedRound.FinalRounds?.length ?? 0);
 
     const game1001 = grouped["Spokane 1"]?.find(g => g.game_id === 1001);
     const game1002 = grouped["Birmingham 2"]?.find(g => g.game_id === 1002);
     const game1003 = grouped["Birmingham 3"]?.find(g => g.game_id === 1003);
     const game1004 = grouped["Birmingham 3"]?.find(g => g.game_id === 1004);
+
+    // console.log("FinalRounds:", groupedRound.FinalRounds.map(g => g.game_id));
+    // console.log("Server FinalRounds full:", JSON.stringify(groupedRound.FinalRounds, null, 2));
 
     const game8001 = groupedRound.FinalRounds?.find(g => g.game_id === 8001);
     const game8002 = groupedRound.FinalRounds?.find(g => g.game_id === 8002);
@@ -76,13 +80,13 @@ export default async function BracketPage(props) {
 
     return (
         <div className="bg-zinc-900">
-            <main className="overflow-x-scroll">
-                <div className="flex">
+            <main className="overflow-x-scroll hide-scrollbar">
+                <div className="flex justify-between">
                     {grouped["Spokane 1"] && <Spokane1_Display predictions={grouped["Spokane 1"]} results={results} game8001={game8001} game1001={game1001}/>}
                     {grouped["Birmingham 2"] && <Birmingham2_Display predictions={grouped["Birmingham 2"]} results={results} game8002={game8002} game1002={game1002}/>}
                 </div>
                     {groupedRound?.FinalRounds && (<Championship_Display groupedRound={groupedRound} />)}
-                <div className="flex">
+                <div className="flex justify-between">
                     {grouped["Spokane 4"] && <Spokane4_Display predictions={grouped["Spokane 4"]} results={results} game8004={game8004}/> }
                     {grouped["Birmingham 3"] && <Birmingham3_Display predictions={grouped["Birmingham 3"]} results={results} game8003={game8003} game1003={game1003} game1004={game1004}/>}
                 </div>
