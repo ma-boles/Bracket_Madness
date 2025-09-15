@@ -1,6 +1,0 @@
-CREATE TABLE teams(
-    team_id INT AUTO_INCREMENT PRIMARY KEY,
-    team_name VARCHAR(50) NOT NULL,
-    seed TINYINT NOT NULL,
-    region VARCHAR(20) NOT NULL
-);
