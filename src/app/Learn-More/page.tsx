@@ -1,12 +1,12 @@
 import Header from "../../Components/LearnMore/Header";
 import Footer from "../../Components/LearnMore/Footer";
 import Features from "../../Components/LearnMore/Features";
-import { LayoutDashboard } from "lucide-react";
+// import { LayoutDashboard } from "lucide-react";
 
 export default function Home() {
   return (
     <>
-      <Header title="BracketMadness" />
+      <Header/>
 
       <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
         <section id="home" className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-pink-600/70 via-zinc-900 to-purple-950 text-white">
@@ -53,14 +53,14 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Demo Now Live</h2>
               <p className="text-lg text-gray-300 mb-10">
                 Explore an early version of the Bracket Madness platform — a live preview of the bracket UI and design in action. 
-                While features like scoring, pool creation, and dashboards aren&apos;t live yet, this demo offers a clear look at the foundation of what&apos;s coming.  
+                While features like live updates and pool creation aren&apos;t live yet, this demo offers a clear look at the foundation of what&apos;s coming.  
               </p>
-              <div className="w-full h-[300px] border-4 border-white/50 rounded-lg flex items-center justify-center text-gray-500 ">
+              {/* <div className="w-full h-[300px] border-4 border-white/50 rounded-lg flex items-center justify-center text-gray-500 ">
               <div className="flex">
                 <LayoutDashboard className="w-12 h-12 mb-4 mx-2" />
                 <p className="font-medium text-white/70 ">Feature walkthrough <br />video coming soon</p>
               </div>
-              </div>
+              </div> */}
             </div>
         </section>
       </main>
