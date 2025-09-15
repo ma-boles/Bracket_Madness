@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 import { pool } from '@/src/db/db';
-require('dotenv').config();
 
-// Utility function to verify JWT token
 const verifyToken = (token) => {
 
     const secretKey = process.env.JWT_SECRET;
@@ -14,7 +12,7 @@ const verifyToken = (token) => {
 
     try {
         const decoded = jwt.verify(token, secretKey);
-        return decoded; // Returns user info (user_id, ect)
+        return decoded; // Returns user info (user_id, etc.)
     } catch(error) {
         return null;
     }
@@ -24,17 +22,10 @@ export async function POST(req) {
     try {
         const { poolName, inviteCode } = await req.json();
         const token = req.cookies.get('token')?.value;
-
-        console.log("💡 Token from cookie:", token);
-
-
-        // Verify user token
         const user = verifyToken(token);
 
-        console.log("✅ User verified:", user);
-
         if (!user || !user.userId) {
-            console.log("Unauthorized user or missing user_id");
+            console.warn("Unauthorized user or missing user_id");
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
@@ -52,7 +43,6 @@ export async function POST(req) {
             return NextResponse.json({ error: "Pool not found or invalid code" }, { status: 404 });
         }
 
-        console.log('Attempting membership check with:', poolRows[0]?.id, user?.userId);
 
         // Check if user is already a member fo the pool
         const [membershipRows] = await pool.execute(

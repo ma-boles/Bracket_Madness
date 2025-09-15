@@ -5,10 +5,7 @@ import { getUserPools } from '@/src/lib/userPools';
 export async function GET(req) {
 
   try {
-    console.log('Incoming GET request to /api/pools/member');
-
     const token = req.cookies.get('token')?.value;
-    console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
 
     const decodedUser = verifyToken(token);
 
@@ -18,12 +15,8 @@ export async function GET(req) {
       return NextResponse.json({ message: 'Unauthorized'}, { status: 401 });
     }
 
-    const userId = decodedUser.userId;
-    console.log(`👤 Decoded user ID: ${userId}`);
-   
+    const userId = decodedUser.userId;   
     const rows = await getUserPools();
-
-    console.log(`Fetched ${rows.length} pools`);
 
     return NextResponse.json({ pools:rows }, { status: 200 });
     } catch (error) {

@@ -13,7 +13,7 @@ const verifyToken = (token) => {
 
     try {
         const decoded = jwt.verify(token, secretKey);
-        return decoded; // Returns user info (user_id, ect)
+        return decoded; // Returns user info (user_id, etc.)
     } catch(error) {
         return null;
     }
@@ -29,6 +29,7 @@ export async function POST(req) {
     }
 
     const decoded = verifyToken(token);
+    
     if(!decoded || !decoded.userId) {
         return NextResponse.json({ error: 'Invalid token' }, { status: 403 });
     }

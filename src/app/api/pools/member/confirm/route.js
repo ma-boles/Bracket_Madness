@@ -43,8 +43,6 @@ export async function POST(req) {
         
         const isAdmin = membershipRows.length && membershipRows[0].role === 'admin';
 
-        console.log('isCreator:', isCreator, '| isAdmin:', isAdmin);
-
         if(!isCreator && !isAdmin) {
         return NextResponse.json({ message: "Forbidden - only admins allowed to remove other users" }, { status: 403 });
     }

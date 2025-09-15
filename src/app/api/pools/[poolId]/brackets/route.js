@@ -4,23 +4,7 @@ import { cookies } from "next/headers";
 import { getPoolBrackets } from '@/src/lib/poolBrackets';
 
 export async function GET(req, { params }) {
-
     const poolId = params.poolId;
-
-      
-// export async function GET(req, context) {
-//     const awaitedContext = await context;
-//   console.log('Awaited context:', awaitedContext);
-//   const { params } = awaitedContext;
-//   console.log('Params:', params);
-//   const poolId = params?.poolId;
-//   console.log('poolId:', poolId);
-    // const { params } = await context;
-    // const poolId = params.poolId;
-    // // console.log('Params:', params);
-//   console.log('poolId:', poolId);
-
-    console.log('Hit pool brackets API');
 
     try {
         const cookiesStore = await cookies();

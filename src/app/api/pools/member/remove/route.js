@@ -7,8 +7,6 @@ export async function DELETE(req) {
 
   try {
     const token = req.cookies.get('token')?.value;
-    console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
-
     const decodedUser = verifyToken(token);
 
     if(!decodedUser) {
@@ -18,7 +16,6 @@ export async function DELETE(req) {
     }
 
     const { userId, poolId } = await req.json();
-    console.log('Removing userId:', userId, 'from poolId:', poolId);
 
     const actingUserId = decodedUser.userId;
     const isSelf = actingUserId === userId;
@@ -44,14 +41,12 @@ export async function DELETE(req) {
         
         const isAdmin = membershipRows.length && membershipRows[0].role === 'admin';
 
-        console.log('isCreator:', isCreator, '| isAdmin:', isAdmin);
-
         if(!isCreator && !isAdmin) {
         return NextResponse.json({ message: "Forbidden - only admins allowed to remove other users" }, { status: 403 });
     }
 }
 
-    // Allow for self=removal
+    // Allow for self-removal
     const [result] = await pool.execute(
         `DELETE FROM pool_membership
         WHERE user_id = ? AND pool_id = ?`,

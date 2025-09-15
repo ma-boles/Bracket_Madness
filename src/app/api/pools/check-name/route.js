@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { pool } from '@/src/db/db';
-require('dotenv').config();
 
 
 export async function GET(req) {

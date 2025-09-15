@@ -15,14 +15,12 @@ export async function DELETE(req, context) {
         return NextResponse.json({ message: 'No token provided' }, { status: 401 });
         }
 
-        // Verify and decode token
         const decoded = verifyToken(token);
         const userId = decoded?.userId;
 
         if(!userId) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
-
 
         // Leave pool
         const [result] = await pool.execute(

@@ -5,11 +5,7 @@ import { getAdminPools } from '@/src/lib/adminPools';
 export async function GET(req) {
 
   try {
-    console.log('Incoming GET request to /api/pools/admin');
-
     const token = req.cookies.get('token')?.value;
-    console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
-
     const decodedUser = verifyToken(token);
 
     if(!decodedUser) {
@@ -19,11 +15,7 @@ export async function GET(req) {
     }
 
     const userId = decodedUser.userId;
-    console.log(`👤 Decoded user ID: ${userId}`);
-   
     const rows = await getAdminPools(userId);
-
-    console.log(`Fetched ${rows.length} pools`);
 
     return NextResponse.json({ pools:rows }, { status: 200 });
     } catch (error) {

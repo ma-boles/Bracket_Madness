@@ -6,7 +6,6 @@ import { getPoolMembers } from '@/src/lib/poolMembers';
 export async function GET(req, { params }) {
   const poolId = params.poolId;
 
-
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get('token')?.value;
@@ -15,7 +14,6 @@ export async function GET(req, { params }) {
     if(!decodedUser) {
       return NextResponse.json({ message: 'Unauthorized'}, { status: 401 });
     }
-
 
     const rows = await getPoolMembers(poolId);    
 
