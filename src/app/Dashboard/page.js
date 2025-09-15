@@ -1,7 +1,6 @@
 'use client'
 import NavBar from "@/src/Components/NavBar";
 import React, { useContext, useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import LoadingMessage from "@/src/Components/ui/LoadingMessage";
 import BracketCard from "@/src/Components/Bracket/BracketCard";
@@ -13,13 +12,11 @@ import axios from "axios";
 export default function Dashboard() {
     const [ bracketsView, setBracketsView ] = useState(true);
     const [ poolsView, setPoolsView ] = useState(false);
-    // const [ bracketsCardData, setBracketsCardData ] = useState([]);
     const [ globalBrackets,setGlobalBrackets ] = useState([]);
     const [ poolBrackets, setPoolBrackets ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
     const { currentUser } = useContext(AuthContext);
     const userId = currentUser?.userId;
-    // const router = useRouter();
 
     
     useEffect(() => {
