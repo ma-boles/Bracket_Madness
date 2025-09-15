@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { verifyToken } from '@/src/lib/auth';
+import { verifyToken } from '@/utils/verifyToken';
 import { getInvites } from '@/src/lib/invites';
 
 export async function GET(req) {

@@ -1,6 +1,6 @@
 import { pool } from '@/src/db/db';
 import { NextResponse } from 'next/server';
-import { verifyToken } from '@/utils/verifyToken';
+import { verifyToken } from '@/src/lib/auth';
 
 
 export async function POST(req) {
