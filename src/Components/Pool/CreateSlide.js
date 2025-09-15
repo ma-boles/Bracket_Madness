@@ -27,13 +27,7 @@ export default function CreateSlide ({ isUser }) {
                                                         setCreatedPool(pool)
                                                         setModalOpen(true);
                                         }}/>
-                                        </FeatureGate>
-                                        // <CreateForm 
-                                        // isUser={isUser}
-                                        // onSuccess={(pool) => {
-                                        //         setCreatedPool(pool)
-                                        //         setModalOpen(true);
-                                        // }}/>
+                                        </FeatureGate> 
                                 )}
                         </div>
                 </div>

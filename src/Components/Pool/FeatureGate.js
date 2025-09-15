@@ -6,9 +6,9 @@ export default function FeatureGate ({ children }) {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',  // smoky dark overlay
-          backdropFilter: 'blur(8px)',            // frosted blur effect
-          WebkitBackdropFilter: 'blur(8px)',      // Safari support
+          backgroundColor: 'rgba(0, 0, 0, 0.6)', 
+          backdropFilter: 'blur(8px)',            
+          WebkitBackdropFilter: 'blur(8px)',      
           color: 'white',
           display: 'flex',
           justifyContent: 'center',

@@ -6,10 +6,10 @@ import MobileBirmingham3_EliteEight from "../MobileSubmit/Mobile_Birmingham3/Mob
 export default function MobileRegion_Birmingham3 () {
     return (
     <>
-        <MobileBirmingham3_FirstRound />
-        <MobileBirmingham3_SecondRound />
+        {/* <MobileBirmingham3_FirstRound /> */}
+        {/* <MobileBirmingham3_SecondRound />
         <MobileBirmingham3_SweetSixteen />
-        <MobileBirmingham3_EliteEight />
+        <MobileBirmingham3_EliteEight /> */}
     </>
     )
 }

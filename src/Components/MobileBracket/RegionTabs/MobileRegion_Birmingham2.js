@@ -7,10 +7,10 @@ export default function MobileRegion_Birmingham2 () {
 
     return (
     <>
-        <MobileBirmingham2_FirstRound />
+        {/* <MobileBirmingham2_FirstRound />
         <MobileBirmingham2_SecondRound />
         <MobileBirmingham2_SweetSixteen />
-        <MobileBirmingham2_EliteEight />
+        <MobileBirmingham2_EliteEight /> */}
     </>
     )
 }

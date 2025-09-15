@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { HomeIcon, TrophyIcon, UserCircleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, TrophyIcon, UserCircleIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
 import LogoutButton from "../app/auth/components/LogoutButton";
@@ -174,7 +174,8 @@ export default function NavBar () {
                     {currentUser ? (
                         <>
                         <div className="flex w-full px-2 justify-end">
-                        {/* User Icon Button */}
+
+                            {/* User Icon Button */}
                             <button
                                 onClick={toggleUserMenu}
                                 aria-haspopup="true"

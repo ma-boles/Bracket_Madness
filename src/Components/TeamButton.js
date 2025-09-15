@@ -1,14 +1,10 @@
 'use client'
-import { useContext } from "react";
 import { useBracket } from "../context/BracketContext";
-import AuthContext from "../context/AuthContext";
 
 export default function TeamButton({ region, gameId, team }) {
     const { userPicks, handleSelection } = useBracket();
-    const { currentUser } = useContext(AuthContext);
 
     const selected = userPicks?.[region]?.[gameId] === team.name;
-    // const isDisabled = !currentUser;
 
     return (
         <button 
@@ -25,9 +21,6 @@ export default function TeamButton({ region, gameId, team }) {
                 ${selected ? 'border border-white font-bold' : 'hover:bg-gray-500'}
  
             `}
-                // ${isDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-white/5'}
-                // ${isDisabled ? 'pointer-events-none' : ''}
-            // disabled={isDisabled}
             onClick={() => handleSelection(region, gameId, team)}
             >
             {team.seed} {team.name}

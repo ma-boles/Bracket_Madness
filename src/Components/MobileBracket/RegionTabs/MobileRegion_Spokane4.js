@@ -6,10 +6,10 @@ import MobileSpokane4_EliteElight from "../MobileSubmit/Mobile_Spokane4/MobileSp
 export default function MobileRegion_Spokane4 () {
     return (
     <>
-        <MobileSpokane4_FirstRound />
+        {/* <MobileSpokane4_FirstRound />
         <MobileSpokane4_SecondRound />
         <MobileSpokane4_SweetSixteen />
-        <MobileSpokane4_EliteElight />
+        <MobileSpokane4_EliteElight /> */}
     </>
     )
 }
