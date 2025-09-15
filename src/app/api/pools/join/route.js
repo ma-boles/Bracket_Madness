@@ -1,22 +1,7 @@
-import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 import { pool } from '@/src/db/db';
+import { verifyToken } from '@/src/lib/auth';
 
-const verifyToken = (token) => {
-
-    const secretKey = process.env.JWT_SECRET;
-
-    if(!secretKey) {
-        throw new Error('JWT secret key is not defined in the environment variables');
-    }
-
-    try {
-        const decoded = jwt.verify(token, secretKey);
-        return decoded; // Returns user info (user_id, etc.)
-    } catch(error) {
-        return null;
-    }
-};
 
 export async function POST(req) {
     try {
