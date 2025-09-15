@@ -14,7 +14,6 @@ export async function GET(req, { params }) {
     }
 
     const userId = decoded.userId;
-    console.log(`Fetching points for userId: ${userId}, bracketId: ${bracketId}`);
 
     const [rows] = await pool.execute(
       `SELECT 

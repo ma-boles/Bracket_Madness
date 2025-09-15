@@ -3,7 +3,6 @@ import { pool } from '@/src/db/db';
 import { NextResponse } from 'next/server';
 
 
-// Utility function to verify JWT token
 const verifyToken = (token) => {
 
     const secretKey = process.env.JWT_SECRET;
@@ -24,10 +23,9 @@ export async function POST(req) {
 
     try {
         const token = req.cookies.get('token')?.value; 
-        const decodedUser = verifyToken(token); // Verify JWT token
+        const decodedUser = verifyToken(token);
 
         if(!decodedUser) {
-            // If token is invalid, return 401 unauthorized response
             return NextResponse.json({ message: 'Unauthorized. Please log in.' });
         }
 

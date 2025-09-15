@@ -5,21 +5,17 @@ import { getBrackets } from "@/src/lib/brackets";
 
 export async function GET(req) {
   try {
-    console.log('Incoming GET request to /api/brackets');
-
     const token = req.cookies.get('token')?.value;
-    console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
 
     const decodedUser = verifyToken(token);
 
     if(!decodedUser) {
-      console.warn('⛔ Invalid or missing token — unauthorized access attempt');
+      console.warn('Invalid or missing token — unauthorized access attempt');
 
       return NextResponse.json({ message: 'Unauthorized'}, { status: 401 });
     }
 
     const userId = decodedUser.userId;
-    console.log(`👤 Decoded user ID: ${userId}`);
 
     const { globalBrackets, poolBrackets } = await getBrackets(userId);
     
