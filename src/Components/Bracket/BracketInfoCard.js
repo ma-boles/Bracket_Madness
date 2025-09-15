@@ -8,11 +8,6 @@ export default function BracketInfoCard({ bracketInfoData, usePoolDisplay, accur
 
     const labels = filtered.map(item => item.round);
     const points = filtered.map(item => item.round_points);
-
-    // const accuracyItem = bracketInfoData.find(item => item.correct_predictions !== undefined );
-    // const correct = accuracyItem?.correct_predictions || 0;
-    // const total = accuracyItem?.total_predictions || 0;
-
     const correct = accuracyData?.correct_predictions || 0;
     const total = accuracyData?.total_predictions || 0;
     

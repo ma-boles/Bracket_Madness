@@ -49,7 +49,6 @@ const AccuracyChart = ({ correct, total, usePoolDisplay }) => {
     return (
         <div className="w-full max-w-xs sm:max-w-md md:max-w-full mx-auto h-[250px] md:h-[300px] lg:h-[350px] p-4 m-2">
 
-        {/* <div className="w-full max-w-xs mx-auto h-[250px] p-4 m-2"> */}
             <div className="relative w-full h-full">
             <Pie
                 data={data}

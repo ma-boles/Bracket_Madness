@@ -18,7 +18,6 @@ ChartJS.register(
 
 export default function BarChart({ labels, data, usePoolDisplay }) {
     const barColor = usePoolDisplay ? '#facc15' : '#c084fc'; 
-    console.log("usePoolDisplay in AccuracyChart:", usePoolDisplay);
 
     const chartData = {
         labels,
@@ -35,14 +34,14 @@ export default function BarChart({ labels, data, usePoolDisplay }) {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false, // CRUCIAL
+        maintainAspectRatio: false,
         animation: {
             duration: 1000,
             easing: 'easeOutQuart',
         },
         layout: {
             padding: {
-            top: 0, // Pushes chart area down — adds space below the legend
+            top: 0,
             },
         },
         scales: {
