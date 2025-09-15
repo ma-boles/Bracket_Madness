@@ -1,4 +1,4 @@
-export default {
+export default cronJobs = {
   cron: [
     // First Four
     {
