@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
@@ -28,17 +27,15 @@ export default function Home() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black font-[family-name:var(--font-geist-sans)]">
+    <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col justify-center items-center sm:items-start">
         <div className="flex flex-col items-center justify-center p-10">
-         <Image
-          src="/BracketMadness_background.jpg"
-          alt="Bracket Madness logo"
-          width={640}
-          height={400}
-          priority
-          className="max-w-full h-auto"
-        />
+          <div className="flex flex-col items-center text-center my-8">
+              <span className="text-[12vw] font-anton font-extrabold leading-none transform scale-y-125">BRACKET</span>
+              <span className="w-[40%] border-t-4 my-2"></span>
+              <span className="text-[12vw] font-light font-oswald leading-none transform scale-y-125">MADNESS</span>
+          </div>
+
           <div className="flex">
 
           <Link href={ isDemo ? '/Learn-More' : '/auth' } target="_blank" rel="noopener noreferrer">
