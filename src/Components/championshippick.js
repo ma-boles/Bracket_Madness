@@ -1,7 +1,6 @@
 'use client'
 import React from "react";
 import { useBracket } from "../context/BracketContext";
-import { useAuth } from "../context/AuthContext";
 import TeamButton from "./TeamButton";
 import ChampionshipButton from "./ChampionshButton";
 import TeamPlaceholder from "./TeamPlaceholder";
@@ -9,7 +8,6 @@ import TeamPlaceholder from "./TeamPlaceholder";
 
 export default function ChampionshipPick () {
     const { bracketData, getWinnerFromGame } = useBracket();
-    const { currentUser } = useAuth();
 
     // Winners Elite 8
     const teamAWinner8001 = getWinnerFromGame(bracketData, 8001);

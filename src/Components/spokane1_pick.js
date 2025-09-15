@@ -1,15 +1,12 @@
 'use client'
 import React from "react";
 import { useBracket } from "../context/BracketContext";
-import dynamic from 'next/dynamic';
 import TeamButton from "./TeamButton";
 import TeamPlaceholder from "./TeamPlaceholder";
 
 
-
 export default function Spokane1_Pick() {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
-    const Select = dynamic(() => import('react-select'), { ssr: false });
+    const { bracketData, getWinnerFromGame } = useBracket();
 
     // Winner from First Four
     const teamBWinner1001 = getWinnerFromGame(bracketData, 1001);

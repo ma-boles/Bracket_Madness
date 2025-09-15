@@ -6,7 +6,7 @@ import TeamPlaceholder from "./TeamPlaceholder";
 
 
 export default function Birmingham3_Pick() {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const { bracketData, getWinnerFromGame } = useBracket();
     
     // Winners from First Four
     const teamBWinner1003 = getWinnerFromGame(bracketData, 1003);

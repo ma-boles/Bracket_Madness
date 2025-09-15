@@ -1,10 +1,8 @@
 'use client'
 import React from "react";
 import TeamButton from "./TeamButton";
-import { useBracket } from "../context/BracketContext";
 
 export default function FirstFourPick() {
-    const { userPicks, setUserPicks, handlePick } = useBracket();
     
     return(
         <>

@@ -5,7 +5,7 @@ import TeamButton from "./TeamButton";
 import TeamPlaceholder from "./TeamPlaceholder";
 
 export default function Spokane4_Pick() {
-    const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
+    const { getWinnerFromGame, bracketData } = useBracket();
 
     // Winners from Round 1
     const teamAWinner1125 = getWinnerFromGame(bracketData, 1125);
