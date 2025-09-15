@@ -16,7 +16,6 @@ export default function Home() {
 
   const handleLoginClick = async (e) => {
     setIsLoadingLogin(true);
-
   };
 
   const handleBracketClick = async (e) => {
@@ -27,8 +26,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col justify-center items-center sm:items-start">
+    <div className="flex flex-col items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
+      <main className="flex justify-center items-center sm:items-start">
         <div className="flex flex-col items-center justify-center p-10">
           <div className="flex flex-col items-center text-center my-8">
               <span className="text-[12vw] font-anton font-extrabold leading-none transform scale-y-125">BRACKET</span>
@@ -62,16 +61,16 @@ export default function Home() {
                 {isLoadingBracket ? (
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  isDemo && isUser ? 'Explore App' : 'Bracket'
+                  isDemo && isUser ? 'Explore Demo' : 'Bracket'
                 )}
             </button>
           </div>
         </div>
-
       </main>
-      {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <p>footer</p>
-      </footer> */}
+
+      <footer className="py-4 text-sm text-gray-500 text-center">
+        &copy; {new Date().getFullYear()} BracketMadness. All rights reserved.
+      </footer>
     </div>
   );
 }
