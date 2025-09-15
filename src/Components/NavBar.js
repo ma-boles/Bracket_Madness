@@ -3,7 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-import Image from "next/image";
 import toast from "react-hot-toast";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { HomeIcon, TrophyIcon, UserCircleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
@@ -53,15 +52,12 @@ export default function NavBar () {
     return(
         <>
             <div className="flex mt-2 px-2 rounded-xl justify-between items-center md:justify-center" >
-                {/* w-1/4 md:w-1/5 md:h-15 flex justify-center items-center */}
                 <div className="flex-1 items-center">
-                    <Image
-                        src="/BM_logo4.jpg"
-                        alt="logo"
-                        width={150}
-                        height={20}
-                        className="object-cover opacity-60 py-2 md:py-0"
-                    />
+                    <div className="text-xl font-bold px-4">
+                        <span className="font-extrabold">B</span>
+                        <span className="px-1 font-light">|</span>
+                        <span className="font-light">M</span>
+                    </div>
                 </div>
 
                 {/* Desktop Nav */}
@@ -187,7 +183,7 @@ export default function NavBar () {
                                 title="User Menu"
                             >
                                 {userMenuOpen ? (
-                                    <XCircleIcon className="w-7 h-7 text-white cursor-pointer" />
+                                    <XMarkIcon className="w-7 h-7 text-white cursor-pointer" />
                                 ) : (
                                     <UserCircleIcon className="w-7 h-7 text-white cursor-pointer" />
                                 )}
