@@ -4,19 +4,11 @@ import { pool } from '@/src/db/db';
 
 
 export async function GET(req) {
-
   try {
     const { searchParams } = new URL(req.url);
     const poolId = searchParams.get('pool_id');
-        console.log('➡️ poolId:', poolId);
-
-
     const token = req.cookies.get('token')?.value;
-    console.log('🔑 Token retrieved:', token ? '[REDACTED]' : 'None');
-
     const decodedUser = verifyToken(token);
-    console.log('🧾 Decoded user:', decodedUser);
-
 
     if(!decodedUser) {
       console.warn('⛔ Invalid or missing token — unauthorized access attempt');
@@ -24,8 +16,6 @@ export async function GET(req) {
     }
 
     const userId = decodedUser.userId;
-
-    console.log('➡️ userId:', userId);
 
     const [rows] = await pool.execute(
         `SELECT bracket_id
