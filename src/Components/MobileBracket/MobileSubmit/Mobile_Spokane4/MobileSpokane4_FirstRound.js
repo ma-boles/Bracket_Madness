@@ -6,7 +6,7 @@ import { useMobileContext } from "@/src/context/MobileContext";
 
 
 export default function MobileSpokane4_FirstRound() {
-    const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
+    const { userPicks } = useBracket();
     const { setSectionStatus } = useMobileContext();
     const sectionId = 'spokane4_rd1';
 

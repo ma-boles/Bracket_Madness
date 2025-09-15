@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useBracket } from "@/src/context/BracketContext";
 import RoundsNav from "../MobileBracket/RoundsNav"
 import RegionsNav from "../MobileBracket/RegionsNav"
 import MobileRound_FirstFour from "../MobileBracket/RoundTabs/MobileRound_FirstFour";
@@ -25,7 +24,6 @@ import MobileSpokane4_EliteElight from "../MobileBracket/MobileSubmit/Mobile_Spo
 export default function MobileBracket_Layout ({ onEnterFinalFour, picksRemaining }) {
     const [activeRegion, setActiveRegion] = useState(null);
     const [activeTab, setActiveTab] = useState(null);
-    const { userPicks } = useBracket();
 
 
     return (

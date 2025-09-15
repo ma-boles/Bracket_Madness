@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useBracket } from "@/src/context/BracketContext";
 import TeamButton from "@/src/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
@@ -7,7 +7,7 @@ import { useMobileContext } from "@/src/context/MobileContext";
 
 
 export default function MobileBirmingham2_SecondRound() {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const { userPicks, bracketData, getWinnerFromGame } = useBracket();
     const { setSectionStatus } = useMobileContext();
     const sectionId = 'birmingham2_rd2';
 

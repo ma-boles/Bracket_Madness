@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect } from "react";
 import { useBracket } from "@/src/context/BracketContext";
-import dynamic from 'next/dynamic';
 import TeamButton from "@/src/Components/TeamButton";
 import SelectPlaceholder from "../../SelectPlaceholder";
 import { useMobileContext } from "@/src/context/MobileContext";
@@ -9,11 +8,9 @@ import { useMobileContext } from "@/src/context/MobileContext";
 
 
 export default function MobileSpokane1_EliteEight () {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const { userPicks, bracketData, getWinnerFromGame } = useBracket();
     const { setSectionStatus } = useMobileContext();
     const sectionId = 'spokane1_elite8';
-
-    const Select = dynamic(() => import('react-select'), { ssr: false });
 
     // Winners from Sweet 16
     const teamAWinner1601 = getWinnerFromGame(bracketData, 1601);

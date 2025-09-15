@@ -6,7 +6,7 @@ import SelectPlaceholder from "../../SelectPlaceholder";
 import { useMobileContext } from "@/src/context/MobileContext";
 
 export default function MobileSpokane4_SweetSixteen() {
-    const { userPicks, setUserPicks, handlePick, getWinnerFromGame, bracketData } = useBracket();
+    const { userPicks, getWinnerFromGame, bracketData } = useBracket();
     const { setSectionStatus } = useMobileContext();
     const sectionId = 'spokane4_sweet16';
 

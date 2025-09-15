@@ -7,7 +7,7 @@ import { useMobileContext } from "@/src/context/MobileContext";
 
 
 export default function MobileBirmingham3_SecondRound() {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const { userPicks, bracketData, getWinnerFromGame } = useBracket();
     const { setSectionStatus } = useMobileContext();
     const sectionId = 'birmingham3_rd2';
 

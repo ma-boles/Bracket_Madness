@@ -19,7 +19,6 @@ export default function RoundsNav({ activeTab, setActiveTab }) {
         { label: 'Sweet 16', sectionId: 'sweet16' }, 
         { label: 'Elite 8', sectionId: 'elite8' }, 
         { label: 'Final 4', sectionId: 'finalfour' }, 
-        // { label: 'First Four', sectionId: 'firstfour' }, 
     ];
 
 
@@ -51,31 +50,3 @@ export default function RoundsNav({ activeTab, setActiveTab }) {
         </div>
     );
 }
-
-
-// return (
-//         <div>
-//             <div className="flex justify-around p-2 bg-slate-100 rounded-lg shadow-md">
-//                 {tabs.map(({ label, sectionId }) => {
-//                     const isComplete = sections[sectionId] ?? false;
-//                     const showRedDot = !isComplete;
-
-//                     return (
-//                          <button
-//                         key={label}
-//                         onClick={() => setActiveTab(label)}
-//                         className={`px-3 py-1 text-sm font-semibold ${
-//                             activeTab === tab ? 'text-yellow-600 border-b-2 border-yellow-400' : 'text-gray-600'
-//                         }`}
-//                     >
-//                         {label}
-//                         {showRedDot && (
-//                             <span className="h-3 w-3 rounded-full bg-red-600" />
-//                         )}
-//                     </button>
-//                     );
-//                 })}
-
-//             </div>
-//         </div>
-//     );

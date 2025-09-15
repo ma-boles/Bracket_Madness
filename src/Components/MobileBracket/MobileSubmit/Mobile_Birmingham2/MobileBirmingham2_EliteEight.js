@@ -7,7 +7,7 @@ import { useMobileContext } from "@/src/context/MobileContext";
 
 
 export default function MobileBirmingham2_EliteEight() {
-    const { userPicks, setUserPicks, handlePick, bracketData, getWinnerFromGame } = useBracket();
+    const { userPicks, bracketData, getWinnerFromGame } = useBracket();
     const { setSectionStatus } = useMobileContext();
     const sectionId = 'birmingham2_elite8';
 

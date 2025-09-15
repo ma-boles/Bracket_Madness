@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect } from "react";
 import { useBracket } from "@/src/context/BracketContext";
-import { useAuth } from "@/src/context/AuthContext";
 import TeamButton from "../../TeamButton";
 import ChampionshipButton from "../../ChampionshButton";
 import SelectPlaceholder from "../SelectPlaceholder";
@@ -11,7 +10,6 @@ import { useMobileContext } from "@/src/context/MobileContext";
 export default function MobileRound_FinalFour ({ onMount }) {
     const sectionId = 'finalfour';
     const { bracketData, getWinnerFromGame, userPicks } = useBracket();
-    const { currentUser } = useAuth();
     const { setSectionStatus } = useMobileContext();
 
 
