@@ -25,22 +25,15 @@ export default async function BracketPage(props) {
     const results = await resultsRes.json();
     const predictions = await predictionRes.json();
 
-    // console.log("Raw predictions:", predictions.length);
-    // console.log("Raw results:", results.length);
-
-
     // Match results to prediction
     const predictionsWithResults = predictions.map((pred) => {
         const matchingResult = results.find(
             (result) => 
-                // result.region === pred.region &&
                  result.game_id === pred.game_id
         );
         return { ...pred, actualTeam: matchingResult ?? null };
     });
 
-    // console.log("Predictions with results mapped:", predictionsWithResults.length);
-    // console.log("Sample predictionWithResult:", predictionsWithResults[0]);
 
     const grouped = predictionsWithResults.reduce((acc, pred) => {
         if(!acc[pred.region]) acc[pred.region] = [];
@@ -48,7 +41,6 @@ export default async function BracketPage(props) {
         return acc;
     }, {});
 
-    // console.log("Grouped by region keys:", Object.keys(grouped));
 
     const groupedRound = predictionsWithResults.reduce((acc, pred) => {
         if(pred.round === "Elite 8" || pred.round === "Final Four" || pred.round === "Championship") {
@@ -61,16 +53,11 @@ export default async function BracketPage(props) {
         return acc;
     }, {});
 
-    // console.log("Grouped rounds:", Object.keys(groupedRound));
-    // console.log("FinalRounds length:", groupedRound.FinalRounds?.length ?? 0);
 
     const game1001 = grouped["Spokane 1"]?.find(g => g.game_id === 1001);
     const game1002 = grouped["Birmingham 2"]?.find(g => g.game_id === 1002);
     const game1003 = grouped["Birmingham 3"]?.find(g => g.game_id === 1003);
     const game1004 = grouped["Birmingham 3"]?.find(g => g.game_id === 1004);
-
-    // console.log("FinalRounds:", groupedRound.FinalRounds.map(g => g.game_id));
-    // console.log("Server FinalRounds full:", JSON.stringify(groupedRound.FinalRounds, null, 2));
 
     const game8001 = groupedRound.FinalRounds?.find(g => g.game_id === 8001);
     const game8002 = groupedRound.FinalRounds?.find(g => g.game_id === 8002);

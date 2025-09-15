@@ -48,14 +48,11 @@ export default function Submit() {
     }, [bracketData]);
     
     const handleCheckPicks = () => {
-        console.log("Check Picks Clicked");
-        console.log("Bracket Data Before Check:", bracketData);
         setIsLoadingCheckPicks(true);
 
         const numberOfGames = 67; 
 
         const pickCount = Object.keys(bracketData).length;
-        console.log("Pick count:", pickCount);
     
         if (pickCount > 67) {
             toast('Please make a pick for every game before submitting.',{
@@ -71,7 +68,6 @@ export default function Submit() {
     
         // If there are picks, check if all have a winnerId
         const allPicked = Object.values(bracketData).every(pick => pick?.winnerId);
-        console.log('All picks made:', allPicked);
     
         if (allPicked && pickCount === numberOfGames) {
             // If all picks are made and we have the right number of picks
@@ -110,7 +106,6 @@ export default function Submit() {
 
         const data = await res.json();
         const bracketId = data.bracket_id;
-        console.log('Bracket creation response:', data);
 
         if(data.success) {
             setBracketId(bracketId);
@@ -171,7 +166,6 @@ export default function Submit() {
                 const result = await response.json();
 
                 if(result.success) {
-                    console.log('Bracket ID:', bracketId);
                     toast.success('Successfully submitted', {
                         className: 'toastSuccess',
                     });
