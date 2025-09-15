@@ -1,34 +1,17 @@
-import jwt from 'jsonwebtoken';
 import { pool } from '@/src/db/db';
 import { NextResponse } from 'next/server';
+import { verifyToken } from '@/utils/verifyToken';
 
-
-const verifyToken = (token) => {
-
-    const secretKey = process.env.JWT_SECRET;
-
-    if(!secretKey) {
-        throw new Error('JWT secret key is not defined in the environment variables');
-    }
-
-    try {
-        const decoded = jwt.verify(token, secretKey);
-        return decoded; // Returns user info (user_id, ect)
-    } catch(error) {
-        return null;
-    }
-};
 
 export async function POST(req) {
+    const token = req.cookies.get("token")?.value;
+    const decodedUser = verifyToken(token);
 
-    try {
-        const token = req.cookies.get('token')?.value; 
-        const decodedUser = verifyToken(token);
-
-        if(!decodedUser) {
+    if(!decodedUser) {
             return NextResponse.json({ message: 'Unauthorized. Please log in.' });
         }
 
+    try {
         const { bracket_name, pool_id } = await req.json();
         const userId = decodedUser.userId;
 
