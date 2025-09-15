@@ -10,8 +10,6 @@ export async function POST(req) {
     try {
     const { email, username, password } = await req.json();
 
-    console.log("Received request:", { email, username });
-
     if(!email || !username || !password) {
         return NextResponse.json({ error: "Missing required fields"}, { status: 400 });
     }
@@ -23,11 +21,8 @@ export async function POST(req) {
         return NextResponse.json({ error: "Password must be at least 8 characters"}, { status: 400 });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-
-    // Check for exitisting username + email
     const [existing] = await pool.execute(
         `SELECT id 
         FROM users
@@ -39,8 +34,6 @@ export async function POST(req) {
         return NextResponse.json({ error: "Email or username already exists"}, { status: 409 });
     }
 
-
-    // Insert into MySQL
     const[result] = await pool.execute(
         'INSERT INTO users(email, username, password) VALUES (?, ?, ?)',
         [email, username, hashedPassword]

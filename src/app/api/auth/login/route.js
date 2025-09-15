@@ -9,9 +9,6 @@ export async function POST(req) {
     try {
         const { username, password} = await req.json();
 
-        console.log('Login request received:', { username });
-
-        // Fetch user from MySQL
         const[rows] = await pool.execute(
             'SELECT * FROM users WHERE username = ?',
             [username]
@@ -19,13 +16,10 @@ export async function POST(req) {
 
         const user = rows[0];
 
-
-        // If user not found
         if(!user) {
             return NextResponse.json({ message: 'User not found' }, { status: 401 });
         }
 
-        // Compare passwords
         const isMatch = await bcrypt.compare(password, user.password);
 
         if(!isMatch) {
@@ -37,7 +31,6 @@ export async function POST(req) {
             expiresIn: '1h',
         });
 
-        // Set cookie in response
         const cookiesStore = await cookies();
         cookiesStore.set('token', token, {
             httpOnly: true,
