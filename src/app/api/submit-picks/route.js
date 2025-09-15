@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 import { pool } from '@/src/db/db';
-require('dotenv').config();
 
 
 // Utility function to verify JWT token
@@ -15,7 +14,7 @@ const verifyToken = (token) => {
 
     try {
         const decoded = jwt.verify(token, secretKey);
-        return decoded; // Returns user info (user_id, ect)
+        return decoded; // Returns user info (user_id, etc.)
     } catch(error) {
         return null;
     }
@@ -25,18 +24,13 @@ export async function POST(req) {
 
     try {
         const token = req.cookies.get('token')?.value; 
-        const decodedUser = verifyToken(token); // Verify JWT token
+        const decodedUser = verifyToken(token);
 
         if(!decodedUser) {
-            // If token is invalid, return 401 unauthorized response
             return NextResponse.json({ message: 'Unauthorized. Please log in.' });
         }
 
-        // Get picks data from request body
         const { bracketData, bracket_id, pool_id } = await req.json();
-
-        // console.log('Received bracketData:', bracketData);
-        console.log('Received bracketId:', bracket_id);
 
         if(!bracketData || !bracket_id) {
             return NextResponse.json({ message: 'Missing bracket data or bracket ID.' });
@@ -49,10 +43,6 @@ export async function POST(req) {
             `INSERT INTO predictions (user_id, bracket_id, game_id, winner_id)
             VALUES(?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE winner_id = VALUES(winner_id)`;
-
-            // console.log('Query:', insertQuery);
-            // console.log('Using userId:', userId);
-            // console.log('Using bracket_id:', bracket_id);
             
         const insertPromises = Object.entries(bracketData).map(([gameId, team]) => {
             const winnerId = team?.winnerId;
@@ -61,12 +51,10 @@ export async function POST(req) {
                 console.warn(`Skipping game ${gameId} - missing team or team.id`);
                 return Promise.resolve(undefined);
             }
-
-            console.log(`Preparing to insert: user_id = ${userId}, bracket_id = ${bracket_id}, game_id = ${gameId}, winner_id = ${team.id}`);
            
-            return pool.execute(insertQuery, [userId, bracket_id, gameId, winnerId]) // Ensure teams.id is being stored as winner_id
+            // Ensure teams.id is being stored as winner_id
+            return pool.execute(insertQuery, [userId, bracket_id, gameId, winnerId]) 
             .then(([result]) => {
-                console.log(`Inserted pick for game ${gameId}`);
                 return result;
             })
             .catch((err) => {
@@ -89,9 +77,7 @@ export async function POST(req) {
                 SET bracket_submitted = true
                 WHERE user_id = ? AND pool_id = ?`,
             [userId, pool_id]
-        );
-        console.log(`Flagged bracket_submitted for user: ${userId} in pool: ${pool_id}`);
-        
+        );        
     }
     
     // Double checking if all picks were submitted
@@ -101,7 +87,6 @@ export async function POST(req) {
             WHERE bracket_id = ?`, 
             [bracket_id]
         );
-        console.log('Predictions now in DB:', rows.length);
 
         return NextResponse.json({ success: true, message: 'Picks submitted successfully' });
 
