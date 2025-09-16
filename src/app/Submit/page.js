@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar";
 import DesktopBracket_Layout from "@/src/Components/BracketLayout/DesktopBracket_Layout";
 import MobileBracket_Layout from "@/src/Components/BracketLayout/MobileBracket_Layout";
@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { ButtonSpinner } from "@/src/Components/ui/ButtonSpinner";
 import { isDemo } from "@/config";
 
-export default function Submit() {
+function SubmitInner () {
     const { currentUser } = useContext(AuthContext);
     const [ isValidated, setIsValidated ] = useState(false);
     const { bracketData, resetBracket } = useBracket();
@@ -24,6 +24,7 @@ export default function Submit() {
     const [ picksValid, setPicksValid ] = useState(false);
     const [ isFinalFourActive, setIsFinalFourActive ] = useState(false);
     const [ picksRemaining, setPicksRemaining ] = useState(67);
+    
     const searchParams = useSearchParams();
     const poolId = searchParams.get('pool_id');
 
@@ -267,5 +268,13 @@ export default function Submit() {
 
             </div>
         </>
+    )
+}
+
+export default function Submit () {
+    return (
+        <Suspense fallback={null}>
+            <SubmitInner />
+        </Suspense>
     )
 }
