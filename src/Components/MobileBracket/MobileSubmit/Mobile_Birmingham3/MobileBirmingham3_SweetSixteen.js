@@ -31,7 +31,7 @@ export default function MobileBirmingham3_SweetSixteen() {
     return (
         <>
               <div>
-                    <div className="bg-blue-600/40 my-4 p-4">
+                    <div className="bg-blue-800 my-4 p-4">
                             {teamAWinner1209 ? (
                                 <TeamButton region="birmingham3" gameId={1605} team={teamAWinner1209}/>
                             ) : (
@@ -43,7 +43,7 @@ export default function MobileBirmingham3_SweetSixteen() {
                                 <SelectPlaceholder />
                             )}
                     </div>
-                    <div className="bg-blue-600/40 my-4 p-4">
+                    <div className="bg-blue-800 my-4 p-4">
                             {teamAWinner1211 ? (
                                 <TeamButton region="birmingham3" gameId={1606} team={teamAWinner1211}/>
                             ) : (

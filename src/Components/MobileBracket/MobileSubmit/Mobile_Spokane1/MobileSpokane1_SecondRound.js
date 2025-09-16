@@ -34,8 +34,8 @@ export default function MobileSpokane1_SecondRound () {
 
     return (
             <>
-                <div>
-                        <div className=" bg-white/5 my-4 p-4">
+                <div className="pb-2">
+                        <div className=" bg-white/10 my-4 p-4">
                             {teamAWinner1101 ? ( 
                                     <TeamButton region="spokane1" gameId={1201} team={teamAWinner1101}/>
                                 ) : (
@@ -47,7 +47,7 @@ export default function MobileSpokane1_SecondRound () {
                                     <SelectPlaceholder />
                                 )}
                         </div>
-                        <div className="bg-white/5 my-4 p-4">
+                        <div className="bg-white/10 my-4 p-4">
                             {teamAWinner1103 ? ( 
                                     <TeamButton region="spokane1" gameId={1202} team={teamAWinner1103}/>
                                 ) : (
@@ -59,7 +59,7 @@ export default function MobileSpokane1_SecondRound () {
                                     <SelectPlaceholder />
                                 )}
                         </div>
-                        <div className="bg-white/5 my-4 p-4">
+                        <div className="bg-white/10 my-4 p-4">
                             {teamAWinner1105 ? ( 
                                     <TeamButton region="spokane1" gameId={1203} team={teamAWinner1105}/>
                                 ) : (
@@ -71,7 +71,7 @@ export default function MobileSpokane1_SecondRound () {
                                     <SelectPlaceholder />
                                 )}
                         </div>
-                        <div className="bg-white/5 my-4 p-4">
+                        <div className="bg-white/10 my-4 p-4">
                             {teamAWinner1107 ? ( 
                                     <TeamButton region="spokane1" gameId={1204} team={teamAWinner1107}/>
                                 ) : (

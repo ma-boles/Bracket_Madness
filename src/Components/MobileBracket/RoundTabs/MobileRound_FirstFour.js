@@ -24,7 +24,7 @@ export default function MobileRound_FirstFour() {
 
     return(
         <>
-            <div className="py-4">
+            <div className="pb-2">
                         <div className=" bg-white/10 mb-4 pb-6 px-4 pt-2 flex flex-col">
                             <h1 className="w-33 mb-2 bg-white/20 text-center">Spokane 1</h1>
                             <TeamButton 

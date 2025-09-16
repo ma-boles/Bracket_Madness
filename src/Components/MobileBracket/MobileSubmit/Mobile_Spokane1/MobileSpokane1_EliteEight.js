@@ -31,7 +31,7 @@ export default function MobileSpokane1_EliteEight () {
     return (
         <>
             <div>
-                    <div className="bg-white/5 my-4 p-4">
+                    <div className="bg-white/10 my-4 p-4">
                             {teamAWinner1601 ? ( 
                                     <TeamButton region="spokane1" gameId={8001} team={teamAWinner1601}/>
                                 ) : (

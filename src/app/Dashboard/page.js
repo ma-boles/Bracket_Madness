@@ -114,7 +114,7 @@ export default function Dashboard() {
                 <h1 className="p-6 text-4xl font-bold">Dashboard</h1>
             </div>
 
-            <div className="mx-2 py-4 border border-white bg-white/5 rounded-lg">
+            <div className="mx-2 my-4 py-4 border border-white bg-white/5 rounded-lg">
 
                 {isLoading && currentUser && (
                         <LoadingMessage />

@@ -49,7 +49,7 @@ export default function MobileRound_FinalFour ({ onMount }) {
                         <div className="my-auto flex flex-col items-center bg-white/5 px-4 pb-4 pt-2">
                             <p className="px-4 py-2 bg-black/30 font-semibold text-center">Semifinals</p>
 
-                            <div className="w-full my-4 bg-blue-600/40 p-4">
+                            <div className="w-full my-4 bg-blue-800 p-4">
                                
                                 <div className="rounded-lg border-none text-sm/6 text-white">
 
@@ -100,7 +100,7 @@ export default function MobileRound_FinalFour ({ onMount }) {
                                 </div>
 
                         </div>
-                        <div className="bg-blue-600/40 p-4 w-full">
+                        <div className="bg-blue-800 p-4 w-full">
                             <div className="w-full">
 
                                 {teamAWinner8002 ? (
@@ -151,10 +151,10 @@ export default function MobileRound_FinalFour ({ onMount }) {
                         </div>
                     </div>
 
-                        <div className="mt-8 flex flex-col items-center bg-white/5 px-4 pb-4 pt-2">
+                        <div className="mt-8 px-4 pb-4 pt-2 mb-2 flex flex-col items-center bg-white/5">
                             <p className="my-2 px-4 py-2 bg-black/30 font-semibold text-center">Championship</p>
 
-                            <div className="w-full my-4 bg-blue-600/40 p-4">
+                            <div className="w-full my-4 bg-blue-800 p-4">
                             {teamAWinner10001 ? (
                                     <TeamButton region="finalfour" gameId={10003} team={teamAWinner10001}/>
                                 ) : (
@@ -168,7 +168,7 @@ export default function MobileRound_FinalFour ({ onMount }) {
                             </div>
 
                             <p className="mt-4 px-4 py-2 text-2xl bg-black/30 font-semibold text-center">Champion</p>
-                            <div className="flex w-full justify-center items-center px-8 py-4 my-2 bg-blue-600/40 p-4 border-2 border-white rounded-lg">
+                            <div className="flex w-full justify-center items-center px-8 py-4 my-2 bg-blue-800 p-4 border-2 border-white rounded-lg">
                                 {teamAWinner10003 ? (
                                         <ChampionshipButton region="finalfour" gameId={10004} team={teamAWinner10003}/>
                                     ) : (

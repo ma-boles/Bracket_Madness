@@ -35,8 +35,8 @@ export default function MobileSpokane4_SecondRound() {
 
     return (
         <>
-            <div>
-                <div className="bg-white/5 my-4 p-4">
+            <div className="pb-2">
+                <div className="bg-white/10 my-4 p-4">
                         {teamAWinner1125 ? (
                             <TeamButton region="spokane4" gameId={1213} team={teamAWinner1125}/>
                         ) : (
@@ -48,7 +48,7 @@ export default function MobileSpokane4_SecondRound() {
                             <SelectPlaceholder />
                         )}
                 </div>
-                <div className="bg-white/5 my-4 p-4">
+                <div className="bg-white/10 my-4 p-4">
                         {teamAWinner1127 ? (
                             <TeamButton region="spokane4" gameId={1214} team={teamAWinner1127}/>
                         ) : (
@@ -60,7 +60,7 @@ export default function MobileSpokane4_SecondRound() {
                             <SelectPlaceholder />
                         )}
                 </div>
-                <div className="bg-white/5 my-4 p-4">
+                <div className="bg-white/10 my-4 p-4">
                         {teamAWinner1129 ? (
                             <TeamButton region="spokane4" gameId={1215} team={teamAWinner1129}/>
                         ) : (
@@ -72,7 +72,7 @@ export default function MobileSpokane4_SecondRound() {
                             <SelectPlaceholder />
                         )}
                 </div>
-                <div className="bg-white/5 my-4 p-4">
+                <div className="bg-white/10 my-4 p-4">
                         {teamAWinner1131 ? (
                             <TeamButton region="spokane4" gameId={1216} team={teamAWinner1131}/>
                         ) : (
