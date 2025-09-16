@@ -8,15 +8,6 @@ export default function AdminView () {
 
     return (
         <div className="p-2 w-full">
-
-            {/* <div className="p-2 bg-white/10 rounded-lg">
-                <div className="mx-2">
-                    <h2 className="mx-3 font-bold text-lg">Notifications</h2>
-                </div>
-                <div className="p-2">
-
-                </div>
-            </div> */}
                 {isLoading ? (
                     <LoadingMessage />
 
