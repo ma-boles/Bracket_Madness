@@ -1,7 +1,6 @@
 'use client'
 import NavBar from "@/src/Components/NavBar";
 import React, { useContext, useEffect, useState } from "react";
-import Image from "next/image";
 import LoadingMessage from "@/src/Components/ui/LoadingMessage";
 import BracketCard from "@/src/Components/Bracket/BracketCard";
 import AuthContext from "@/src/context/AuthContext";
@@ -43,7 +42,6 @@ export default function Dashboard() {
 
     const renderBracketCards = (brackets, isPool = false) => {
         return brackets.map((item, index) => {
-              console.log('Rendering bracket:', item.bracket_id);
 
             const bracketInfoData = [
                 { round: 'First Four', round_points: item.first_four_points},
@@ -114,13 +112,6 @@ export default function Dashboard() {
 
             <div className="flex justify-between overflow-hidden mx-2 my-8 md:h-50 bg-gradient-to-r from-blue-600 via-black to-black rounded-lg">
                 <h1 className="p-6 text-4xl font-bold">Dashboard</h1>
-                <Image
-                    src="/BracketMadness_background.jpg"
-                    alt="header"
-                    width={570}
-                    height={330}
-                    className="hidden md:block py-2 object-cover opacity-40"
-                />
             </div>
 
             <div className="mx-2 py-4 border border-white bg-white/5 rounded-lg">
