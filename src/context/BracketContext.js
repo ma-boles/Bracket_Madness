@@ -15,9 +15,6 @@ export const BracketProvider = ({ children }) => {
         championship: {},
     });
 
-    useEffect(() => {
-        console.log('BracketData Update:', bracketData);
-    }, [bracketData]);
 
     const handlePick = (region, game_id, team) => {
         if(!team) return;
@@ -45,7 +42,6 @@ export const BracketProvider = ({ children }) => {
     // Handle selection and update BracketContext
     const handleSelection = (region, gameId, team) => {
         if(!team) return;
-        console.log('Selected team:', team);
             
         setSelectedTeam(team);
         handlePick(region, gameId, team);
