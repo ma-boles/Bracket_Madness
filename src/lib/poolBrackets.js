@@ -26,7 +26,6 @@ export async function getPoolBrackets (poolId) {
         })
         .sort((a, b) => b.points - a.points);
 
-        console.log(joinedBrackets)
         return joinedBrackets;
     };
 

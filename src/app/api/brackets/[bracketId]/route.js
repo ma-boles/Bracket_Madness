@@ -24,7 +24,6 @@ export async function GET(req, { params }) {
       [userId, bracketId]
     );
 
-    console.log('Points fetched:', rows);
     return NextResponse.json(rows);
   } catch (error) {
     console.error('Error fetching round points:', error);
