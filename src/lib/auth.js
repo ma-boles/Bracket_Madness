@@ -5,7 +5,9 @@ export function verifyToken(token) {
     const secretKey = process.env.JWT_SECRET;
 
     if(isDemo) {
-        console.log("Demo mode - returning mock user for token");
+        if(secretKey) {
+            console.log("Demo mode - returning mock user for token");
+        }
         return {
                 id: 1,
                 userId: 1,

@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function TeamResult({ region, gameId, team }) {
-    if (!team) {
+    if (!team && process.env.NODE_ENV === "development") {
         console.warn(`Missing team for region ${region} and game ${gameId}`);
     }
 
