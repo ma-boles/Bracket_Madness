@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DeletePoolButton from "./DeletePoolButton";
 import Image from "next/image";
 
