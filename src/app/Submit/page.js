@@ -149,7 +149,6 @@ function SubmitInner () {
             }
 
             try{
-                console.log('Submitting picks with Bracket ID:', bracketId);
 
                 const response = await fetch('/api/submit-picks', {
                     method: 'POST',
