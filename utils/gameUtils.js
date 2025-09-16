@@ -27,7 +27,7 @@ const { connectionToDatabase } = require('../src/db/db');
     }
   };
 
- // A simple function that returns true if the Levenshtein distance is below a certain threshold
+ // Function that returns true if the Levenshtein distance is below a certain threshold
 const matchTeams = (team1, team2, threshold = 3) => {
   const a = team1.toLowerCase();
   const b = team2.toLowerCase();
@@ -85,48 +85,8 @@ const matchTeams = (team1, team2, threshold = 3) => {
     return bestMatch;
   };
   
-    // Example usage:
-    // const storedGames = [
-    //   { team_a_name: 'Michigan', team_b_name: 'Indiana' }, // Example data from DB
-    //   { team_a_name: 'Duke', team_b_name: 'North Carolina' },
-    //   { team_a_name: 'Fair Dickson', team_b_name: 'Stanford' },
-    //   { team_a_name: 'Michighan State', team_b_name: 'South Florida' },
-    // ];
-    
-// const espnGames = [
-//   { 
-//     teams: [
-//       { name: 'Michigan State' }, 
-//       { name: 'Indiana University' }
-//     ] 
-//   },
-//   { 
-//     teams: [
-//       { name: 'Duke Blue Devils' }, 
-//       { name: 'North Carolina Tar Heels' }
-//     ] 
-//   },
-//   { 
-//     teams: [
-//       { name: 'Michigan' }, 
-//       { name: 'Indiana' }
-//     ] 
-//   },
-//   { 
-//     teams: [
-//       { name: 'Fairly Dickson' }, 
-//       { name: 'Stanford' }
-//     ] 
-//   },
-//   { 
-//     teams: [
-//       { name: 'South Carolina' }, 
-//       { name: 'University of South Florida' }
-//     ] 
-//   },
-// ];
 
-// Now check if teams match between stored games and ESPN games using Levenshtein distance
+// Checks if teams match between stored games and ESPN games using Levenshtein distance
 const matchStoredGamesWithEspn = (storedGames, espnGames) => {
   const matchedGames = []; // Collect matches
 
@@ -134,7 +94,7 @@ const matchStoredGamesWithEspn = (storedGames, espnGames) => {
     const matchingEspnGame = espnGames.find((game) => {
       const teamNames = game.teams.map((t) => t.name);
 
-      // Compare team names using the Levenshtein function from gameUtils
+      // Compares team names using the Levenshtein function from gameUtils
       const team1Matches = teamNames.some(name => matchTeams(name, storedGame.team_a_name));
       const team2Matches = teamNames.some(name => matchTeams(name, storedGame.team_b_name));
 
@@ -143,7 +103,6 @@ const matchStoredGamesWithEspn = (storedGames, espnGames) => {
 
     // If a matching ESPN game is found, update the DB
     if (matchingEspnGame) {
-      console.log(`Found a match for game ${storedGame.game_id}: ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
 
       // Find matching ESPN teams individually
       const teamA = matchingEspnGame.teams.find(t => matchTeams(t.name, storedGame.team_a_name));
@@ -166,18 +125,10 @@ const matchStoredGamesWithEspn = (storedGames, espnGames) => {
         winner: (teamA && teamA.winner) ? cleanTeamAName : cleanTeamBName,
       };
 
-      // console.log('Full matching ESPN game object:', matchingEspnGame);
-
-      // console.log(`ESPN Game ID: ${matchingEspnGame.espnGameId}`);
-      // console.log(`${teamA.name}: ${teamA.score} - ${teamB.name}: ${teamB.score}`);
-      // console.log(`Winner: ${teamA.winner ? teamA.name : teamB.name}`);
-
-      // console.log('Saving game info:', gameInfo);
-
-      matchedGames.push(gameInfo); // Game Info collected
+      matchedGames.push(gameInfo);
 
       } else {
-        console.log(`No match found for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
+        console.warn(`No match found for game ${storedGame.team_a_name} vs ${storedGame.team_b_name}`);
       }
     })
 

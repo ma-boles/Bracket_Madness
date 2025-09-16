@@ -11,7 +11,6 @@ if(!global.pool) {
         database: process.env.DB_NAME,
         waitForConnections: true,
         connectionLimit: 10,
-        // queryLimit: 0,
     });
 }
 
