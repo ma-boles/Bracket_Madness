@@ -86,44 +86,44 @@ export default function Championship_Input({ region, gameId }) {
           return team.name.toLowerCase().includes(query.toLowerCase())
         })
 
-  return (
-    <div className="mx-auto w-50 mb-4 bg-white border-2 border-black p-2 rounded-md text-black text-xl text-center">
-      <Combobox value={selectedTeam} onChange={(team) => handleSelection(region, gameId, team)} onClose={() => setQuery('')}>
-        <div className="relative">
-          <ComboboxInput
-            className={clsx(
-              'w-full rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-xl text-black',
-              'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
-            )}
-            placeholder='Select...'
-            displayValue={(team) => team?.name || ''}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-          <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5 cursor-pointer">
-            <ChevronDownIcon className="size-6 fill-black/60 group-data-[hover]:fill-blue-600" />
-          </ComboboxButton>
-        </div>
+  // return (
+    // <div className="mx-auto w-50 mb-4 bg-white border-2 border-black p-2 rounded-md text-black text-xl text-center">
+    //   <Combobox value={selectedTeam} onChange={(team) => handleSelection(region, gameId, team)} onClose={() => setQuery('')}>
+    //     <div className="relative">
+    //       <ComboboxInput
+    //         className={clsx(
+    //           'w-full rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-xl text-black',
+    //           'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+    //         )}
+    //         placeholder='Select...'
+    //         displayValue={(team) => team?.name || ''}
+    //         onChange={(event) => setQuery(event.target.value)}
+    //       />
+    //       <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5 cursor-pointer">
+    //         <ChevronDownIcon className="size-6 fill-black/60 group-data-[hover]:fill-blue-600" />
+    //       </ComboboxButton>
+    //     </div>
 
-        <ComboboxOptions
-          anchor="bottom"
-          transition
-          className={clsx(
-            'w-[var(--input-width)] rounded-b-xl border border-white/5 bg-blue-800 p-1 [--anchor-gap:var(--spacing-1)] empty:invisible',
-            'transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0'
-          )}
-        >
-          {filteredTeams.map((team) => (
-            <ComboboxOption
-              key={team.id}
-              value={team}
-              className="group flex cursor-pointer items-center gap-2 rounded-lg py-1.5 px-2 select-none data-[focus]:bg-white/20"
-            >
-              {/* <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" /> */}
-              <div className="text-sm/6 text-white">{team.name}</div>
-            </ComboboxOption>
-          ))}
-        </ComboboxOptions>
-      </Combobox>
-    </div>
-  )
+    //     <ComboboxOptions
+    //       anchor="bottom"
+    //       transition
+    //       className={clsx(
+    //         'w-[var(--input-width)] rounded-b-xl border border-white/5 bg-blue-800 p-1 [--anchor-gap:var(--spacing-1)] empty:invisible',
+    //         'transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0'
+    //       )}
+    //     >
+    //       {filteredTeams.map((team) => (
+    //         <ComboboxOption
+    //           key={team.id}
+    //           value={team}
+    //           className="group flex cursor-pointer items-center gap-2 rounded-lg py-1.5 px-2 select-none data-[focus]:bg-white/20"
+    //         >
+    //           {/* <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" /> */}
+    //           <div className="text-sm/6 text-white">{team.name}</div>
+    //         </ComboboxOption>
+    //       ))}
+    //     </ComboboxOptions>
+    //   </Combobox>
+    // </div>
+  // )
 }
