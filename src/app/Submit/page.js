@@ -31,7 +31,7 @@ function SubmitInner () {
 
     const handleLockIn = () => {
         if (isDemo) {
-            toast.error('Demo Mode: Locking in picks is disabled.',{
+            toast.error('Not available in demo mode',{
                 className: 'toastError',
                 duration: 4000,
             });
