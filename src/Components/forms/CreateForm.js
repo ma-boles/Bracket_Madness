@@ -66,7 +66,6 @@ export default function CreateForm ({ onSuccess }) {
             }
 
             const data = await res.json();
-            console.log("Pool created:", data);
 
             if(onSuccess) {
                 onSuccess({ name: data.poolName || formData.poolName, code: data.inviteCode })

@@ -116,7 +116,6 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
         fetch(`/api/search?q=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
-            console.log("Suggestions returned from API:", data);
             setSuggestions(data);
             setLoading(false);
         })
