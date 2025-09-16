@@ -59,6 +59,8 @@ A full-featured release with complete backend support, live results, and expande
   - Single-game winners  
   - Player of the Week picks (e.g., A vs B vs C)  
 - [ ] **WNBA Playoffs Support** – Expand the platform to include a full bracket experience for the WNBA postseason.
+- [ ] **Results Page Redesign (Mobile-Friendly)** – Improve the current results layout with a responsive design. Core functionality works, but the mobile UX will be reworked in a future update.  
+
 
 ## 📬 Contact & Credits
 
