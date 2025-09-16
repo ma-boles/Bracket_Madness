@@ -14,7 +14,7 @@ const fetchPastScores = async () => {
       const response = await axios.get(url);
 
       if (!response.data.events || response.data.events.length === 0) {
-        console.log(`No games found for date: ${date}`);
+        console.warn(`No games found for date: ${date}`);
         continue;
       }
 
