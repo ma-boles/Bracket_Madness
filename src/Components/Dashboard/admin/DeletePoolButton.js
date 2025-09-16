@@ -7,6 +7,12 @@ export default function DeletePoolButton ({ poolId }) {
     const { deletePool } = usePools();
     
     const handleDelete = async () => {
+        if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
+        toast.error('Not available in demo mode', {
+            className: 'toastError',
+        });
+        return;
+    }
         const confirmed = confirm('Are you sure you want to delete this pool? This action cannot be undone. ');
 
         if(!confirmed) return;

@@ -29,6 +29,12 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
     };
 
     const handleRemoveMember = async (userId) => {
+        if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
+        toast.error('Not available in demo mode', {
+            className: 'toastError',
+        });
+        return;
+    }
         try {
             const response = await fetch('/api/pools/member/remove', {
                 method: "DELETE",
@@ -135,6 +141,12 @@ export default function AdminPoolCard ({ poolId, poolName, inviteCode }) {
     }
   
     const handleInviteClick = async () => {
+        if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
+        toast.error('Not available in demo mode', {
+            className: 'toastError',
+        });
+        return;
+    }
         try {
             const res = await fetch('/api/pools/invite', {
                 method: 'POST',
