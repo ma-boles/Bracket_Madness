@@ -196,14 +196,6 @@ export default function Submit() {
             <div>
                 <DesktopBracket_Layout />
                 <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)} picksRemaining={picksRemaining} />
-                    
-                    {/* Picks counter for demo mode only */}
-                    <div className="hidden md:flex justify-center items-center">
-                        <div className="mb-6 mt-2 bg-white/5 rounded-lg flex items-center justify-center font-bold w-1/6 h-12 mx-2"
-                        >
-                        Picks Remaining: <span className="font-bold"> {picksRemaining}</span>
-                        </div>
-                    </div>
 
                 <ConfirmationModal 
                     show={showModal}
@@ -220,32 +212,30 @@ export default function Submit() {
                 <>
                     {/* Desktop: always show */}
                     <div className="hidden lg:flex justify-center items-center">
-                    <button
-                        className="mb-6 mt-2 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-not-allowed"
-                        onClick={handleLockIn}
-                    >
-                        Lock In Picks
-                    </button>
+                        <button
+                            className="mb-6 mt-2 rounded-lg border border-white hover:bg-white/15 transition-colors flex items-center justify-center font-bold w-1/4 h-12 mx-2 cursor-not-allowed"
+                            onClick={handleLockIn}
+                        >
+                            Lock In Picks
+                        </button>
                     
-                    <button
-                        className={`mb-6 mt-2 rounded-lg bg-blue-700 border border-blue-700 transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-                        disabled={!isValidated}
-                        onClick={submitPicks}
-                    >
-                        {isLoading ? (
-                                <ButtonSpinner size={4} /> 
-                            ) : (
-                                'Submit'
-                            )}
-                    </button>
+                        <button
+                            className={`mb-6 mt-2 rounded-lg bg-blue-700 border border-blue-700 transition-colors flex items-center justify-center font-medium w-1/4 h-12 mx-2 ${!isValidated ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                            disabled={!isValidated}
+                            onClick={submitPicks}
+                        >
+                            {isLoading ? (
+                                    <ButtonSpinner size={4} /> 
+                                ) : (
+                                    'Submit'
+                                )}
+                        </button>
 
-                    <div
-                        className="mb-6 mt-2 bg-white/5 rounded-lg flex items-center justify-center font-bold w-1/6 h-12 mx-2"
-                    >
-                     Picks Remaining: <span className="font-bold"> {picksRemaining}</span>
-                    </div>
-                    
-
+                        <div
+                            className="mb-6 mt-2 bg-white/5 rounded-lg flex items-center justify-center font-bold w-1/6 h-12 mx-2"
+                        >
+                        Picks Remaining: <span className="font-bold"> {picksRemaining}</span>
+                        </div>
                     </div>
 
                     {/* Mobile: only show if Final Four is active */}
