@@ -16,7 +16,7 @@ export async function GET(req) {
     }
 
     const userId = decodedUser.userId;   
-    const rows = await getUserPools();
+    const rows = await getUserPools(userId);
 
     return NextResponse.json({ pools:rows }, { status: 200 });
     } catch (error) {
