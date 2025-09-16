@@ -1,9 +1,9 @@
 'use client'
 import { useRouter } from "next/navigation";
 import React, { useState, useContext } from "react";
-import AuthContext from "@/context/AuthContext";
+import AuthContext from "@/src/context/AuthContext";
 import toast from "react-hot-toast";
-import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
+import { ButtonSpinner } from "@/src/Components/ui/ButtonSpinner";
 
 export default function SignUp() {
     const [username, setUsername] = useState('');

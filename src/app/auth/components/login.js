@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import AuthContext from "@/src/context/AuthContext";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { ButtonSpinner } from "@/Components/ui/ButtonSpinner";
+import { ButtonSpinner } from "@/src/Components/ui/ButtonSpinner";
 
 
 export default function LogIn() {

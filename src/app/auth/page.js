@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from "react";
-import SignUp from "@/app/auth/components/signup";
-import LogIn from "@/app/auth/components/login";
+import SignUp from "./components/signup";
+import LogIn from "./components/login";
 
 export default function LogInPage() {
     const [isSignUp, setIsSignUp] = useState(false);

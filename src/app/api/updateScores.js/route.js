@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-const { runScoresSync } = require("@/frontend/controllers/scoresController");
+import { runScoresSync } from "@/controllers/scoresController";
 
 export async function GET(reg) {
     const authHeader = req.headers.get("authorization");
