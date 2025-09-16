@@ -1,7 +1,6 @@
 import Header from "../../Components/LearnMore/Header";
 import Footer from "../../Components/LearnMore/Footer";
 import Features from "../../Components/LearnMore/Features";
-// import { LayoutDashboard } from "lucide-react";
 
 export default function Home() {
   return (
@@ -15,7 +14,7 @@ export default function Home() {
               The New Era of Play
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 italic">
-              Its starts with a bracket. It grows into a platform.
+              It starts with a bracket. It grows into a platform.
             </p>
             <a
               href="/Submit"
@@ -55,12 +54,6 @@ export default function Home() {
                 Explore an early version of the Bracket Madness platform — a live preview of the bracket UI and design in action. 
                 While features like live updates and pool creation aren&apos;t live yet, this demo offers a clear look at the foundation of what&apos;s coming.  
               </p>
-              {/* <div className="w-full h-[300px] border-4 border-white/50 rounded-lg flex items-center justify-center text-gray-500 ">
-              <div className="flex">
-                <LayoutDashboard className="w-12 h-12 mb-4 mx-2" />
-                <p className="font-medium text-white/70 ">Feature walkthrough <br />video coming soon</p>
-              </div>
-              </div> */}
             </div>
         </section>
       </main>
