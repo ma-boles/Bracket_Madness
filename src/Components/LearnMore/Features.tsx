@@ -15,7 +15,7 @@ export default function Features() {
             <div className="text-left">
               <h3 className="text-xl font-semibold">Round Multipliers</h3>
               <p className="text-gray-300">
-                Points rise through each round — climb the leaderboard with smart picks. 
+                Points increase through each round — climb the leaderboard with smart picks. 
               </p>
             </div>
           </div>
@@ -30,8 +30,8 @@ export default function Features() {
             </div>
           </div>
 
-          <div className="flex items-start gap-7">
-            <Zap className="w-8 h-8 text-yellow-500" />
+          <div className="flex items-start gap-4">
+            <Zap className="w-14 h-14 text-yellow-500" />
             <div className="text-left">
               <h3 className="text-xl font-semibold">Live Tournament Tracking</h3>
               <p className="text-gray-300">
