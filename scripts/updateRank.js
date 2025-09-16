@@ -1,4 +1,4 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
 
 
 const updateRank = async () => {
@@ -34,10 +34,7 @@ const updateRank = async () => {
 
                 prevPoints = total_points;
                 position++; // Always increase position
-            }
-            
-            console.log('Rankings updated successfully.');
-            
+            }            
 
                 // Fetch brackets pool rank + update
                 const [pools] = await pool.execute(
@@ -75,8 +72,6 @@ const updateRank = async () => {
                     prevPoints = total_points;
                     position++;
                 }
-
-                console.log(`Pool rank updated successfully for ${pool_id}.`);
 
             }
 

@@ -1,6 +1,7 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
+import dotenv from "dotenv";
 
-require('dotenv').config();
+dotenv.config();
 
 
 // Constraints for scoring
@@ -80,8 +81,6 @@ const calculateScores = async () => {
             const placeholders = insertValues.map(() => '(?, ?, ?, ?, ?)').join(', ');
             const flattenedValues = insertValues.flat();
 
-            // console.log('Insert values:', insertValues);
-
             try {
                 await pool.execute(`
                     INSERT into points (user_id, bracket_id, round, game_id, awarded_points)
@@ -90,8 +89,6 @@ const calculateScores = async () => {
                     awarded_points = VALUES(awarded_points)
                 `, flattenedValues);
     
-                console.log('Scores updated successfully!');
-
                 // Update predictions.is_scored to true
                 const updateValues = insertValues.map(val => [val[0], val[1], val[3]]);
 
@@ -104,9 +101,6 @@ const calculateScores = async () => {
                         SET is_scored = 1
                         WHERE (user_id, bracket_id, game_id) IN (${updatePlaceholders})
                         `, flattenedUpdateValue);
-
-                console.log('Predictions marked as scored!');
-
 
                 // Sum all awarded points 
                 const [totals] = await pool.execute(`
@@ -126,8 +120,6 @@ const calculateScores = async () => {
                 });
 
                 await Promise.all(updatePromises);
-                console.log('Bracket total points updated successfully.');
-
 
                 // Update round totals
                 const [round_totals] = await pool.execute(`
@@ -140,7 +132,6 @@ const calculateScores = async () => {
                 // Update each bracket with sum total
                 const updateRounds = round_totals.map(({ bracket_id, round, round_points}) => {
                     const column = ROUND_TO_COLUMN[round];
-                    // console.log('Round:', round);
 
                     if(!column) {
                         console.error('Invalid round:', round);
@@ -157,7 +148,6 @@ const calculateScores = async () => {
                 // Filter out null returns
                 await Promise.all(updateRounds.filter(Boolean));
 
-                console.log('Bracket round points updated successfully.')
             }
                 } catch(error) {
                 console.error('Error during insert:', error);

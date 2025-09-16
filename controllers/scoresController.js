@@ -10,7 +10,6 @@ const calculateAccuracy = require("../scripts/calculateAccuracy");
 
 
 async function runScoresSync(mode, dryRun) {
-  console.log('Dry run inside runScoresSync:', dryRun);
 
   try {
     const espnGames = mode === 'past' ? await fetchPastScores() : await fetchScores();
@@ -24,10 +23,7 @@ async function runScoresSync(mode, dryRun) {
         for(const gameInfo of matches) {
 
         if (gameInfo) {
-          console.log(`Found a match for game ${gameInfo.teamA} vs ${gameInfo.teamB}`);
     
-          console.log('dryRun before updateDatabase call:', dryRun);
-
           if (!dryRun) {
             // Proceed with updating the DB + propogation
             await updateDatabase(gameInfo); // Fetch results
@@ -38,12 +34,12 @@ async function runScoresSync(mode, dryRun) {
             await propogateWinners(gameInfo); // Update your progress
             }
         } else {
-          console.log(`No valid gameInfo found.`);
+          console.warn(`No valid gameInfo found.`);
         }
       // });
     }
     } else {
-      console.log('No matches found or matches is not an array');
+      console.warn('No matches found or matches is not an array');
     }
 
   } catch(error) {

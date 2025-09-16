@@ -1,4 +1,4 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
 
 
 const calculateAccuracy = async () => {
@@ -16,8 +16,6 @@ const calculateAccuracy = async () => {
             GROUP BY p.user_id, p.bracket_id
             `
         );
-
-            console.log("Accuracy results:", results);
 
         // Update brackets with new values
         for (const row of results) {
@@ -38,8 +36,6 @@ const calculateAccuracy = async () => {
                 ]
             );
         }
-
-        console.log('✅ Accuracy stats updated for all brackets.');
 
     } catch(error) {
         console.error('❌ Error calculating/updating accuracy:', error);

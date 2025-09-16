@@ -1,4 +1,4 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
 
 
 // Function to update database
@@ -28,9 +28,6 @@ const updateDatabase = async (gameInfo) => {
               gameInfo.game_id,
             ];
 
-            console.log('Running query with values:', values);
-            // console.log('Types:', values.map(val => typeof val));
-
             if(
               !gameInfo.espn_game_id ||
               !gameInfo.team_a_id ||
@@ -55,8 +52,6 @@ const updateDatabase = async (gameInfo) => {
                   WHERE game_id = ?`,
                values
               );
-
-              console.log(`Updated game ${gameInfo.game_id} successfully.`);
               
               // Update is_finalized column to true
               await pool.execute(
@@ -65,8 +60,6 @@ const updateDatabase = async (gameInfo) => {
                   WHERE game_id = ?`,
                 [gameInfo.game_id]
               );
-
-            console.log(`Game ${gameInfo.game_id} marked as finalized.`);
 
             } catch(error) {
               console.error('Error running score sync:', error);

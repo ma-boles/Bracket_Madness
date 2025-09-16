@@ -1,4 +1,4 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
 
 
 const finalizeAllScoredGames = async () => {
@@ -10,7 +10,6 @@ const finalizeAllScoredGames = async () => {
             WHERE winner_id IS NOT NULL AND is_finalized = 0
             `);
 
-            console.log(`Marked ${result.affectedRows} games as finalized.`)
     } catch (error) {
         console.error('Error finalizing games:', error);
     } 

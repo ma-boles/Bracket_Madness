@@ -1,4 +1,4 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
 
 
 const correctPrediction = async () => {
@@ -11,8 +11,6 @@ const correctPrediction = async () => {
             WHERE r.is_finalized = 1;   
             `
         );
-
-        console.log(`Updated ${result.affectedRows} predictions.`);
 
     } catch(error) {
         console.error('Error marking is_correct:', error)

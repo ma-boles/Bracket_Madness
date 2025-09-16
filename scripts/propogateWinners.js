@@ -1,4 +1,4 @@
-const { pool } = require('../src/db/db');
+import { pool } from "@/src/db/db";
 
 
 const propogateWinners = async() => {
@@ -14,7 +14,7 @@ const propogateWinners = async() => {
                 AND((r1.next_slot_id = 'team_a_id' AND r2.team_a_id IS NULL)
                     OR(r1.next_slot_id = 'team_b_id' AND r2.team_b_id IS NULL));
         `);
-        console.log('Winner propogation completed successfully');
+
     } catch(error) {
         console.error('Error propogating winners:', error);
     } 
