@@ -10,6 +10,8 @@ import ConfirmationModal from "@/src/Components/ConfirmationModal";
 import toast from "react-hot-toast";
 import { ButtonSpinner } from "@/src/Components/ui/ButtonSpinner";
 import { isDemo } from "@/config";
+import HowToPlayModal from "@/src/Components/HowToPlayModal";
+import HowToPlayMobile from "@/src/Components/MobileBracket/HowToPlayMobile";
 
 function SubmitInner () {
     const { currentUser } = useContext(AuthContext);
@@ -24,7 +26,9 @@ function SubmitInner () {
     const [ picksValid, setPicksValid ] = useState(false);
     const [ isFinalFourActive, setIsFinalFourActive ] = useState(false);
     const [ picksRemaining, setPicksRemaining ] = useState(67);
-    
+    const [ showHowToPlay, setShowHowToPlay ] = useState(true);
+    const [ showHowToPlayMobile, setShowHowToPlayMobile ] = useState(true);
+
     const searchParams = useSearchParams();
     const poolId = searchParams.get('pool_id');
 
@@ -191,9 +195,22 @@ function SubmitInner () {
     return(
         <>
             <nav>
-                <NavBar />
+                <NavBar onOpenHowToPlay={() => setShowHowToPlay(true)} onOpenHowToPlayMobile={() => setShowHowToPlayMobile(true)}/>
             </nav>
-            <div>
+            <div className="relative">
+
+                {showHowToPlay && (
+                    <div className="hidden sm:block">
+                        <HowToPlayModal onClose={() => setShowHowToPlay(false)}/>
+                    </div>
+                )}
+
+                 {showHowToPlayMobile && (
+                    <div className="sm:hidden">
+                        <HowToPlayMobile onClose={() => setShowHowToPlayMobile(false)}/>
+                    </div>
+                )}
+
                 <DesktopBracket_Layout />
                 <MobileBracket_Layout onEnterFinalFour={() => setIsFinalFourActive(true)} picksRemaining={picksRemaining} />
 
