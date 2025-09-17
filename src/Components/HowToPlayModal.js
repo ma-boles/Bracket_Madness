@@ -1,4 +1,4 @@
-import { Check, ArrowRight, AlertCircle, ListChecks, Lock  } from 'lucide-react';
+import { Check, ArrowRight, AlertCircle, ListChecks  } from 'lucide-react';
 import { isDemo } from '@/config';
 
 export default function HowToPlayModal ({ onClose }) {
