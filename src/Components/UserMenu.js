@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { HomeIcon, TrophyIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
+import { Home, Trophy, InfoIcon } from "lucide-react";
+
 import LogoutButton from "../app/auth/components/LogoutButton";
 
 
@@ -31,7 +32,7 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                         onClick={() => setUserMenuOpen(false)}
                     >
                     <div className="mx-4">
-                        <HomeIcon className="w-6 h-6 text-white" /> 
+                        <Home className="w-6 h-6 text-white" /> 
                     </div>
 
                         Dashboard
@@ -47,7 +48,7 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                     role="menuitem"
                 >
                 <div className="mx-4">
-                    <TrophyIcon className="w-6 h-6 text-white" /> 
+                    <Trophy className="w-6 h-6 text-white" /> 
                 </div>
 
                     Leaderboard
@@ -59,14 +60,14 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
                         onClick={() => setUserMenuOpen(false)}
                     >
                         <div className="mx-4">
-                            <InformationCircleIcon className="w-6 h-6 text-white" /> 
+                            <InfoIcon className="w-6 h-6 text-white" /> 
                         </div>
 
                             Learn More
                     </button>
                 </Link>
 
-                    <LogoutButton />
+                <LogoutButton />
             </div>
 
         </>
