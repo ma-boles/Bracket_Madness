@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { HomeIcon, TrophyIcon, UserCircleIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
+import { LightbulbIcon, User, Home, Trophy, InfoIcon, Menu, XIcon } from "lucide-react";
+
 import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
 import LogoutButton from "../app/auth/components/LogoutButton";
 
 
-export default function NavBar () {
+export default function NavBar ({ onOpenHowToPlay, onOpenHowToPlayMobile }) {
     const router = useRouter();
     const { currentUser } = useAuth();
     const [showModal,setShowModal] = useState(false);
@@ -47,7 +47,7 @@ export default function NavBar () {
         setUserMenuOpen(prev => !prev);
     };
 
-    const Icon = mobileMenuOpen ? XMarkIcon : Bars3Icon;
+    const Icon = mobileMenuOpen ? XIcon : Menu;
 
     return(
         <>
@@ -86,7 +86,7 @@ export default function NavBar () {
                 {/* Mobile Nav Icon */}
                 <div className="md:hidden">
                     <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                        <Icon className="h-8 w-8"/>
+                        <Icon className="h-8 w-8 hover:bg-blue-600 rounded-md"/>
                     </button>
                 </div>
 
@@ -113,7 +113,7 @@ export default function NavBar () {
                                         onClick={() => setUserMenuOpen(false)}
                                     >
                                     <div className="mx-4">
-                                        <HomeIcon className="w-6 h-6 text-white" /> 
+                                        <Home className="w-6 h-6 text-white" /> 
                                     </div>
 
                                         Dashboard
@@ -129,7 +129,7 @@ export default function NavBar () {
                                     role="menuitem"
                                 >
                                 <div className="mx-4">
-                                    <TrophyIcon className="w-6 h-6 text-white" /> 
+                                    <Trophy className="w-6 h-6 text-white" /> 
                                 </div>
 
                                     Leaderboard
@@ -142,12 +142,22 @@ export default function NavBar () {
                                         onClick={() => setUserMenuOpen(false)}
                                     >
                                     <div className="mx-4">
-                                        <InformationCircleIcon className="w-6 h-6 text-white" /> 
+                                        <InfoIcon className="w-6 h-6 text-white" /> 
                                     </div>
 
                                         Learn More
                                     </button>
                                 </Link>
+
+                                 <button
+                                    className="flex items-center w-full h-10 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md"
+                                    onClick={onOpenHowToPlayMobile}
+>
+                                    <div className="mx-4">
+                                        <LightbulbIcon className="w-6 h-6 text-white" /> 
+                                    </div>
+                                        How To Play
+                                </button>
 
                                 <LogoutButton />
                             </div>
@@ -175,6 +185,13 @@ export default function NavBar () {
                         <>
                         <div className="flex w-full px-2 justify-end">
 
+                            <button
+                                onClick={onOpenHowToPlay}
+                                className="text-gray-300 hover:text-yellow-300 transition-colors px-2"
+                                aria-label="How to Play"
+                                >
+                                <LightbulbIcon className="w-6 h-6" />
+                            </button>
                             {/* User Icon Button */}
                             <button
                                 onClick={toggleUserMenu}
@@ -184,9 +201,9 @@ export default function NavBar () {
                                 title="User Menu"
                             >
                                 {userMenuOpen ? (
-                                    <XMarkIcon className="w-7 h-7 text-white cursor-pointer" />
+                                    <XIcon className="w-7 h-7 text-white cursor-pointer" />
                                 ) : (
-                                    <UserCircleIcon className="w-7 h-7 text-white cursor-pointer" />
+                                    <User className="w-7 h-7 text-white cursor-pointer" />
                                 )}
 
                             </button>
