@@ -1,4 +1,4 @@
-import { XMarkIcon, TrophyIcon } from "@heroicons/react/24/outline";
+import { Trophy, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function LeaderboardModal({ isOpen, onClose }) {
@@ -37,11 +37,11 @@ export default function LeaderboardModal({ isOpen, onClose }) {
 
                     <div className="flex items-center justify-between p-4 border-b border-gray-700">
                         <div className="flex items-center gap-2">
-                            <TrophyIcon className="w-6 h-6 text-yellow-400" />
+                            <Trophy className="w-6 h-6 text-yellow-400" />
                             <h2 className="text-lg font-semibold">Top Brackets (Global)</h2>
                         </div>
                         <button onClick={onClose} className="hover:text-red-400 transition">
-                            <XMarkIcon className="w-6 h-6" />
+                            <XIcon className="w-6 h-6" />
                         </button>
                     </div>
 
