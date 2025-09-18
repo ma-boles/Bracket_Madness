@@ -7,7 +7,7 @@ export default function Pool () {
 
     return (
         <>
-        <nav>
+        <nav className="sticky top-0 z-100 shadow bg-black">
             <NavBar />
         </nav>
 

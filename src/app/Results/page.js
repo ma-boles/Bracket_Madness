@@ -44,7 +44,7 @@ export default function Results() {
 
     return(
         <>
-        <nav>
+        <nav className="sticky top-0 z-100 shadow bg-black">
             <NavBar />
         </nav>
         <div className="flex justify-center items-center">

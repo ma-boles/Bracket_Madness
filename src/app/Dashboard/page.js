@@ -106,7 +106,7 @@ export default function Dashboard() {
 
     return(
         <div className="min-h-screen">
-            <nav>
+            <nav className="sticky top-0 z-100 shadow bg-black">
                 <NavBar />
             </nav>
 
