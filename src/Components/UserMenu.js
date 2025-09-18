@@ -20,7 +20,10 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
 
     return (
         <>
-            <div className="absolute right-0 top-13 mt-2 p-1 w-48 bg-black/70 rounded-md shadow-lg py-1 z-50"
+         <div
+            className="fixed inset-0 z-30" 
+            onClick={() => setUserMenuOpen(false)}>
+            <div className="absolute right-0 top-13 mt-2 p-1 w-48 bg-black/95 rounded-md shadow-lg py-1 z-50"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu"
@@ -69,7 +72,7 @@ export default function UserMenu({ currentUser, handleLogIn, setShowModal, setUs
 
                 <LogoutButton />
             </div>
-
+</div>
         </>
     )
 }
