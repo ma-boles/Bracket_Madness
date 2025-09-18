@@ -10,7 +10,6 @@ import UserMenu from "./UserMenu";
 import LeaderboardModal from "./LeaderboardModal";
 import LogoutButton from "../app/auth/components/LogoutButton";
 
-
 export default function NavBar ({ onOpenHowToPlay, onOpenHowToPlayMobile }) {
     const router = useRouter();
     const { currentUser } = useAuth();
@@ -92,7 +91,12 @@ export default function NavBar ({ onOpenHowToPlay, onOpenHowToPlayMobile }) {
 
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
-                    <div className="fixed top-10 left-0 w-full bg-black/95 text-white flex flex-col items-center justify-center text-center text-xl z-20">
+                     <div
+                        className="fixed inset-0 z-20" 
+                        onClick={() => setMobileMenuOpen(false)}
+                    >
+                    <div className="fixed top-10 left-0 w-full bg-black/95 text-white flex flex-col items-center justify-center text-center text-xl z-20"
+                     onClick={(e) => e.stopPropagation()}>
                         <Link href="/Submit" onClick={mobileSubmitAlert} className="w-full">
                             <button className="flex items-center w-full h-10 px-14 border border-transparent hover:border-blue-600 hover:bg-blue-600/30 cursor-pointer rounded-md">
                                 Submit
@@ -175,6 +179,7 @@ export default function NavBar ({ onOpenHowToPlay, onOpenHowToPlayMobile }) {
                         )}
 
                     </div>
+                    </div>
                 )}
 
                 <LeaderboardModal isOpen={showModal} onClose={() => setShowModal(false)} />
@@ -187,7 +192,7 @@ export default function NavBar ({ onOpenHowToPlay, onOpenHowToPlayMobile }) {
 
                             <button
                                 onClick={onOpenHowToPlay}
-                                className="text-gray-300 hover:text-yellow-300 transition-colors px-2"
+                                className="text-gray-300 hover:text-yellow-300 hover:bg-yellow-100/15 transition-colors px-2 rounded-full"
                                 aria-label="How to Play"
                                 >
                                 <LightbulbIcon className="w-6 h-6" />
