@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import RouteLoaderWrapper from "../context/RouteLoaderWrapper";
 import MobileProvider from "../context/MobileContext";
 import { Anton, Oswald } from 'next/font/google'
+import HoneycombCluster from "../Components/ui/HoneycombCluster";
 
 const anton = Anton({
   subsets: ['latin'],
@@ -41,6 +42,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} ${oswald.variable} antialiased`}
       >
+        <HoneycombCluster position="top-left" size={250} opacity={0.2} rotate={240}/>
+<HoneycombCluster position="bottom-right" size={300} opacity={0.3} rotate={40} />
+
+
+        {/* <HoneycombCluster position="top-left" hexSize={100} rows={2} cols={3} />
+<HoneycombCluster position="bottom-right" hexSize={120} rows={2} cols={2} /> */}
+
+        
         <AuthProvider>
           <BracketProvider>
             <RouteLoaderWrapper>
